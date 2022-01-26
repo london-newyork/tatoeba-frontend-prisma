@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## アプリ概要
 
-## Getting Started
+オリジナルアプリ「Tatoeba」。
+わかりにくい話をわかりやすく例える、「例え話を支援する」アプリです。
 
-First, run the development server:
+## 開発背景
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+WEB 担当として仕事をしていた時に、非エンジニア・非デザイナーの方とお話しする機会が多かったのですが、その際、WEB 独特の用語を理解していただくのに、苦労した経験がありました。もちろん、非エンジニア・非デザイナーの方も話を理解するのに、とても苦労されたと思っています。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+しかし、そこで、わかりにくい話をわかりやすく例える「例え話」を使うと、コミュニケーションが円滑に進むことがありました。
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+同じ WEB に関わっている方にも、この「例え話」を支援するアプリを通して、円滑なコミュニケーションをしていただけたらと言う思いです。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 使用技術
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Next.js
+  SSR・SSG で読み込み時のダウンロードファイルサイズを削減できる。SPA で巨大な JavaScript を生成してしまう React より効率的。
+  また、URL ごとに個別の HTML が生成されるので、SEO 上良い点で採用しています。
 
-## Learn More
+- TypeScript
+  型による制限で、ミスを少なくして開発を効率化するために採用しました。
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- TailwindCSS
+  TailwindCSS を使ってあらかじめ定義されたスタイルを使っていくことで、より開発期間を短縮することができるため、採用しました。

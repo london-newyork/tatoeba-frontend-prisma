@@ -19,8 +19,15 @@ module.exports = {
       xl: '1440px',
     },
     extend: {
-      '128': '32rem',
-      '144': '36rem',
+      animation: {
+        'expand-border': 'expand-border 2s ease infinite'
+      },
+      keyframes: {
+        "expand-border": {
+          '0%': {width:'0', opacity:'0'},
+          '100%': {width:'100%', opacity:'1'}
+        }
+      }
     },
     borderRadius: {
       '4xl': '2rem',
@@ -33,6 +40,11 @@ module.exports = {
       dark_gray :'#5e5e5e',
     }),
     backgroundColor: (theme) => ({
+      ...theme("colors"),
+      light_green : '#D2FDD1',
+      dark_green :'#05D200',
+    }),
+    border: (theme) => ({
       ...theme("colors"),
       light_green : '#D2FDD1',
       dark_green :'#05D200',

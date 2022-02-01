@@ -2,7 +2,7 @@
   "compilerOptions": {
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "esnext",
     "target": "es6",
     "jsx": "preserve",
     "lib": [
@@ -22,8 +22,9 @@
     "incremental": true
   },
   "include": [
-    "src/**/*"
-, "pages/TestParent.tsx"  ],
+    "src/**/*",
+    "pages/TestParent.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

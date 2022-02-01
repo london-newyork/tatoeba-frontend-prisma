@@ -8,7 +8,17 @@ type Props = {
 export const Header = (props:Props) => {
   return (
     <header>
-      <div className='px-[100px] bg-light_green w-full h-[60px] flex justify-between justify-items-center'>
+      <div className='
+        px-6
+        sm:px-6
+        md:px-11
+        lg:px-24
+        bg-light_green
+        w-full
+        h-[60px]
+        flex
+        justify-between
+        justify-items-center'>
         <div className="my-auto">
           <img src="" />
           <h1 className="text-3xl text-gray-700 tracking-wider hover:opacity-50 duration-300">Tatoeba</h1>

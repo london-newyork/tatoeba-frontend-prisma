@@ -14,16 +14,24 @@ export const Main = () => {
         lg:pt-16
         bg-gray-100
         ">
-        <section className="flex flex-col lg:flex-row gap-9 lg:gap-20 w-full">
+        <section
+        className="
+        flex
+        flex-col
+        lg:flex-row
+        gap-9
+        md:gap-none
+        justify-around
+        w-full">
             <div id="wrapper-left" className='order-2 sm:order-2 lg:order-1'>
                 <h2 className="
                     text-3xl
                     sm:text-3xl
-                    lg:text-[40px]
+                    lg:text-5xl
                     text-gray-700
                     leading-normal
                     sm:leading-normal
-                    lg:leading-loose
+                    lg:leading-relaxed
                     text-center
                     md:text-left
                     tracking-normal">
@@ -67,27 +75,45 @@ export const Main = () => {
                         rounded">
                         <h3 className="text-2xl text-gray-700 pb-5">困っているお仕事</h3>
                         <ul className="leading-loose">
-                            <li><a className="hover:opacity-50">WEBデザイナー</a></li>
-                            <li><a className="hover:opacity-50">WEBエンジニア</a></li>
-                            <li><a className="hover:opacity-50">WEBマーケター</a></li>
+                            <li className="flex gap-2 items-center hover:opacity-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                                <a>WEBデザイナー</a>
+                            </li>
+                            <li className="flex gap-2 items-center hover:opacity-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                                <a>WEBエンジニア</a>
+                            </li>
+                            <li className="flex gap-2 items-center hover:opacity-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                                <a>WEBマーケター</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div className="
+                w-[30%]
+                pl-none
+                pt-5
+                m-auto
+                md:m-0
+                lg:m-0
+                max-w-[340px]
                 order-1
                 sm:order-1
                 md:order-1
                 lg:order-2
-                w-[50%]
-                lg:w-[60%]
-                m-auto
-                md:m-none
                 ">
                 <Image src='/images/illust1.png'
                     alt="illust of Tatoeba app"
-                    width={600}
-                    height={600}
+                    width={472}
+                    height={640}
                     objectFit='contain'
                     quality={50}
                     priority={true}

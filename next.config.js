@@ -8,13 +8,13 @@ module.exports = {
     return config
   },
 }
-const withImages= require('next-images')
-module.exports= {
-    ...withImages(),
-    future: {
-        webpack5: true,
-    },
-}
+// const withImages= require('next-images')
+// module.exports= {
+//     ...withImages(),
+//     future: {
+//         webpack5: true,
+//     },
+// }
 
 // ESLintの設定 eslint-disable を追加する
 /* eslint-disable

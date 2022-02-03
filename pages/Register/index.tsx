@@ -1,9 +1,14 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
+import { Modal } from '../../src/components/Modal/Modal'
 
 export default function Register() {
+  const [show, setShow] = useState(false)
+  const openModal = () => {
+    setShow(true)
+  }
   return (
     <>
       <Head>
@@ -51,12 +56,12 @@ export default function Register() {
                     lg:flex-row">
                     <label className='
                       text-gray-500
-                      w-[250px]
+                      w-[300px]
                       pb-2
                       md:pb-2
                       lg:pb-0
                       select-none'>
-                      わかりにくい言葉<br />
+                      わかりにくい専門用語・文章<br />
                       <span className="text-xs text-gray-400">50文字以内</span>
                     </label>
                     <textarea
@@ -64,7 +69,7 @@ export default function Register() {
                       placeholder='サーバー'
                       maxLength={50}
                       className="
-                      max-w-[700px]
+                      max-w-[650px]
                       shadow-sm
                       outline-none
                       focus:ring-2
@@ -93,7 +98,7 @@ export default function Register() {
                     ">
                     <label className='
                       text-gray-500
-                      w-[250px]
+                      w-[300px]
                       pb-2
                       md:pb-2
                       lg:pb-0
@@ -106,7 +111,7 @@ export default function Register() {
                       placeholder='土地'
                       type="text"
                       className='
-                      max-w-[700px]
+                      max-w-[650px]
                       shadow-sm
                       outline-none
                       focus:ring-2
@@ -135,7 +140,7 @@ export default function Register() {
                     <label
                       className='
                       text-gray-500
-                      w-[250px]
+                      w-[300px]
                       pb-2
                       md:pb-2
                       lg:pb-0
@@ -148,7 +153,7 @@ export default function Register() {
                     name="description"
                     rows={8}
                     className="
-                      max-w-[700px]
+                      max-w-[650px]
                       shadow-sm
                       outline-none
                       focus:ring-2
@@ -174,6 +179,7 @@ export default function Register() {
                   </div>
                   <div className="flex justify-end">
                     <button
+                    onClick={openModal}
                     type="button"
                     className="
                     p-3
@@ -186,6 +192,7 @@ export default function Register() {
                     ">
                       投稿する
                     </button>
+                    <Modal show={show} setShow={setShow}/>
                   </div>
                 </form>
             </div>

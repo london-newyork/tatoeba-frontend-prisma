@@ -39,6 +39,8 @@ export const Main = () => {
                     わかりやすい例えで<br />
                     楽コミュニケーション
                 </h2>
+                <h3 className="pt-3 text-gray-500 lg:leading-relaxed">ITの専門用語を知らない人に、もっと伝わる「例え話」を<br />
+                </h3>
                 <div
                     id="wrapper-left-bottom"
                     className="flex flex-col">
@@ -73,8 +75,8 @@ export const Main = () => {
                         pb-10
                         bg-white
                         rounded-md">
-                        <h3 className="text-2xl text-gray-700 pb-5">困っているお仕事</h3>
-                        <ul className="leading-loose">
+                        <h3 className="scss-underline text-2xl text-gray-700">困っているお仕事</h3>
+                        <ul className="leading-loose pt-7">
                             <li className="flex gap-2 items-center hover:opacity-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

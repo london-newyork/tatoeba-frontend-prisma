@@ -13,7 +13,7 @@ export const Top = () => {
     justify-around
     w-full">
         <div id="wrapper-left" className='order-2 sm:order-2 lg:order-1'>
-            <h2 className="
+            <h1 className="
                 text-3xl
                 sm:text-3xl
                 lg:text-5xl
@@ -27,7 +27,7 @@ export const Top = () => {
                 わかりにくい話に、<br />
                 わかりやすい例えで<br />
                 楽コミュニケーション
-            </h2>
+            </h1>
             <div
                 id="wrapper-left-bottom"
                 className="flex flex-col">

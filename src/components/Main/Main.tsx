@@ -72,7 +72,7 @@ export const Main = () => {
                         px-9
                         pb-10
                         bg-white
-                        rounded">
+                        rounded-md">
                         <h3 className="text-2xl text-gray-700 pb-5">困っているお仕事</h3>
                         <ul className="leading-loose">
                             <li className="flex gap-2 items-center hover:opacity-50">

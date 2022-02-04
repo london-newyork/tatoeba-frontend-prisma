@@ -1,20 +1,10 @@
+import Image from 'next/image';
 import React from 'react';
-import Image from 'next/image'
-export const Main = () => {
+
+export const Top = () => {
   return (
-    <main className="
-        px-6
-        sm:px-6
-        md:px-11
-        lg:px-24
-        h-screen
-        pt-10
-        sm:pt-10
-        md:pt-12
-        lg:pt-16
-        bg-white
-        ">
-        <section
+      <>
+       <section
         className="
         flex
         flex-col
@@ -45,7 +35,8 @@ export const Main = () => {
                 text-gray-500
                 lg:leading-relaxed
                 text-center
-                    md:text-left">ITの専門用語を知らない人に、もっと伝わる「例え話」を<br />
+                md:text-left">
+                    ITの専門用語を知らない人に、もっと伝わる「例え話」を<br />
                 </h3>
                 <div
                     id="wrapper-left-bottom"
@@ -58,6 +49,7 @@ export const Main = () => {
                         ">
                         <input
                             className="
+                            placeholder-gray-300
                             scss-border
                             "
                             placeholder='サーバーを例えると...' />
@@ -129,6 +121,6 @@ export const Main = () => {
                         pt-12"/>
             </div>
         </section>
-    </main>
+      </>
   )
 };

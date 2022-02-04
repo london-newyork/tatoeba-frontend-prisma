@@ -10,8 +10,10 @@ export const Header = (props:Props) => {
   return (
     <header>
       <div className='
-        px-6
-        sm:px-6
+        pl-6
+        pr-0
+        sm:pl-6
+        sm:pr-0
         md:px-11
         lg:px-24
         bg-white
@@ -30,7 +32,10 @@ export const Header = (props:Props) => {
             tracking-wider
             hover:opacity-50
             duration-300">
-              <span className="text-green-500">T</span>atoeba
+              <span className="text-green-500">
+                T
+              </span>
+              atoeba
             </a>
           </Link>
         </div>
@@ -50,7 +55,7 @@ export const Header = (props:Props) => {
               </ul>
             </button>
           </Link>
-          <button className="
+          {/* <button className="
           bg-gray-200
           w-[64px]
           h-[60px]
@@ -59,7 +64,7 @@ export const Header = (props:Props) => {
               <li><MenuIcon className="h-6 w-6 text-gray-700 duration-300"/></li>
               <li className="text-[10px] text-gray-700 duration-300">メニュー</li>
             </ul>
-          </button>
+          </button> */}
         </div>
       </div>
     </header>

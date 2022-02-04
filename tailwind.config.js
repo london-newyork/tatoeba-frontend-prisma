@@ -5,10 +5,14 @@ module.exports = {
   purge: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}","./pages/**/*.{js,ts,jsx,tsx}"],
   content: [],
   theme: {
+    fontFamily: {
+      'sans': ['Inter var','Graphik'],
+      'sans-serif':['"Noto Sans Japanses"','メイリオ','ヒラギノ角ゴシック','Arial', 'sans-serif'],
+      'top-headline': ['"Sawarabi Gothic"']
+    },
     colors: {
       text: {
         body : [
-          '#05D200',
         ],
       }
     },
@@ -42,22 +46,21 @@ module.exports = {
     color: (theme) => ({
       ...theme("colors"),
       dark_green :'#05D200',
+      mid_green : '#4cf048',
       dark_gray :'#5e5e5e',
     }),
     backgroundColor: (theme) => ({
       ...theme("colors"),
       light_green : '#D2FDD1',
+      mid_green : '#4cf048',
       dark_green :'#05D200',
     }),
     border: (theme) => ({
       ...theme("colors"),
       light_green : '#D2FDD1',
+      mid_green : '#4cf048',
       dark_green :'#05D200',
     }),
-    fontFamily: {
-      sans: ['Inter var','Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-    },
   },
   plugins: [],
   variants: {

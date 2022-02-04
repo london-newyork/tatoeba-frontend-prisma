@@ -8,6 +8,7 @@ type Modal = {
 export const Modal = (props: Modal) => {
 const {show, setShow} = props
     const closeModal = useCallback(() => {
+        {/* @ts-ignore */}
         setShow(false)
     }, []);
 
@@ -39,7 +40,13 @@ const {show, setShow} = props
               flex
               flex-col
               ">
-                <p className="pb-10 text-center text-2xl text-gray-700">ご投稿ありがとうございました!</p>
+                <p className="
+                pb-10
+                text-center
+                text-2xl
+                text-gray-700">
+                    ご投稿ありがとうございました!
+                </p>
                 <button
                 onClick={closeModal}
                 className="

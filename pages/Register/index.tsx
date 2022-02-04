@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useCallback, useState } from 'react'
 import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
@@ -6,9 +6,10 @@ import { Modal } from '../../src/components/Modal/Modal'
 
 export default function Register() {
   const [show, setShow] = useState(false)
-  const openModal = () => {
+  const openModal = useCallback(() => {
     setShow(true)
-  }
+  }, [])
+
   return (
     <>
       <Head>
@@ -147,10 +148,11 @@ export default function Register() {
                       select-none'>
                         詳しい説明
                       <br />
-                      <span className="text-xs text-gray-400">50文字以内</span>
+                      <span className="text-xs text-gray-400">400文字以内</span>
                     </label>
                     <textarea
                     name="description"
+                    maxLength={400}
                     rows={8}
                     className="
                       max-w-[650px]
@@ -173,8 +175,8 @@ export default function Register() {
                       border-gray-300
                       rounded-md
                       "
-                    placeholder="WEBサイトを「家」とすると、サーバーは「土地」に例えられます。"
-                    defaultValue={''}
+                      placeholder="WEBサイトを「家」とすると、サーバーは「土地」に例えられます。"
+                      defaultValue={''}
                     ></textarea>
                   </div>
                   <div className="flex justify-end">
@@ -192,6 +194,7 @@ export default function Register() {
                     ">
                       投稿する
                     </button>
+                    {/* @ts-ignore */}
                     <Modal show={show} setShow={setShow}/>
                   </div>
                 </form>

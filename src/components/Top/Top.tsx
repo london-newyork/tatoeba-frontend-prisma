@@ -1,7 +1,13 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { VFC, useState, useCallback } from 'react';
 
-export const Top = () => {
+export const Top:VFC = () => {
+const [ text, setText] = useState('')
+
+const handleChange = useCallback((e) => {
+    setText(e.target.value)
+}, []);
+
   return (
       <>
        <section
@@ -25,7 +31,7 @@ export const Top = () => {
                     text-center
                     md:text-left
                     tracking-normal
-                    font-['top-headline']">
+                    font-top_headline">
                     わかりにくい話に、<br />
                     わかりやすい例えで<br />
                     楽コミュニケーション
@@ -48,20 +54,23 @@ export const Top = () => {
                         pb-20
                         ">
                         <input
+                            value={text}
+                            onChange={handleChange}
                             className="
                             placeholder-gray-300
                             scss-border
                             "
                             placeholder='サーバーを例えると...' />
                         <button
-                            className="
+                            className={`
                             absolute
                             right-0
                             translate-y-4
-                            text-gray-400
                             hover:opacity-60
                             hover:text-dark_green
-                        ">
+                            ${ text ? 'text-gray-600' : 'text-gray-400' }
+                            `}
+                        >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
                     </div>

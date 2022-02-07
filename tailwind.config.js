@@ -7,8 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       'sans': ['Inter var','Graphik'],
-      'sans-serif':['"Noto Sans Japanses"','メイリオ','ヒラギノ角ゴシック','Arial', 'sans-serif'],
-      'top-headline': ['"Sawarabi Gothic"']
+      'sans-serif':['Noto Sans Japanses','Arial', 'sans-serif'],
     },
     colors: {
       text: {
@@ -23,6 +22,9 @@ module.exports = {
       xl: '1440px',
     },
     extend: {
+      fontFamily:{
+        'top_headline': ['Murecho'],
+      },
       animation: {
         'expand-border': 'expand-border 2s ease infinite'
       },
@@ -38,9 +40,6 @@ module.exports = {
         }
       }
     },
-    borderRadius: {
-      '4xl': '2rem',
-    }
   },
   theme: {
     color: (theme) => ({

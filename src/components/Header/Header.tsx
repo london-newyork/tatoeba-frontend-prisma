@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuIcon, PencilAltIcon } from '@heroicons/react/outline'
+import { PencilAltIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 
 type Props = {
@@ -23,7 +23,7 @@ export const Header = (props:Props) => {
         justify-between
         justify-items-center
         border-b
-        border-gray-100'>
+        border-gray-200'>
         <div className="my-auto">
           <Link href="/">
             <a className="

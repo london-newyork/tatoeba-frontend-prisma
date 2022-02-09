@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import { NextRouter } from 'next/router';
 
 export const Top:VFC = () => {
-const [ text, setText] = useState('')
+const [ searchTerm, setSearchTerm ] = useState('')
 
 const handleChange = useCallback((e) => {
-    setText(e.target.value)
+    setSearchTerm(e.target.value)
 }, []);
 
   return (
@@ -54,7 +56,7 @@ const handleChange = useCallback((e) => {
                         pb-20
                         ">
                         <input
-                            value={text}
+                            value={searchTerm}
                             onChange={handleChange}
                             className="
                             placeholder-gray-300
@@ -68,11 +70,32 @@ const handleChange = useCallback((e) => {
                             translate-y-4
                             hover:opacity-60
                             hover:text-dark_green
-                            ${ text ? 'text-gray-600' : 'text-gray-400' }
+                            ${ searchTerm ? 'text-gray-500' : 'text-gray-300' }
                             `}
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </button>
+
+                        {/*
+                        ✨ firebaseに登録されたデータを 「　filter　」で検索
+
+                        {firebaseDATA.filter((val)=> {
+                            searchTerm === "" ? val : 検索された時の処理
+                        })}
+
+                        😀 useFormを使う必要がある？
+
+                        ✨ useRouterを使ってページ遷移する必要がある？
+
+                          const onSubmit: SubmitHandler<SearchForm> = (data) => {
+                            router.push({
+                            pathname: '/SearchResult/',
+                            query: { keyword: data.keyword, type: data.type }, → 型設定する必要
+                            });
+                        };
+
+                        */}
+
                     </div>
                     <div
                         className="
@@ -128,6 +151,7 @@ const handleChange = useCallback((e) => {
                     priority={true}
                     className="
                         pt-12"/>
+
             </div>
         </section>
       </>

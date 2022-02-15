@@ -32,4 +32,10 @@ yarn-error.log*
 
 # vercel
 .vercel
- 
+
+#firebase
+.fireabaseerc
+firebase.json
+firebase.indexes.json
+firebase.rules
+.firebase

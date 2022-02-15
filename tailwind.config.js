@@ -38,12 +38,18 @@ module.exports = {
         light:{
           'outline': "none",
         }
-      }
+      },
+      dropShadow: {
+      '2xl': '0 35px 35px rgba(5, 213, 5,1)',
+      '3xl': '0 35px 35px rgba(221, 242, 221, 1)',
+      'green_2xl': '0 35px 35px rgba(221, 242, 221, 1)',
+      },
     },
   },
   theme: {
     color: (theme) => ({
       ...theme("colors"),
+      q_dark_green : '#05bf00',
       dark_green :'#05D200',
       mid_green : '#4cf048',
       dark_gray :'#5e5e5e',
@@ -53,12 +59,14 @@ module.exports = {
       light_green : '#D2FDD1',
       mid_green : '#4cf048',
       dark_green :'#05D200',
+      q_dark_green : '#05bf00',
     }),
     border: (theme) => ({
       ...theme("colors"),
       light_green : '#D2FDD1',
       mid_green : '#4cf048',
       dark_green :'#05D200',
+      q_dark_green : '#05bf00',
     }),
   },
   plugins: [],

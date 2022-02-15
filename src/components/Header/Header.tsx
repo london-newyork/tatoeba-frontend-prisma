@@ -42,7 +42,7 @@ export const Header = (props:Props) => {
         <div className="flex my-auto">
           <Link href="/Register/">
             <button className="
-              hover:opacity-50
+              hover:bg-q_dark_green
               bg-dark_green
               w-[64px]
               h-[60px]">

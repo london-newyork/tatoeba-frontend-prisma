@@ -2,18 +2,59 @@ import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { NextRouter } from 'next/router';
+import { Props } from '@headlessui/react/dist/types';
 
 export const Top:VFC = () => {
 const [ searchTerm, setSearchTerm ] = useState('')
+const [ isHover, setIsHover ] = useState(true)
+const [ isLeave, setIsLeave ] = useState(true)
 
 const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value)
-}, []);
+}, [searchTerm]);
+
+
+const handleToastMouseEnter = (e:any) => {
+    setIsHover(e.target.value)
+}
+
+const handleToastMouseLeave = (e:any) => {
+    setIsLeave(e.target.value)
+}
+
+// const handleToastMouseEnter = () => {
+//     isHover ? 'bg-gray-500': 'bg-white'
+//     console.log(isHover);
+// }
+
+// // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+// if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+//     document.documentElement.classList.add('dark')
+//   } else {
+//     document.documentElement.classList.remove('dark')
+//   }
+  
+//   // Whenever the user explicitly chooses light mode
+//   localStorage.theme = 'light'
+  
+//   // Whenever the user explicitly chooses dark mode
+//   localStorage.theme = 'dark'
+  
+//   // Whenever the user explicitly chooses to respect the OS preference
+//   localStorage.removeItem('theme')
 
   return (
       <>
        <section
         className="
+        px-6
+        sm:px-6
+        md:px-11
+        lg:px-24
+        pt-10
+        sm:pt-8
+        md:pt-10
+        lg:pt-13
         flex
         flex-col
         lg:flex-row
@@ -48,33 +89,83 @@ const handleChange = useCallback((e) => {
                 </h3>
                 <div
                     id="wrapper-left-bottom"
-                    className="flex flex-col">
+                    className="flex flex-col py-5">
                     <div
                         id="scss-wrapper-input"
                         className="
-                        pt-8
-                        pb-20
+                        relative
+                        py-8
+                        px-7
+                        bg-gray-50
+                        rounded-md
+                        filter
+                        drop-shadow-2xl
                         ">
-                        <input
-                            value={searchTerm}
-                            onChange={handleChange}
-                            className="
-                            placeholder-gray-300
-                            scss-border
-                            "
-                            placeholder='サーバーを例えると...' />
-                        <button
-                            className={`
-                            absolute
-                            right-0
-                            translate-y-4
-                            hover:opacity-60
-                            hover:text-dark_green
-                            ${ searchTerm ? 'text-gray-500' : 'text-gray-300' }
-                            `}
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        </button>
+                            <div
+                            className='
+                            w-[420px]
+                            h-[48px]
+                            px-6
+                            bg-white
+                            rounded-md
+                            filter
+                            drop-shadow-xl
+                            '
+                            >
+                                <button
+                                    className={`
+                                    absolute
+                                    left-0
+                                    -top-4
+                                    h-[48px]
+                                    w-[36px]
+                                    flex
+                                    justify-center
+                                    items-center
+                                    rounded-r-none
+                                    rounded-l-md
+                                    translate-y-4
+                                    bg-[#dbf7db]
+                                    text-[#05D200]
+                                    `}
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                </button>
+                                <input
+                                    value={searchTerm}
+                                    onChange={handleChange}
+                                    className="
+                                    placeholder-gray-300
+                                    scss-border
+                                    "
+                                    placeholder='サーバーを例えると...' />
+                                <button
+                                    className={`
+                                    absolute
+                                    right-0
+                                    -top-4
+                                    h-[48px]
+                                    w-[64px]
+                                    flex
+                                    justify-center
+                                    items-center
+                                    rounded-l-none
+                                    rounded-r-md
+                                    translate-y-4
+                                    hover:bg-dark_green
+                                    hover:text-dark_green
+                                    transition
+                                    duration-200
+                                    ease-in
+                                    tracking-wide
+                                    text-white
+                                    ${ searchTerm ? 'bg-[#05D200]' : 'bg-[#77e476]' }
+                                    `}
+                                >
+                                    検索
+                                </button>
+
+                            </div>
 
                         {/*
                         ✨ firebaseに登録されたデータを 「　filter　」で検索
@@ -97,7 +188,8 @@ const handleChange = useCallback((e) => {
                         */}
 
                     </div>
-                    <div
+
+                    {/* <div
                         className="
                         max-w-[500px]
                         pt-9
@@ -126,7 +218,7 @@ const handleChange = useCallback((e) => {
                                 <a>WEBマーケター</a>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="
@@ -152,6 +244,77 @@ const handleChange = useCallback((e) => {
                     className="
                         pt-12"/>
 
+            </div>
+        </section>
+        <section className='dark'>
+            <div
+            id="tatoeba-card"
+            className='
+            bg-gray-200
+            dark:bg-black
+            px-6
+            sm:px-6
+            md:px-11
+            lg:px-24
+            pt-10
+            sm:pt-8
+            md:pt-10
+            lg:pt-13'>
+
+                <ul className='flex gap-10 flex-wrap mt-4'>
+                    <li
+                    onMouseEnter={handleToastMouseEnter}
+                    onMouseLeave={handleToastMouseLeave}
+                    className={`
+                    scss-card-toast
+                    px-6
+                    py-10
+                    h-[300px]
+                    w-96
+                    rounded-md
+                    drop-shadow-2xl
+                    ${ isHover ? 'bg-white': 'bg-gray-900'}
+                    ${ isLeave ? 'bg-white' : 'bg-gray-900'}
+                    `}
+                    >
+                        <h3 className='scss-underline text-lg'>サーバーを例えると... 土地</h3>
+                        <ul className='pt-9'>
+                            <li><img src="" alt="" className='w-64 h-36'/></li>
+                        </ul>
+                    </li>
+                    <li
+                    className='
+                    scss-card-toast
+                    px-6
+                    py-10
+                    h-[300px]
+                    w-96
+                    rounded-md
+                    bg-white
+                    drop-shadow-2xl
+                    '>
+                        <h3 className='scss-underline text-lg'>サーバーを例えると... 土地</h3>
+                        <ul className='pt-9'>
+                            <li><img src="" alt="" className='w-64 h-36'/></li>
+                        </ul>
+                    </li>
+                    <li
+                    className='
+                    scss-card-toast
+                    px-6
+                    py-10
+                    h-[300px]
+                    w-96
+                    rounded-md
+                    bg-white
+                    drop-shadow-2xl
+                    '>
+                        <h3 className='scss-underline text-lg'>サーバーを例えると... 土地</h3>
+                        <ul className='pt-9'>
+                            <li><img src="" alt="" className='w-64 h-36'/></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </section>
       </>

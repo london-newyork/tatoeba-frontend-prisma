@@ -10,7 +10,7 @@ const openModal = useCallback(() => {
     <div className="flex justify-end">
     <button
     onClick={openModal}
-    type="button"
+    type="submit"
     className="
     p-3
     w-[200px]

@@ -2,13 +2,10 @@ import React,{ useCallback, useState } from 'react'
 import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
-import { Modal } from '../../src/components/Modal/Modal'
+import { RegisterHeadline } from './RegisterHeadline';
+import { RegisterCreateBtn } from './RegisterCreateBtn';
 
 export default function Register() {
-  const [show, setShow] = useState(false)
-  const openModal = useCallback(() => {
-    setShow(true)
-  }, [])
 
   return (
     <>
@@ -37,15 +34,7 @@ export default function Register() {
               mx-auto
               max-w-[1000px]
               ">
-                <h1
-                  className="
-                  scss-underline
-                  text-2xl
-                  text-gray-700
-                  font-medium
-                  select-none">
-                    例えの登録
-                </h1>
+                <RegisterHeadline />
                 <form
                 method="post"
                 className="pt-10 flex flex-col gap-8">
@@ -179,24 +168,7 @@ export default function Register() {
                       defaultValue={''}
                     ></textarea>
                   </div>
-                  <div className="flex justify-end">
-                    <button
-                    onClick={openModal}
-                    type="button"
-                    className="
-                    p-3
-                    w-[200px]
-                    rounded-3xl
-                    bg-dark_green
-                    text-white
-                    text-lg
-                    hover:bg-opacity-90
-                    ">
-                      投稿する
-                    </button>
-                    {/* @ts-ignore */}
-                    <Modal show={show} setShow={setShow}/>
-                  </div>
+                  <RegisterCreateBtn />
                 </form>
             </div>
         </section>

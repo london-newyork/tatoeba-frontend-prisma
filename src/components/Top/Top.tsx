@@ -2,46 +2,26 @@ import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { NextRouter } from 'next/router';
-import { Props } from '@headlessui/react/dist/types';
 
 export const Top:VFC = () => {
 const [ searchTerm, setSearchTerm ] = useState('')
-const [ isHover, setIsHover ] = useState(true)
-const [ isLeave, setIsLeave ] = useState(true)
+// const [ isScroll, setIsScroll ] = useState(false)
+// const [ scrollTop, setScrollTop ] = useState(0)
 
 const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value)
 }, [searchTerm]);
 
+// const handleScrollChange = useCallback((e) => {
+//     const node = React.createRef()
+//     setScrollTop({
+//         scrollTop: node.scrollTop
+//     })
+// }, 200)
 
-const handleToastMouseEnter = (e:any) => {
-    setIsHover(e.target.value)
-}
-
-const handleToastMouseLeave = (e:any) => {
-    setIsLeave(e.target.value)
-}
-
-// const handleToastMouseEnter = () => {
-//     isHover ? 'bg-gray-500': 'bg-white'
-//     console.log(isHover);
-// }
-
-// // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-// if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-//     document.documentElement.classList.add('dark')
-//   } else {
-//     document.documentElement.classList.remove('dark')
-//   }
-  
-//   // Whenever the user explicitly chooses light mode
-//   localStorage.theme = 'light'
-  
-//   // Whenever the user explicitly chooses dark mode
-//   localStorage.theme = 'dark'
-  
-//   // Whenever the user explicitly chooses to respect the OS preference
-//   localStorage.removeItem('theme')
+// const handleToastStop = useCallback(() => {
+//     setIsScroll(true)
+// },[isScroll])
 
   return (
       <>
@@ -261,57 +241,76 @@ const handleToastMouseLeave = (e:any) => {
             md:pt-10
             lg:pt-13'>
 
-                <ul className='flex gap-10 flex-wrap mt-4'>
+                <ul
+                // onScroll={handleToastStop}
+                // ref={node}
+                className='
+                flex
+                gap-6
+                flex-wrap
+                mt-4'>
                     <li
-                    onMouseEnter={handleToastMouseEnter}
-                    onMouseLeave={handleToastMouseLeave}
-                    className={`
-                    scss-card-toast
+                    className='
                     px-6
                     py-10
                     h-[300px]
-                    w-96
+                    w-2/6
                     rounded-md
                     drop-shadow-2xl
-                    ${ isHover ? 'bg-white': 'bg-gray-900'}
-                    ${ isLeave ? 'bg-white' : 'bg-gray-900'}
-                    `}
+                    bg-white
+                    scss-card-toast
+                    '
                     >
-                        <h3 className='scss-underline text-lg'>サーバーを例えると... 土地</h3>
-                        <ul className='pt-9'>
-                            <li><img src="" alt="" className='w-64 h-36'/></li>
+                        <h3 className='
+                        text-lg
+                        text-center'>サーバーを例えると... 土地</h3>
+                        <ul className='
+                        pt-9
+                        '>
+                            <li className='
+                            flex
+                            flex-col
+                            items-center'>
+                                <img src="" alt="" className='w-64 h-36'/>
+                            </li>
                         </ul>
                     </li>
                     <li
                     className='
-                    scss-card-toast
                     px-6
                     py-10
                     h-[300px]
-                    w-96
+                    w-2/6
                     rounded-md
-                    bg-white
                     drop-shadow-2xl
+                    bg-white
+                    scss-card-toast
                     '>
-                        <h3 className='scss-underline text-lg'>サーバーを例えると... 土地</h3>
+                        <h3 className='text-center text-lg'>サーバーを例えると... 土地</h3>
                         <ul className='pt-9'>
-                            <li><img src="" alt="" className='w-64 h-36'/></li>
+                            <li className='
+                            flex
+                            flex-col
+                            items-center'><img src="" alt="" className='w-64 h-36'/></li>
                         </ul>
                     </li>
                     <li
                     className='
-                    scss-card-toast
                     px-6
                     py-10
                     h-[300px]
-                    w-96
+                    w-2/6
                     rounded-md
-                    bg-white
                     drop-shadow-2xl
+                    bg-white
+                    scss-card-toast
                     '>
-                        <h3 className='scss-underline text-lg'>サーバーを例えると... 土地</h3>
+                        <h3 className='text-center text-lg'>サーバーを例えると... 土地</h3>
                         <ul className='pt-9'>
-                            <li><img src="" alt="" className='w-64 h-36'/></li>
+                            <li className='
+                            flex
+                            flex-col
+                            items-center'><img src="" alt="" className='w-64 h-36'/></li>
                         </ul>
                     </li>
                 </ul>

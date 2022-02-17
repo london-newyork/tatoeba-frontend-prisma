@@ -1,14 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { RegisterCreateBtn } from './RegisterCreateBtn'
+import { useRecoilState } from 'recoil'
+import { RegisterdContents } from '../../src/components/utils/RegisterdContents'
 
 export const RegisterForm = () => {
+
     const router = useRouter()
-    const [ formContents, setFormContents ] = useState({
-        complicated_story: '',
-        short_paraphrase: '',
-        detail: '',
-    })
+    const [ formContents, setFormContents ] = useRecoilState(RegisterdContents)
 
     //エラーメッセージ
     const [ errMessage, setErrMessage ] = useState({
@@ -21,9 +20,7 @@ export const RegisterForm = () => {
             ...formContents,
            [e.target.name] : e.target.value
         })
-    },[])
-
-    console.log(formContents);
+    },[formContents])
 
     const handleSubmit = useCallback((e)=> {
         e.preventDefault()

@@ -1,16 +1,21 @@
 import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
-import { useForm } from 'react-hook-form';
 import { NextRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
+import { RegisterdContents } from '../utils/RegisterdContents';
 
 export const Top:VFC = () => {
 const [ searchTerm, setSearchTerm ] = useState('')
-// const [ isScroll, setIsScroll ] = useState(false)
-// const [ scrollTop, setScrollTop ] = useState(0)
+// @ts-ignore
+const formItems = useRecoilValue(RegisterdContents)
+const formItemsArrs = [formItems]
 
 const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value)
 }, [searchTerm]);
+
+// const [ isScroll, setIsScroll ] = useState(false)
+// const [ scrollTop, setScrollTop ] = useState(0)
 
 // const handleScrollChange = useCallback((e) => {
 //     const node = React.createRef()
@@ -240,7 +245,6 @@ const handleChange = useCallback((e) => {
             sm:pt-8
             md:pt-10
             lg:pt-13'>
-
                 <ul
                 // onScroll={handleToastStop}
                 // ref={node}
@@ -249,7 +253,10 @@ const handleChange = useCallback((e) => {
                 gap-6
                 flex-wrap
                 mt-4'>
+                {//@ts-ignore
+                formItemsArrs.map((formItemsArr) => (
                     <li
+                    key={formItemsArr.id}
                     className='
                     px-6
                     py-10
@@ -263,7 +270,7 @@ const handleChange = useCallback((e) => {
                     >
                         <h3 className='
                         text-lg
-                        text-center'>サーバーを例えると... 土地</h3>
+                        text-center'>{formItemsArr.complicated_story}を例えると...{formItemsArr.short_paraphrase} </h3>
                         <ul className='
                         pt-9
                         '>
@@ -273,47 +280,12 @@ const handleChange = useCallback((e) => {
                             items-center'>
                                 <img src="" alt="" className='w-64 h-36'/>
                             </li>
+                            <li>{formItemsArr.detail}</li>
                         </ul>
                     </li>
-                    <li
-                    className='
-                    px-6
-                    py-10
-                    h-[300px]
-                    w-2/6
-                    rounded-md
-                    drop-shadow-2xl
-                    bg-white
-                    scss-card-toast
-                    '>
-                        <h3 className='text-center text-lg'>サーバーを例えると... 土地</h3>
-                        <ul className='pt-9'>
-                            <li className='
-                            flex
-                            flex-col
-                            items-center'><img src="" alt="" className='w-64 h-36'/></li>
-                        </ul>
-                    </li>
-                    <li
-                    className='
-                    px-6
-                    py-10
-                    h-[300px]
-                    w-2/6
-                    rounded-md
-                    drop-shadow-2xl
-                    bg-white
-                    scss-card-toast
-                    '>
-                        <h3 className='text-center text-lg'>サーバーを例えると... 土地</h3>
-                        <ul className='pt-9'>
-                            <li className='
-                            flex
-                            flex-col
-                            items-center'><img src="" alt="" className='w-64 h-36'/></li>
-                        </ul>
-                    </li>
-                </ul>
+                )
+            )}
+            </ul>
             </div>
         </section>
       </>

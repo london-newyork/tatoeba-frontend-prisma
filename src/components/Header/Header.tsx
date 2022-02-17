@@ -1,5 +1,6 @@
 import React from 'react';
 import { PencilAltIcon } from '@heroicons/react/outline'
+import { MenuIcon } from '@heroicons/react/outline';
 import Link from 'next/link'
 
 type Props = {
@@ -55,16 +56,16 @@ export const Header = (props:Props) => {
               </ul>
             </button>
           </Link>
-          {/* <button className="
-          bg-gray-200
+          <button className="
+          bg-gray-600
           w-[64px]
           h-[60px]
-          hover:opacity-70">
+          hover:opacity-80">
             <ul className="flex flex-col items-center">
-              <li><MenuIcon className="h-6 w-6 text-gray-700 duration-300"/></li>
-              <li className="text-[10px] text-gray-700 duration-300">メニュー</li>
+              <li><MenuIcon className="h-6 w-6 text-white duration-300"/></li>
+              <li className="text-[10px] text-white duration-300">メニュー</li>
             </ul>
-          </button> */}
+          </button>
         </div>
       </div>
     </header>

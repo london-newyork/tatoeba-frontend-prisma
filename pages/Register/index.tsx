@@ -28,7 +28,7 @@ export default function Register() {
               className="
               lg:px-12
               px-5
-              pt-8
+              pt-10
               pb-10
               rounded-md
               bg-white

@@ -61,14 +61,14 @@
 .scss-card-toast {
 
   &:hover {
-    animation: anim_toast 3s 1;
+    animation: anim_toast 2s 1;
     @keyframes anim_toast {
       0% {
         opacity: 1;
         transform: translateY(0);
       }
       100% {
-        transform: translateY(-48px);
+        transform: translateY(-32px);
       }
     }
   }

@@ -5,9 +5,12 @@ import { useRecoilState } from 'recoil'
 import { RegisterdContents } from '../../src/components/utils/RegisterdContents'
 
 export const RegisterForm = () => {
-
     const router = useRouter()
     const [ formContents, setFormContents ] = useRecoilState(RegisterdContents)
+
+    function getUniqedId(){
+        return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
+    }
 
     //エラーメッセージ
     const [ errMessage, setErrMessage ] = useState({
@@ -16,10 +19,19 @@ export const RegisterForm = () => {
     })
 
     const handleChange = useCallback((e) => {
-        setFormContents({
+        setFormContents(() => [
             ...formContents,
-           [e.target.name] : e.target.value
-        })
+            {
+                id : getUniqedId(),
+                //handleChangeのあるinputやtextareaからまとめて値を取りたい。
+                [e.target.name] : e.target.value,
+
+                //[e.target.name] : e.target.value => 下記の代わりになる？
+                // complicated_story : '',
+                // short_paraphrase : '',
+                // detail : '',
+            }
+        ])
     },[formContents])
 
     const handleSubmit = useCallback((e)=> {
@@ -35,6 +47,7 @@ export const RegisterForm = () => {
             })
         } catch (error) {
             setErrMessage({
+                //pending
                 ...errMessage,
                 type: '',
                 message: 'エラー',

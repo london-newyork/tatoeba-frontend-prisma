@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
 import { NextRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilCallback, useRecoilState } from 'recoil';
 import { RegisterdContents } from '../utils/RegisterdContents';
 
 export const Top:VFC = () => {
 const [ searchTerm, setSearchTerm ] = useState('')
 // @ts-ignore
-const formItems = useRecoilValue(RegisterdContents)
-const formItemsArrs = [formItems]
+const [ formItems, setFormItems ] = useRecoilState(RegisterdContents)
+
+console.log(formItems);
 
 const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value)
@@ -250,18 +251,21 @@ const handleChange = useCallback((e) => {
                 // ref={node}
                 className='
                 flex
-                gap-6
+                justify-center
                 flex-wrap
+                gap-x-6
+                gap-y-8
                 mt-4'>
-                {//@ts-ignore
-                formItemsArrs.map((formItemsArr) => (
+                {formItems
+                //@ts-ignore
+                ? formItems.map((formItem) => (
                     <li
-                    key={formItemsArr.id}
+                    key={formItem.id}
                     className='
                     px-6
                     py-10
                     h-[300px]
-                    w-2/6
+                    w-[280px]
                     rounded-md
                     drop-shadow-2xl
                     bg-white
@@ -270,7 +274,7 @@ const handleChange = useCallback((e) => {
                     >
                         <h3 className='
                         text-lg
-                        text-center'>{formItemsArr.complicated_story}を例えると...{formItemsArr.short_paraphrase} </h3>
+                        text-center'>{formItem.complicated_story}を例えると...{formItem.short_paraphrase} </h3>
                         <ul className='
                         pt-9
                         '>
@@ -278,13 +282,13 @@ const handleChange = useCallback((e) => {
                             flex
                             flex-col
                             items-center'>
-                                <img src="" alt="" className='w-64 h-36'/>
+                                <img src="" alt="" className='w-56 h-36'/>
                             </li>
-                            <li>{formItemsArr.detail}</li>
+                            <li>{formItem.detail}</li>
                         </ul>
                     </li>
                 )
-            )}
+            ): undefined }
             </ul>
             </div>
         </section>

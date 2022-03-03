@@ -1,16 +1,53 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
+import { useRouter } from 'next/router';
 
-type Modal = {
+// type Modal = {
+//     show: boolean
+//     setShow: boolean
+// }
+
+// const newWords = {
+//     id:'',
+//     title: '',
+//     short_paraphrase: '',
+//     description: '',
+// } as const
+
+type ModalNewWords = {
+    id: number | string,
+    title: string,
+    short_paraphrase: string,
+    description: string,
     show: boolean
     setShow: boolean
 }
 
-export const Modal = (props: Modal) => {
-const {show, setShow} = props
-    const closeModal = useCallback(() => {
-        {/* @ts-ignore */}
-        setShow(false)
-    }, []);
+export const Modal = (props:ModalNewWords) => {
+
+    const [words, setWords] = useState<ModalNewWords>()
+    const router = useRouter()
+    const {show, setShow, id, title, short_paraphrase, description} = props
+        const closeModal = useCallback((e):void => {
+            {/* @ts-ignore */}
+            setShow(false)
+
+            const routerPushWords = () => {
+                const newWords = [
+                    {
+                        id: '',
+                        title,
+                        short_paraphrase: '',
+                        description: '',
+                    },
+                    // ...words,
+                    console.log(words)
+                ]
+                // setWords(newWords)
+            }
+
+            e.preventDefault();
+            router.push('/');
+        }, []);
 
     return (
     <>

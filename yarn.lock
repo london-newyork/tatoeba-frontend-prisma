@@ -2294,6 +2294,11 @@ jest-worker@27.0.0-next.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
+jotai@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.6.0.tgz#81412756dab42fcb712530fba512e5e43bd0de15"
+  integrity sha512-J/+aD9R1XDcNeY8drg/y/I47eUivQ13HGmLmA33w95SvJJLBStSF5WxYrmLgbuWcDC6MpRecF3g/GBchPJNcZg==
+
 js-base64@^2.1.8:
   version "2.6.4"
   resolved "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
@@ -3145,9 +3150,9 @@ react-refresh@0.8.3:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react@17.0.2:
+react@^17.0.2:
   version "17.0.2"
-  resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"

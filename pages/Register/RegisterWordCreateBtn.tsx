@@ -1,7 +1,7 @@
 import React, {useState,useCallback} from 'react'
 import { Modal } from '../../src/components/Modal/Modal'
 
-export const RegisterCreateBtn = () => {
+export const RegisterWordCreateBtn = () => {
 const [show, setShow] = useState(false)
 const openModal = useCallback(() => {
   setShow(true)

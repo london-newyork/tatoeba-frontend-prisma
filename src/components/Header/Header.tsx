@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { PencilAltIcon } from '@heroicons/react/outline'
-import { MenuIcon } from '@heroicons/react/outline';
+import { MenuIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 
 type Props = {
@@ -33,7 +33,7 @@ export const Header = (props:Props) => {
             tracking-wider
             hover:opacity-50
             duration-300">
-              <span className="text-green-500">
+              <span className="text-dark_green">
                 T
               </span>
               atoeba

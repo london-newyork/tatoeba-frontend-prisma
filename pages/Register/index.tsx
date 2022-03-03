@@ -2,9 +2,9 @@ import React,{ useCallback, useState } from 'react'
 import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
-import { RegisterHeadline } from './RegisterHeadline';
-import { RegisterCreateBtn } from './RegisterCreateBtn';
-import { RegisterForm } from './RegisterForm'
+import { RegisterWordHeadline } from './RegisterWordHeadline';
+import { RegisterWordCreateBtn } from './RegisterWordCreateBtn';
+import { RegisterWord } from './RegisterWord'
 
 export default function Register() {
 
@@ -20,14 +20,14 @@ export default function Register() {
           bg-gray-100
           h-screen
           px-7
-          md:px-20
+          md:px-18
           mx-auto
           pt-9
           ">
             <div
               className="
               lg:px-12
-              px-5
+              px-7
               pt-10
               pb-10
               rounded-md
@@ -35,8 +35,8 @@ export default function Register() {
               mx-auto
               max-w-[1000px]
               ">
-                <RegisterHeadline />
-                <RegisterForm />
+                <RegisterWordHeadline />
+                <RegisterWord />
             </div>
         </section>
     </>

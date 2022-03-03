@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const RegisterHeadline = () => {
+export const RegisterWordHeadline = () => {
   return (
-    <div className='flex justify-between'>
+    <div className='flex justify-between pb-12'>
         <h1
         className="
         scss-underline

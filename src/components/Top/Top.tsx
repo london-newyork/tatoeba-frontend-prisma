@@ -2,12 +2,31 @@ import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
 import { NextRouter } from 'next/router';
 import { useRecoilCallback, useRecoilState } from 'recoil';
-import { RegisterdContents } from '../utils/RegisterdContents';
+import { RegisteredWordContents } from '../utils/RegisteredWordContents';
 
 export const Top:VFC = () => {
 const [ searchTerm, setSearchTerm ] = useState('')
 // @ts-ignore
-const [ formItems, setFormItems ] = useRecoilState(RegisterdContents)
+const [ formItems, setFormItems ] = useRecoilState(RegisteredWordContents)
+
+function getUniqueId(){
+    return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
+}
+
+const handleCreateVal = useCallback((e) => {
+    console.log(e.target.value);
+    setFormItems(() => [
+        ...formItems,
+        {
+            id : getUniqueId(),
+            //handleChangeのあるinputやtextareaからまとめて値を取りたい。
+            [e.target.name] : e.target.value,
+            // complicated_story : '',
+            // short_paraphrase : '',
+            // detail : '',
+        }
+    ])
+},[formItems])
 
 console.log(formItems);
 

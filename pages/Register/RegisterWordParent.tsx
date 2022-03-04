@@ -7,7 +7,6 @@ import { RegisterWordDescription } from './RegisterWordChild/RegisterWordDescrip
 export const RegisterWordParent = () => {
     const [ title, setTitle ] = useState('')
     //JSON Placeholderでテストデータを引っ張ってくる　→ ユーザー管理の部分 → ユーザー管理専用ファイル作成
-// console.log(title);
 
     return (
         <div className='flex flex-col gap-6'>

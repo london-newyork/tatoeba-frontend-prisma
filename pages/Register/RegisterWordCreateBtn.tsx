@@ -1,51 +1,48 @@
-import React, {useState,useCallback} from 'react'
+import React, {useState} from 'react'
 import { Modal } from '../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 
 export const RegisterWordCreateBtn = ({title, setTitle}) => {
 
-const [ words, setWords ] = useState()
-const [show, setShow] = useState(false)
-// const [title, setTitle] = useState('')
-const [short_paraphrase, setShort_paraphrase] = useState('')
-const [description, setDescription] = useState('')
-const router = useRouter()
+  const [show, setShow] = useState(false)
 
-// const openModal = useCallback(() => {
-//   setShow(true)
-// }, [])
+  const [short_paraphrase, setShort_paraphrase] = useState('')
+  const [description, setDescription] = useState('')
+
+  const router = useRouter()
+
+  type Words = {
+    id: readonly string[] | string
+    title: readonly string[] | string
+    short_paraphrase: readonly string[] | string
+    description: readonly string[] | string
+  }
+
+  // const openModal = useCallback(() => {
+  //   setShow(true)
+  // }, [])
+
+  function getUniqueId(){
+    return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
+  }
+  const id = getUniqueId()
 
   const submitWords = (e) => {
-  {/* @ts-ignore */}
-  setShow(false)
+    {/* @ts-ignore */}
+    setShow(false)
 
-  //関数の中に関数は入れない。関数にしなくてもいい
-  // const routerPushWords = () => {
+    //関数の中に関数は入れない。関数にしなくてもいい
+    //Firebaseに渡すので状態管理させなくてOK
 
-  //Firebaseに渡すので状態管理させなくてOK
-  //useStateでもいいのでは・・？
-      // const newWords = [
-      //     {
-      //         id:'',
-      //         title,
-      //         short_paraphrase: '',
-      //         description: '',
-      //     },
-      //     ...words,
-      // ]
-      // console.log(words)
-      // setWords(newWords)
-  // }
-//routerでクエリを渡すという手もある
-  router.push({
-    pathname:'/',
-    query: {
-      // id:'',
-      title,
-      short_paraphrase,
-      description,
-    }
-  })
+    router.push({
+      pathname:'/',
+      query: {
+        id,
+        title,
+        short_paraphrase,
+        description,
+      }
+    })
 }
 
   return (

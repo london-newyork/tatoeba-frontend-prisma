@@ -3,8 +3,7 @@ import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
 import { RegisterWordHeadline } from './RegisterWordHeadline';
-import { RegisterWordCreateBtn } from './RegisterWordCreateBtn';
-import { RegisterWord } from './RegisterWord'
+import { RegisterWordParent } from './RegisterWordParent'
 
 export default function Register() {
 
@@ -36,7 +35,7 @@ export default function Register() {
               max-w-[1000px]
               ">
                 <RegisterWordHeadline />
-                <RegisterWord />
+                <RegisterWordParent />
             </div>
         </section>
     </>

@@ -2,11 +2,10 @@ import React from 'react'
 
 export const RegisterWordTitle = ({ title, setTitle }) => {
 
-const handleChange = (e) => {
-    setTitle(()=> e.target.value)
-}
+// const handleChange = (e) => {
+//     setTitle(()=> e.target.value)
+// }
 
-// console.log(title);
   return (
     <div
         className="
@@ -29,7 +28,7 @@ const handleChange = (e) => {
         <textarea
             value={title}
             name='complicated_story'
-            onChange={handleChange}
+            onChange={(e)=>setTitle(e.target.value)}
             rows={2}
             placeholder='サーバー'
             maxLength={50}

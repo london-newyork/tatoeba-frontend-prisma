@@ -1,11 +1,20 @@
 import Image from 'next/image';
 import React, { VFC, useState, useCallback } from 'react';
-import { NextRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useRecoilCallback, useRecoilState } from 'recoil';
 import { RegisteredWordContents } from '../utils/RegisteredWordContents';
 
-export const Top:VFC = () => {
+type Props = {
+    title: string
+}
+
+export const Top:VFC = (props:Props) => {
+
+const router = useRouter();
+
 const [ searchTerm, setSearchTerm ] = useState('')
+console.log(router.query.title);
+
 // @ts-ignore
 const [ formItems, setFormItems ] = useRecoilState(RegisteredWordContents)
 
@@ -14,13 +23,13 @@ function getUniqueId(){
 }
 
 const handleCreateVal = useCallback((e) => {
-    console.log(e.target.value);
     setFormItems(() => [
         ...formItems,
         {
             id : getUniqueId(),
+            title: router.query.title,
             //handleChangeのあるinputやtextareaからまとめて値を取りたい。
-            [e.target.name] : e.target.value,
+            // [e.target.name] : e.target.value,
             // complicated_story : '',
             // short_paraphrase : '',
             // detail : '',
@@ -28,25 +37,9 @@ const handleCreateVal = useCallback((e) => {
     ])
 },[formItems])
 
-console.log(formItems);
-
 const handleChange = useCallback((e) => {
     setSearchTerm(e.target.value)
 }, [searchTerm]);
-
-// const [ isScroll, setIsScroll ] = useState(false)
-// const [ scrollTop, setScrollTop ] = useState(0)
-
-// const handleScrollChange = useCallback((e) => {
-//     const node = React.createRef()
-//     setScrollTop({
-//         scrollTop: node.scrollTop
-//     })
-// }, 200)
-
-// const handleToastStop = useCallback(() => {
-//     setIsScroll(true)
-// },[isScroll])
 
   return (
       <>
@@ -193,37 +186,6 @@ const handleChange = useCallback((e) => {
                         */}
 
                     </div>
-
-                    {/* <div
-                        className="
-                        max-w-[500px]
-                        pt-9
-                        px-9
-                        pb-10
-                        bg-white
-                        rounded-md">
-                        <h3 className="scss-underline text-2xl text-mid_green">困っているお仕事</h3>
-                        <ul className="leading-loose pt-7">
-                            <li className="flex gap-2 items-center hover:opacity-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                                <a>WEBデザイナー</a>
-                            </li>
-                            <li className="flex gap-2 items-center hover:opacity-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                                <a>WEBエンジニア</a>
-                            </li>
-                            <li className="flex gap-2 items-center hover:opacity-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                                <a>WEBマーケター</a>
-                            </li>
-                        </ul>
-                    </div> */}
                 </div>
             </div>
             <div className="
@@ -266,8 +228,6 @@ const handleChange = useCallback((e) => {
             md:pt-10
             lg:pt-13'>
                 <ul
-                // onScroll={handleToastStop}
-                // ref={node}
                 className='
                 flex
                 justify-center

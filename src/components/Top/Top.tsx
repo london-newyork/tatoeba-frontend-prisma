@@ -1,26 +1,44 @@
-
-import React, { VFC } from 'react';
+import React, { VFC, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { TopUpperContents } from '../Top/TopUpperContents'
 
 export const Top:VFC = () => {
-const router = useRouter();
+    const router = useRouter();
+    const [formQuery, setFormQuery]:any = useState([router.query])
+    // const [formQuery, setFormQuery]:any = useState([])
 
-const formQuery = [router.query]
+    // const [title, setTitle ] = useState('')
+    // const [shortParaphrase, setShortParaphrase ] = useState('')
+    // const [description, setDescription] = useState('')
+    const id = router.query.id //登録ページから今来たidをidに格納
+    const title = router.query.title
+    const shortParaphrase = router.query.shortParaphrase
+    const description = router.query.description
+    // const { id, title, shortParaphrase, description } = router.query
 
+    //useEffectで再レンダリングが走らないようにする
+    useEffect(() => {
+        return () => {
+            setFormQuery([
+                //今までの例えが格納されているはず・・
+                ...formQuery,{
+                id,//登録ページから今来たid
+                title,
+                shortParaphrase,
+                description
+                }
+            ])
+        }
+    }, [])
+
+    console.log(formQuery) //formQuery.id だとundefined => idなどがちゃんとformQueryに収納されていない。
 /////////////////////////////////////////////////
 
 // => firebaseにデータを入れてしまうので、Recoilも状態管理も関係ない。
 
-// setFormItems(() => [ ...formItems, {
-            // id : getUniqueId(),
-            // title: registeredTitle,
-            // ...
-// }
-
 /////////////////////////////////////////////////
 
-  return (
+    return (
       <>
       <TopUpperContents />
         <section className='dark'>
@@ -46,7 +64,7 @@ const formQuery = [router.query]
                 gap-y-8
                 mt-4'>
                 {formQuery
-                ? formQuery.map((query) => (
+                ? formQuery.map((query:any) => (
                     <li
                     key={query.id}
                     className='
@@ -58,11 +76,10 @@ const formQuery = [router.query]
                     drop-shadow-2xl
                     bg-white
                     scss-card-toast
-                    '
-                    >
+                    '>
                         <h3 className='
                         text-lg
-                        text-center'>{query.title}を例えると...{query.short_paraphrase} </h3>
+                        text-center'>{query.title}を例えると...{query.shortParaphrase}</h3>
                         <ul className='
                         pt-9
                         '>
@@ -72,7 +89,7 @@ const formQuery = [router.query]
                             items-center'>
                                 <img src="" alt="" className='w-56 h-36'/>
                             </li>
-                            <li>{query.detail}</li>
+                            <li>{query.description}</li>
                         </ul>
                     </li>
                 )

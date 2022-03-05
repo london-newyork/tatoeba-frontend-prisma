@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RegisterWordShortParaphrase = () => {
+export const RegisterWordShortParaphrase = ({ shortParaphrase, setShortParaphrase }) => {
   return (
     <div
         className="
@@ -22,8 +22,8 @@ export const RegisterWordShortParaphrase = () => {
             <span className="text-xs text-gray-300">50文字以内</span>
         </label>
         <input
-        // value={formContents.short_paraphrase}
-        // onChange={handleChange}
+        value={shortParaphrase}
+        onChange={(e)=>setShortParaphrase(e.target.value)}
         name='short_paraphrase'
         placeholder='土地'
         type="text"

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RegisterWordDescription = (props) => {
+export const RegisterWordDescription = ({ description , setDescription }) => {
   return (
     <div
         className="
@@ -22,9 +22,9 @@ export const RegisterWordDescription = (props) => {
             <span className="text-xs text-gray-300">400文字以内</span>
         </label>
         <textarea
-            // value={formContents.detail}
-            // onChange={handleChange}
-            name="detail"
+            value={description}
+            onChange={(e)=>setDescription(e.target.value)}
+            name="description"
             placeholder="WEBサイトを「家」とすると、サーバーは「土地」に例えられます。"
             maxLength={400}
             rows={8}

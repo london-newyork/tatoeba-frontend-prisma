@@ -1,22 +1,12 @@
 import React, {useState} from 'react'
-import { Modal } from '../../src/components/Modal/Modal'
+import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 
-export const RegisterWordCreateBtn = ({title, setTitle}) => {
+export const RegisterWordCreateBtn = ({title, setTitle, shortParaphrase, setShortParaphrase, description, setDescription}) => {
 
   const [show, setShow] = useState(false)
 
-  const [short_paraphrase, setShort_paraphrase] = useState('')
-  const [description, setDescription] = useState('')
-
   const router = useRouter()
-
-  type Words = {
-    id: readonly string[] | string
-    title: readonly string[] | string
-    short_paraphrase: readonly string[] | string
-    description: readonly string[] | string
-  }
 
   // const openModal = useCallback(() => {
   //   setShow(true)
@@ -39,7 +29,7 @@ export const RegisterWordCreateBtn = ({title, setTitle}) => {
       query: {
         id,
         title,
-        short_paraphrase,
+        shortParaphrase,
         description,
       }
     })

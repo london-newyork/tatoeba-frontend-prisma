@@ -50,7 +50,7 @@ export const Modal = (props:ModalNewWords) => {
                     },
                     ...words,
                 ]
-                console.log(words)
+                // console.log(words)
                 setWords(newWords)
             // }
 //routerでクエリを渡すという手もある

@@ -1,7 +1,6 @@
-import React, { VFC, useState, useEffect, useRef, SetStateAction } from 'react';
+import React, { VFC, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { TopUpperContents } from '../Top/TopUpperContents'
-import { ParsedUrlQuery } from 'node:querystring'
 import { RegisteredWordContents } from '../utils/RegisteredWordContents'
 import { useRecoilState } from 'recoil'
 
@@ -10,19 +9,6 @@ export const Top:VFC = () => {
     // const [routerQuery, setRouterQuery] = useState([router.query])
     const [routerQuery, setRouterQuery] = useRecoilState(RegisteredWordContents)
 
-    // const [title, setTitle ] = useState('')
-    // const [shortParaphrase, setShortParaphrase ] = useState('')
-    // const [description, setDescription] = useState('')
-    // const [id , setId] = useState('')
-
-    // const id = router.query.id //登録ページから今来たidをidに格納
-    // const title = router.query.title
-    // const shortParaphrase = router.query.shortParaphrase
-    // const description = router.query.description
-
-    //登録ページから来た内容を変数へ代入
-    const { id, title, shortParaphrase, description } = router.query
-
     const renderFlgRef = useRef(true)
     //useEffectで再レンダリングが走らないようにする
     useEffect(() => {
@@ -30,52 +16,21 @@ export const Top:VFC = () => {
         if(renderFlgRef.current) {
             renderFlgRef.current = false
             console.log(router.query);
-            // console.log({} === {});
-            // console.log(router.query === {});
+            console.log(typeof router.query);
 
-            // router.query.id === undefined
+            // 空のカードや配列が入ってくるのでrouter.queryが空の時(true)の条件分岐を書こうとした。
+            //ただし、オブジェクトとオブジェクトを比べてもfalseになる。
+            // console.log({} === {}); false
+            // console.log(router.query === {}); false
+
+            // router.query.id === undefined　=> またはこのような比べ方もあり
+            // idがrouter.queryにあるかどうかを比べて、あればsetRouterQueryを返す
             'id' in router.query
             ? setRouterQuery([router.query, ...routerQuery])
             : null
 
-            //登録ページからのidと、routerQueryに格納されたidが同じかどうか判定するためにidをmapで取り出す
-            // const newRouterQueryId =
-            // routerQuery.map((query:any) => {
-            //     return query.id
-            // })
-
-            //登録ページからのidと、routerQueryに格納されたidが同じかどうか判定
-            // id === newRouterQueryId ?
-            // //setRouterQueryには、useState初期値の[router.query] = prevRouterQueryを入れる
-            // setRouterQuery( prevRouterQuery => {
-            //     //新しい変数を定義
-            //     const newRouterQuery =
-            //     //今までの例えが格納されているはず。{} の中で新しい値を格納するはず・・
-            //     [ ...prevRouterQuery, { id, title, shortParaphrase, description } ]
-            //     return newRouterQuery
-            // }) : undefined
-
-        } else {
-            // renderFlgRef.current = true
-        }
+        } return
     }, [routerQuery])
-
-    //[{...}]//オブジェクトに値は入ってるが、もう一度違うものを登録してみるとまた別の配列に入っている。
-
-    // 1回目登録 ~ 3回目登録までが同じ配列に入っている状態にしたい。 [{0:id...  1:id... 2:id...}]
-    // そうでないとmapで回した時に、配列から取り出せないはず。
-
-    // 現状 別々の配列に格納されている。
-    // 1回目登録　[{0:{id:...}}]
-    // 2回目登録　[{0:{id:...}}]
-    // 3回目登録　[{0:{id:...}}]
-
-
-/////////////////////////////////////////////////
-
-// => firebaseにデータを入れてしまうので、Recoilも状態管理も関係ない。
-
-/////////////////////////////////////////////////
 
     return (
       <>

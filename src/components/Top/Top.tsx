@@ -2,10 +2,13 @@ import React, { VFC, useState, useEffect, useRef, SetStateAction } from 'react';
 import { useRouter } from 'next/router';
 import { TopUpperContents } from '../Top/TopUpperContents'
 import { ParsedUrlQuery } from 'node:querystring'
+import { RegisteredWordContents } from '../utils/RegisteredWordContents'
+import { useRecoilState } from 'recoil'
 
 export const Top:VFC = () => {
     const router = useRouter();
-    const [routerQuery, setRouterQuery] = useState([router.query])
+    // const [routerQuery, setRouterQuery] = useState([router.query])
+    const [routerQuery, setRouterQuery] = useRecoilState(RegisteredWordContents)
 
     // const [title, setTitle ] = useState('')
     // const [shortParaphrase, setShortParaphrase ] = useState('')
@@ -20,35 +23,42 @@ export const Top:VFC = () => {
     //登録ページから来た内容を変数へ代入
     const { id, title, shortParaphrase, description } = router.query
 
-    const renderFlgRef = useRef(false)
+    const renderFlgRef = useRef(true)
     //useEffectで再レンダリングが走らないようにする
     useEffect(() => {
         //useRefを使って、useEffectがrouterQueryを監視中に、２回レンダリングが走らないようにする。
         if(renderFlgRef.current) {
+            renderFlgRef.current = false
+            console.log(router.query);
+            // console.log({} === {});
+            // console.log(router.query === {});
+
+            // router.query.id === undefined
+            'id' in router.query
+            ? setRouterQuery([router.query, ...routerQuery])
+            : null
 
             //登録ページからのidと、routerQueryに格納されたidが同じかどうか判定するためにidをmapで取り出す
-            const newRouterQueryId =
-            routerQuery.map((query:any) => {
-                return query.id
-            })
+            // const newRouterQueryId =
+            // routerQuery.map((query:any) => {
+            //     return query.id
+            // })
 
             //登録ページからのidと、routerQueryに格納されたidが同じかどうか判定
-            id === newRouterQueryId
-            //setRouterQueryには、useState初期値の[router.query] = prevRouterQueryを入れる
-            ? setRouterQuery( prevRouterQuery => {
-                //新しい変数を定義
-                const newRouterQuery =
-                //今までの例えが格納されているはず。{} の中で新しい値を格納するはず・・
-                [ ...prevRouterQuery, {  } ]
-                return newRouterQuery
-            }) : undefined
+            // id === newRouterQueryId ?
+            // //setRouterQueryには、useState初期値の[router.query] = prevRouterQueryを入れる
+            // setRouterQuery( prevRouterQuery => {
+            //     //新しい変数を定義
+            //     const newRouterQuery =
+            //     //今までの例えが格納されているはず。{} の中で新しい値を格納するはず・・
+            //     [ ...prevRouterQuery, { id, title, shortParaphrase, description } ]
+            //     return newRouterQuery
+            // }) : undefined
 
         } else {
-            renderFlgRef.current = true
+            // renderFlgRef.current = true
         }
     }, [routerQuery])
-
-    console.log(routerQuery)
 
     //[{...}]//オブジェクトに値は入ってるが、もう一度違うものを登録してみるとまた別の配列に入っている。
 

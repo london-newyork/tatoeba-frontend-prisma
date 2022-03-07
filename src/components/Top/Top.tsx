@@ -10,6 +10,7 @@ export const Top:VFC = () => {
     // const [title, setTitle ] = useState('')
     // const [shortParaphrase, setShortParaphrase ] = useState('')
     // const [description, setDescription] = useState('')
+    // const [id , setId] = useState('')
 
     // const id = router.query.id //登録ページから今来たidをidに格納
     // const title = router.query.title
@@ -22,33 +23,25 @@ export const Top:VFC = () => {
     const renderFlgRef = useRef(false)
     //useEffectで再レンダリングが走らないようにする
     useEffect(() => {
-        //useRefを使って、useEffectがformQueryを監視中に、２回レンダリングが走らないようにする。
+        //useRefを使って、useEffectがrouterQueryを監視中に、２回レンダリングが走らないようにする。
         if(renderFlgRef.current) {
 
-            //登録ページからのidと、formQueryに格納されたidが同じかどうか判定するためにidをmapで取り出す
-            // const newRouterQuery =
-            // routerQuery.map((query:any)=> {
-            //     return query.id
-            // })
-
-            //登録ページからのidと、formQueryに格納されたidが同じかどうか判定
-            // id === newRouterQuery
-            // ? setRouterQuery(prevRouterQuery => {
-            //     const newRouterQuery =
-            //     //今までの例えが格納されているはず・・
-            //     [ ...prevRouterQuery, { 'a':'aaa' }]
-            //     return newRouterQuery
-            // })
-            // : null
-
-            //登録ページからのidと、formQueryに格納されたidが同じかどうか判定
-
-            setRouterQuery(prevRouterQuery => {
-                const newRouterQuery =
-                //今までの例えが格納されているはず・・
-                [ ...prevRouterQuery, { id, title, shortParaphrase, description }]
-                return newRouterQuery
+            //登録ページからのidと、routerQueryに格納されたidが同じかどうか判定するためにidをmapで取り出す
+            const newRouterQueryId =
+            routerQuery.map((query:any) => {
+                return query.id
             })
+
+            //登録ページからのidと、routerQueryに格納されたidが同じかどうか判定
+            id === newRouterQueryId
+            //setRouterQueryには、useState初期値の[router.query] = prevRouterQueryを入れる
+            ? setRouterQuery( prevRouterQuery => {
+                //新しい変数を定義
+                const newRouterQuery =
+                //今までの例えが格納されているはず。{} の中で新しい値を格納するはず・・
+                [ ...prevRouterQuery, {  } ]
+                return newRouterQuery
+            }) : undefined
 
         } else {
             renderFlgRef.current = true
@@ -56,13 +49,17 @@ export const Top:VFC = () => {
     }, [routerQuery])
 
     console.log(routerQuery)
+
     //[{...}]//オブジェクトに値は入ってるが、もう一度違うものを登録してみるとまた別の配列に入っている。
 
-    //[{...}]
-    //[{...}]
-    //[{...}]
+    // 1回目登録 ~ 3回目登録までが同じ配列に入っている状態にしたい。 [{0:id...  1:id... 2:id...}]
+    // そうでないとmapで回した時に、配列から取り出せないはず。
 
-    // [{0:id...  1:id... 2:id...}] <=こういう状態にしたい。
+    // 現状 別々の配列に格納されている。
+    // 1回目登録　[{0:{id:...}}]
+    // 2回目登録　[{0:{id:...}}]
+    // 3回目登録　[{0:{id:...}}]
+
 
 /////////////////////////////////////////////////
 

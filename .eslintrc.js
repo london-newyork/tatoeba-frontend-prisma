@@ -6,7 +6,10 @@ module.exports = {
     },
     'extends': [
         'eslint:recommended',
-        'plugin:react/recommended'
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'plugin:jsx-ally/recommended',
+        'prettier'
     ],
     'parserOptions': {
         'ecmaFeatures': {
@@ -21,6 +24,13 @@ module.exports = {
     'rules': {
         'semi': ['warn', 'always'],
         'quotes': ['error', 'single'],
-        'react/prop-types': 'off'
+        'no-undef': 'error',
+        'react/prop-types': 'off',
+        'react/jsx-props-no-spreading': 'off',
+    },
+    'settings': {
+        'react': {
+            'version': 'detect'
+        },
     }
-}
+};

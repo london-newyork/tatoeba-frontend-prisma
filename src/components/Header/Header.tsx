@@ -41,6 +41,24 @@ export const Header = (props:Props) => {
           </Link>
         </div>
         <div className="flex my-auto">
+          <Link
+          href="/Login">
+            <div
+            className='
+            my-auto
+            mr-4
+            bg-gray-100
+            rounded-full
+            h-12
+            w-12
+            flex
+            justify-center
+            items-center
+            text-xs
+            cursor-pointer'>
+            ログイン
+            </div>
+          </Link>
           <Link href="/Register/">
             <button className="
               hover:bg-q_dark_green

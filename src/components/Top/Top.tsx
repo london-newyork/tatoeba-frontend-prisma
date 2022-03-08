@@ -16,7 +16,7 @@ export const Top:VFC = () => {
         if(renderFlgRef.current) {
             renderFlgRef.current = false
             console.log(router.query);
-            console.log(typeof router.query);
+            // console.log(typeof router.query);
 
             // 空のカードや配列が入ってくるのでrouter.queryが空の時(true)の条件分岐を書こうとした。
             //ただし、オブジェクトとオブジェクトを比べてもfalseになる。
@@ -31,6 +31,29 @@ export const Top:VFC = () => {
 
         } return
     }, [routerQuery])
+
+    const handleMoveToResult = (id: string, title: string, shortParaphrase: string, description: string) => {
+        const copiedRouterQuery = routerQuery.map( query => ({...query}))
+        const newRouterQuery = copiedRouterQuery.map(query => {
+            if(query.id === id) {
+                console.log('queryidだよ',query.id);
+                console.log('idだよ',id);
+                console.log(title);
+
+                router.push({
+                    pathname:'/SearchResult/',
+                    query: {
+                        id,
+                        title,
+                        shortParaphrase,
+                        description,
+                    }
+                })
+            }
+        }
+        )
+        setRouterQuery(newRouterQuery)
+    }
 
     return (
       <>
@@ -58,7 +81,7 @@ export const Top:VFC = () => {
                 gap-y-8
                 mt-4'>
                 {routerQuery
-                ? routerQuery.map((item:any) => (
+                ? routerQuery.map((item) => (
                     <li
                     key={item.id}
                     className='
@@ -70,7 +93,8 @@ export const Top:VFC = () => {
                     drop-shadow-2xl
                     bg-white
                     scss-card-toast
-                    '>
+                    '
+                    >
                         <h3 className='
                         text-lg
                         text-center'>{item.title}を例えると...{item.shortParaphrase}</h3>
@@ -84,6 +108,13 @@ export const Top:VFC = () => {
                                 <img src="" alt="" className='w-56 h-36'/>
                             </li>
                             <li>{item.description}</li>
+                            <button
+                            className='
+                            p-2
+                            bg-gray-100
+                            rounded
+                            '
+                            onClick={(e)=>handleMoveToResult(item.id, item.title, item.shortParaphrase, item.description)}>詳細</button>
                         </ul>
                     </li>
                 )

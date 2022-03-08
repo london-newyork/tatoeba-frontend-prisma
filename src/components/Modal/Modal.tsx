@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useRouter } from 'next/router';
-import { useAtom } from 'jotai'
 // import { wordsAtom } from '../../../src/components/atom/atom'
-import { titleAtom } from '../../../src/components/atom/atom'
 
 // type Modal = {
 //     show: boolean
@@ -29,7 +27,7 @@ export const Modal = (props:ModalNewWords) => {
     // const [ title, setTitle ] = useAtom(writableWordsAtom)
     // const [ words, setWords ] = useState<ModalNewWords>()
     const [ words, setWords ] = useState<ModalNewWords>()
-    const [ title, setTitle ] = useAtom(titleAtom)
+    const [ title, setTitle ] = useState()
     const router = useRouter()
     const { show, setShow } = props
         const closeModalSubmitWords = useCallback((e):void => {
@@ -40,19 +38,19 @@ export const Modal = (props:ModalNewWords) => {
             // const routerPushWords = () => {
 
             //Firebaseに渡すので状態管理させなくてOK
-            //useStateでもいいのでは・・？
-                const newWords = [
-                    {
-                        id:'',
-                        title,
-                        short_paraphrase: '',
-                        description: '',
-                    },
-                    ...words,
-                ]
-                // console.log(words)
-                setWords(newWords)
-            // }
+            // //useStateでもいいのでは・・？
+            //     const newWords = [
+            //         {
+            //             id:'',
+            //             title,
+            //             short_paraphrase: '',
+            //             description: '',
+            //         },
+            //         ...words,
+            //     ]
+            //     // console.log(words)
+            //     setWords(newWords)
+            // // }
 //routerでクエリを渡すという手もある
             router.push('/');
         }, []);

@@ -12,10 +12,26 @@ export const RegisterWordParent = () => {
 
     return (
         <div className='flex flex-col gap-6'>
-            <RegisterWordTitle title={title} setTitle={setTitle}/>
-            <RegisterWordShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
-            <RegisterWordDescription description={description} setDescription={setDescription} />
-            <RegisterWordCreateBtn title={title} setTitle={setTitle} shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} description={description} setDescription={setDescription} />
+            <RegisterWordTitle
+                title={title}
+                setTitle={setTitle}
+            />
+            <RegisterWordShortParaphrase
+                shortParaphrase={shortParaphrase}
+                setShortParaphrase={setShortParaphrase}
+            />
+            <RegisterWordDescription
+                description={description}
+                setDescription={setDescription}
+            />
+            <RegisterWordCreateBtn
+                title={title}
+                setTitle={setTitle}
+                shortParaphrase={shortParaphrase}
+                setShortParaphrase={setShortParaphrase}
+                description={description}
+                setDescription={setDescription}
+            />
         </div>
   )
 }

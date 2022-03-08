@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Tatoeba 例え話 登録ページ</title>
+        <title>Tatoeba 例え話 ログインページ</title>
         <link rel='favicon.ico' />
       </Head>
       <Header />
@@ -38,29 +38,98 @@ export default function Login() {
                 after:absolute
                 after:content-['']
                 after:block
-                after:translate-x-5
+                after:translate-x-9
                 after:transform-gpu
                 after:-bottom-[10px]
                 after:w-[1em]
                 after:h-[2px]
                 after:bg-[#4cf048]
-                text-2xl
+                text-3xl
                 text-gray-700
-                font-medium
                 select-none
+                font-semibold
                 "
                 >
-                    Login
+                    ログイン
                 </h1>
-                <p className='mt-20 text-gray-700'>Googleと連携が必要です</p>
-                <button className="
-                mt-8
+                {/* <button className="
                 bg-gray-100
+                mt-12
                 px-6
                 py-2
                 rounded-md">
                     Gmail
-                </button>
+                </button> */}
+                <div className='pt-14 flex flex-col gap-6'>
+                  <div className='flex flex-col'>
+                    <p
+                    className='
+                    pr-2
+                    font-semibold
+                    text-gray-600
+                    w-[128px]'>
+                      メールアドレス
+                    </p>
+                    <input
+                    className='
+                    shadow-sm
+                    outline-none
+                    focus:ring-2
+                    focus:ring-offset-3
+                    focus:ring-green-100
+                    focus:ring-offset-green-50
+                    focus:border-green-100
+                    focus:placeholder-gray-300
+                    h-8
+                    p-2
+                    w-[300px]
+                    border
+                    border-gray-200
+                    rounded-md
+                    '
+                    />
+                  </div>
+                  <div className='flex flex-col'>
+                    <p
+                    className='
+                    pr-2
+                    text-gray-600
+                    w-[128px]
+                    font-semibold'>パスワード</p>
+                      <input
+                      className='
+                      shadow-sm
+                      outline-none
+                      focus:ring-2
+                      focus:ring-offset-3
+                      focus:ring-green-100
+                      focus:ring-offset-green-50
+                      focus:border-green-100
+                      focus:placeholder-gray-300
+                      h-8
+                      p-2
+                      w-[300px]
+                      border
+                      border-gray-200
+                      rounded-md
+                      '
+                      />
+                    </div>
+                  <button
+                  className='
+                  mt-10
+                  mx-auto
+                  p-3
+                  w-full
+                  rounded-md
+                  bg-dark_green
+                  text-white
+                  text-lg
+                  hover:bg-opacity-90
+                  '
+                  >ログイン</button>
+                </div>
+
               </div>
       </section>
     </>

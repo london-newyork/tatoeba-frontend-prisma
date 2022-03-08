@@ -1,12 +1,26 @@
 import React, {useState} from 'react'
 import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { RegisteredWordContents } from '../../../src/components/utils/RegisteredWordContents'
 
 export const RegisterWordCreateBtn = ({title, setTitle, shortParaphrase, setShortParaphrase, description, setDescription}) => {
 
+  const [newRouterQuery, setNewRouterQuery ] = useRecoilState(RegisteredWordContents)
   const [show, setShow] = useState(false)
 
   const router = useRouter()
+
+
+  const handleUpdateQuery = () => {
+    //topページのカードをクリックすると更新できるようになる。
+    //カードの持つIDとtitleなどの情報が登録ページでも入っている。
+    //トップページでクリックされたカードのIDと照合してから登録ページで管理している例えの情報を
+    //引き出す。
+    // setNewRouterQuery(
+    //   (router.query)=>[...router.query]
+    //   )
+  }
 
   // const openModal = useCallback(() => {
   //   setShow(true)

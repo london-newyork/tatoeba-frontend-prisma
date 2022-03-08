@@ -49,6 +49,7 @@ module.exports = {
       }),
       backgroundColor: (theme) => ({
         ...theme('colors'),
+        faded_light_green: '#dbf7db',
         light_green: '#D2FDD1',
         mint_green: '#aefcac',
         faded_mid_green: '#5fe05c',

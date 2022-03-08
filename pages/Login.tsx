@@ -1,8 +1,19 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { Header } from '../src/components/Header/Header';
 
+
 export default function Login() {
+  const router = useRouter()
+
+const handleLogin = () => {
+  router.push({
+    pathname:'/MyPage'
+  }
+  )
+}
+
   return (
     <>
       <Head>
@@ -52,14 +63,6 @@ export default function Login() {
                 >
                     ログイン
                 </h1>
-                {/* <button className="
-                bg-gray-100
-                mt-12
-                px-6
-                py-2
-                rounded-md">
-                    Gmail
-                </button> */}
                 <div className='pt-14 flex flex-col gap-6'>
                   <div className='flex flex-col'>
                     <p
@@ -128,6 +131,7 @@ export default function Login() {
                   hover:bg-opacity-90
                   font-normal
                   '
+                  onClick={handleLogin}
                   >ログイン</button>
                 </div>
 

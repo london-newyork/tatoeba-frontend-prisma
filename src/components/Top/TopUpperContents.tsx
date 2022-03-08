@@ -80,7 +80,7 @@ export const TopUpperContents:VFC = () => {
                             rounded-r-none
                             rounded-l-md
                             translate-y-4
-                            bg-[#dbf7db]
+                            bg-faded_light_green
                             text-[#05D200]
                             `}
                         >

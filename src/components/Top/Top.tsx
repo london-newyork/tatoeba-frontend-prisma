@@ -62,22 +62,27 @@ export const Top:VFC = () => {
             <div
             id="tatoeba-card"
             className='
+            flex
+            justify-center
             bg-gray-200
             dark:bg-black
             px-6
             sm:px-6
             md:px-11
             lg:px-24
-            pt-10
-            sm:pt-8
-            md:pt-10
-            lg:pt-13'>
+            py-10
+            sm:py-8
+            md:py-10
+            lg:py-10
+            '>
                 <ul
                 className='
+                lg:w-[940px]
                 flex
-                justify-center
+                lg:justify-start
+                sm:justify-center
                 flex-wrap
-                gap-x-6
+                gap-x-8
                 gap-y-8
                 mt-4'>
                 {routerQuery
@@ -86,8 +91,9 @@ export const Top:VFC = () => {
                     key={item.id}
                     className='
                     px-6
-                    py-10
-                    h-[300px]
+                    pt-6
+                    pb-6
+                    h-[336px]
                     w-[280px]
                     rounded-md
                     drop-shadow-2xl
@@ -95,11 +101,28 @@ export const Top:VFC = () => {
                     scss-card-toast
                     '
                     >
-                        <h3 className='
-                        text-lg
-                        text-center'>{item.title}を例えると...{item.shortParaphrase}</h3>
+                        <ul
+                        className='
+                        h-[72px]
+                        '>
+                            <li>
+                                <h3 className='
+                                pl-1
+                                text-left
+                                text-dark_green
+                                text-lg
+                                '>
+                                    {item.title}
+                                    <br />
+                                    <span className='text-gray-500'>
+                                        を例えると...
+                                    </span>
+                                    {item.shortParaphrase}
+                                </h3>
+                            </li>
+                        </ul>
                         <ul className='
-                        pt-9
+                        pt-5
                         '>
                             <li className='
                             flex
@@ -107,14 +130,29 @@ export const Top:VFC = () => {
                             items-center'>
                                 <img src="" alt="" className='w-56 h-36'/>
                             </li>
-                            <li>{item.description}</li>
-                            <button
+                            {/* <li
                             className='
-                            p-2
-                            bg-gray-100
-                            rounded
-                            '
-                            onClick={(e)=>handleMoveToResult(item.id, item.title, item.shortParaphrase, item.description)}>詳細</button>
+                            pt-2
+                            pl-1
+                            text-gray-400
+                            '>
+                                {item.description}
+                            </li> */}
+                            <li
+                            className='
+                            flex
+                            justify-end
+                            '>
+                                <button
+                                className='
+                                my-4
+                                p-2
+                                bg-light_green
+                                text-q_dark_green
+                                rounded
+                                '
+                                onClick={(e)=>handleMoveToResult(item.id, item.title, item.shortParaphrase, item.description)}>詳細</button>
+                            </li>
                         </ul>
                     </li>
                 )

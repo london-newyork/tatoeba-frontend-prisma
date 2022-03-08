@@ -49,8 +49,8 @@ export const Header = (props:Props) => {
             mr-4
             bg-gray-100
             rounded-full
-            h-12
-            w-12
+            h-10
+            w-10
             flex
             justify-center
             items-center
@@ -61,27 +61,55 @@ export const Header = (props:Props) => {
           </Link>
           <Link href="/Register/">
             <button className="
-              hover:bg-q_dark_green
-              bg-dark_green
+              hover:bg-mint_green
+              bg-light_green
               w-[64px]
-              h-[60px]">
+              h-[59px]">
               <ul className="
               flex
               flex-col
+              hover:text-white
               items-center">
-                <li><PencilAltIcon className="h-6 w-6 text-white duration-300"/></li>
-                <li className="text-[10px] text-white duration-300">例え登録</li>
+                <li>
+                  <PencilAltIcon
+                  className="
+                    h-6
+                    w-6
+                    text-q_dark_green
+                    duration-300"/>
+                </li>
+                <li
+                  className="
+                  text-[10px]
+                  text-q_dark_green
+                  duration-300">
+                    例え登録
+                </li>
               </ul>
             </button>
           </Link>
           <button className="
-          bg-gray-600
+          bg-gray-200
+          hover:bg-gray-300
           w-[64px]
-          h-[60px]
+          h-[59px]
           hover:opacity-80">
             <ul className="flex flex-col items-center">
-              <li><MenuIcon className="h-6 w-6 text-white duration-300"/></li>
-              <li className="text-[10px] text-white duration-300">メニュー</li>
+              <li>
+                <MenuIcon
+                className="
+                  h-6
+                  w-6
+                  text-q_dark_green
+                  duration-300"/>
+              </li>
+              <li
+              className="
+              text-[10px]
+              text-q_dark_green
+              duration-300">
+                メニュー
+              </li>
             </ul>
           </button>
         </div>

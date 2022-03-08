@@ -38,7 +38,7 @@ export default function Login() {
                 after:absolute
                 after:content-['']
                 after:block
-                after:translate-x-9
+                after:translate-x-11
                 after:transform-gpu
                 after:-bottom-[10px]
                 after:w-[1em]
@@ -47,7 +47,7 @@ export default function Login() {
                 text-3xl
                 text-gray-700
                 select-none
-                font-semibold
+                font-normal
                 "
                 >
                     ログイン
@@ -65,7 +65,7 @@ export default function Login() {
                     <p
                     className='
                     pr-2
-                    font-semibold
+                    font-normal
                     text-gray-600
                     w-[128px]'>
                       メールアドレス
@@ -95,7 +95,7 @@ export default function Login() {
                     pr-2
                     text-gray-600
                     w-[128px]
-                    font-semibold'>パスワード</p>
+                    font-normal'>パスワード</p>
                       <input
                       className='
                       shadow-sm
@@ -126,6 +126,7 @@ export default function Login() {
                   text-white
                   text-lg
                   hover:bg-opacity-90
+                  font-normal
                   '
                   >ログイン</button>
                 </div>

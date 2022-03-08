@@ -53,16 +53,16 @@ export const RegisterWordCreateBtn = ({title, setTitle, shortParaphrase, setShor
     <div className="flex justify-end">
     <button
     // onClick={openModal}
-    onClick={submitWords}
-    type="submit"
-    className="
-    p-3
-    w-[200px]
-    rounded-3xl
-    bg-dark_green
-    text-white
-    text-lg
-    hover:bg-opacity-90
+      onClick={submitWords}
+      type="submit"
+      className="
+      p-3
+      w-[200px]
+      rounded-md
+      bg-dark_green
+      text-white
+      text-lg
+      hover:bg-opacity-90
     ">
       投稿する
     </button>

@@ -19,11 +19,9 @@ const { children } = props
     pt-9">
       <div
       className='
-      md:pt-[100px]
-      sm:pt-[80px]
       lg:px-12
       px-7
-      pt-8
+      pt-12
       pb-10
       rounded-md
       bg-white

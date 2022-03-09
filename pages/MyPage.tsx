@@ -23,14 +23,28 @@ const MyPage = () => {
                 >
                     <img src="" alt="" />
                 </div>
-                <h1
+                <div
+                className='
+                flex
+                flex-col
+                pl-9
+                '
+                >
+                    <h1
+                        className='
+                        text-2xl
+                        text-gray-700
+                        '>
+                        ユーザーネーム
+                    </h1>
+                    <p
                     className='
-                    text-2xl
-                    text-gray-700
-                    pl-9
-                    '>
-                    ユーザーネーム
-                </h1>
+                    pt-1
+                    text-sm
+                    text-gray-400
+                    '
+                    >ID: 1111111111</p>
+                </div>
             </div>
             <div
             className='

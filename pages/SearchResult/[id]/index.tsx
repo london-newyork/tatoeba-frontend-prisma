@@ -2,17 +2,17 @@ import React from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import "tailwindcss/tailwind.css";
-import { Header } from '../../src/components/Header/Header';
-import { SearchMain } from '../../src/components/Layouts/SearchMain'
+import { Header } from '../../../src/components/Header/Header';
+import { SearchMain } from '../../../src/components/Layouts/SearchMain'
 import { useRecoilState } from 'recoil'
-import { RegisteredWordContents } from '../../src/components/utils/RegisteredWordContents'
+import { RegisteredWordContents } from '../../../src/components/utils/RegisteredWordContents'
 
-export default function SearchResultList ({id, title, shortParaphrase, description}) {
+export default function SearchResultList () {
   const [routerQuery, setRouterQuery] = useRecoilState(RegisteredWordContents)
   console.log('routerQuery',routerQuery);
 
-  const router = useRouter();
-  // console.log(title);
+  const router = useRouter()
+  const { id } = router.query
 
   return (
       <>

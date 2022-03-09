@@ -54,7 +54,7 @@ const handleLogin = () => {
                   after:-bottom-[10px]
                   after:w-[1em]
                   after:h-[2px]
-                  after:bg-[#4cf048]
+                  after:bg-mid_green
                   text-3xl
                   text-gray-700
                   select-none

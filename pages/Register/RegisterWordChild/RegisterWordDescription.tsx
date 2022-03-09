@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const RegisterWordDescription = ({ description , setDescription }) => {
+
   return (
     <div
         className="

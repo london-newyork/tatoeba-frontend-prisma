@@ -2,7 +2,7 @@ import React, { VFC, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { TopUpperContents } from '../Top/TopUpperContents'
 import { RegisteredWordContents } from '../utils/RegisteredWordContents'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 export const Top:VFC = () => {
     const router = useRouter();
@@ -15,7 +15,7 @@ export const Top:VFC = () => {
         //useRefを使って、useEffectがrouterQueryを監視中に、２回レンダリングが走らないようにする。
         if(renderFlgRef.current) {
             renderFlgRef.current = false
-            console.log(router.query);
+            // console.log(router.query);
             // console.log(typeof router.query);
 
             // 空のカードや配列が入ってくるのでrouter.queryが空の時(true)の条件分岐を書こうとした。
@@ -32,16 +32,19 @@ export const Top:VFC = () => {
         } return
     }, [routerQuery])
 
-    const handleMoveToResult = (id: string, title: string, shortParaphrase: string, description: string) => {
-        const copiedRouterQuery = routerQuery.map( query => ({...query}))
+
+    const handleMoveToUpdate = (
+        id: string,
+        title: string,
+        shortParaphrase: string,
+        description: string
+        ) => {
+        const copiedRouterQuery = routerQuery.map(query => ({...query}))
         const newRouterQuery = copiedRouterQuery.map(query => {
             if(query.id === id) {
-                console.log('queryidだよ',query.id);
-                console.log('idだよ',id);
-                console.log(title);
 
                 router.push({
-                    pathname:'/SearchResult/',
+                    pathname:'/Register/',
                     query: {
                         id,
                         title,
@@ -49,7 +52,33 @@ export const Top:VFC = () => {
                         description,
                     }
                 })
-            }
+            } return
+        }
+        )
+        setRouterQuery(newRouterQuery)
+    }
+
+    const handleMoveToResult = (
+        id: string,
+        title: string,
+        shortParaphrase: string,
+        description: string
+        ) => {
+        // const [routerQuery, setRouterQuery] = useSetRecoilState(RegisteredWordContents)
+        const copiedRouterQuery = routerQuery.map(query => ({...query}))
+        const newRouterQuery = copiedRouterQuery.map(query => {
+            if(query.id === id) {
+
+                router.push({
+                    pathname:'/SearchResult/[id]',
+                    query: {
+                        id,
+                        title,
+                        shortParaphrase,
+                        description,
+                    }
+                })
+            } return
         }
         )
         setRouterQuery(newRouterQuery)
@@ -142,16 +171,45 @@ export const Top:VFC = () => {
                             className='
                             flex
                             justify-end
+                            gap-x-2
                             '>
+                                <button
+                                className='
+                                bg-gray-200
+                                text-gray-500
+                                text-sm
+                                rounded-md
+                                my-4
+                                p-2
+                                py-1
+                                px-2
+                                '
+                                onClick={(e) => handleMoveToUpdate(
+                                    item.id,
+                                    item.title,
+                                    item.shortParaphrase,
+                                    item.description,
+                                )}
+                                >
+                                編集
+                                </button>
                                 <button
                                 className='
                                 my-4
                                 p-2
+                                text-sm
                                 bg-light_green
                                 text-q_dark_green
                                 rounded
                                 '
-                                onClick={(e)=>handleMoveToResult(item.id, item.title, item.shortParaphrase, item.description)}>詳細</button>
+                                onClick={(e) => handleMoveToResult(
+                                    item.id,
+                                    item.title,
+                                    item.shortParaphrase,
+                                    item.description,
+                                )}>
+                                    詳細
+                                </button>
                             </li>
                         </ul>
                     </li>

@@ -20,7 +20,7 @@ export default function SearchResultList () {
             </div>
             <ul className="pt-12">
                 <li>
-                    <Link href="/SearchResult/[slug]" as="/SearchResult/SearchResult">
+                    <Link href="/SearchResult/" as="/SearchResult/SearchResult">
                     <a className="flex
                         flex-row
                         items-center

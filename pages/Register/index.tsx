@@ -16,6 +16,8 @@ export default function Register() {
       <Header />
       <section
           className="
+          md:pt-[100px]
+          sm:pt-[80px]
           bg-gray-100
           h-screen
           px-7

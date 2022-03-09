@@ -9,6 +9,8 @@ const { children } = props
   return (
     <main
     className="
+    md:pt-[100px]
+    sm:pt-[80px]
     bg-gray-100
     h-screen
     px-7
@@ -17,6 +19,8 @@ const { children } = props
     pt-9">
       <div
       className='
+      md:pt-[100px]
+      sm:pt-[80px]
       lg:px-12
       px-7
       pt-8

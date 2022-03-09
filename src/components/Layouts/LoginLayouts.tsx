@@ -4,19 +4,19 @@ type Props = {
     children: any
 }
 
-export const SearchMain = (props:Props) => {
+export const LoginLayouts = (props:Props) => {
 const { children } = props
   return (
     <main
     className="
-    md:pt-[100px]
-    sm:pt-[80px]
+    sm:pt-[100px]
+    bg-gray-100
     h-screen
     px-7
-    md:px-24
+    md:px-18
     mx-auto
     pt-9">
-    {children}
+      {children}
     </main>
   )
 };

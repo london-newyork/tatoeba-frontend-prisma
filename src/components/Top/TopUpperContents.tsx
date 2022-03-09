@@ -12,10 +12,6 @@ export const TopUpperContents:VFC = () => {
     sm:px-6
     md:px-11
     lg:px-24
-    pt-10
-    sm:pt-8
-    md:pt-10
-    lg:pt-13
     flex
     flex-col
     lg:flex-row

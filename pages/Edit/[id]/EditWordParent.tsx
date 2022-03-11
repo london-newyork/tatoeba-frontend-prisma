@@ -1,10 +1,10 @@
 import React,{ useState } from 'react'
-import { RegisterWordCreateBtn } from './RegisterWordChild/RegisterWordCreateBtn'
-import { RegisterWordTitle } from './RegisterWordChild/RegisterWordTitle'
-import { RegisterWordShortParaphrase } from './RegisterWordChild/RegisterWordShortParaphrase'
-import { RegisterWordDescription } from './RegisterWordChild/RegisterWordDescription'
+import { EditWordBtn } from './EditWordChild/EditWordBtn'
+import { EditWordTitle } from './EditWordChild/EditWordTitle'
+import { EditWordShortParaphrase } from './EditWordChild/EditWordShortParaphrase'
+import { EditWordDescription } from './EditWordChild/EditWordDescription'
 
-export const RegisterWordParent = () => {
+export const EditWordParent = () => {
     const [ title, setTitle ] = useState('')
     const [ shortParaphrase, setShortParaphrase] = useState('')
     const [ description, setDescription ] = useState('')
@@ -12,19 +12,19 @@ export const RegisterWordParent = () => {
 
     return (
         <div className='flex flex-col gap-6'>
-            <RegisterWordTitle
+            <EditWordTitle
                 title={title}
                 setTitle={setTitle}
             />
-            <RegisterWordShortParaphrase
+            <EditWordShortParaphrase
                 shortParaphrase={shortParaphrase}
                 setShortParaphrase={setShortParaphrase}
             />
-            <RegisterWordDescription
+            <EditWordDescription
                 description={description}
                 setDescription={setDescription}
             />
-            <RegisterWordCreateBtn
+            <EditWordBtn
                 title={title}
                 shortParaphrase={shortParaphrase}
                 description={description}

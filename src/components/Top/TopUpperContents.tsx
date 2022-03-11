@@ -142,10 +142,12 @@ export const TopUpperContents:VFC = () => {
                 w-[25%]
                 pl-none
                 pt-5
-                m-auto
+                // m-auto
                 md:m-0
-                lg:m-0
-                max-w-[340px]
+                lg:-ml-[96px]
+                lg:max-w-[250px]
+                lg:min-w-[240px]
+                sm:min-w-[144px]
                 order-1
                 sm:order-1
                 md:order-1

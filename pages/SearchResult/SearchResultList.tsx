@@ -20,10 +20,10 @@ export default function SearchResultList () {
             </div>
             <ul className="pt-12">
                 <li>
-                    <Link href="/SearchResult/" as="/SearchResult/SearchResult">
+                    <Link href="/SearchResult/[id]" as="/SearchResult/SearchResult">
                     <a className="flex
                         flex-row
-                        items-center
+                        items-centers
                         gap-2
                         hover:opacity-50">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

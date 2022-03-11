@@ -48,18 +48,18 @@ export const Header = (props:Props) => {
             <div
             className='
             my-auto
-            mr-4
+            mr-3
             bg-gray-100
             rounded-full
-            h-10
-            w-10
+            h-9
+            w-9
             flex
             justify-center
             items-center
             text-xs
             text-gray-500
             cursor-pointer'>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
@@ -69,8 +69,8 @@ export const Header = (props:Props) => {
               hover:bg-mint_green
               bg-light_green
               rounded-full
-              h-10
-              w-10">
+              h-9
+              w-9">
               <ul className="
               flex
               flex-col
@@ -79,8 +79,8 @@ export const Header = (props:Props) => {
                 <li>
                   <PencilAltIcon
                   className="
-                    h-6
-                    w-6
+                    h-5
+                    w-5
                     text-q_dark_green
                     duration-300"/>
                 </li>

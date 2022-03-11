@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import { Modal } from '../../../src/components/Modal/Modal'
+import { Modal } from '../../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../../../src/components/utils/RegisteredWordContents'
+import { RegisteredWordContents } from '../../../../src/components/utils/RegisteredWordContents'
 
-export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => {
+export const EditWordBtn = ({title, shortParaphrase, description}) => {
 
   // const [newRouterQuery, setNewRouterQuery ] = useRecoilState(RegisteredWordContents)
   const [show, setShow] = useState(false)

@@ -2,11 +2,10 @@ import React, { VFC, useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { TopUpperContents } from '../Top/TopUpperContents'
 import { RegisteredWordContents } from '../utils/RegisteredWordContents'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export const Top:VFC = () => {
     const router = useRouter();
-    // const [routerQuery, setRouterQuery] = useState([router.query])
     const [routerQuery, setRouterQuery] = useRecoilState(RegisteredWordContents)
 
     const renderFlgRef = useRef(true)
@@ -32,19 +31,18 @@ export const Top:VFC = () => {
         } return
     }, [routerQuery])
 
-
-    const handleMoveToUpdate = (
+    const handleMoveToEdit = (
         id: string,
         title: string,
         shortParaphrase: string,
         description: string
         ) => {
-        const copiedRouterQuery = routerQuery.map(query => ({...query}))
-        const newRouterQuery = copiedRouterQuery.map(query => {
+        const copiedRouterQuery = routerQuery.map((query:any) => ({...query}))
+        const newRouterQuery = copiedRouterQuery.map((query:any) => {
             if(query.id === id) {
 
                 router.push({
-                    pathname:'/Register/',
+                    pathname:'/Edit/[id]',
                     query: {
                         id,
                         title,
@@ -64,9 +62,9 @@ export const Top:VFC = () => {
         shortParaphrase: string,
         description: string
         ) => {
-        // const [routerQuery, setRouterQuery] = useSetRecoilState(RegisteredWordContents)
-        const copiedRouterQuery = routerQuery.map(query => ({...query}))
-        const newRouterQuery = copiedRouterQuery.map(query => {
+
+        const copiedRouterQuery = routerQuery.map((query:any) => ({...query}))
+        const newRouterQuery = copiedRouterQuery.map((query:any) => {
             if(query.id === id) {
 
                 router.push({
@@ -115,7 +113,7 @@ export const Top:VFC = () => {
                 gap-y-8
                 mt-4'>
                 {routerQuery
-                ? routerQuery.map((item) => (
+                ? routerQuery.map((item:any) => (
                     <li
                     key={item.id}
                     className='
@@ -184,7 +182,7 @@ export const Top:VFC = () => {
                                 py-1
                                 px-2
                                 '
-                                onClick={(e) => handleMoveToUpdate(
+                                onClick={(e) => handleMoveToEdit(
                                     item.id,
                                     item.title,
                                     item.shortParaphrase,
@@ -202,7 +200,7 @@ export const Top:VFC = () => {
                                 text-q_dark_green
                                 rounded
                                 '
-                                onClick={(e) => handleMoveToResult(
+                                onClick={() => handleMoveToResult(
                                     item.id,
                                     item.title,
                                     item.shortParaphrase,

@@ -34,12 +34,12 @@ export default function Detail () {
 
   // useEffect(() => {
   //   return () => {
-  //     setRouterQuery([...routerQuery,{
+  //     setWords([...words,{
   //       id, title, shortParaphrase, description
   //     }])
 
   //   }
-  // }, [routerQuery])
+  // }, [words])
 
   const handleChangeTitle = (e) => {
 
@@ -49,7 +49,7 @@ export default function Detail () {
     // ])
     console.log(title)
 
-    // setRouterQuery((title)=> [
+    // setWords((title)=> [
     //   ...title,
     //   e.target.value
     // ])
@@ -60,7 +60,7 @@ export default function Detail () {
     // ])
 
     //atomに登録しなおす
-    // setRouterQuery([prevTitle])
+    // setWords([prevTitle])
     //   console.log(prevTitle);
     //[配列]に入っていて、初回登録時の文字 + 一文字ずつ配列の中に収まっている。
     //abcと登録してあったら、このページで'd'と打てば abcd、次に'e'と打てばabce
@@ -133,14 +133,14 @@ export default function Detail () {
                </div>
             </div>
             <h2 className="pt-16 text-2xl text-gray-600">
-              {/* {shortParaphrase} */}
+              {shortParaphrase}
             </h2>
             <p className="
             pt-10
             text-md
             leading-loose
             text-gray-600">
-              {/* {description} */}
+              {description}
             </p>
           </div>
         </SearchMain>

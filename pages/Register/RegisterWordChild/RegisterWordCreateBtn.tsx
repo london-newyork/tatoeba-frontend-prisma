@@ -6,7 +6,8 @@ import { RegisteredWordContents } from '../../../src/components/utils/Registered
 
 export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => {
 
-  // const [newRouterQuery, setNewRouterQuery ] = useRecoilState(RegisteredWordContents)
+  const [words, setWords] = useRecoilState(RegisteredWordContents)
+
   const [show, setShow] = useState(false)
 
   const router = useRouter()
@@ -22,10 +23,18 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => 
 
   const submitWords = (e) => {
     {/* @ts-ignore */}
-    setShow(false)
+    // setShow(false)
 
-    //関数の中に関数は入れない。関数にしなくてもいい
-    //Firebaseに渡すので状態管理させなくてOK
+    const newWords = [
+      {
+        id,
+        title,
+        shortParaphrase,
+        description,
+      },
+      ...words,
+    ]
+    setWords(newWords)
 
     router.push({
       pathname:'/',
@@ -56,7 +65,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => 
       投稿する
     </button>
     {/* @ts-ignore */}
-    <Modal show={show} setShow={setShow}/>
+    {/* <Modal show={show} setShow={setShow}/> */}
   </div>
   )
 }

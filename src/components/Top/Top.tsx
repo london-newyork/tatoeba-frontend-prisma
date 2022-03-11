@@ -6,12 +6,12 @@ import { useRecoilState } from 'recoil'
 
 export const Top:VFC = () => {
     const router = useRouter();
-    const [routerQuery, setRouterQuery] = useRecoilState(RegisteredWordContents)
+    const [words, setWords] = useRecoilState(RegisteredWordContents)
 
     const renderFlgRef = useRef(true)
     //useEffectで再レンダリングが走らないようにする
     useEffect(() => {
-        //useRefを使って、useEffectがrouterQueryを監視中に、２回レンダリングが走らないようにする。
+        //useRefを使って、useEffectがwordsを監視中に、２回レンダリングが走らないようにする。
         if(renderFlgRef.current) {
             renderFlgRef.current = false
             // console.log(router.query);
@@ -23,13 +23,13 @@ export const Top:VFC = () => {
             // console.log(router.query === {}); false
 
             // router.query.id === undefined　=> またはこのような比べ方もあり
-            // idがrouter.queryにあるかどうかを比べて、あればsetRouterQueryを返す
+            // idがrouter.queryにあるかどうかを比べて、あればsetWordsを返す
             'id' in router.query
-            ? setRouterQuery([router.query, ...routerQuery])
+            ? setWords([router.query, ...words])
             : null
 
         } return
-    }, [routerQuery])
+    }, [words])
 
     const handleMoveToEdit = (
         id: string,
@@ -37,8 +37,8 @@ export const Top:VFC = () => {
         shortParaphrase: string,
         description: string
         ) => {
-        const copiedRouterQuery = routerQuery.map((query:any) => ({...query}))
-        const newRouterQuery = copiedRouterQuery.map((query:any) => {
+        const copiedWords = words.map((query:any) => ({...query}))
+        const newWords = copiedWords.map((query:any) => {
             if(query.id === id) {
 
                 router.push({
@@ -53,7 +53,7 @@ export const Top:VFC = () => {
             } return
         }
         )
-        setRouterQuery(newRouterQuery)
+        setWords(newWords)
     }
 
     const handleMoveToResult = (
@@ -63,8 +63,8 @@ export const Top:VFC = () => {
         description: string
         ) => {
 
-        const copiedRouterQuery = routerQuery.map((query:any) => ({...query}))
-        const newRouterQuery = copiedRouterQuery.map((query:any) => {
+        const copiedWords = words.map((query:any) => ({...query}))
+        const newWords = copiedWords.map((query:any) => {
             if(query.id === id) {
 
                 router.push({
@@ -79,7 +79,7 @@ export const Top:VFC = () => {
             } return
         }
         )
-        setRouterQuery(newRouterQuery)
+        setWords(newWords)
     }
 
     return (
@@ -112,8 +112,8 @@ export const Top:VFC = () => {
                 gap-x-8
                 gap-y-8
                 mt-4'>
-                {routerQuery
-                ? routerQuery.map((item:any) => (
+                {words
+                ? words.map((item:any) => (
                     <li
                     key={item.id}
                     className='

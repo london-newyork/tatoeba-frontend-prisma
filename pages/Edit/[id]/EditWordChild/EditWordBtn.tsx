@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { RegisteredWordContents } from '../../../../src/components/utils/RegisteredWordContents'
 
-export const EditWordBtn = ({title, shortParaphrase, description}) => {
+export const EditWordBtn = ({id, title, shortParaphrase, description}) => {
 
-  // const [newRouterQuery, setNewRouterQuery ] = useRecoilState(RegisteredWordContents)
+  const [words, setWords] = useRecoilState(RegisteredWordContents)
   const [show, setShow] = useState(false)
 
   const router = useRouter()
@@ -15,17 +15,25 @@ export const EditWordBtn = ({title, shortParaphrase, description}) => {
   //   setShow(true)
   // }, [])
 
-  function getUniqueId(){
-    return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
-  }
-  const id = getUniqueId()
+  // function getUniqueId(){
+  //   return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
+  // }
+  // const id = getUniqueId()
 
   const submitWords = (e) => {
     {/* @ts-ignore */}
-    setShow(false)
+    // setShow(false)
 
-    //関数の中に関数は入れない。関数にしなくてもいい
-    //Firebaseに渡すので状態管理させなくてOK
+    const newWords = [
+      {
+        id,
+        title,
+        shortParaphrase,
+        description,
+      },
+      ...words,
+    ]
+    setWords(newWords)
 
     router.push({
       pathname:'/',
@@ -53,10 +61,10 @@ export const EditWordBtn = ({title, shortParaphrase, description}) => {
       text-lg
       hover:bg-opacity-90
     ">
-      投稿する
+      更新する
     </button>
     {/* @ts-ignore */}
-    <Modal show={show} setShow={setShow}/>
+    {/* <Modal show={show} setShow={setShow}/> */}
   </div>
   )
 }

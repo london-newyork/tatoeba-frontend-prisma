@@ -37,7 +37,6 @@ export default function Detail () {
   //     setWords([...words,{
   //       id, title, shortParaphrase, description
   //     }])
-
   //   }
   // }, [words])
 

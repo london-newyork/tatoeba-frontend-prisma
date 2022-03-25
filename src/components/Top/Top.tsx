@@ -1,4 +1,4 @@
-import React, { VFC, useState, useEffect, useRef } from 'react';
+import React, { VFC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { TopUpperContents } from '../Top/TopUpperContents'
 import { RegisteredWordContents } from '../utils/RegisteredWordContents'
@@ -8,37 +8,22 @@ export const Top:VFC = () => {
     const router = useRouter();
     const [words, setWords] = useRecoilState(RegisteredWordContents)
 
-    const renderFlgRef = useRef(true)
-    //useEffectで再レンダリングが走らないようにする
     useEffect(() => {
-        //useRefを使って、useEffectがwordsを監視中に、２回レンダリングが走らないようにする。
-        if(renderFlgRef.current) {
-            renderFlgRef.current = false
-            // console.log(router.query);
-            // console.log(typeof router.query);
-
-            // 空のカードや配列が入ってくるのでrouter.queryが空の時(true)の条件分岐を書こうとした。
-            //ただし、オブジェクトとオブジェクトを比べてもfalseになる。
-            // console.log({} === {}); false
-            // console.log(router.query === {}); false
-
-            // router.query.id === undefined　=> またはこのような比べ方もあり
-            // idがrouter.queryにあるかどうかを比べて、あればsetWordsを返す
-            'id' in router.query
-            ? setWords([router.query, ...words])
+    //useEffectの中ではsetStateに関数を渡し、第二引数を空にしたほうが余計なレンダリングがされない
+    //router.queryをEditWordParentで状態管理させ、それをpropsでTopへ回すようリファクタする
+            router.isReady
+            ? setWords((prev)=>[router.query, ...prev])
             : null
+    }, [])
 
-        } return
-    }, [words])
-
+    //handleMoveToEditはindex.tsxに書いた方がいい。ロジックは上位のコンポーネントへ書く。
     const handleMoveToEdit = (
         id: string,
         title: string,
         shortParaphrase: string,
         description: string
         ) => {
-        const copiedWords = words.map((query:any) => ({...query}))
-        const newWords = copiedWords.map((query:any) => {
+        words.forEach((query:any) => {
             if(query.id === id) {
 
                 router.push({
@@ -50,12 +35,12 @@ export const Top:VFC = () => {
                         description,
                     }
                 })
-            } return
+            }
         }
         )
-        setWords(newWords)
     }
 
+    //handleMoveToEditはindex.tsxに書いた方がいい。
     const handleMoveToResult = (
         id: string,
         title: string,
@@ -76,7 +61,7 @@ export const Top:VFC = () => {
                         description,
                     }
                 })
-            } return
+            } return query
         }
         )
         setWords(newWords)

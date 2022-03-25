@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const EditWordTitle = ({ title, setTitle }) => {
+export const EditWordTitle = ({ title, setTitle, }) => {
+
+  const handleEdit = (e) => {
+    setTitle(e.target.value)
+  }
 
   return (
     <div
@@ -24,7 +28,7 @@ export const EditWordTitle = ({ title, setTitle }) => {
         <textarea
             value={title}
             name='title'
-            onChange={(e)=>setTitle(e.target.value)}
+            onChange={handleEdit}
             rows={2}
             placeholder='サーバー'
             maxLength={50}

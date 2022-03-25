@@ -24,7 +24,6 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => 
   const submitWords = (e) => {
     {/* @ts-ignore */}
     // setShow(false)
-
     const newWords = [
       {
         id,

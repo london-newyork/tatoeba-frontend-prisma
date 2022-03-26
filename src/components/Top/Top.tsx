@@ -1,12 +1,11 @@
 import React, { VFC, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { TopUpperContents } from '../Top/TopUpperContents'
-import { RegisteredWordContents } from '../utils/RegisteredWordContents'
-import { useRecoilState } from 'recoil'
 
-export const Top:VFC = () => {
-    const router = useRouter();
-    const [words, setWords] = useRecoilState(RegisteredWordContents)
+import { TopUpperContents } from '../Top/TopUpperContents'
+
+import type { Edit } from '../../../pages/index'
+
+export const Top:VFC<Edit> = (props) => {
+    const { handleMoveToEdit, words, setWords, router } = props
 
     useEffect(() => {
     //useEffectの中ではsetStateに関数を渡し、第二引数を空にしたほうが余計なレンダリングがされない
@@ -17,29 +16,7 @@ export const Top:VFC = () => {
     }, [])
 
     //handleMoveToEditはindex.tsxに書いた方がいい。ロジックは上位のコンポーネントへ書く。
-    const handleMoveToEdit = (
-        id: string,
-        title: string,
-        shortParaphrase: string,
-        description: string
-        ) => {
-        words.forEach((query:any) => {
-            if(query.id === id) {
-
-                router.push({
-                    pathname:'/Edit/[id]',
-                    query: {
-                        id,
-                        title,
-                        shortParaphrase,
-                        description,
-                    }
-                })
-            }
-        }
-        )
-    }
-
+    
     //handleMoveToEditはindex.tsxに書いた方がいい。
     const handleMoveToResult = (
         id: string,
@@ -48,9 +25,8 @@ export const Top:VFC = () => {
         description: string
         ) => {
 
-        const copiedWords = words.map((query:any) => ({...query}))
-        const newWords = copiedWords.map((query:any) => {
-            if(query.id === id) {
+            words.forEach((query:any) => {
+                if(query.id === id) {
 
                 router.push({
                     pathname:'/SearchResult/[id]',
@@ -64,7 +40,6 @@ export const Top:VFC = () => {
             } return query
         }
         )
-        setWords(newWords)
     }
 
     return (

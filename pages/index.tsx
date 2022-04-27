@@ -4,19 +4,15 @@ import { Top } from '../src/components/Top/Top'
 import { Footer } from '../src/components/Footer/Footer'
 import { RegisteredWordContents } from '../src/components/utils/RegisteredWordContents'
 import { useRecoilState } from 'recoil'
-import { useRouter } from 'next/router';
-import React,{Dispatch, SetStateAction} from 'react'
-
-export type Edit= {
-  handleMoveToEdit: (id: string, title: string, shortParaphrase: string, description: string)=>void
-  words: string[]
-  setWords: Dispatch<SetStateAction<String>>
-  router: string
-}
+import { NextRouter, useRouter } from 'next/router';
+import React from 'react'
+import { Words } from "../src/components/types/types"
+import { ParsedUrlQuery } from "querystring"
 
 export default function Home() {
   const router = useRouter();
-  const [words, setWords] = useRecoilState(RegisteredWordContents)
+  const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(RegisteredWordContents)
+
   const handleMoveToEdit = (
     id: string,
     title: string,

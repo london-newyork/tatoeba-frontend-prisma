@@ -23,8 +23,9 @@
   },
   "include": [
     "src/**/*",
-    "pages/TestParent.tsx"
-, "pages/Top"  ],
+    "pages/TestParent.tsx",
+    "pages/Top"
+  ],
   "exclude": [
     "node_modules"
   ]

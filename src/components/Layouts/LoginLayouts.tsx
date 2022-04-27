@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { VFC } from 'react';
+import { Layouts } from '../types/types';
 
-type Props = {
-    children: any
-}
-
-export const LoginLayouts = (props:Props) => {
+export const LoginLayouts:VFC<Layouts> = (props) => {
 const { children } = props
   return (
     <main

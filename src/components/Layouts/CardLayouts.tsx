@@ -1,10 +1,7 @@
 import React, { ReactNode, VFC } from 'react'
+import { Layouts } from '../types/types'
 
-type CardLayouts = {
-    children: ReactNode
-}
-
-export const CardLayouts:VFC<CardLayouts> = (props) => {
+export const CardLayouts:VFC<Layouts> = (props) => {
 
   return (
     <div>

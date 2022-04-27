@@ -1,6 +1,6 @@
 import { NextRouter } from "next/router"
 import { ParsedUrlQuery } from "querystring"
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, ReactNode, SetStateAction } from "react"
 import { SetterOrUpdater } from "recoil"
 
 export type Words = {
@@ -31,4 +31,8 @@ export type Edit= {
     words: Edit["words"]
     handleMoveToEdit: Edit["handleMoveToEdit"]
     handleMoveToResult: Edit["handleMoveToEdit"]
+}
+
+export type Layouts = {
+    children: ReactNode
 }

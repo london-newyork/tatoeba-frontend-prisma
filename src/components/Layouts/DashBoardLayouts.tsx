@@ -4,7 +4,7 @@ type Props = {
     children: any
 }
 
-export const MyPageMain = (props:Props) => {
+export const DashBoardLayouts = (props:Props) => {
 const { children } = props
   return (
     <main

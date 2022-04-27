@@ -1,6 +1,10 @@
-import React from 'react'
+import { ParsedUrlQuery } from 'querystring'
+import React, { VFC } from 'react'
+import { Title, Words } from '../../../../src/components/types/types'
 
-export const EditWordTitle = ({ title, setTitle, }) => {
+type EditWordTitleProps = Title
+
+export const EditWordTitle:VFC<EditWordTitleProps> = ({ title, setTitle, id }) => {
 
   const handleEdit = (e) => {
     setTitle(e.target.value)

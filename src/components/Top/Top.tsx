@@ -4,6 +4,7 @@ import { TopUpperContents } from '../Top/TopUpperContents'
 
 import type { Edit } from '../../components/types/types'
 import { CardLayouts } from '../Layouts/CardLayouts';
+import { CardChild } from './CardChild';
 
 export const Top:VFC<Edit> = (props) => {
     const { handleMoveToEdit, words, setWords, router } = props
@@ -14,7 +15,7 @@ export const Top:VFC<Edit> = (props) => {
         ? setWords((prev)=> [router.query, ...prev])
         : null
     }, [])
-  
+
    const handleMoveToResult = (
         id: string,
         title: string,
@@ -22,7 +23,7 @@ export const Top:VFC<Edit> = (props) => {
         description: string
         ) => {
 
-            words.forEach((query:any) => {
+            words.forEach((query) => {
                 if(query.id === id) {
 
                 router.push({
@@ -42,10 +43,13 @@ export const Top:VFC<Edit> = (props) => {
     return (
       <>
       <TopUpperContents />
-      <CardLayouts
-      words={words}
-      handleMoveToEdit={handleMoveToEdit}
-      handleMoveToResult={handleMoveToResult}/>
+      <CardLayouts>
+          <CardChild
+          words={words}
+          handleMoveToEdit={handleMoveToEdit}
+          handleMoveToResult={handleMoveToResult}
+          />
+      </CardLayouts>
       </>
   )
 };

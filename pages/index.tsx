@@ -1,5 +1,5 @@
 import { Header } from "../src/components/Header/Header"
-import { TopMain } from "../src/components/Layouts/TopMain"
+import { TopMainLayouts } from "../src/components/Layouts/TopMainLayouts"
 import { Top } from '../src/components/Top/Top'
 import { Footer } from '../src/components/Footer/Footer'
 import { RegisteredWordContents } from '../src/components/utils/RegisteredWordContents'
@@ -19,7 +19,7 @@ export default function Home() {
     shortParaphrase: string,
     description: string
     ) => {
-    words.forEach((query:any) => {
+    words.forEach((query) => {
         if(query.id === id) {
 
             router.push({
@@ -39,9 +39,9 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <TopMain>
+      <TopMainLayouts>
         <Top handleMoveToEdit={handleMoveToEdit} words={words} setWords={setWords} router={router}/>
-      </TopMain>
+      </TopMainLayouts>
       <Footer />
     </div>
   )

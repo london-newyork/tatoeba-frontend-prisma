@@ -4,7 +4,7 @@ type Props = {
     children: any
 }
 
-export const SearchMain = (props:Props) => {
+export const SearchMainLayouts = (props:Props) => {
 const { children } = props
   return (
     <main

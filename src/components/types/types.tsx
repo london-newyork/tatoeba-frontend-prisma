@@ -10,6 +10,12 @@ export type Words = {
     description: string
 }
 
+export type Title = {
+    id: Words["id"] | string[]
+    title: string | string[] | ParsedUrlQuery[]| number | undefined
+    setTitle:Dispatch<SetStateAction<string | string[] | ParsedUrlQuery[]>>
+}
+
 export type Edit= {
     handleMoveToEdit: (
       id: string,

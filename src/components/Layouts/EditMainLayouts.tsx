@@ -4,7 +4,7 @@ type Props = {
     children: any
 }
 
-export const EditMain = (props:Props) => {
+export const EditMainLayouts = (props:Props) => {
 const { children } = props
   return (
     <main

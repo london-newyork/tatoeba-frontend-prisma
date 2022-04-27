@@ -4,17 +4,17 @@ import { EditWordTitle } from './EditWordChild/EditWordTitle'
 import { EditWordShortParaphrase } from './EditWordChild/EditWordShortParaphrase'
 import { EditWordDescription } from './EditWordChild/EditWordDescription'
 import { useRouter } from 'next/router'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import {RegisteredWordContents} from '../../../src/components/utils/RegisteredWordContents'
+import { Words } from '../../../src/components/types/types'
+import { ParsedUrlQuery } from 'querystring'
 
 export const EditWordParent = () => {
     //一覧からrouter　pushされたものを呼び出す
     const router = useRouter()
     const {id} = router.query
 
-    const [title, setTitle] = useState('')
-    const [shortParaphrase, setShortParaphrase] = useState('')
-    const [description, setDescription] = useState('')
+    const [title, setTitle] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
+    const [shortParaphrase, setShortParaphrase] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
+    const [description, setDescription] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
 
     useEffect(() => {
       if(router.isReady){
@@ -33,11 +33,11 @@ export const EditWordParent = () => {
             />
             <EditWordShortParaphrase
                 shortParaphrase={shortParaphrase}
-                // setShortParaphrase={setShortParaphrase}
+                setShortParaphrase={setShortParaphrase}
             />
             <EditWordDescription
                 description={description}
-                // setDescription={setDescription}
+                setDescription={setDescription}
             />
             <EditWordBtn
                 id={id}

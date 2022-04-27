@@ -3,11 +3,14 @@
 オリジナルアプリ「Tatoeba」。
 わかりにくい話をわかりやすく例える、「例え話を支援する」アプリです。
 
+### このアプリでの機能概要
+CRUD処理/検索/タグによるソート機能/メールでのログイン認証/APIによる画像登録/
+
 ## 使用技術
 
-### 言語
+### 言語とツール等
 
-Next.js/TypeScript/Tailwind CSS
+Next.js/TypeScript/Tailwind CSS/Mantine/REST API
 
 ### ライブラリ等
 

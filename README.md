@@ -11,7 +11,7 @@ CRUD処理/検索/タグによるソート機能/メールでのログイン認�
 
 ### 言語とツール等
 
-Next.js/TypeScript/Tailwind CSS/Mantine/REST API
+Next.js/React/TypeScript/Tailwind CSS/Mantine/REST API
 
 ### ライブラリ等
 

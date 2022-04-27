@@ -2,7 +2,6 @@ import React, { VFC } from 'react';
 import { Layouts } from '../types/types';
 
 export const DashBoardLayouts:VFC<Layouts> = (props) => {
-const { children } = props
   return (
     <main
     className="
@@ -26,7 +25,7 @@ const { children } = props
       max-w-[1000px]
       '
       >
-      {children}
+      {props.children}
       </div>
     </main>
   )

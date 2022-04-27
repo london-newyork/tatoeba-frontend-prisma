@@ -2,7 +2,6 @@ import React, { VFC } from 'react';
 import { Layouts } from '../types/types';
 
 export const SearchMainLayouts:VFC<Layouts> = (props) => {
-const { children } = props
   return (
     <main
     className="
@@ -13,7 +12,7 @@ const { children } = props
     md:px-24
     mx-auto
     pt-9">
-    {children}
+    {props.children}
     </main>
   )
 };

@@ -2,6 +2,7 @@ import React, { VFC } from 'react'
 import { CardProps, Words } from '../types/types'
 
 export const CardChild:VFC<CardProps>= (props) => {
+
 const {words, handleMoveToEdit, handleMoveToResult} = props
   return (
     <>

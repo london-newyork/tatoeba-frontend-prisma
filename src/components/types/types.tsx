@@ -27,6 +27,18 @@ export type Edit= {
       router: NextRouter
   }
 
+  export type Result= {
+    handleMoveToResult: (
+      id: string,
+      title: string,
+      shortParaphrase: string,
+      description: string) =>void
+      words: Words[] | ParsedUrlQuery[]
+      setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>
+      router: NextRouter
+  }
+
+
   export type CardProps = {
     words: Edit["words"]
     handleMoveToEdit: Edit["handleMoveToEdit"]

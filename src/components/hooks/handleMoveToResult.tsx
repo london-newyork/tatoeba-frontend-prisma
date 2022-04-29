@@ -1,10 +1,14 @@
 import { NextRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
-import { Result, Words } from '../types/types'
-// words: Words[] | ParsedUrlQuery[]; router: NextRouter;
-// export const useHandleMoveToResult= (props:Result & Words) => {
+import { Words } from '../types/types'
+
 export const useHandleMoveToResult= (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
     const { words, router } = props
+
+    const id = router.query.id
+    const title = router.query.title
+    const shortParaphrase = router.query.shortParaphrase
+    const description = router.query.description
 
     const handleMoveToResult = () => {
             words.forEach((item:Words) => {

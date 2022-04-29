@@ -16,9 +16,6 @@ export const Top:VFC = () => {
     const router = useRouter();
     const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(RegisteredWordContents)
 
-    // type PickedEdit = Pick<Edit,"handleMoveToEdit">
-    // type PickedResult = Pick<Result, "handleMoveToResult">
-
     const { handleMoveToResult } = useHandleMoveToResult({words, router})
     const { handleMoveToEdit } = useHandleMoveToEdit({words, router})
 

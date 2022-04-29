@@ -3,7 +3,7 @@ import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
 import Link from 'next/link';
-import { SearchMain } from '../../src/components/Layouts/SearchMain';
+import { SearchMainLayouts } from '../../src/components/Layouts/SearchMainLayouts';
 
 export default function SearchResultList () {
   return (
@@ -13,14 +13,14 @@ export default function SearchResultList () {
         <link rel='favicon.ico' />
       </Head>
       <Header />
-      <SearchMain>
+      <SearchMainLayouts>
             <div className='flex flex-col'>
                 <small className="text-gray-500">検索結果一覧</small>
                 <h1 className="text-4xl pt-6 scss-underline">サーバーをわかりやすく例えると...</h1>
             </div>
             <ul className="pt-12">
                 <li>
-                    <Link href="/SearchResult/[id]" as="/SearchResult/SearchResult">
+                    <Link href="/SearchResult/[id]" as="/SearchResult">
                     <a className="flex
                         flex-row
                         items-centers
@@ -34,7 +34,7 @@ export default function SearchResultList () {
                     </Link>
                 </li>
             </ul>
-        </SearchMain>
+        </SearchMainLayouts>
       </>
   )
 };

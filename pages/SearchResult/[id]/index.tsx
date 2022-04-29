@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router';
 import "tailwindcss/tailwind.css";
 import { Header } from '../../../src/components/Header/Header';
-import { SearchMain } from '../../../src/components/Layouts/SearchMain'
+import { SearchMainLayouts } from '../../../src/components/Layouts/SearchMainLayouts'
 import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil'
 import { RegisteredWordContents } from '../../../src/components/utils/RegisteredWordContents'
 import { Loading } from '../../../src/components/utils/Loading/Loading'
@@ -75,7 +75,7 @@ export default function Detail () {
         <link rel='favicon.ico' />
       </Head>
       <Header />
-       <SearchMain>
+       <SearchMainLayouts>
           <div>
             <div
             className='flex flex-col'
@@ -142,7 +142,7 @@ export default function Detail () {
               {description}
             </p>
           </div>
-        </SearchMain>
+        </SearchMainLayouts>
       </>
   )
 };

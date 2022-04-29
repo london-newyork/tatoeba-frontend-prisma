@@ -1,6 +1,5 @@
-import { ParsedUrlQuery } from 'querystring'
 import React, { VFC } from 'react'
-import { Title, Words } from '../../../../src/components/types/types'
+import { Title } from '../../../../src/components/types/types'
 
 type EditWordTitleProps = Title
 

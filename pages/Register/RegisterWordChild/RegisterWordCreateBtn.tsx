@@ -7,9 +7,7 @@ import { RegisteredWordContents } from '../../../src/components/utils/Registered
 export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => {
 
   const [words, setWords] = useRecoilState(RegisteredWordContents)
-
   const [show, setShow] = useState(false)
-
   const router = useRouter()
 
   // const openModal = useCallback(() => {

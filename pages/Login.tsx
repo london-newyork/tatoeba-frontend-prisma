@@ -9,7 +9,7 @@ export default function Login() {
 
 const handleLogin = () => {
   router.push({
-    pathname:'/MyPage'
+    pathname:'/DashBoard'
   }
   )
 }

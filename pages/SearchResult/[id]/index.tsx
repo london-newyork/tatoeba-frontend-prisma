@@ -85,13 +85,6 @@ export default function Detail () {
                >
                  検索結果
                </small>
-               {/* <p
-               className='
-               pt-2
-               text-sm
-               text-gray-300
-               '
-               >ID: {id}</p> */}
                <div
                className='
                flex

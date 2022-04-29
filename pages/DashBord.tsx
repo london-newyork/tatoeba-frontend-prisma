@@ -1,12 +1,12 @@
 import React from 'react'
 import { Header } from '../src/components/Header/Header'
-import { MyPageMain } from '../src/components/Layouts/MyPageMain'
+import { DashBoardLayouts } from '../src/components/Layouts/DashBoardLayouts'
 
 const MyPage = () => {
   return (
     <div>
         <Header />
-        <MyPageMain>
+        <DashBoardLayouts>
             <div
             className='
             flex
@@ -106,7 +106,7 @@ const MyPage = () => {
                     </button>
                 </li>
             </ul>
-        </MyPageMain>
+        </DashBoardLayouts>
     </div>
   )
 }

@@ -118,25 +118,6 @@ export const TopUpperContents:VFC = () => {
                     </div>
                 </div>
 
-                 {/*
-                        ✨ firebaseに登録されたデータを 「　filter　」で検索
-
-                        {firebaseDATA.filter((val)=> {
-                            searchTerm === "" ? val : 検索された時の処理
-                        })}
-
-                        😀 useFormを使う必要がある？
-
-                        ✨ useRouterを使ってページ遷移する必要がある？
-
-                          const onSubmit: SubmitHandler<SearchForm> = (data) => {
-                            router.push({
-                            pathname: '/SearchResult/',
-                            query: { keyword: data.keyword, type: data.type }, → 型設定する必要
-                            });
-                        };
-
-                        */}
             </div>
             <div className="
                 w-[25%]

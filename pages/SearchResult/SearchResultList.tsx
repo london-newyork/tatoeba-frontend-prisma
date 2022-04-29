@@ -5,7 +5,7 @@ import { Header } from '../../src/components/Header/Header';
 import Link from 'next/link';
 import { SearchMainLayouts } from '../../src/components/Layouts/SearchMainLayouts';
 
-export default function SearchResultList () {
+const SearchResultList = (props) => {
   return (
       <>
       <Head>
@@ -20,7 +20,8 @@ export default function SearchResultList () {
             </div>
             <ul className="pt-12">
                 <li>
-                    <Link href="/SearchResult/[id]" as="/SearchResult">
+                    <Link href="/SearchResult/[id]">
+                        {/*  as={`/SearchResult/${router.query.id}`} */}
                     <a className="flex
                         flex-row
                         items-centers
@@ -38,3 +39,4 @@ export default function SearchResultList () {
       </>
   )
 };
+export default SearchResultList

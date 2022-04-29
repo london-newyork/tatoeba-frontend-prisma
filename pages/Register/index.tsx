@@ -1,4 +1,4 @@
-import React,{ useCallback, useState } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';

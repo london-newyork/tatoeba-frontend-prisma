@@ -19,7 +19,6 @@ const {words, handleMoveToEdit, handleMoveToResult} = props
                     rounded-md
                     drop-shadow-2xl
                     bg-white
-                    scss-card-toast
                     '
                     >
                         <ul

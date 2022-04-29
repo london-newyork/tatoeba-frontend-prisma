@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import "tailwindcss/tailwind.css";
 import { Header } from '../../../src/components/Header/Header';
 import { SearchMainLayouts } from '../../../src/components/Layouts/SearchMainLayouts'
-import { SetterOrUpdater, useRecoilState, useSetRecoilState } from 'recoil'
-import { RegisteredWordContents } from '../../../src/components/utils/RegisteredWordContents'
-import { Loading } from '../../../src/components/utils/Loading/Loading'
 
 export default function Detail () {
 
@@ -40,7 +37,7 @@ export default function Detail () {
   //   }
   // }, [words])
 
-  const handleChangeTitle = (e) => {
+  // const handleChangeTitle = (e) => {
 
     // setEditTitle(editTitle=>[
     //   ...editTitle,
@@ -63,7 +60,7 @@ export default function Detail () {
     //   console.log(prevTitle);
     //[配列]に入っていて、初回登録時の文字 + 一文字ずつ配列の中に収まっている。
     //abcと登録してあったら、このページで'd'と打てば abcd、次に'e'と打てばabce
-  }
+  // }
   // console.log(title)
   //初回登録時と同じ値abcになってしまう。
   //title自体が変更されない
@@ -98,30 +95,10 @@ export default function Detail () {
                   ">
                     <input
                     value={title}
-                    onChange={()=>handleChangeTitle}
+                    // onChange={()=>handleChangeTitle}
                     />
                     をわかりやすく例えると...
                   </h1>
-                  <div
-                  className='
-                  absolute
-                  right-0
-                  top-[45%]
-                  '
-                  >
-                    <button
-                    className='
-                    bg-gray-200
-                    text-gray-600
-                    text-sm
-                    rounded-md
-                    py-1
-                    px-2
-                    '
-                    >
-                      編集
-                    </button>
-                  </div>
                </div>
             </div>
             <h2 className="pt-16 text-2xl text-gray-600">
@@ -134,6 +111,9 @@ export default function Detail () {
             text-gray-600">
               {description}
             </p>
+            <div className='max-w-[600px] h-96 bg-gray-300 mx-auto'>
+              <img />
+              </div>
           </div>
         </SearchMainLayouts>
       </>

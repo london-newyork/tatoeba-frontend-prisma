@@ -1,12 +1,15 @@
-import { VFC } from 'react'
+import { NextRouter } from 'next/router'
+import { ParsedUrlQuery } from 'querystring'
 import { Result, Words } from '../types/types'
-
-export const useHandleMoveToResult= (props:Result & Words) => {
+// words: Words[] | ParsedUrlQuery[]; router: NextRouter;
+// export const useHandleMoveToResult= (props:Result & Words) => {
+export const useHandleMoveToResult= (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
     const { words, router } = props
+
     const handleMoveToResult = () => {
-            words.forEach((query:Words) => {
-                if(query.id === props.id) {
-        
+            words.forEach((item:Words) => {
+                if(item.id === id) {
+
                 router.push({
                     pathname:'/SearchResult/[id]',
                     query: {
@@ -16,7 +19,7 @@ export const useHandleMoveToResult= (props:Result & Words) => {
                         description,
                     }
                 })
-            } return query
+            } return item
         }
         )
 

@@ -1,4 +1,3 @@
-import React, { VFC } from 'react'
 import { Edit, Words } from '../types/types'
 
 export const useHandleMoveToEdit = (props: Edit & Words) => {

@@ -25,7 +25,7 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
       max-w-[1000px]
       '
       >
-      {props.children}
+        {props.children}
       </div>
     </main>
   )

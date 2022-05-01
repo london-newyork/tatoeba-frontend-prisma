@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import { Layouts } from '../../types/types';
 
 export const DashBoardLayouts:VFC<Layouts> = (props) => {
   return (
@@ -11,18 +11,20 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
     h-screen
     px-7
     md:px-18
+    sm:mx-18
     mx-auto
-    pt-9">
+    pt-12
+    ">
       <div
       className='
-      lg:px-12
-      px-7
-      pt-12
-      pb-10
-      rounded-md
-      bg-white
       mx-auto
-      max-w-[1000px]
+      max-w-[1200px]
+      flex
+      lg:flex-row
+      sm:flex-col
+      sm:gap-y-8
+      sm:gap-x-8
+      lg:gap-x-0
       '
       >
         {props.children}

@@ -84,14 +84,6 @@ export const Header = (props:Props) => {
                     text-q_dark_green
                     duration-300"/>
                 </li>
-                {/* <li
-                  className="
-                  text-[16px]
-                  font-semibold
-                  text-q_dark_green
-                  duration-300">
-                    例え登録
-                </li> */}
               </ul>
             </button>
           </Link>

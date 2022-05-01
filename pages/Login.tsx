@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Header } from '../src/components/Header/Header';
@@ -70,7 +71,10 @@ const handleLogin = () => {
                       pr-2
                       font-normal
                       text-gray-600
-                      w-[128px]'>
+                      w-[128px]
+                      text-sm
+                      pb-2
+                      '>
                         メールアドレス
                       </p>
                       <input
@@ -98,7 +102,9 @@ const handleLogin = () => {
                       pr-2
                       text-gray-600
                       w-[128px]
-                      font-normal'>パスワード</p>
+                      text-sm
+                      pb-2
+                      '>パスワード</p>
                         <input
                         className='
                         shadow-sm
@@ -120,7 +126,8 @@ const handleLogin = () => {
                       </div>
                     <button
                     className='
-                    mt-10
+                    mt-4
+                    mb-4
                     mx-auto
                     p-3
                     w-full
@@ -134,7 +141,16 @@ const handleLogin = () => {
                     onClick={handleLogin}
                     >ログイン</button>
                   </div>
-
+                  <Link
+                  href="/"
+                  >
+                  <p
+                  className='
+                  mx-auto
+                  text-sm
+                  text-gray-600
+                  '>サインアップ</p>
+                  </Link>
                 </div>
         </section>
       </LoginLayouts>

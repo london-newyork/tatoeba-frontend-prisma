@@ -12,7 +12,6 @@ export const Avatar = () => {
             >
               {/* 画像変更できるようにする */}
               <button
-              onClick={(e)=> e.target.value}
               >
                 <Image
                   src="/images/women3.jpg"

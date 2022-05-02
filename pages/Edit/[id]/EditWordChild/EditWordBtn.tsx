@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Modal } from '../../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../../../../src/components/utils/RegisteredWordContents'
+import { RegisteredWordContents } from '../../../../src/components/utils/atoms/RegisteredWordContents'
 
 export const EditWordBtn = ({t_id, title, shortParaphrase, description, creation_time}) => {
 

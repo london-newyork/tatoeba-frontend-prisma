@@ -17,14 +17,14 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
   function getUniqueId(){
     return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
   }
-  const t_id = getUniqueId()
+  const tid = getUniqueId()
 
   const submitWords = (e) => {
     {/* @ts-ignore */}
     // setShow(false)
     const newWords = [
       {
-        t_id,
+        tid,
         title,
         shortParaphrase,
         description,
@@ -37,7 +37,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     router.push({
       pathname:'/',
       query: {
-        t_id,
+        tid,
         title,
         shortParaphrase,
         description,
@@ -47,7 +47,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     router.push({
       pathname:'/DashBoard',
       query: {
-        t_id,
+        tid,
         title,
         shortParaphrase,
         description,

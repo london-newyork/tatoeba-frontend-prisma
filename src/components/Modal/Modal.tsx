@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 // } as const
 
 type ModalNewWords = {
-    t_id: number | string
+    tid: number | string
     title: string
     short_paraphrase: string
     description: string
@@ -41,7 +41,7 @@ export const Modal = (props:ModalNewWords) => {
             // //useStateでもいいのでは・・？
             //     const newWords = [
             //         {
-            //             t_id:'',
+            //             tid:'',
             //             title,
             //             short_paraphrase: '',
             //             description: '',

@@ -17,14 +17,14 @@ export const Top:VFC = () => {
     const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(RegisteredWordContents)
 
     const { handleMoveToResult } = useHandleMoveToResult({words, router})
-    const { handleMoveToEdit } = useHandleMoveToEdit({words, router})
+    // const { handleMoveToEdit } = useHandleMoveToEdit({words, router})
 
     useEffect(() => {
     //router.queryをEditWordParentで状態管理させ、それをpropsでTopへ回すようリファクタする
         router.isReady
         ? setWords((prev)=> [router.query, ...prev])
         : null
-    }, [])
+    }, [router.query])
 
     return (
       <>

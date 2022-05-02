@@ -4,7 +4,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react"
 import { SetterOrUpdater } from "recoil"
 
 export type Words = {
-    t_id: string,
+    tid: string,
     title: string,
     shortParaphrase: string,
     description: string,
@@ -12,14 +12,14 @@ export type Words = {
 }
 
 export type Title = {
-    t_id: Words["t_id"] | string[]
+    tid: Words["tid"] | string[]
     title: string | string[] | ParsedUrlQuery[]| number | undefined
     setTitle:Dispatch<SetStateAction<string | string[] | ParsedUrlQuery[]>>
 }
 
 export type Edit= {
     handleMoveToEdit: (
-      t_id: string,
+      tid: string,
       title: string,
       shortParaphrase: string,
       description: string) =>void
@@ -31,7 +31,7 @@ export type Edit= {
 
   export type Result= {
     handleMoveToResult: (
-      t_id: string,
+      tid: string,
       title: string,
       shortParaphrase: string,
       description: string) =>void

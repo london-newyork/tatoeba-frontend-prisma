@@ -20,7 +20,7 @@ const SearchResultList = (props) => {
             </div>
             <ul className="pt-12">
                 <li>
-                    <Link href="/SearchResult/[id]">
+                    <Link href="/SearchResult/[tid]">
                         {/*  as={`/SearchResult/${router.query.id}`} */}
                     <a className="flex
                         flex-row

@@ -8,7 +8,7 @@ import { SearchMainLayouts } from '../../../src/components/Layouts/SearchMainLay
 export default function Detail () {
 
   const router = useRouter()
-  const { t_id, title, shortParaphrase, description } = router.query
+  const { tid, title, shortParaphrase, description } = router.query
 
   // const [ prevTitle, setPrevTitle ] = useState(title)
   // console.log(prevTitle) //undefined
@@ -32,7 +32,7 @@ export default function Detail () {
   // useEffect(() => {
   //   return () => {
   //     setWords([...words,{
-  //       t_id, title, shortParaphrase, description
+  //       tid, title, shortParaphrase, description
   //     }])
   //   }
   // }, [words])
@@ -43,7 +43,7 @@ export default function Detail () {
     //   ...editTitle,
     //   e.target.value
     // ])
-    console.log(title)
+    // console.log(title)
 
     // setWords((title)=> [
     //   ...title,
@@ -93,10 +93,7 @@ export default function Detail () {
                   text-gray-700
                   pt-6
                   ">
-                    <input
-                    value={title}
-                    // onChange={()=>handleChangeTitle}
-                    />
+                    {title}
                     をわかりやすく例えると...
                   </h1>
                </div>

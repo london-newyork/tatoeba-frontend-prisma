@@ -7,7 +7,7 @@ import { CardLayouts } from '../Layouts/CardLayouts';
 import { CardChild } from './CardChild';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../utils/RegisteredWordContents';
+import { RegisteredWordContents } from '../utils/atoms/RegisteredWordContents';
 import { ParsedUrlQuery } from 'querystring';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
 import { useHandleMoveToEdit } from '../hooks/handleMoveToEdit';
@@ -32,7 +32,7 @@ export const Top:VFC = () => {
       <CardLayouts>
           <CardChild
             words={words}
-            handleMoveToEdit={handleMoveToEdit}
+            // handleMoveToEdit={handleMoveToEdit}
             handleMoveToResult={handleMoveToResult}
           />
       </CardLayouts>

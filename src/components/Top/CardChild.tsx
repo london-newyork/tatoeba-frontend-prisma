@@ -3,7 +3,8 @@ import { CardProps, Words } from '../types/types'
 
 export const CardChild:VFC<CardProps>= (props) => {
 
-const {words, handleMoveToEdit, handleMoveToResult} = props
+const {words, handleMoveToResult} = props
+// handleMoveToEdit
   return (
     <>
         {words
@@ -68,12 +69,12 @@ const {words, handleMoveToEdit, handleMoveToResult} = props
                                 py-1
                                 px-2
                                 '
-                                onClick={() => handleMoveToEdit(
-                                    item.t_id,
-                                    item.title,
-                                    item.shortParaphrase,
-                                    item.description,
-                                )}
+                                // onClick={() => handleMoveToEdit(
+                                //     item.t_id,
+                                //     item.title,
+                                //     item.shortParaphrase,
+                                //     item.description,
+                                // )}
                                 >
                                 編集
                                 </button>

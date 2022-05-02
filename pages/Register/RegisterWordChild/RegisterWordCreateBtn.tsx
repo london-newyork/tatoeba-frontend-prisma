@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../../../src/components/utils/RegisteredWordContents'
+import { RegisteredWordContents } from '../../../src/components/utils/atoms/RegisteredWordContents'
 
 export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creation_time}) => {
 
@@ -36,6 +36,16 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
     router.push({
       pathname:'/',
+      query: {
+        t_id,
+        title,
+        shortParaphrase,
+        description,
+        creation_time
+      }
+    })
+    router.push({
+      pathname:'/DashBoard',
       query: {
         t_id,
         title,

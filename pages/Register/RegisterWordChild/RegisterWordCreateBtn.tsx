@@ -17,14 +17,14 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => 
   function getUniqueId(){
     return new Date().getTime().toString(36) + '-' + Math.random().toString(36)
   }
-  const id = getUniqueId()
+  const t_id = getUniqueId()
 
   const submitWords = (e) => {
     {/* @ts-ignore */}
     // setShow(false)
     const newWords = [
       {
-        id,
+        t_id,
         title,
         shortParaphrase,
         description,
@@ -36,7 +36,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description}) => 
     router.push({
       pathname:'/',
       query: {
-        id,
+        t_id,
         title,
         shortParaphrase,
         description,

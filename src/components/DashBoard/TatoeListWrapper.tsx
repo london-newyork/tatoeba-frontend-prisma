@@ -13,8 +13,8 @@ export const TatoeListWrapper = (props:any) => {
                 >
                 <button
                 type='button'
-                className='w-6 h-6 hover:bg-mint_green
-                bg-light_green rounded-full'
+                className='w-6 h-6
+                bg-mint_green rounded-full'
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-q_dark_green m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />

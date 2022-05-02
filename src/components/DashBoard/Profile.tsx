@@ -7,14 +7,14 @@ export const Profile = (props:any) => {
   return (
     <div>
          <div
-                className='
-                flex
-                flex-row
-                items-center
-                justify-between
-                md:min-w-[440px]
-                '
-                >
+            className='
+            flex
+            flex-row
+            items-center
+            md:min-w-[600px]
+            justify-between
+            '
+            >
                     <div
                     className='
                     flex
@@ -25,27 +25,18 @@ export const Profile = (props:any) => {
                         <Avatar />
                         <div
                         className='
-                        pl-9
                         flex
                         flex-col
+                        pb-2
+                        border-b
+                        border-gray-200
+                        ml-8
                         '
                         >
-                            <p
-                            className='
-                            pb-2
-                            text-xs
-                            text-gray-300
-
-                            '
-                            >ID:{userInfo[1].user_id}</p>
                             <h1
                                 className='
                                 text-2xl
                                 text-gray-700
-                                flex
-                                pb-2
-                                border-b
-                                border-gray-200
                                 '>
                                 {userInfo[1].user_name}
                             </h1>
@@ -61,25 +52,35 @@ export const Profile = (props:any) => {
                         </svg>
                     </button>
                 </div>
-                <ul className='text-gray-400 mt-4 flex flex-col gap-y-1 text-sm'>
+                <ul className='text-gray-600 mt-6 flex flex-col gap-y-1 text-sm'>
                         <li>
                             <ul className='flex items-center'>
-                                <li className='w-32'>メールアドレス</li>
+                                <li className='w-32 text-sm text-gray-400'>メールアドレス</li>
                                 <li>
                                     <input
                                     value={userInfo[1].e_mail}
-                                    className="p-2"
+                                    className="
+                                    flex
+                                    flex-1
+                                    rounded-sm
+                                    outline-none
+                                    focus:bg-gray-100
+                                    p-2"
                                     />
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <ul className='flex items-center'>
-                                <li className='w-32'>パスワード</li>
+                            <ul className='flex items-center text-gray-600'>
+                                <li className='w-32 text-sm text-gray-400'>パスワード</li>
                                 <li>
                                 <input
                                     value={userInfo[1].password}
-                                    className="p-2"
+                                    className="
+                                    rounded-sm
+                                    outline-none
+                                    focus:bg-gray-100
+                                    p-2"
                                     />
                                 </li>
                             </ul>

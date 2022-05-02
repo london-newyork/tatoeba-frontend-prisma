@@ -24,7 +24,7 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
       sm:flex-col
       sm:gap-y-8
       sm:gap-x-8
-      lg:gap-x-0
+      lg:gap-x-8
       '
       >
         {props.children}

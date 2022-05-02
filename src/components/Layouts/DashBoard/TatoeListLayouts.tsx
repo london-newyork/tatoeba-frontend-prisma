@@ -13,9 +13,7 @@ export const TatoeListLayouts:VFC<Layouts> = (props) => {
     mx-auto
     bg-gray-500
     h-auto
-    lg:max-w-[600px]
-    sm:w-full
-    lg:w-auto
+    w-full
     '
     >
       {props.children}

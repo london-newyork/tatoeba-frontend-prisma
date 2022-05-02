@@ -5,18 +5,18 @@ import { Words } from '../types/types'
 export const useHandleMoveToEdit = (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
     const { words, router } = props
     const handleMoveToEdit = () => {
-        const id = router.query.id
+        const t_id = router.query.t_id
         const title = router.query.title
         const shortParaphrase = router.query.shortParaphrase
         const description = router.query.description
 
         words.forEach((item:Words) => {
-            if(item.id === id) {
+            if(item.t_id === t_id) {
 
                 router.push({
                     pathname:'/Edit/[id]',
                     query: {
-                        id,
+                        t_id,
                         title,
                         shortParaphrase,
                         description,

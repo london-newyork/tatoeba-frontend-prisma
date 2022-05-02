@@ -10,7 +10,7 @@ import { ParsedUrlQuery } from 'querystring'
 export const EditWordParent = () => {
     //一覧からrouter　pushされたものを呼び出す
     const router = useRouter()
-    const {id} = router.query
+    const {t_id} = router.query
 
     const [title, setTitle] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
     const [shortParaphrase, setShortParaphrase] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
@@ -27,7 +27,7 @@ export const EditWordParent = () => {
     return (
         <div className='flex flex-col gap-6'>
             <EditWordTitle
-                id={id}
+                t_id={t_id}
                 title={title}
                 setTitle={setTitle}
             />
@@ -40,7 +40,7 @@ export const EditWordParent = () => {
                 setDescription={setDescription}
             />
             <EditWordBtn
-                id={id}
+                t_id={t_id}
                 title={title}
                 shortParaphrase={shortParaphrase}
                 description={description}

@@ -9,7 +9,7 @@ const {words, handleMoveToEdit, handleMoveToResult} = props
         {words
         ? words.map((item:Words) => (
                     <li
-                    key={item.id}
+                    key={item.t_id}
                     className='
                     px-6
                     pt-6
@@ -26,7 +26,7 @@ const {words, handleMoveToEdit, handleMoveToResult} = props
                         h-[72px]
                         pl-1
                         '>
-                            <li className='text-gray-300 text-xs'>{item.id}</li>
+                            <li className='text-gray-300 text-xs'>{item.t_id}</li>
                             <li>
                                 <h3 className='
                                 text-left
@@ -69,7 +69,7 @@ const {words, handleMoveToEdit, handleMoveToResult} = props
                                 px-2
                                 '
                                 onClick={() => handleMoveToEdit(
-                                    item.id,
+                                    item.t_id,
                                     item.title,
                                     item.shortParaphrase,
                                     item.description,
@@ -87,7 +87,7 @@ const {words, handleMoveToEdit, handleMoveToResult} = props
                                 rounded
                                 '
                                 onClick={() => handleMoveToResult(
-                                    item.id,
+                                    item.t_id,
                                     item.title,
                                     item.shortParaphrase,
                                     item.description,

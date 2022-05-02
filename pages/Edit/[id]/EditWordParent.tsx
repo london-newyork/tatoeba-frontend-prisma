@@ -10,7 +10,7 @@ import { ParsedUrlQuery } from 'querystring'
 export const EditWordParent = () => {
     //一覧からrouter　pushされたものを呼び出す
     const router = useRouter()
-    const {t_id} = router.query
+    const {t_id, creation_time} = router.query
 
     const [title, setTitle] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
     const [shortParaphrase, setShortParaphrase] = useState<Words[] | ParsedUrlQuery[] | string | string[]>([])
@@ -44,6 +44,7 @@ export const EditWordParent = () => {
                 title={title}
                 shortParaphrase={shortParaphrase}
                 description={description}
+                creation_time={creation_time}
             />
         </div>
   )

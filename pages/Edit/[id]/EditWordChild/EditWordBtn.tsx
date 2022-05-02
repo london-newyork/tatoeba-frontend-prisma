@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { RegisteredWordContents } from '../../../../src/components/utils/RegisteredWordContents'
 
-export const EditWordBtn = ({t_id, title, shortParaphrase, description}) => {
+export const EditWordBtn = ({t_id, title, shortParaphrase, description, creation_time}) => {
 
   const [words, setWords] = useRecoilState(RegisteredWordContents)
   const [show, setShow] = useState(false)
@@ -30,6 +30,7 @@ export const EditWordBtn = ({t_id, title, shortParaphrase, description}) => {
         title,
         shortParaphrase,
         description,
+        creation_time
       },
       ...words,
     ]
@@ -42,6 +43,7 @@ export const EditWordBtn = ({t_id, title, shortParaphrase, description}) => {
         title,
         shortParaphrase,
         description,
+        creation_time
       }
     })
 }

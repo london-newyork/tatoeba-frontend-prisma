@@ -7,7 +7,8 @@ export type Words = {
     t_id: string,
     title: string,
     shortParaphrase: string,
-    description: string
+    description: string,
+    creation_time: string,
 }
 
 export type Title = {
@@ -22,6 +23,7 @@ export type Edit= {
       title: string,
       shortParaphrase: string,
       description: string) =>void
+      creation_time: string,
       words: Words[] | ParsedUrlQuery[]
       setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>
       router: NextRouter
@@ -33,6 +35,7 @@ export type Edit= {
       title: string,
       shortParaphrase: string,
       description: string) =>void
+      creation_time: string,
       words: Words[] | ParsedUrlQuery[]
       setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>
       router: NextRouter
@@ -41,7 +44,7 @@ export type Edit= {
 
   export type CardProps = {
     words: Edit["words"]
-    handleMoveToEdit: Edit["handleMoveToEdit"]
+    // handleMoveToEdit: Edit["handleMoveToEdit"]
     handleMoveToResult: Edit["handleMoveToEdit"]
 }
 

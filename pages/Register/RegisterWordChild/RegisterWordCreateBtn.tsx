@@ -2,11 +2,11 @@ import React from 'react'
 // import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../../../src/components/utils/atoms/RegisteredWordContents'
+import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
 export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creationTime}) => {
 
-  const [words, setWords] = useRecoilState(RegisteredWordContents)
+  const [words, setWords] = useRecoilState(WordsAtom)
   // const [show, setShow] = useState(false)
   const router = useRouter()
 
@@ -19,7 +19,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
   }
   const tId = getUniqueId()
 
-  const submitWords = (e) => {
+  const submitWords = () => {
     {/* @ts-ignore */}
     // setShow(false)
     const newWords = [
@@ -35,19 +35,8 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     setWords(newWords)
 
     //トップへ追加
-    router.push({
-      pathname:'/',
-      query: {
-        tId,
-        title,
-        shortParaphrase,
-        description,
-        creationTime
-      }
-    })
-    //同じくDashBoardへ追加
     // router.push({
-    //   pathname:'/DashBoard',
+    //   pathname:'/',
     //   query: {
     //     tId,
     //     title,
@@ -56,6 +45,17 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     //     creationTime
     //   }
     // })
+
+    router.push({
+      pathname:'/DashBoard',
+      query: {
+        tId,
+        title,
+        shortParaphrase,
+        description,
+        creationTime
+      }
+    })
 }
 
   return (

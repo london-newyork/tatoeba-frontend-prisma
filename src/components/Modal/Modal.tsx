@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useRouter } from 'next/router';
-// import { wordsAtom } from '../../../src/components/atom/atom'
+// import { WordsAtom } from '../../../src/components/atom/atom'
 
 // type Modal = {
 //     show: boolean

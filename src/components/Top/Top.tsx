@@ -7,14 +7,14 @@ import { CardLayouts } from '../Layouts/CardLayouts';
 import { CardChild } from './CardChild';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../utils/atoms/RegisteredWordContents';
+import { WordsAtom } from '../utils/atoms/WordsAtom';
 import { ParsedUrlQuery } from 'querystring';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
 import { useHandleMoveToEdit } from '../hooks/handleMoveToEdit';
 
 export const Top:VFC = () => {
     const router = useRouter();
-    const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(RegisteredWordContents)
+    const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
 
     const { handleMoveToResult } = useHandleMoveToResult({words, router})
     // const { handleMoveToEdit } = useHandleMoveToEdit({words, router})

@@ -7,7 +7,7 @@ import { Profile } from '../../src/components/DashBoard/Profile'
 import { TatoeListWrapper } from '../../src/components/DashBoard/TatoeListWrapper'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
-import { RegisteredWordContents } from '../../src/components/utils/atoms/RegisteredWordContents'
+import { WordsAtom } from '../../src/components/utils/atoms/WordsAtom'
 import { Words } from '../../src/components/types/types'
 import { ParsedUrlQuery } from 'querystring'
 
@@ -45,12 +45,9 @@ export type testUserWords = testUserId & Words
 export type testUserFollower = testUserId & testFollower
 
 const DashBoard = () => {
-const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(RegisteredWordContents)
+const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
 const router = useRouter()
 console.log("router.query",router.query);//登録ページから値取得確認済み
-// console.log(router.query.tId);
-
-console.log("DashBoard words", words);
 
 //下記をコメントアウトで再レンダリングが起きなくなった。
 // useEffect(() => {
@@ -60,14 +57,16 @@ console.log("DashBoard words", words);
 //     : null
 // }, [router.query])
 
-const tId = router.query.tId
-const creationTime = router.query.creationTime
-const title = router.query.title
-const shortParaphrase = router.query.shortParaphrase
-const description = router.query.description
-const tImageUrl = router.query.tImageUrl
-const followedCount = []
-const followerId = []
+//router queryで値は渡ってこないようにしてるので使わない可能性がある
+// const tId = router.query.tId
+// const creationTime = router.query.creationTime
+// const title = router.query.title
+// const shortParaphrase = router.query.shortParaphrase
+// const description = router.query.description
+// const tImageUrl = router.query.tImageUrl
+// const followedCount = []
+// const followerId = []
+
 
 //test data = API想定
 const userInfo:User[]= [
@@ -86,8 +85,6 @@ const testUserProfile:testUserProfile[] = [
     },
 ]
 
-const testTatoeList: testUserWords[] = { userID, words }
-
   return (
     <div>
         <Header />
@@ -96,7 +93,7 @@ const testTatoeList: testUserWords[] = { userID, words }
                 <Profile userInfo={userInfo} />
             </ProfileLayouts>
             <TatoeListLayouts>
-                <TatoeListWrapper userInfo={userInfo} testUserProfile={testUserProfile}/>
+                <TatoeListWrapper words={words}/>
             </TatoeListLayouts>
         </DashBoardLayouts>
     </div>

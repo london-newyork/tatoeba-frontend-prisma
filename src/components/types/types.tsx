@@ -9,12 +9,14 @@ export type Words = {
     shortParaphrase: string,
     description: string,
     creationTime: string,
-    tImageUrl?: string | string[]
+    tImageUrl?: string
 }
 
 export type Title = {
-    tId: Words["tId"] | string[]
-    title: string | string[] | ParsedUrlQuery[]| number | undefined
+    // tId: Words["tId"] | string[]
+    tId: Words["tId"]
+    // title: string | string[] | ParsedUrlQuery[]| number | undefined
+    title: string | ParsedUrlQuery[]| number | undefined
     setTitle:Dispatch<SetStateAction<string | string[] | ParsedUrlQuery[]>>
 }
 

@@ -5,19 +5,19 @@ import { Words } from '../types/types'
 export const useHandleMoveToResult= (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
     const { words, router } = props
 
-    const tid = router.query.tid
+    const tId = router.query.tId
     const title = router.query.title
     const shortParaphrase = router.query.shortParaphrase
     const description = router.query.description
 
     const handleMoveToResult = () => {
             words.forEach((item:Words) => {
-                if(item.tid === tid) {
+                if(item.tId === tId) {
 
                 router.push({
-                    pathname:'/SearchResult/[tid]',
+                    pathname:'/SearchResult/[tId]',
                     query: {
-                        tid,
+                        tId,
                         title,
                         shortParaphrase,
                         description,

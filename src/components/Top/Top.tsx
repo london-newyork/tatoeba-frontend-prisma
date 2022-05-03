@@ -19,12 +19,17 @@ export const Top:VFC = () => {
     const { handleMoveToResult } = useHandleMoveToResult({words, router})
     // const { handleMoveToEdit } = useHandleMoveToEdit({words, router})
 
-    useEffect(() => {
-    //router.queryをEditWordParentで状態管理させ、それをpropsでTopへ回すようリファクタする
-        router.isReady
-        ? setWords((prev)=> [router.query, ...prev])
-        : null
-    }, [router.query])
+    //以下をコメントアウトしたことでトップでの再レンダリングが起きなくなった。
+    // useEffect(() => {
+    // //router.queryをEditWordParentで状態管理させ、それをpropsでTopへ回すようリファクタする=>RegisterWordParentでは？
+    //     router.isReady
+    //     ? setWords((prev)=> [router.query, ...prev])
+    //     : null
+    // }, [router.query])
+
+    //Topページでは下記計測で合計4回renderingされている
+    console.log("top router.query", router.query);//2回
+    console.log("top words", words);//2回
 
     return (
       <>

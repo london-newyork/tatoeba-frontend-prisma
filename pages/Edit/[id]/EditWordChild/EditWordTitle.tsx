@@ -3,7 +3,7 @@ import { Title } from '../../../../src/components/types/types'
 
 type EditWordTitleProps = Title
 
-export const EditWordTitle:VFC<EditWordTitleProps> = ({ title, setTitle, tid }) => {
+export const EditWordTitle:VFC<EditWordTitleProps> = ({ title, setTitle, tId }) => {
 
   const handleEdit = (e) => {
     setTitle(e.target.value)

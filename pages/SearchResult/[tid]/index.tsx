@@ -8,7 +8,7 @@ import { SearchMainLayouts } from '../../../src/components/Layouts/SearchMainLay
 export default function Detail () {
 
   const router = useRouter()
-  const { tid, title, shortParaphrase, description } = router.query
+  const { tId, title, shortParaphrase, description } = router.query
 
   // const [ prevTitle, setPrevTitle ] = useState(title)
   // console.log(prevTitle) //undefined
@@ -32,7 +32,7 @@ export default function Detail () {
   // useEffect(() => {
   //   return () => {
   //     setWords([...words,{
-  //       tid, title, shortParaphrase, description
+  //       tId, title, shortParaphrase, description
   //     }])
   //   }
   // }, [words])

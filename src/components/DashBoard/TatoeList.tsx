@@ -28,7 +28,7 @@ export const TatoeList = (props:any) => {
     //     items-center
     //     justify-between
     //     '
-    //     key={item.tid}
+    //     key={item.tId}
     //     >
     //         <li>
     //             <ul className='flex gap-3 items-center'>
@@ -66,7 +66,7 @@ export const TatoeList = (props:any) => {
     //                     text-gray-400
     //                     '
     //                     // onClick={() => handleMoveToEdit(
-    //                     //     item.tid,
+    //                     //     item.tId,
     //                     //     item.title,
     //                     //     item.shortParaphrase,
     //                     //     item.description,

@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil'
 import { WordsAtom } from '../../src/components/utils/atoms/WordsAtom'
 import { Words } from '../../src/components/types/types'
 import { ParsedUrlQuery } from 'querystring'
+import { TatoeList } from '../../src/components/DashBoard/TatoeList'
 
 export type User = {
     userId: string //一意のid primaryKey tatoe listとひもづく
@@ -93,8 +94,10 @@ const testUserProfile:testUserProfile[] = [
                 <Profile userInfo={userInfo} />
             </ProfileLayouts>
             <TatoeListLayouts>
-                <TatoeListWrapper words={words}/>
-            </TatoeListLayouts>
+                <TatoeListWrapper>
+                    <TatoeList userInfo={userInfo}/>
+                </TatoeListWrapper>
+                </TatoeListLayouts>
         </DashBoardLayouts>
     </div>
   )

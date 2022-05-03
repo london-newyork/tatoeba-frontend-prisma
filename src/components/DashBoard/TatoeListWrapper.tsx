@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { VFC } from 'react'
 import type { User } from "../../../pages/DashBoard/index"
 import { TatoeList } from "../DashBoard/TatoeList"
+import { Layouts } from '../types/types'
 
-export const TatoeListWrapper = (props:any) => {
-    const { userInfo } = props
+export const TatoeListWrapper:VFC<Layouts> = (props) => {
     return (
     <div>
          <div className='flex flex-row pt-6 gap-3 pb-6 border-b border-gray-200'>
@@ -33,7 +33,7 @@ export const TatoeListWrapper = (props:any) => {
                 [投稿一覧]
             </h2>
         </div>
-        <TatoeList userInfo={userInfo}/>
+        {props.children}
     </div>
   )
 }

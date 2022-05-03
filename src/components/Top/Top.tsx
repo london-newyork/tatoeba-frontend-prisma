@@ -27,10 +27,6 @@ export const Top:VFC = () => {
     //     : null
     // }, [router.query])
 
-    //Topページでは下記計測で合計4回renderingされている
-    console.log("top router.query", router.query);//2回
-    console.log("top words", words);//2回
-
     return (
       <>
       <TopUpperContents />

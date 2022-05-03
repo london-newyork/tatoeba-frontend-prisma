@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { RegisteredWordContents } from '../../../src/components/utils/atoms/RegisteredWordContents'
 
-export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creation_time}) => {
+export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creationTime}) => {
 
   const [words, setWords] = useRecoilState(RegisteredWordContents)
   // const [show, setShow] = useState(false)
@@ -28,7 +28,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
         title,
         shortParaphrase,
         description,
-        creation_time
+        creationTime
       },
       ...words,
     ]
@@ -42,7 +42,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
         title,
         shortParaphrase,
         description,
-        creation_time
+        creationTime
       }
     })
     //同じくDashBoardへ追加
@@ -53,7 +53,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     //     title,
     //     shortParaphrase,
     //     description,
-    //     creation_time
+    //     creationTime
     //   }
     // })
 }

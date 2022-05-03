@@ -17,13 +17,13 @@ export type User = {
     e_mail: string
     password: string
     tId: string | string[]//既存の型を追加予定 一意のid primaryKey? =>follower listとひもづく
-    creation_time: string | string[]//数値を日付へ置き換える
+    creationTime: string | string[]//数値を日付へ置き換える
     title: string | string[]//既存の型を追加予定
     shortParaphrase: string | string[]//既存の型を追加予定
     description: string | string[]//既存の型を追加予定
     tImageUrl: string | string[]//既存の型を追加予定
-    followed_count: number | null //その例えをフォローしている人の数
-    follower_id: string //例えをフォローしている人のid =>　その人の情報はidからどう取得するか課題
+    followedCount: number | null //その例えをフォローしている人の数
+    followerId: string //例えをフォローしている人のid =>　その人の情報はidからどう取得するか課題
 }
 
 export type testUserProfile = {
@@ -33,21 +33,16 @@ export type testUserProfile = {
     password: string
 }
 
-export type TatoeList = {
-    userId: string
-    tId: string | string[]//既存の型を追加予定 一意のid primaryKey? =>follower listとひもづく
-    creation_time: string | string[]//数値を日付へ置き換える
-    title: string | string[]//既存の型を追加予定
-    shortParaphrase: string | string[]//既存の型を追加予定
-    description: string | string[]//既存の型を追加予定
-    tImageUrl: string | string[]//既存の型を追加予定
+export type testFollower = {
+    followedCount: number | null //その例えをフォローしている人の数
+    followerId: string //例えをフォローしている人のid =>　その人の情報はidからどう取得するか課題
 }
 
-export type Follower = {
-    userId: string
-    followed_count: number | null //その例えをフォローしている人の数
-    follower_id: string //例えをフォローしている人のid =>　その人の情報はidからどう取得するか課題
-}
+export type testUserId = Pick<testUserProfile, "userId">
+
+export type testUserWords = testUserId & Words
+
+export type testUserFollower = testUserId & testFollower
 
 const DashBoard = () => {
 const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(RegisteredWordContents)
@@ -66,19 +61,19 @@ console.log("DashBoard words", words);
 // }, [router.query])
 
 const tId = router.query.tId
-const creation_time = router.query.creation_time
+const creationTime = router.query.creationTime
 const title = router.query.title
 const shortParaphrase = router.query.shortParaphrase
 const description = router.query.description
 const tImageUrl = router.query.tImageUrl
-const followed_count = []
-const follower_id = []
+const followedCount = []
+const followerId = []
 
 //test data = API想定
 const userInfo:User[]= [
-    {userId: "111111", user_name: "Vincent Thames", e_mail: "test_Vincent@gmail.com", password:"15555xxrQ", tId: "ddddda1111", creation_time: "2022/05/01", title: "API", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followed_count:1, follower_id: "222222" },
-    {userId: "222222", user_name: "Nola StradFord", e_mail: "test_Nola@gmail.com", password:"15555xxrQ", tId: "bbbbbasdg", creation_time: "2022/05/01", title: "SQL", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followed_count:1, follower_id: "222222" },
-    {userId: "333333", user_name: "Christel", e_mail: "test_Christel@gmail.com", password:"15555xxrQ", tId: "zrzsz35df", creation_time: "2022/05/01", title: "サーバー", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followed_count:1, follower_id: "222222" },
+    {userId: "111111", user_name: "Vincent Thames", e_mail: "test_Vincent@gmail.com", password:"15555xxrQ", tId: "ddddda1111", creationTime: "2022/05/01", title: "API", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followedCount:1, followerId: "222222" },
+    {userId: "222222", user_name: "Nola StradFord", e_mail: "test_Nola@gmail.com", password:"15555xxrQ", tId: "bbbbbasdg", creationTime: "2022/05/01", title: "SQL", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followedCount:1, followerId: "222222" },
+    {userId: "333333", user_name: "Christel", e_mail: "test_Christel@gmail.com", password:"15555xxrQ", tId: "zrzsz35df", creationTime: "2022/05/01", title: "サーバー", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followedCount:1, followerId: "222222" },
 ]
 
 //userとfollower　list以外で例え登録ページから入ってきた情報のテストデータ
@@ -90,6 +85,8 @@ const testUserProfile:testUserProfile[] = [
     password:"15555xxrQ",
     },
 ]
+
+const testTatoeList: testUserWords[] = { userID, words }
 
   return (
     <div>

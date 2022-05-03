@@ -8,7 +8,8 @@ export type Words = {
     title: string,
     shortParaphrase: string,
     description: string,
-    creation_time: string,
+    creationTime: string,
+    tImageUrl?: string | string[]
 }
 
 export type Title = {
@@ -23,7 +24,7 @@ export type Edit= {
       title: string,
       shortParaphrase: string,
       description: string) =>void
-      creation_time: string,
+      creationTime: string,
       words: Words[] | ParsedUrlQuery[]
       setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>
       router: NextRouter
@@ -35,7 +36,7 @@ export type Edit= {
       title: string,
       shortParaphrase: string,
       description: string) =>void
-      creation_time: string,
+      creationTime: string,
       words: Words[] | ParsedUrlQuery[]
       setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>
       router: NextRouter

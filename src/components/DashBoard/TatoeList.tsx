@@ -33,8 +33,8 @@ export const TatoeList = (props:any) => {
     //         <li>
     //             <ul className='flex gap-3 items-center'>
     //                 <li className='text-gray-400 text-xs'>
-    //                     {/* {userInfo[1].creation_time} */}
-    //                     {item.creation_time}
+    //                     {/* {userInfo[1].creationTime} */}
+    //                     {item.creationTime}
     //                 </li>
     //                 <li
     //                 className='
@@ -107,10 +107,10 @@ export const TatoeList = (props:any) => {
     //                         </Link>
     //                     {/* <span
     //                     className='text-mid_green text-xs'
-    //                     >{userInfo[1].followed_count}</span> */}
+    //                     >{userInfo[1].followedCount}</span> */}
     //                     <span
     //                     className='text-mid_green text-xs'
-    //                     >{item.followed_count}</span>
+    //                     >{item.followedCount}</span>
     //                 </li>
     //             </ul>
     //         </li>

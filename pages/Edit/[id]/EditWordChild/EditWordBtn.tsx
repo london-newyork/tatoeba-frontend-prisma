@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import { Modal } from '../../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { RegisteredWordContents } from '../../../../src/components/utils/atoms/RegisteredWordContents'
+import { WordsAtom } from '../../../../src/components/utils/atoms/WordsAtom'
 
 export const EditWordBtn = ({tId, title, shortParaphrase, description, creationTime}) => {
 
-  const [words, setWords] = useRecoilState(RegisteredWordContents)
+  const [words, setWords] = useRecoilState(WordsAtom)
   const [show, setShow] = useState(false)
 
   const router = useRouter()

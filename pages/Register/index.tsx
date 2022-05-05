@@ -4,9 +4,10 @@ import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
 import { RegisterWordHeadline } from './RegisterWordHeadline';
 import { RegisterWordParent } from './RegisterWordParent'
+import { useRouter } from 'next/router';
 
 export default function Register() {
-
+const router = useRouter()
   return (
     <>
       <Head>
@@ -37,7 +38,7 @@ export default function Register() {
               max-w-[1000px]
               ">
                 <RegisterWordHeadline />
-                <RegisterWordParent />
+                <RegisterWordParent query={router.query}/>
             </div>
         </section>
     </>

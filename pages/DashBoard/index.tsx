@@ -68,7 +68,6 @@ console.log("router.query",router.query);//登録ページから値取得確認�
 // const followedCount = []
 // const followerId = []
 
-
 //test data = API想定
 const userInfo:User[]= [
     {userId: "111111", user_name: "Vincent Thames", e_mail: "test_Vincent@gmail.com", password:"15555xxrQ", tId: "ddddda1111", creationTime: "2022/05/01", title: "API", shortParaphrase: "あいうえお", description: "あいうえおかきくえこ", tImageUrl: "/...", followedCount:1, followerId: "222222" },
@@ -77,7 +76,7 @@ const userInfo:User[]= [
 ]
 
 //userとfollower　list以外で例え登録ページから入ってきた情報のテストデータ
-const testUserProfile:testUserProfile[] = [
+const testUserProfile: testUserProfile[] = [
     {
     userId: "222222",
     user_name: "Nola StradFord",
@@ -97,7 +96,7 @@ const testUserProfile:testUserProfile[] = [
                 <TatoeListWrapper>
                     <TatoeList userInfo={userInfo}/>
                 </TatoeListWrapper>
-                </TatoeListLayouts>
+            </TatoeListLayouts>
         </DashBoardLayouts>
     </div>
   )

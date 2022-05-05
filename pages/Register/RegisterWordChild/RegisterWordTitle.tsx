@@ -19,6 +19,7 @@ const handleUpdateTitle = (e) => {
     const FindWords_tId = words.map((item)=>item.tId)
     const filtered_tId = FindWords_tId.filter(tId => tId === query.tId).toString()
     if(filtered_tId) {
+      //titleは配列に入っておらず単体なためmapがきかない。
       // setTitle(prev=>{prev.map((item)=>{return [...item, e.target.value]}) })
       setTitle(e.target.value)
       return setTitle("")

@@ -1,6 +1,18 @@
 import React from 'react'
 
-export const RegisterWordTitle = ({ title, setTitle }) => {
+export const RegisterWordTitle = ({ title, setTitle, query }) => {
+
+  const handleChangeTitle = (e) => {
+    setTitle(e.target.value)
+  }
+
+if(query.tId){
+  console.log("新しいtitle", title);
+  setTitle(
+    query.title
+  )
+ }
+
 
   return (
     <div
@@ -24,7 +36,7 @@ export const RegisterWordTitle = ({ title, setTitle }) => {
         <textarea
             value={title}
             name='title'
-            onChange={(e)=>setTitle(e.target.value)}
+            onChange={handleChangeTitle}
             rows={2}
             placeholder='サーバー'
             maxLength={50}

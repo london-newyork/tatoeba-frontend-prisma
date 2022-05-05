@@ -14,7 +14,6 @@ export const useHandleMoveToRegister = (props:{words:Words[] | ParsedUrlQuery[],
         const description = router.query.description
 
         console.log("Dash router.query.title : ",router.query.title);
-        
 
         words.forEach((item:Words) => {
             if(item.tId === tId) {

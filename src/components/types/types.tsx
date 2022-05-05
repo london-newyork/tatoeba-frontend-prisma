@@ -14,9 +14,9 @@ export type Words = {
 
 export type Title = {
     // tId: Words["tId"] | string[]
-    tId: Words["tId"]
+    tId: Words["tId"] | string[]
     // title: string | string[] | ParsedUrlQuery[]| number | undefined
-    title: string | ParsedUrlQuery[]| number | undefined
+    title: string | string[] | ParsedUrlQuery[]| number | undefined
     setTitle:Dispatch<SetStateAction<string | string[] | ParsedUrlQuery[]>>
 }
 

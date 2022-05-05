@@ -2,28 +2,27 @@ import React, { useEffect } from 'react'
 
 export const RegisterWordTitle = ({ title, setTitle, query, words, setWords }) => {
 
-  console.log("value={title} 1: ", title);
-  console.log("query tId : ",query.tId);
+  useEffect(() => {
+    if(query.tId){
+      setTitle(query.title)
+    }
+  }, [query.tId])
 
-  if(query.title){
-    setTitle(query.title)
-  }
   //何か入力中にはしる
   const handleChangeTitle = (e) =>{
     setTitle(e.target.value)
   }
 
 //query.tIdがあるとき(更新時)
-
 const handleUpdateTitle = (e) => {
 
-      const FindWords_tId = words.map((item)=>item.tId)
-      const filtered_tId = FindWords_tId.filter(tId => tId === query.tId).toString()
-      if(filtered_tId) {
-        const NewTitle = setTitle(prev=>{return prev.replace(...prev,e.target.value) })
-        return NewTitle
-      }
+    const FindWords_tId = words.map((item)=>item.tId)
+    const filtered_tId = FindWords_tId.filter(tId => tId === query.tId).toString()
+    if(filtered_tId) {
+      // setTitle(prev=>{prev.map((item)=>{return [...item, e.target.value]}) })
+      setTitle(e.target.value)
       return setTitle("")
+    }
 }
 
   return (

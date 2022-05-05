@@ -20,6 +20,8 @@ export const TatoeList = (props:any) => {
         // [{userInfo}, ...prev]
         // })
     }
+console.log("Dash TatoeList query.tId",router.query.tId);
+
 
   return (
     <div>

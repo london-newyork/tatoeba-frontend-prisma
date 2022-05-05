@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
-export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creationTime}) => {
+export const RegisterWordCreateBtn = ({prevTid ,title, shortParaphrase, description, creationTime}) => {
 
   const [words, setWords] = useRecoilState(WordsAtom)
   // const [show, setShow] = useState(false)
@@ -20,8 +20,21 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
   const tId = getUniqueId()
 
   const submitWords = () => {
+    if (title==="" || shortParaphrase ==="" || description==="") {
+      return
+    }
     {/* @ts-ignore */}
     // setShow(false)
+    const updatedWords = [
+      {
+        tId: prevTid,
+        title,
+        shortParaphrase,
+        description,
+        creationTime
+      },
+      ...words,
+    ]
     const newWords = [
       {
         tId,
@@ -32,19 +45,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
       },
       ...words,
     ]
-    setWords(newWords)
-
-    //トップへ追加
-    // router.push({
-    //   pathname:'/',
-    //   query: {
-    //     tId,
-    //     title,
-    //     shortParaphrase,
-    //     description,
-    //     creationTime
-    //   }
-    // })
+    prevTid ? setWords(updatedWords) : setWords(newWords)
 
     router.push({
       pathname:'/DashBoard',

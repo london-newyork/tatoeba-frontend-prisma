@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export const RegisterWordTitle = ({ title, setTitle, query }) => {
+export const RegisterWordTitle = ({ title, setTitle, query, words, setWords }) => {
 
-  const handleChangeTitle = (e) => {
+  console.log("value={title} 1: ", title);
+  console.log("query tId : ",query.tId);
+
+  if(query.title){
+    setTitle(query.title)
+  }
+  //何か入力中にはしる
+  const handleChangeTitle = (e) =>{
     setTitle(e.target.value)
   }
 
-if(query.tId){
-  console.log("新しいtitle", title);
-  setTitle(
-    query.title
-  )
- }
+//query.tIdがあるとき(更新時)
 
+const handleUpdateTitle = (e) => {
+
+      const FindWords_tId = words.map((item)=>item.tId)
+      const filtered_tId = FindWords_tId.filter(tId => tId === query.tId).toString()
+      if(filtered_tId) {
+        const NewTitle = setTitle(prev=>{return prev.replace(...prev,e.target.value) })
+        return NewTitle
+      }
+      return setTitle("")
+}
 
   return (
     <div
@@ -36,7 +48,7 @@ if(query.tId){
         <textarea
             value={title}
             name='title'
-            onChange={handleChangeTitle}
+            onChange={query.tId ? handleUpdateTitle : handleChangeTitle}
             rows={2}
             placeholder='サーバー'
             maxLength={50}

@@ -4,11 +4,16 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
-export const RegisterWordCreateBtn = ({prevTid ,title, shortParaphrase, description, creationTime}) => {
+export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creationTime}) => {
 
   const [words, setWords] = useRecoilState(WordsAtom)
   // const [show, setShow] = useState(false)
   const router = useRouter()
+
+  const query_tId = router.query.tId
+
+  console.log("query_tId",query_tId);
+  console.log("create btn title",title);
 
   // const openModal = useCallback(() => {
   //   setShow(true)
@@ -25,16 +30,16 @@ export const RegisterWordCreateBtn = ({prevTid ,title, shortParaphrase, descript
     }
     {/* @ts-ignore */}
     // setShow(false)
-    const updatedWords = [
-      {
-        tId: prevTid,
-        title,
-        shortParaphrase,
-        description,
-        creationTime
-      },
-      ...words,
-    ]
+    // const updatedWords = [
+    //   {
+    //     tId: query_tId,
+    //     title,
+    //     shortParaphrase,
+    //     description,
+    //     creationTime
+    //   },
+    //   ...words,
+    // ]
     const newWords = [
       {
         tId,
@@ -45,18 +50,26 @@ export const RegisterWordCreateBtn = ({prevTid ,title, shortParaphrase, descript
       },
       ...words,
     ]
-    prevTid ? setWords(updatedWords) : setWords(newWords)
+    // query_tId ? setWords(updatedWords) : setWords(newWords)
+    setWords(newWords)
+
+    //下記の書き方だと、router push するたび、常に　tId = 新しく発行されたtIdを使ってしまっている。
+    //これを、Words更新後も、同じtIdを引き継いでrouter pushしたい。=>下記の書き方で成功
+    //一方、ここの変数titleには、titleのコンポーネントで編集した更新前・更新後の値が、同じtitleとなって渡っているのでそれは意図通り。
+
+    //ただし、再びDashBoardに遷移したときに元のリストに入っていない。 => mapで回す必要がある。wordsの中に更新したものと元のIDを合わせて送り込む必要がある。
 
     router.push({
       pathname:'/DashBoard',
       query: {
-        tId,
+        tId : (query_tId ? query_tId : tId),
         title,
         shortParaphrase,
         description,
         creationTime
       }
     })
+
 }
 
   return (

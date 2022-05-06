@@ -15,10 +15,11 @@ export const RegisterWordParent = (props) => {
 
     const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
     const [ title, setTitle ] = useState('')
-    const [ shortParaphrase, setShortParaphrase] = useState(query.shortParaphrase ? query.shortParaphrase : '')
-    const [ description, setDescription ] = useState(query.description ? query.description : '')
+    const [ shortParaphrase, setShortParaphrase] = useState('')
+    const [ description, setDescription ] = useState('')
     const creationTime = dayjs().format('YYYY_MM_DD HH:mm A')
-    const [prevTid, setPrevTid] = useState(query.tId)
+    // const [prevTid, ] = useState(query.tId)
+console.log("register word parent");
 
     return (
         <div className='flex flex-col gap-6'>
@@ -38,7 +39,7 @@ export const RegisterWordParent = (props) => {
                 setDescription={setDescription}
             />
             <RegisterWordCreateBtn
-                prevTid={prevTid}
+                // prevTid={prevTid}
                 creationTime={creationTime}
                 title={title}
                 shortParaphrase={shortParaphrase}

@@ -8,21 +8,17 @@ export const RegisterWordTitle = ({ title, setTitle, query, words, setWords }) =
     }
   }, [query.tId])
 
-  //何か入力中にはしる
   const handleChangeTitle = (e) =>{
     setTitle(e.target.value)
   }
 
-//query.tIdがあるとき(更新時)
-const handleUpdateTitle = (e) => {
+  const handleUpdateTitle = (e) => {
 
     const FindWords_tId = words.map((item)=>item.tId)
     const filtered_tId = FindWords_tId.filter(tId => tId === query.tId).toString()
+
     if(filtered_tId) {
-      //titleは配列に入っておらず単体なためmapがきかない。
-      // setTitle(prev=>{prev.map((item)=>{return [...item, e.target.value]}) })
-      setTitle(e.target.value)
-      return setTitle("")
+      setTitle(query.title = e.target.value)
     }
 }
 

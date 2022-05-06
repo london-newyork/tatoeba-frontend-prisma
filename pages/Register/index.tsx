@@ -5,8 +5,6 @@ import { Header } from '../../src/components/Header/Header';
 import { RegisterWordHeadline } from './RegisterWordHeadline';
 import { RegisterWordParent } from './RegisterWordParent'
 import { useRouter } from 'next/router';
-import { WordsAtom } from '../../src/components/utils/atoms/WordsAtom';
-import { useRecoilState } from 'recoil';
 
 export default function Register() {
 const router = useRouter()

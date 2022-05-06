@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, VFC } from 'react'
 import { RegisterWordCreateBtn } from './RegisterWordChild/RegisterWordCreateBtn'
 import { RegisterWordTitle } from './RegisterWordChild/RegisterWordTitle'
 import { RegisterWordShortParaphrase } from './RegisterWordChild/RegisterWordShortParaphrase'
@@ -18,7 +18,7 @@ export const RegisterWordParent = (props) => {
     const [ shortParaphrase, setShortParaphrase] = useState(query.shortParaphrase ? query.shortParaphrase : '')
     const [ description, setDescription ] = useState(query.description ? query.description : '')
     const creationTime = dayjs().format('YYYY_MM_DD HH:mm A')
-    const [prevTid, setPrevTid] = useState(query.tid)
+    const [prevTid, setPrevTid] = useState(query.tId)
 
     return (
         <div className='flex flex-col gap-6'>

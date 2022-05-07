@@ -17,50 +17,23 @@ export const RegisterWordTitle = ({ title, setTitle, query }) => {
     setTitle(e.target.value)
   }
 
-  console.log(words);
-  
-  // const wordsTIds = words.map((item)=>item.tId)
-  // console.log("What is wordsTIds ?",wordsTIds);
-  
-  // const currentTid = wordsTIds.filter(tId => tId === query.tId).toString()
-  // const wordsTitles = words.map((item)=>item.title)
-  // const currentTitle = wordsTitles.filter(tId => tId === query.title).toString()
-  // console.log("currentTitle",currentTitle);
-
   const handleUpdateTitle = (e) => {
 
-    const wordsTIds = words.map((item)=>item.tId)
-    const currentTid = wordsTIds.filter(tId => tId === query.tId).toString()
-    // const wordsTitles = words.map((item)=>item.title)
-    // const currentTitle = wordsTitles.filter(tId => tId === query.title).toString()
-    // console.log("currentTitle",currentTitle);
+    const words_tIds = words.map(item => item.tId)
+    const current_tId = words_tIds.filter(tId => tId === query.tId).toString()
 
-      // setTitle(query.title = e.target.value)
-      //mapでwordsに新しいtitleを送り込まないとリストが複製されてしまう。
-      // setTitle(currentTitle = e.target.value)
-        // console.log("What is word ?",word);
-        //wordsに取り込まれないと、リストにうまく反映されない。
-        //setTitleに取り込まれないとvalueには反映されない。
-
-          //[最新]：tIdがおかしくTop/CardChildのtIdの箇所でエラー、スーパーリロードしても最初からwordsに37個もリストがあり、すべてnull。その上、何も登録していないのに、0番目のところにtIdに同じ値がたくさん入っている。 => tIdが特定できないため、wordsTIdsやcurrentTidが動かない。
-
-        if(currentTid) {
+    //current_tIdがあった時、newTitleに新しく入力中のタイトルをセット
+        if(current_tId) {
           const newTitle = setTitle(()=> e.target.value)
-
-          const newWords = words.map((item:Words)=>{
-            [
-            {...item},
-               {tId: currentTid, title:newTitle}
-            ]
-            return item
+          //newWordsにwordsから取り出した既存のitemたちと、元のtId・新しいタイトル(newTitle)をセット
+          const newWords = words.map(item => {
+              [{...item},{tId: current_tId, title: newTitle}]
+          return item
           })
-
-          setWords([ ...newWords])
+          //newWordsをwordsにセットする
+          setWords([...newWords])
         }
-
     }
-
-  console.log("★ after .+. setWords.+. words ★",words)
 
   return (
     <div

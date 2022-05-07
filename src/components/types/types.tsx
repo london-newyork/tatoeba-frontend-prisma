@@ -6,9 +6,9 @@ import { SetterOrUpdater } from "recoil"
 export type Words = {
     tId: string,
     title: string,
-    shortParaphrase: string,
-    description: string,
-    creationTime: string,
+    shortParaphrase?: string,
+    description?: string,
+    creationTime?: string,
     tImageUrl?: string
 }
 

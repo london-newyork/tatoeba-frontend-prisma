@@ -1,8 +1,7 @@
 import React from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { FollowerAtom } from '../utils/atoms/FollowerAtom'
 import { Words } from '../../../src/components/types/types'
-import { ParsedUrlQuery } from 'querystring'
 import { WordsAtom } from '../utils/atoms/WordsAtom'
 import Link from 'next/link'
 import { useHandleMoveToRegister } from '../hooks/handleMoveToRegister'
@@ -10,18 +9,20 @@ import { useRouter } from 'next/router'
 
 export const TatoeList = (props:any) => {
     const { userInfo } = props
-    const router = useRouter()
+    // const router = useRouter()
     const [follower, setFollower] = useRecoilState(FollowerAtom)
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
-    const { handleMoveToRegister } = useHandleMoveToRegister({words, router})
+    const { handleMoveToRegister } = useHandleMoveToRegister({words})
     const handleConfirmFollower = () => {
         //WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
         // setFollower((prev:any)=>{
         // [{userInfo}, ...prev]
         // })
     }
-console.log("Dash TatoeList query.tId",router.query.tId);
 
+    console.log("tatoeList words : ",words);
+
+    //更新後の値をwordsの中に入れないと元のリストが更新されず、新しいリストが生成されてしまう。
 
   return (
     <div>

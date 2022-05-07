@@ -3,7 +3,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { Words } from '../types/types'
 
 // export const useHandleMoveToRegister = (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
-export const useHandleMoveToRegister = (props:{words:Words[] | ParsedUrlQuery[], router: NextRouter}) => {
+export const useHandleMoveToRegister = (props:{words:Words[] | ParsedUrlQuery[]}) => {
 
     const router = useRouter()
     const { words } = props
@@ -19,7 +19,6 @@ export const useHandleMoveToRegister = (props:{words:Words[] | ParsedUrlQuery[],
             if(item.tId === tId) {
 
                 router.push({
-                    // pathname:'/Edit/[tId]',
                     pathname:'/Register/',
                     query: {
                         tId,

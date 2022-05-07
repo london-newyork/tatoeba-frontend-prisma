@@ -1,10 +1,13 @@
+import { ParsedUrlQuery } from 'querystring'
 import React, { VFC } from 'react'
+import { useRecoilState } from 'recoil'
 import { CardProps, Words } from '../types/types'
+import { WordsAtom } from '../utils/atoms/WordsAtom'
 
-export const CardChild:VFC<CardProps>= (props) => {
-
-const {words, handleMoveToResult} = props
-// handleMoveToEdit
+// export const CardChild:VFC<CardProps>= (props) => {
+export const CardChild:VFC = (props) => {
+    const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
+// const {words, handleMoveToResult} = props
   return (
     <>
         {words
@@ -87,12 +90,13 @@ const {words, handleMoveToResult} = props
                                 text-q_dark_green
                                 rounded
                                 '
-                                onClick={() => handleMoveToResult(
-                                    item.tId,
-                                    item.title,
-                                    item.shortParaphrase,
-                                    item.description,
-                                )}>
+                                // onClick={() => handleMoveToResult(
+                                //     item.tId,
+                                //     item.title,
+                                //     item.shortParaphrase,
+                                //     item.description,
+                                // )}
+                                >
                                     詳細
                                 </button>
                             </li>

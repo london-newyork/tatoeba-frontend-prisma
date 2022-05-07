@@ -1,32 +1,32 @@
-import { NextRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
-import { Words } from '../types/types'
+// import { NextRouter } from 'next/router'
+// import { ParsedUrlQuery } from 'querystring'
+// import { Words } from '../types/types'
 
-export const useHandleMoveToResult= (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
-    const { words, router } = props
+// export const useHandleMoveToResult= (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
+//     const { words, router } = props
 
-    const tId = router.query.tId
-    const title = router.query.title
-    const shortParaphrase = router.query.shortParaphrase
-    const description = router.query.description
+//     const tId = router.query.tId
+//     const title = router.query.title
+//     const shortParaphrase = router.query.shortParaphrase
+//     const description = router.query.description
 
-    const handleMoveToResult = () => {
-            words.forEach((item:Words) => {
-                if(item.tId === tId) {
+//     const handleMoveToResult = () => {
+//             words.forEach((item:Words) => {
+//                 if(item.tId === tId) {
 
-                router.push({
-                    pathname:'/SearchResult/[tId]',
-                    query: {
-                        tId,
-                        title,
-                        shortParaphrase,
-                        description,
-                    }
-                })
-            } return item
-        }
-        )
+//                 router.push({
+//                     pathname:'/SearchResult/[tId]',
+//                     query: {
+//                         tId,
+//                         title,
+//                         shortParaphrase,
+//                         description,
+//                     }
+//                 })
+//             } return item
+//         }
+//         )
 
-    }
-    return { handleMoveToResult }
-}
+//     }
+//     return { handleMoveToResult }
+// }

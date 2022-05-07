@@ -9,10 +9,14 @@ import { useRouter } from 'next/router'
 
 export const TatoeList = (props:any) => {
     const { userInfo } = props
-    // const router = useRouter()
+    const router = useRouter()
+    const query = router.query
+
     const [follower, setFollower] = useRecoilState(FollowerAtom)
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
+
     const { handleMoveToRegister } = useHandleMoveToRegister({words})
+
     const handleConfirmFollower = () => {
         //WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
         // setFollower((prev:any)=>{
@@ -20,9 +24,23 @@ export const TatoeList = (props:any) => {
         // })
     }
 
-    console.log("tatoeList words : ",words);
-
     //更新後の値をwordsの中に入れないと元のリストが更新されず、新しいリストが生成されてしまう。
+
+    //クリックされているtIdをどう判別するか？
+    //props.tId ❌
+
+    const handleDeleteWords = (tId) => {
+        // const deleteWord = words.filter(word=>
+        //     {return word.tId !== query.tId})
+        // setWords(deleteWord)
+        setWords(prev=>{
+            return prev.filter(item=> {
+                return item.tId !== tId
+            }
+        )})
+
+    }
+    console.log("tatoeList words : ",words);
 
   return (
     <div>
@@ -83,6 +101,7 @@ export const TatoeList = (props:any) => {
                                     className='
                                     text-gray-400
                                     '
+                                    onClick={handleDeleteWords}
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

@@ -4,9 +4,9 @@ import { FollowerAtom } from '../utils/atoms/FollowerAtom'
 import { Words } from '../../../src/components/types/types'
 import { WordsAtom } from '../utils/atoms/WordsAtom'
 import Link from 'next/link'
-import { useHandleMoveToRegister } from '../hooks/handleMoveToRegister'
 import { useRouter } from 'next/router'
 import { DeleteWordsBtn } from '../btn/DeleteWordsBtn'
+import { EditBtn } from '../btn/EditBtn'
 
 export const TatoeList = (props:any) => {
     const { userInfo } = props
@@ -16,7 +16,7 @@ export const TatoeList = (props:any) => {
     const [follower, setFollower] = useRecoilState(FollowerAtom)
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
 
-    const { handleMoveToRegister } = useHandleMoveToRegister({words})
+    // const { handleMoveToRegister } = useHandleMoveToRegister({words})
 
     const handleConfirmFollower = () => {
         //WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
@@ -60,22 +60,7 @@ export const TatoeList = (props:any) => {
                         </li>
                         <li>
                             <ul className='flex gap-2 items-center'>
-                            <li
-                                className='
-                                flex items-center
-                                '
-                                >
-                                    <button
-                                        className='
-                                        text-gray-400
-                                        '
-                                        onClick={handleMoveToRegister}
-                                        >
-                                            <svg xmlns="http://www.w3.org/2000/svg" className='h-5 w-5 text-gray-300' fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                            </svg>
-                                    </button>
-                                </li>
+                                <EditBtn tId={item.tId} />
                                 <DeleteWordsBtn tId={item.tId} />
                                 <li className='flex items-center'>
                                     <Link

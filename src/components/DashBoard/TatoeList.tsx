@@ -27,6 +27,8 @@ export const TatoeList = (props:any) => {
 
     //更新後の値をwordsの中に入れないと元のリストが更新されず、新しいリストが生成されてしまう。
 
+    console.log("Tatoe List words",words);//更新しても1つしか登録されていない。
+    
   return (
     <div>
        {words.length ?

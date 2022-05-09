@@ -12,6 +12,15 @@ export const EditBtn:VFC<EditBtnProps> = (props) => {
     const tId = props.tId
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
     const { handleMoveToEdit } = useHandleMoveToEdit({words, tId})
+
+    const handleMoveToEditTest = () => {
+        words.map(item=>{
+            if(item.tId === props.tId){
+                //遷移する処理を書く。propsも受け渡せるようにする。
+            }
+        })
+    }
+
   return (
     <div>
          <li
@@ -23,6 +32,7 @@ export const EditBtn:VFC<EditBtnProps> = (props) => {
                 className='
                 text-gray-400
                 '
+                // onClick={handleMoveToEditTest}
                 onClick={handleMoveToEdit}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className='h-5 w-5 text-gray-300' fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -6,8 +6,11 @@ import { RegisterWordHeadline } from './RegisterWordHeadline';
 import { RegisterWordParent } from './RegisterWordParent'
 import { useRouter } from 'next/router';
 
-export default function Register() {
+export default function Register(props) {
 const router = useRouter()
+
+console.log("Register top props",props);
+//このpropsは空。handleMoveToEditからpropsがきていない。
 
   return (
     <>
@@ -39,7 +42,7 @@ const router = useRouter()
               max-w-[1000px]
               ">
                 <RegisterWordHeadline />
-                <RegisterWordParent query={router.query}/>
+                <RegisterWordParent query={router.query} />
             </div>
         </section>
     </>

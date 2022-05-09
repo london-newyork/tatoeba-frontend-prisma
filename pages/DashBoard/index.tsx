@@ -48,7 +48,6 @@ export type testUserFollower = testUserId & testFollower
 const DashBoard = () => {
 const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
 const router = useRouter()
-console.log("Dash Top router.query",router.query);//登録ページから値取得確認済み
 
 //下記をコメントアウトで再レンダリングが起きなくなった。
 // useEffect(() => {

@@ -10,10 +10,11 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
   // const [show, setShow] = useState(false)
   const router = useRouter()
 
-  const query_tId = router.query.tId
+  console.log("Create btn title",title);
 
-  // console.log("query_tId",query_tId);
-  // console.log("create btn title",title);
+  console.log("Create btn Words 1",words);
+
+  const query_tId = router.query.tId
 
   // const openModal = useCallback(() => {
   //   setShow(true)
@@ -26,33 +27,108 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
   const submitWords = () => {
     if (title === "" || shortParaphrase === "" || description === "") {
+      alert("入力されていない箇所があります。")
       return
     }
     {/* @ts-ignore */}
     // setShow(false)
-    const newWords = [
-      {
-        tId : (query_tId ? query_tId : tId),
-        title,
-        shortParaphrase,
-        description,
-        creationTime
-      },
-      ...words,
-    ]
 
-    setWords(newWords)
+    // const newWords = [
+    //   {
+    //     tId : (query_tId ? query_tId : tId),
+    //     title,//propsで渡ってきたtitle
+    //     shortParaphrase,//propsで渡ってきたshortParaphrase
+    //     description,//propsで渡ってきたdescription
+    //     creationTime//propsで渡ってきたcreationTime
+    //   },
+    //   ...words,
+    // ]
 
-    router.push({
-      pathname:'/DashBoard',
-      query: {
-        tId,
-        title,
-        shortParaphrase,
-        description,
-        creationTime
-      }
-    })
+    // setWords(newWords)//wordsに格納された新しいwordsたち
+
+    if(!query_tId){
+      console.log("新規");
+      const firstAddWords =
+      [
+        {
+          tId,
+          title,//propsで渡ってきたtitle
+          shortParaphrase,//propsで渡ってきたshortParaphrase
+          description,//propsで渡ってきたdescription
+          creationTime//propsで渡ってきたcreationTime
+        },
+        ...words,
+      ]
+      setWords(firstAddWords)
+
+      router.push({
+        pathname:'/DashBoard',
+        query: {
+          tId,//新しく取得されたtId
+          title,//propsで渡ってきたtitle
+          shortParaphrase,//propsで渡ってきたshortParaphrase
+          description,//propsで渡ってきたshortParaphrase
+          creationTime//propsで渡ってきたshortParaphrase
+        }
+      })
+
+      console.log("Create Btn firstAddWords", words);
+    } //これはOK
+
+    //ここからダメ => TatoeListのところでwordsを回す時の挙動を書いた方がいいかも？
+
+    if(query_tId){
+      console.log("更新");
+
+      const newWordsTest = words.map(item=> {
+
+        //wordsにある既存tIdとqueryで渡ってきたtIdが一致したとき
+        if(item.tId === query_tId){
+
+          [
+            {
+              tId: item.tId,
+              title,//propsで渡ってきたtitle
+              shortParaphrase,//propsで渡ってきたshortParaphrase
+              description,//propsで渡ってきたdescription
+              creationTime//propsで渡ってきたcreationTime
+            },
+            ...item
+
+          ]
+        }
+        return item
+      })
+      setWords(newWordsTest)
+
+      router.push({
+        pathname:'/DashBoard',
+        query: {
+          // tId,
+          // title,//propsで渡ってきたtitle
+          // shortParaphrase,//propsで渡ってきたshortParaphrase
+          // description,//propsで渡ってきたshortParaphrase
+          // creationTime//propsで渡ってきたshortParaphrase
+        }
+      })
+
+      console.log("更新２");
+      console.log(" Create Btn words 2",words);
+
+    }
+
+    // router.push({
+    //   pathname:'/DashBoard',
+    //   query: {
+    //     tId,//新しく取得されたtId
+    //     title,//propsで渡ってきたtitle
+    //     shortParaphrase,//propsで渡ってきたshortParaphrase
+    //     description,//propsで渡ってきたshortParaphrase
+    //     creationTime//propsで渡ってきたshortParaphrase
+    //   }
+    // })
+    console.log("Create Btn Words Last",words);
+
 
 }
 

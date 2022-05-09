@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil'
 import { Words } from '../../../src/components/types/types'
 import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
-export const RegisterWordTitle = ({ title, setTitle, query }) => {
+export const RegisterWordTitle = ({ title, setTitle, query, tId }) => {
 
   const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
 
@@ -12,6 +12,11 @@ export const RegisterWordTitle = ({ title, setTitle, query }) => {
       setTitle(query.title)
     }
   }, [query.tId])
+  // useEffect(() => {
+  //   if(props.tId){
+  //     setTitle(props.title)
+  //   }
+  // }, [props.tId])
 
   const handleChangeTitle = (e) =>{
     setTitle(e.target.value)
@@ -24,14 +29,18 @@ export const RegisterWordTitle = ({ title, setTitle, query }) => {
 
     //current_tIdがあった時、newTitleに新しく入力中のタイトルをセット
         if(current_tId) {
-          const newTitle = setTitle(()=> e.target.value)
-          //newWordsにwordsから取り出した既存のitemたちと、元のtId・新しいタイトル(newTitle)をセット
-          const newWords = words.map(item => {
-              [{...item},{tId: current_tId, title: newTitle}]
-          return item
-          })
-          //newWordsをwordsにセットする
-          setWords([...newWords])
+
+          setTitle(()=> e.target.value)
+          // const newTitle = setTitle(()=> e.target.value)
+          
+          // const newWords = words.map(item => {
+          //     [{...item},{tId: current_tId, title: newTitle}]
+          // return item
+          // })
+          // console.log("Register word Title if current_ tId");
+
+          // //newWordsをwordsにセットする
+          // setWords([...newWords])
         }
     }
 

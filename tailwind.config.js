@@ -37,6 +37,9 @@ module.exports = {
       dropShadow: {
         'green_2xl': '0 35px 35px rgba(221, 242, 221, 1)',
       },
+      width: {
+        'inherit': 'inherit'
+      },
       textColor: (theme) => ({
         ...theme('colors'),
         q_dark_green: '#05bf00',
@@ -65,6 +68,7 @@ module.exports = {
         dark_green: '#05D200',
         q_dark_green: '#05bf00',
       }),
+
     },
   },
   plugins: [],

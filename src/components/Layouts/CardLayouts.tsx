@@ -25,6 +25,8 @@ export const CardLayouts:VFC<Layouts> = (props) => {
                 className='
                 lg:w-[940px]
                 flex
+                sm:flex-row
+                flex-col
                 lg:justify-start
                 sm:justify-center
                 flex-wrap

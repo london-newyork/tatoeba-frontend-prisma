@@ -42,7 +42,7 @@ export const Header = (props:Props) => {
             </a>
           </Link>
         </div>
-        <div className="flex my-auto">
+        <div className="flex my-auto mr-3 md:mr-0">
           <Link
           href="/Login">
             <div

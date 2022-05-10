@@ -42,7 +42,7 @@ export const TopUpperContents:VFC = () => {
         lg:leading-relaxed
         text-center
         md:text-left">
-            ITの専門用語を知らない人に、もっと伝わる「例え話」を<br />
+            ITの専門用語を知らない人に、<br className='md:hidden'/>もっと伝わる「例え話」を<br />
         </h3>
             <div
                 id="wrapper-left-bottom"
@@ -54,7 +54,8 @@ export const TopUpperContents:VFC = () => {
                     className='
                     lg:w-[470px]
                     md:w-[50%]
-                    sm:w-full
+                    sm:w-[80%]
+                    sm:mx-auto
                     h-[48px]
                     px-6
                     bg-white
@@ -87,7 +88,11 @@ export const TopUpperContents:VFC = () => {
                             onChange={handleChange}
                             className="
                             placeholder-gray-300
-                            scss-border
+                            outline-none
+                            pt-3
+                            pl-8
+                            lg:max-w-[352px]
+                            lg:w-[inherit]
                             "
                             placeholder='サーバーを例えると...' />
                         <button
@@ -123,7 +128,7 @@ export const TopUpperContents:VFC = () => {
                 w-[25%]
                 pl-none
                 pt-5
-                // m-auto
+                m-auto
                 md:m-0
                 lg:-ml-[96px]
                 lg:max-w-[250px]

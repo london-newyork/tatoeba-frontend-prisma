@@ -4,8 +4,7 @@ import { Layouts } from '../types/types';
 export const TopMainLayouts:VFC<Layouts> = (props) => {
   return (
     <main className="
-        md:pt-[100px]
-        sm:pt-[80px]
+        pt-[100px]
         bg-white
         ">
         {props.children}

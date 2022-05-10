@@ -17,8 +17,10 @@ export const DeleteWordsBtn:VFC<DeleteProps> = (props) => {
             item=> {return item.tId !== props.tId }
             )
         setWords(deleteWords)
+        console.log("delete Words");
+        
     }
-    console.log("tatoeList words : ",words);
+    // console.log("tatoeList words : ",words);
   return (
     <div>
        <li className='flex items-center'>

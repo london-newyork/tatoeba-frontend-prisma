@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export const RegisterWordShortParaphrase = ({ shortParaphrase, setShortParaphrase }) => {
+export const RegisterWordShortParaphrase = ({ shortParaphrase, setShortParaphrase, query }) => {
+
+  useEffect(() => {
+    if(query.tId){
+      setShortParaphrase(query.shortParaphrase)
+    }
+  }, [query.tId])
+
   return (
     <div
         className="

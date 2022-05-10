@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export const RegisterWordDescription = ({ description , setDescription }) => {
+export const RegisterWordDescription = ({ description , setDescription, query }) => {
+
+  useEffect(() => {
+    if(query.tId){
+      setDescription(query.description)
+    }
+  }, [query.tId])
 
   return (
     <div

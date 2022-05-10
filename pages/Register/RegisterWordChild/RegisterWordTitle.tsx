@@ -1,39 +1,12 @@
 import React, { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { Words } from '../../../src/components/types/types'
-import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
 export const RegisterWordTitle = ({ title, setTitle, query }) => {
-
-  const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
 
   useEffect(() => {
     if(query.tId){
       setTitle(query.title)
     }
   }, [query.tId])
-
-  const handleChangeTitle = (e) =>{
-    setTitle(e.target.value)
-  }
-
-  const handleUpdateTitle = (e) => {
-
-    const words_tIds = words.map(item => item.tId)
-    const current_tId = words_tIds.filter(tId => tId === query.tId).toString()
-
-    //current_tIdがあった時、newTitleに新しく入力中のタイトルをセット
-        if(current_tId) {
-          const newTitle = setTitle(()=> e.target.value)
-          //newWordsにwordsから取り出した既存のitemたちと、元のtId・新しいタイトル(newTitle)をセット
-          const newWords = words.map(item => {
-              [{...item},{tId: current_tId, title: newTitle}]
-          return item
-          })
-          //newWordsをwordsにセットする
-          setWords([...newWords])
-        }
-    }
 
   return (
     <div
@@ -57,7 +30,7 @@ export const RegisterWordTitle = ({ title, setTitle, query }) => {
         <textarea
             value={title}
             name='title'
-            onChange={query.tId ? handleUpdateTitle : handleChangeTitle}
+            onChange={(e)=>setTitle(e.target.value)}
             rows={2}
             placeholder='サーバー'
             maxLength={50}

@@ -12,9 +12,6 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
   const query_tId = router.query.tId
 
-  // console.log("query_tId",query_tId);
-  // console.log("create btn title",title);
-
   // const openModal = useCallback(() => {
   //   setShow(true)
   // }, [])
@@ -26,34 +23,65 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
   const submitWords = () => {
     if (title === "" || shortParaphrase === "" || description === "") {
+      alert("入力されていない箇所があります。")
       return
     }
     {/* @ts-ignore */}
     // setShow(false)
-    const newWords = [
-      {
-        tId : (query_tId ? query_tId : tId),
-        title,
-        shortParaphrase,
-        description,
-        creationTime
-      },
-      ...words,
-    ]
 
-    setWords(newWords)
+    if(!query_tId){
+      const firstAddWords =
+      [
+        {
+          tId,
+          title,
+          shortParaphrase,
+          description,
+          creationTime
+        },
+        ...words,
+      ]
+      setWords(firstAddWords)
 
-    router.push({
-      pathname:'/DashBoard',
-      query: {
-        tId,
-        title,
-        shortParaphrase,
-        description,
-        creationTime
-      }
-    })
+      router.push({
+        pathname:'/DashBoard',
+        query: {
+          tId,
+          title,
+          shortParaphrase,
+          description,
+          creationTime
+        }
+      })
+    }
 
+    if(query_tId){
+      const newWords = words.map(item=> {
+        if(item.tId === query_tId){
+          return {
+              tId: item.tId,
+              title,
+              shortParaphrase,
+              description,
+              creationTime
+            }
+        } else {
+          return item
+        }
+      })
+      setWords(newWords)
+
+      router.push({
+        pathname:'/DashBoard',
+        query: {
+          tId: query_tId,
+          title,
+          shortParaphrase,
+          description,
+          creationTime
+        }
+      })
+    }
 }
 
   return (

@@ -31,18 +31,18 @@ export const RegisterWordParent = (props) => {
     return (
         <div className='flex flex-col gap-6'>
             <RegisterWordTitle
-                // words={words}
-                // setWords={setWords}
-                tId={props.tId}
+                // tId={props.tId}
                 query={query}
                 title={title}
                 setTitle={setTitle}
             />
             <RegisterWordShortParaphrase
+                query={query}
                 shortParaphrase={shortParaphrase}
                 setShortParaphrase={setShortParaphrase}
             />
             <RegisterWordDescription
+                query={query}
                 description={description}
                 setDescription={setDescription}
             />

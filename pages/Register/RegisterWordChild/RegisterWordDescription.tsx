@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+import { Words } from '../../../src/components/types/types'
+import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
-export const RegisterWordDescription = ({ description , setDescription }) => {
+export const RegisterWordDescription = ({ description , setDescription, query }) => {
 
+  const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
+
+  useEffect(() => {
+    if(query.tId){
+      setDescription(query.description)
+    }
+  }, [query.tId])
+
+  const handleChangeDescription = (e) =>{
+    setDescription(e.target.value)
+  }
+
+  const handleUpdateDescription = (e) => {
+
+    const words_tIds = words.map(item => item.tId)
+    const current_tId = words_tIds.filter(tId => tId === query.tId).toString()
+
+    //current_tIdがあった時、setDescriptionに新しく入力中のタイトルをセット
+        if(current_tId) {
+          setDescription(e.target.value)
+        }
+    }
   return (
     <div
         className="
@@ -24,7 +49,7 @@ export const RegisterWordDescription = ({ description , setDescription }) => {
         </label>
         <textarea
             value={description}
-            onChange={(e)=>setDescription(e.target.value)}
+            onChange={query.tId ? handleUpdateDescription : handleChangeDescription}
             name="description"
             placeholder="WEBサイトを「家」とすると、サーバーは「土地」に例えられます。"
             maxLength={400}

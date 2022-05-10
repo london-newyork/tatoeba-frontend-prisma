@@ -30,7 +30,6 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     // setShow(false)
 
     if(!query_tId){
-
       const firstAddWords =
       [
         {
@@ -57,7 +56,6 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
     }
 
     if(query_tId){
-
       const newWords = words.map(item=> {
         if(item.tId === query_tId){
           return {
@@ -75,6 +73,13 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
       router.push({
         pathname:'/DashBoard',
+        query: {
+          tId: query_tId,
+          title,
+          shortParaphrase,
+          description,
+          creationTime
+        }
       })
     }
 }

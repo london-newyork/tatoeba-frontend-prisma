@@ -9,9 +9,6 @@ import { useRouter } from 'next/router';
 export default function Register(props) {
 const router = useRouter()
 
-console.log("Register top props",props);
-//このpropsは空。handleMoveToEditからpropsがきていない。
-
   return (
     <>
       <Head>

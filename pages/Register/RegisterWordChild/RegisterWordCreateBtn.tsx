@@ -75,8 +75,6 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
       router.push({
         pathname:'/DashBoard',
-        query: {
-        }
       })
     }
 }

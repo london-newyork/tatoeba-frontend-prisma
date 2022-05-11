@@ -1,5 +1,5 @@
-import Router, { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { useCallback, useState } from 'react'
 
 export const Menu = () => {
     const router = useRouter()
@@ -8,13 +8,20 @@ export const Menu = () => {
             pathname:'/',
         })
     }
-    const [isHover , setIsHover] = useState(false)
+    const [isHover , setIsHover] = useState(true)
+    const handleToolTip = useCallback(
+      () => {
+        setIsHover(!isHover)
+      },
+      [isHover],
+    )
+
   return (
     <div>
         <nav className='h-10 w-12 bg-gray-300 z-20 absolute text-2xl text-gray-600 -left-2 rounded-r-md shadow-sm'>
             <button
             className='position'
-            onClick={(e)=>setIsHover(!isHover)}
+            onClick={handleToolTip}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-4 mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />

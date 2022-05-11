@@ -64,7 +64,7 @@ export const Header = (props:Props) => {
               </svg>
             </div>
           </Link>
-          <Link href="/Register/">
+          <Link href="/Login/">
             <button className="
               hover:bg-mint_green
               bg-light_green

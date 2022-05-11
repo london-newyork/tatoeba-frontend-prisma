@@ -14,7 +14,7 @@ export const TopUpperContents:VFC = () => {
     lg:px-24
     flex
     flex-col
-    lg:flex-row
+    md:flex-row
     gap-9
     md:gap-none
     justify-around
@@ -23,10 +23,12 @@ export const TopUpperContents:VFC = () => {
         <h2 className="
             text-3xl
             sm:text-3xl
+            md:text-4xl
             lg:text-5xl
             text-gray-700
             leading-normal
             sm:leading-normal
+            md:leading-relaxed
             lg:leading-relaxed
             text-center
             md:text-left
@@ -49,36 +51,35 @@ export const TopUpperContents:VFC = () => {
                 className="
                 flex
                 flex-col
-                py-10">
+                pt-10
+                pb-20">
                 <div
                     className='
-                    lg:w-[470px]
-                    md:w-[50%]
-                    sm:w-[80%]
-                    sm:mx-auto
+                    w-[18rem]
+                    mx-auto
+                    md:mx-0
                     h-[48px]
                     px-6
-                    bg-white
-                    rounded-md
+                    bg-faded_light_green
+                    text-[#05D200]
+                    rounded-full
                     filter
-                    drop-shadow-xl
+                    drop-shadow-sm
                     '
                     >
                         <button
                             className={`
                             absolute
-                            left-0
+                            left-2
                             -top-4
                             h-[48px]
                             w-[36px]
                             flex
                             justify-center
                             items-center
-                            rounded-r-none
-                            rounded-l-md
+                            rounded-full
                             translate-y-4
                             bg-faded_light_green
-                            text-[#05D200]
                             `}
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -87,39 +88,48 @@ export const TopUpperContents:VFC = () => {
                             value={searchTerm}
                             onChange={handleChange}
                             className="
-                            placeholder-gray-300
+                            placeholder-darkGray_green
+                            text-sm
                             outline-none
-                            pt-3
+                            text-gray-700
+                            caret-dark_green
+                            pt-[14px]
                             pl-8
-                            lg:max-w-[352px]
+                            bg-faded_light_green
+                            lg:max-w-[180px]
                             lg:w-[inherit]
                             "
                             placeholder='サーバーを例えると...' />
                         <button
                             className={`
                             absolute
-                            right-0
+                            right-3
                             -top-4
                             h-[48px]
-                            w-[64px]
+                            w-[48px]
                             flex
                             justify-center
                             items-center
-                            rounded-l-none
-                            rounded-r-md
+                            rounded-full
                             translate-y-4
-                            hover:bg-dark_green
-                            hover:text-white
+                            bg-faded_light_green
                             transition
                             duration-200
                             ease-in
                             tracking-wide
-                            text-white
-                            ${ searchTerm ? 'bg-[#04be01]' : 'bg-[#05D200]' }
+                            text-sm
+                            text-[#05D200]
                             `}
                         >
+                            <span
+                            className='
+                            h-8 w-[1px]
+                            bg-faded_mid_green
+                            mr-3'>
+                            </span>
                             検索
                         </button>
+                        {/* ${ searchTerm ? 'bg-[#04be01]' : 'bg-[#05D200]' } */}
                     </div>
                 </div>
 
@@ -136,7 +146,7 @@ export const TopUpperContents:VFC = () => {
                 sm:min-w-[144px]
                 order-1
                 sm:order-1
-                md:order-1
+                md:order-2
                 lg:order-2
                 ">
                 <Image src='/images/illust1.png'

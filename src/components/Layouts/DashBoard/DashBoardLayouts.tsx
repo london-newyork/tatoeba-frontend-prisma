@@ -25,6 +25,7 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
       sm:gap-y-8
       sm:gap-x-8
       lg:gap-x-8
+      position
       '
       >
         {props.children}

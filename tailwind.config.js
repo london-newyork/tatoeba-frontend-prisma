@@ -49,6 +49,9 @@ module.exports = {
       },
       textColor: (theme) => ({
         ...theme('colors'),
+        light_green: '#D2FDD1',
+        mint_green: '#aefcac',
+        gray_green: '#83d182',
         q_dark_green: '#05bf00',
         dark_green: '#05D200',
         mid_green: '#4cf048',

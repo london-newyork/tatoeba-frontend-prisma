@@ -11,7 +11,7 @@ export const Profile = (props:any) => {
             flex
             flex-row
             items-center
-            md:min-w-[600px]
+            md:min-w-[400px]
             justify-between
             '
             >

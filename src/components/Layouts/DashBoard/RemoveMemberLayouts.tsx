@@ -1,19 +1,23 @@
 import React, { VFC } from 'react'
 import { Layouts } from '../../types/types'
 
-export const TatoeListLayouts:VFC<Layouts> = (props) => {
+export const RemoveMemberLayouts:VFC<Layouts> = (props) => {
   return (
     <div
     className='
+    bg-white
     lg:px-12
     px-7
-    pt-4
+    pt-12
     pb-10
     rounded-md
     mx-auto
-    bg-white
     h-auto
-    w-full
+    w-auto
+    flex-col
+    text-center
+    justify-center
+    items-center
     '
     >
       {props.children}

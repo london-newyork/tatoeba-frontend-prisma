@@ -21,9 +21,9 @@ export const TatoeListWrapper:VFC<Layouts> = (props) => {
                     </svg>
                 </button>
                 </Link>
-                <p className='text-white'>新規投稿</p>
+                <p className='text-gray-700'>新規投稿</p>
         </div>
-        <div className='pt-8'>
+        <div>
             <h2
             className='
             text-md

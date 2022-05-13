@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { FollowerAtom } from '../utils/atoms/FollowerAtom'
 import { Words } from '../../../src/components/types/types'
@@ -10,13 +10,9 @@ import { EditBtn } from '../btn/EditBtn'
 
 export const TatoeList = (props:any) => {
     const { userInfo } = props
-    const router = useRouter()
-    const query = router.query
 
     const [follower, setFollower] = useRecoilState(FollowerAtom)
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
-
-    // const { handleMoveToRegister } = useHandleMoveToRegister({words})
 
     const handleConfirmFollower = () => {
         //WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
@@ -25,10 +21,6 @@ export const TatoeList = (props:any) => {
         // })
     }
 
-    //更新後の値をwordsの中に入れないと元のリストが更新されず、新しいリストが生成されてしまう。
-
-    console.log("Tatoe List words",words);//更新しても1つしか登録されていない。
-    
   return (
     <div>
        {words.length ?
@@ -40,18 +32,33 @@ export const TatoeList = (props:any) => {
                     pt-4
                     items-center
                     justify-between
+                    group
                     '
                     key={item.tId}
                     >
                         <li>
-                            <ul className='flex gap-3 items-center'>
-                                <li className='text-gray-100 text-xs'>
+                            <ul
+                            className={`
+                            lg:flex
+                            block
+                            lg:flex-row
+                            md:flex-col
+                            sm:flex-col
+                            flex-row
+                            lg:gap-3
+                            md:gap-1
+                            items-center
+                            flex-start
+                            `}
+                            >
+                                <li className='flex text-gray-400 text-xs w-[124px]'>
                                     {item.creationTime}
                                 </li>
                                 <li
                                 className='
                                 pr-4
-                                text-white
+                                text-gray-700
+                                w-[300px]
                                 '
                                 >
                                     {item.title}
@@ -61,7 +68,14 @@ export const TatoeList = (props:any) => {
                             </ul>
                         </li>
                         <li>
-                            <ul className='flex gap-2 items-center'>
+                            <ul
+                            className={`
+                            flex
+                            gap-2
+                            items-center
+                            opacity-0
+                            group-hover:opacity-100
+                            `}>
                                 <EditBtn tId={item.tId} />
                                 <DeleteWordsBtn tId={item.tId} />
                                 <li className='flex items-center'>
@@ -70,12 +84,9 @@ export const TatoeList = (props:any) => {
                                     as="/follower"
                                     >
                                         <button
-                                        className='
-                                        text-gray-400
-                                        '
                                         onClick={handleConfirmFollower}
                                         >
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                                                 </svg>
                                         </button>

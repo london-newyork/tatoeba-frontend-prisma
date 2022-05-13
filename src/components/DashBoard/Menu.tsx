@@ -5,7 +5,7 @@ export const Menu = () => {
     const router = useRouter()
     const handleMoveToRemoveMember = () => {
         router.push({
-            pathname:'/',
+            pathname:'/DashBoard/RemoveMember',
         })
     }
     const [isHover , setIsHover] = useState(true)

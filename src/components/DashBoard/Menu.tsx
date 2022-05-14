@@ -32,13 +32,13 @@ export const Menu = () => {
                 absolute
                 z-30
                 left-0
-                h-24
+                h-32
                 w-48
                 bg-white
                 flex-col
                 gap-y-3
                 rounded-md
-                shadow-sm
+                shadow-md
                 pl-2
                 ${isHover ? "hidden" : "flex"}
                 `}
@@ -56,6 +56,10 @@ export const Menu = () => {
                     text-sm
                     mx-auto
                     cursor-pointer
+                    py-4
+                    text-center
+                    hover:bg-gray-100
+                    hover:w-full
                     '
                     onClick={handleMoveToRemoveMember}>
                         退会する

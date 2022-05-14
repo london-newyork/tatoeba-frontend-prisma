@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { PencilAltIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import Image from 'next/image'
 
 type Props = {
 
 }
 
 export const Header = (props:Props) => {
+  const [isHover, setIsHover]= useState(true)
+  const handleToolTip = useCallback(
+    () => {
+      setIsHover(!isHover)
+    },
+    [isHover],
+  )
   return (
     <header>
       <div className='
@@ -43,10 +49,10 @@ export const Header = (props:Props) => {
           </Link>
         </div>
         <div className="flex my-auto mr-3 md:mr-0">
-          <Link
-          href="/Login">
+          <div className='flex flex-col items-end'>
             <div
             className='
+            position
             my-auto
             mr-3
             bg-gray-100
@@ -58,12 +64,45 @@ export const Header = (props:Props) => {
             items-center
             text-xs
             text-gray-500
-            cursor-pointer'>
+            cursor-pointer
+            '
+            onClick={handleToolTip}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-          </Link>
+            <ul
+              className={`
+              absolute
+              rounded-md
+              bg-white
+              h-[120px]
+              w-[120px]
+              shadow-md
+              pt-6
+              flex
+              text-center
+              gap-y-2
+              -z-10
+              top-[48px]
+              lg:right-24
+              md:right-10
+              ${isHover ? "hidden" : "flex-col"}
+              `}
+            >
+              <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
+                <Link href="/Login">
+                  ログイン
+                </Link>
+              </li>
+              <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
+                <Link href="/">
+                  ログアウト
+                </Link>
+              </li>
+            </ul>
+          </div>
           <Link href="/Login/">
             <button className="
               hover:bg-mint_green

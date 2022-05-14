@@ -1,6 +1,6 @@
 import React from 'react'
 import type { User } from "../../../pages/DashBoard/index"
-import { Avatar } from './Avatar'
+import { Profileimgae } from './Profileimgae'
 
 export const Profile = (props:any) => {
     const { userInfo } = props
@@ -22,7 +22,7 @@ export const Profile = (props:any) => {
                     justify-between
                     '
                     >
-                        <Avatar />
+                        <Profileimgae />
                         <div
                         className='
                         flex

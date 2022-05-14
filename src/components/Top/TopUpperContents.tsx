@@ -60,8 +60,8 @@ export const TopUpperContents:VFC = () => {
                     md:mx-0
                     h-[48px]
                     px-6
-                    bg-faded_light_green
-                    text-[#05D200]
+                    bg-dark_green
+                    text-white
                     rounded-full
                     filter
                     drop-shadow-sm
@@ -70,16 +70,17 @@ export const TopUpperContents:VFC = () => {
                         <button
                             className={`
                             absolute
-                            left-2
-                            -top-4
+                            left-0
+                            -top-[16px]
                             h-[48px]
-                            w-[36px]
+                            w-[48px]
                             flex
                             justify-center
                             items-center
-                            rounded-full
+                            rounded-l-full
                             translate-y-4
-                            bg-faded_light_green
+                            bg-dark_green
+                            pointer-events-none
                             `}
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -89,13 +90,17 @@ export const TopUpperContents:VFC = () => {
                             onChange={handleChange}
                             className="
                             placeholder-darkGray_green
+                            h-[48px]
+                            items-center
                             text-sm
+                            ring-0
                             outline-none
-                            text-gray-700
-                            caret-dark_green
-                            pt-[14px]
+                            focus:ring-0
+                            border-dark_green
+                            text-white
+                            caret-white
                             pl-8
-                            bg-faded_light_green
+                            bg-dark_green
                             lg:max-w-[180px]
                             lg:w-[inherit]
                             "
@@ -104,21 +109,21 @@ export const TopUpperContents:VFC = () => {
                             className={`
                             absolute
                             right-3
-                            -top-4
-                            h-[48px]
-                            w-[48px]
+                            -top-[14px]
+                            h-[42px]
+                            w-[42px]
                             flex
                             justify-center
                             items-center
-                            rounded-full
+                            rounded-r-full
                             translate-y-4
-                            bg-faded_light_green
+                            bg-dark_green
                             transition
                             duration-200
                             ease-in
                             tracking-wide
                             text-sm
-                            text-[#05D200]
+                            text-white
                             `}
                         >
                             <span

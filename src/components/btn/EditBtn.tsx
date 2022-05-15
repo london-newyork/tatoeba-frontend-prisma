@@ -13,14 +13,6 @@ export const EditBtn:VFC<EditBtnProps> = (props) => {
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
     const { handleMoveToEdit } = useHandleMoveToEdit({words, tId})
 
-    const handleMoveToEditTest = () => {
-        words.map(item=>{
-            if(item.tId === props.tId){
-                //遷移する処理を書く。propsも受け渡せるようにする。
-            }
-        })
-    }
-
   return (
     <div>
          <li

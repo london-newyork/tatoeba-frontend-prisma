@@ -1,6 +1,6 @@
 import React from 'react'
 import type { User } from "../../../pages/DashBoard/index"
-import { Profileimgae } from './Profileimgae'
+import { ProfileImage } from './Profileimage'
 
 export const Profile = (props:any) => {
     const { userInfo } = props
@@ -22,7 +22,7 @@ export const Profile = (props:any) => {
                     justify-between
                     '
                     >
-                        <Profileimgae />
+                        <ProfileImage />
                         <div
                         className='
                         flex
@@ -52,20 +52,31 @@ export const Profile = (props:any) => {
                         </svg>
                     </button>
                 </div>
-                <ul className='text-gray-600 mt-6 flex flex-col gap-y-1 text-sm'>
+                <ul
+                className='
+                text-gray-600
+                mt-6
+                flex
+                flex-col
+                gap-y-2
+                text-sm'>
                         <li>
                             <ul className='flex items-center'>
-                                <li className='w-32 text-sm text-gray-400'>メールアドレス</li>
+                                <li className='w-[128px] text-sm text-gray-400'>メールアドレス</li>
                                 <li>
                                     <input
                                     value={userInfo[1].e_mail}
                                     className="
+                                    h-7
                                     flex
                                     flex-1
-                                    rounded-sm
+                                    rounded-full
                                     outline-none
-                                    focus:bg-gray-100
-                                    p-2"
+                                    min-w-[14rem]
+                                    w-[16rem]
+                                    focus:bg-gray-700
+                                    focus:text-white
+                                    p-3"
                                     />
                                 </li>
                             </ul>
@@ -77,15 +88,37 @@ export const Profile = (props:any) => {
                                 <input
                                     value={userInfo[1].password}
                                     className="
-                                    rounded-sm
+                                    h-7
+                                    rounded-full
                                     outline-none
-                                    focus:bg-gray-100
-                                    p-2"
+                                    min-w-[14rem]
+                                    w-[16rem]
+                                    focus:bg-gray-700
+                                    focus:text-white
+                                    p-3"
                                     />
                                 </li>
                             </ul>
                         </li>
                 </ul>
+                <div
+                className='
+                flex
+                flex-row
+                justify-end
+                pt-6
+                '
+                >
+                    <button
+                    className='
+                    h-8
+                    w-16
+                    rounded-full
+                    bg-dark_green
+                    text-xs
+                    '
+                    >保存</button>
+                </div>
     </div>
   )
 }

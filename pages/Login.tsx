@@ -133,7 +133,7 @@ const handleLogin = () => {
                     w-full
                     rounded-md
                     bg-dark_green
-                    text-white
+                    text-gray-800
                     text-lg
                     hover:bg-opacity-90
                     font-normal
@@ -149,7 +149,7 @@ const handleLogin = () => {
                   mx-auto
                   text-sm
                   text-gray-600
-                  '>サインアップ</p>
+                  '>新規会員登録</p>
                   </Link>
                 </div>
         </section>

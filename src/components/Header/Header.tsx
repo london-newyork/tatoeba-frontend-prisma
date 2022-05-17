@@ -75,15 +75,16 @@ export const Header = (props:Props) => {
             <ul
               className={`
               absolute
-              rounded-md
+              rounded-xl
               bg-white
               h-[120px]
               w-[120px]
-              shadow-md
-              pt-6
+              border-[1px]
+              border-gray-800
+              py-6
               flex
               text-center
-              gap-y-2
+              gap-y-1
               -z-10
               top-[48px]
               lg:right-24

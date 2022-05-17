@@ -5,7 +5,15 @@ import { Layouts } from '../types/types'
 export const TatoeListWrapper:VFC<Layouts> = (props) => {
     return (
     <div>
-         <div className='flex flex-row pt-6 gap-3 pb-6 border-b border-gray-200'>
+         <div
+         className='
+         flex
+         flex-row
+         pt-6
+         gap-3
+         pb-6
+         border-b-[1px]
+         border-gray-400'>
             <Link
                 href="/Register"
                 >

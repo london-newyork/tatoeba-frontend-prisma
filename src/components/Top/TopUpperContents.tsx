@@ -102,7 +102,7 @@ export const TopUpperContents:VFC = () => {
                             focus:ring-0
                             border-dark_green
                             text-white
-                            caret-white
+                            caret-gray-800
                             pl-8
                             bg-dark_green
                             lg:max-w-[180px]

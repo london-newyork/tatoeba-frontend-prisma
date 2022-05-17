@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-export const Profileimgae = () => {
+export const ProfileImage = () => {
   return (
     <div>
         <div

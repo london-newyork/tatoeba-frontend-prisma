@@ -18,7 +18,8 @@ export const CardChild:VFC = (props) => {
                     pb-2
                     h-[312px]
                     w-[280px]
-                    rounded-md
+                    rounded-2xl
+                    shadow-plane_2xl_card
                     border-[1px]
                     border-gray-800
                     bg-white

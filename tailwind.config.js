@@ -44,6 +44,10 @@ module.exports = {
       dropShadow: {
         'green_2xl': '0 35px 35px rgba(221, 242, 221, 1)',
       },
+      boxShadow: {
+        'plane_2xl': '4px 8px 0px 0px #3a3b3b',
+        'plane_2xl_card': '4px 4px 0px 0px #3a3b3b',
+      },
       width: {
         'inherit': 'inherit'
       },

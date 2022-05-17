@@ -37,7 +37,7 @@ export const Menu = () => {
                 bg-white
                 flex-col
                 gap-y-3
-                rounded-md
+                rounded-xl
                 shadow-md
                 pl-2
                 ${isHover ? "hidden" : "flex"}

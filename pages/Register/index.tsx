@@ -35,6 +35,8 @@ const router = useRouter()
               pb-10
               rounded-md
               bg-white
+              border-[1px]
+              border-gray-800
               mx-auto
               max-w-[1000px]
               ">

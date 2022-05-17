@@ -33,7 +33,7 @@ const router = useRouter()
               px-7
               pt-10
               pb-10
-              rounded-md
+              rounded-3xl
               bg-white
               border-[1px]
               border-gray-800

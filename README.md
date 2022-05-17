@@ -11,7 +11,7 @@ CRUD処理/検索/タグによるソート機能/eメールによるメール認
 
 ### 言語とツール等
 
-Next.js/React/TypeScript/Tailwind CSS/Mantine/REST API(Open API)/Stoplight Studio
+Next.js/React/TypeScript/Tailwind CSS/Mantine/REST API(Open API)/Stoplight Studio/PlanetScale
 
 ### ライブラリ等
 

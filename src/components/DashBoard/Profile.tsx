@@ -1,6 +1,6 @@
 import React from 'react'
 import type { User } from "../../../pages/DashBoard/index"
-import { ProfileImage } from './Profileimage'
+import { ProfileImage } from './ProfileImage'
 
 export const Profile = (props:any) => {
     const { userInfo } = props

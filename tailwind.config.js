@@ -46,6 +46,7 @@ module.exports = {
       },
       boxShadow: {
         'plane_2xl': '4px 8px 0px 0px #3a3b3b',
+        'plane_2xl_dark_green': '4px 8px 0px 0px #05D200',
         'plane_2xl_card': '4px 4px 0px 0px #3a3b3b',
       },
       width: {

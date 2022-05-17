@@ -25,18 +25,18 @@ export const Header = (props:Props) => {
         lg:px-24
         bg-white
         w-full
-        h-[60px]
+        h-[48px]
         flex
         justify-between
         justify-items-center
-        border-b
-        border-gray-200
+        border-b-2
+        border-gray-800
         fixed
         z-10'>
         <div className="my-auto">
           <Link href="/">
             <a className="
-            text-3xl
+            text-2xl
             text-gray-700
             tracking-wider
             hover:opacity-50
@@ -57,8 +57,8 @@ export const Header = (props:Props) => {
             mr-3
             bg-gray-100
             rounded-full
-            h-8
-            w-8
+            h-7
+            w-7
             flex
             justify-center
             items-center
@@ -108,8 +108,8 @@ export const Header = (props:Props) => {
               hover:bg-mint_green
               bg-light_green
               rounded-full
-              h-8
-              w-8">
+              h-7
+              w-7">
               <ul className="
               flex
               flex-col

@@ -18,6 +18,8 @@ export const TopUpperContents:VFC = () => {
     gap-9
     md:gap-none
     justify-around
+    border-b-2
+    border-gray-800
     w-full">
     <div id="wrapper-left" className='order-2 sm:order-2 lg:order-1'>
         <h2 className="
@@ -55,13 +57,15 @@ export const TopUpperContents:VFC = () => {
                 pb-20">
                 <div
                     className='
+                    border-2
+                    border-gray-800
                     w-[18rem]
                     mx-auto
                     md:mx-0
                     h-[48px]
                     px-6
                     bg-dark_green
-                    text-white
+                    text-gray-800
                     rounded-full
                     filter
                     drop-shadow-sm
@@ -72,7 +76,7 @@ export const TopUpperContents:VFC = () => {
                             absolute
                             left-0
                             -top-[16px]
-                            h-[48px]
+                            h-[44px]
                             w-[48px]
                             flex
                             justify-center
@@ -90,7 +94,7 @@ export const TopUpperContents:VFC = () => {
                             onChange={handleChange}
                             className="
                             placeholder-darkGray_green
-                            h-[48px]
+                            h-[44px]
                             items-center
                             text-sm
                             ring-0
@@ -123,13 +127,14 @@ export const TopUpperContents:VFC = () => {
                             ease-in
                             tracking-wide
                             text-sm
-                            text-white
+                            text-gray-800
                             `}
                         >
                             <span
                             className='
-                            h-8 w-[1px]
-                            bg-faded_mid_green
+                            h-8
+                            w-[1px]
+                            bg-gray-800
                             mr-3'>
                             </span>
                             検索

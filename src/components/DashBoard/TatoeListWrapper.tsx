@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import React, { VFC } from 'react'
-import type { User } from "../../../pages/DashBoard/index"
-import { TatoeList } from "../DashBoard/TatoeList"
 import { Layouts } from '../types/types'
 
 export const TatoeListWrapper:VFC<Layouts> = (props) => {

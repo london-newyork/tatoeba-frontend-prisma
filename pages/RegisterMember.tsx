@@ -8,7 +8,7 @@ import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 export default function Login() {
   const router = useRouter()
 
-const handleLogin = () => {
+const handleRegisterMember = () => {
   router.push({
     pathname:'/DashBoard/'
   }
@@ -18,13 +18,12 @@ const handleLogin = () => {
   return (
     <>
       <Head>
-        <title>Tatoeba 例え話 ログインページ</title>
+        <title>新規会員登録</title>
         <link rel='favicon.ico' />
       </Head>
       <Header />
       <LoginLayouts>
         <section className="
-            bg-gray-100
             h-screen
             px-2
             md:px-0
@@ -48,14 +47,13 @@ const handleLogin = () => {
                 items-center
                 ">
                   <h1 className="
-                  relative
                   text-3xl
-                  text-gray-700
+                  text-gray-500
                   select-none
                   font-normal
                   "
                   >
-                      ログイン
+                      新規会員登録
                   </h1>
                   <div className='pt-14 flex flex-col gap-6'>
                     <div className='flex flex-col'>
@@ -130,21 +128,10 @@ const handleLogin = () => {
                     text-gray-800
                     text-lg
                     hover:bg-opacity-90
-                    font-normal
                     '
-                    onClick={handleLogin}
-                    >ログイン</button>
+                    onClick={handleRegisterMember}
+                    >新規会員登録</button>
                   </div>
-                  <Link
-                  href="/RegisterMember"
-                  >
-                  <p
-                  className='
-                  mx-auto
-                  text-sm
-                  text-gray-600
-                  '>新規会員登録</p>
-                  </Link>
                 </div>
         </section>
       </LoginLayouts>

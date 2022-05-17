@@ -19,7 +19,8 @@ export const CardChild:VFC = (props) => {
                     h-[312px]
                     w-[280px]
                     rounded-md
-                    drop-shadow-2xl
+                    border-[1px]
+                    border-gray-800
                     bg-white
                     '
                     // onClick={() => handleMoveToResult(

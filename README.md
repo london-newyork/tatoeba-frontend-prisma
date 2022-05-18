@@ -1,5 +1,8 @@
 # アプリ概要
 
+※こちらはフロントのみのリポジトリです。
+バックエンドを含むリポジトリはこちら
+
 オリジナルアプリ「Tatoeba」。
 わかりにくい話をわかりやすく例える、「例え話を支援する」アプリです。
 
@@ -11,7 +14,7 @@ CRUD処理/検索/タグによるソート機能/eメールによるメール認
 
 ### 言語とツール等
 
-Next.js/React/TypeScript/Tailwind CSS/Mantine/REST API(Open API)/Stoplight Studio/PlanetScale
+Next.js/React/TypeScript/Tailwind CSS
 
 ### ライブラリ等
 

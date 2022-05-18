@@ -5,7 +5,6 @@ export const RegisterWordHeadline = () => {
     <div className='pb-12'>
         <h1
         className="
-        scss-underline
         text-2xl
         text-gray-700
         font-medium

@@ -1,7 +1,7 @@
 import React, { VFC } from 'react'
 import { Layouts } from '../../types/types'
 
-export const ProfileLayouts:VFC<Layouts> = (props) => {
+export const RemoveMemberLayouts:VFC<Layouts> = (props) => {
   return (
     <div
     className='
@@ -10,14 +10,14 @@ export const ProfileLayouts:VFC<Layouts> = (props) => {
     px-7
     pt-12
     pb-10
-    rounded-2xl
-    border-[1px]
-    border-gray-800
-    shadow-plane_2xl
+    rounded-md
     mx-auto
     h-auto
-    sm:w-full
-    lg:w-auto
+    w-auto
+    flex-col
+    text-center
+    justify-center
+    items-center
     '
     >
       {props.children}

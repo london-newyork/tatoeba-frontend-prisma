@@ -14,6 +14,8 @@ export const Footer = () => {
         w-full
         bg-white
         h-[200px]
+        border-t-2
+        border-gray-800
         '
         >
             <div

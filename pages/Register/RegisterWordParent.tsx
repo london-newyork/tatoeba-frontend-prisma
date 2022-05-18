@@ -10,7 +10,7 @@ export const RegisterWordParent = (props) => {
     const [ title, setTitle ] = useState('')
     const [ shortParaphrase, setShortParaphrase] = useState('')
     const [ description, setDescription ] = useState('')
-    const creationTime = dayjs().format('YYYY_MM_DD HH:mm A')
+    const creationTime = dayjs().format('YY/MM/DD HH:mm A')
 
     return (
         <div className='flex flex-col gap-6'>

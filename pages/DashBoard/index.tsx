@@ -11,6 +11,7 @@ import { WordsAtom } from '../../src/components/utils/atoms/WordsAtom'
 import { Words } from '../../src/components/types/types'
 import { ParsedUrlQuery } from 'querystring'
 import { TatoeList } from '../../src/components/DashBoard/TatoeList'
+import { Menu } from '../../src/components/DashBoard/Menu'
 
 export type User = {
     userId: string //一意のid primaryKey tatoe listとひもづく
@@ -49,14 +50,6 @@ const DashBoard = () => {
 const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
 const router = useRouter()
 
-//下記をコメントアウトで再レンダリングが起きなくなった。
-// useEffect(() => {
-// //router.queryをEditWordParentで状態管理させ、それをpropsでTopへ回すようリファクタする
-//     router.isReady
-//     ? setWords((prev)=> [router.query, ...prev])
-//     : null
-// }, [router.query])
-
 //router queryで値は渡ってこないようにしてるので使わない可能性がある
 // const tId = router.query.tId
 // const creationTime = router.query.creationTime
@@ -88,6 +81,7 @@ const testUserProfile: testUserProfile[] = [
     <div>
         <Header />
         <DashBoardLayouts>
+        <Menu />
             <ProfileLayouts>
                 <Profile userInfo={userInfo} />
             </ProfileLayouts>

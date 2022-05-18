@@ -37,13 +37,10 @@ export const RegisterWordShortParaphrase = ({ shortParaphrase, setShortParaphras
         className='
         lg:max-w-[650px]
         max-w-full
-        shadow-sm
         outline-none
         focus:ring-2
-        focus:ring-offset-3
-        focus:ring-green-100
-        focus:ring-offset-green-50
-        focus:border-green-100
+        focus:ring-green-400
+        focus:border-green-400
         focus:placeholder-gray-300
         p-3
         block

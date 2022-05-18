@@ -93,9 +93,9 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
       className="
       p-3
       w-[200px]
-      rounded-md
+      rounded-full
       bg-dark_green
-      text-white
+      text-gray-800
       text-lg
       hover:bg-opacity-90
     ">

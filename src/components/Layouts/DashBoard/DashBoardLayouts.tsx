@@ -5,15 +5,13 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
   return (
     <main
     className="
-    md:pt-[100px]
-    sm:pt-[80px]
+    pt-[120px]
     bg-gray-100
     h-screen
     px-7
     md:px-18
     sm:mx-18
     mx-auto
-    pt-12
     ">
       <div
       className='
@@ -21,10 +19,11 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
       max-w-[1200px]
       flex
       lg:flex-row
-      sm:flex-col
-      sm:gap-y-8
+      flex-col
+      gap-y-8
       sm:gap-x-8
       lg:gap-x-8
+      position
       '
       >
         {props.children}

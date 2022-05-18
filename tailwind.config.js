@@ -48,6 +48,9 @@ module.exports = {
         'plane_2xl': '4px 8px 0px 0px #3a3b3b',
         'plane_2xl_dark_green': '4px 8px 0px 0px #05D200',
         'plane_2xl_card': '4px 4px 0px 0px #3a3b3b',
+        'plane_2xl_card_prime': '4px 4px 0px 0px blue',
+        'plane_2xl_card_second': '4px 4px 0px 0px red',
+        'plane_2xl_card_third': '4px 4px 0px 0px green',
       },
       width: {
         'inherit': 'inherit'

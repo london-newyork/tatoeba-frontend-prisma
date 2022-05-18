@@ -13,11 +13,9 @@ export type Words = {
 }
 
 export type Title = {
-    // tId: Words["tId"] | string[]
     tId: Words["tId"] | string[]
-    // title: string | string[] | ParsedUrlQuery[]| number | undefined
-    title: string | string[] | ParsedUrlQuery[]| number | undefined
-    setTitle:Dispatch<SetStateAction<string | string[] | ParsedUrlQuery[]>>
+    title: string
+    setTitle:Dispatch<SetStateAction<string>>
 }
 
 export type Edit= {
@@ -27,8 +25,8 @@ export type Edit= {
       shortParaphrase: string,
       description: string) =>void
       creationTime: string,
-      words: Words[] | ParsedUrlQuery[]
-      setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>
+      words: Words[]
+      setWords: SetterOrUpdater<Words[]>
       router: NextRouter
   }
 

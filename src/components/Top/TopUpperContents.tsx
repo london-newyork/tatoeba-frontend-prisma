@@ -27,7 +27,7 @@ export const TopUpperContents:VFC = () => {
             sm:text-3xl
             md:text-4xl
             lg:text-5xl
-            text-gray-700
+            text-gray-600
             leading-normal
             sm:leading-normal
             md:leading-relaxed
@@ -35,7 +35,8 @@ export const TopUpperContents:VFC = () => {
             text-center
             md:text-left
             tracking-normal
-            font-top_headline">
+            font-kakuGothic
+            font-semibold">
             わかりにくい話に、<br />
             わかりやすい例えで<br />
             楽コミュニケーション

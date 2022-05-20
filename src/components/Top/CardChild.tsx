@@ -1,11 +1,14 @@
+import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import React, { VFC } from 'react'
 import { useRecoilState } from 'recoil'
+import { useHandleMoveToResult } from '../hooks/handleMoveToResult'
 import { CardProps, Words } from '../types/types'
 import { WordsAtom } from '../utils/atoms/WordsAtom'
 
 export const CardChild:VFC = (props) => {
-    const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
+    const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
+    const router = useRouter()
 
     const RandomColors =[
         "hover:shadow-plane_2xl_card_prime",
@@ -16,6 +19,8 @@ export const CardChild:VFC = (props) => {
 
     const colors = RandomColors[Math.floor(Math.random()*RandomColors.length)]
     const shadowColor = colors.toString()
+
+    const { handleMoveToResult } = useHandleMoveToResult()
 
   return (
     <>
@@ -36,19 +41,18 @@ export const CardChild:VFC = (props) => {
                     border-gray-800
                     bg-white
                     `}
-                    // onClick={() => handleMoveToResult(
-                    //                 item.tId,
-                    //                 item.title,
-                    //                 item.shortParaphrase,
-                    //                 item.description,
-                    // )}
+                    onClick={() => handleMoveToResult({
+                        tId: item.tId,
+                        title: item.title,
+                        shortParaphrase: item.shortParaphrase,
+                        description: item.description,}
+                    )}
                     >
                         <ul
                         className='
                         h-[72px]
                         pl-1
                         '>
-                            {/* <li className='text-gray-300 text-xs'>{item.tId}</li> */}
                             <li>
                                 <h3 className='
                                 text-left

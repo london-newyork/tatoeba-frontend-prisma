@@ -7,7 +7,7 @@
 
 バックエンドを含むリポジトリはこちら
 
-https://github.com/london-newyork/openAPI-Tatoeba
+[https://github.com/london-newyork/openAPI-Tatoeba](https://github.com/london-newyork/tatoeba-api)
 
 
 ### このアプリでの機能および主なやったこと

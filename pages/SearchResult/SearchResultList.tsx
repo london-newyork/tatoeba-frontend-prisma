@@ -23,8 +23,8 @@ const SearchResultList = () => {
           <div className='h-screen flex flex-col gap-y-2'>
           <small className="text-gray-500">検索結果一覧</small>
         {
-            filteredWords ?
-            (
+            filteredWords
+            ? (
             [filteredWords].map((item)=> {
                 <div>aaaa</div>
             }))

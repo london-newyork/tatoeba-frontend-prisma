@@ -5,33 +5,42 @@ import { SearchBoxLayouts } from '../Layouts/SearchBoxLayouts';
 import { WordsAtom } from '../utils/atoms/WordsAtom';
 
 export const SearchBox = () => {
-    const [ searchTerm, setSearchTerm ] = useState('')
+    const [ keyWord, setKeyWord ] = useState('')
     const [words, setWords] = useRecoilState(WordsAtom)
     const router = useRouter()
     const handleChange = useCallback((e) => {
-        setSearchTerm(e.target.value)
-    }, [searchTerm]);
+        setKeyWord(e.target.value)
+    }, [keyWord]);
+
+    //小文字化と空白文字以外の任意の一文字以上連続ヒット
+    const searchTerm = keyWord.trim().toLowerCase().match(/[^\s]+/g)
+    const prepareWords = JSON.stringify(words)
+    console.log("prepareWords",prepareWords);
 
     const handleClickSearch = useCallback(()=>{
-        if(searchTerm){
-            const filteredWords = [words].filter((text)=>{
-                return text === searchTerm
+        if(keyWord){
+            const filteredWords = [prepareWords].filter(item => {
+                //検索条件に部分一致するものを返す
+                searchTerm.every(text => item.toLowerCase().indexOf(text) !== -1)
             })
+            //配列の文字列化
+            const stringifiedWords = filteredWords.toString()
+
             router.push({
                 pathname:'/SearchResult/SearchResultList/',
                 query: {
-                    filteredWords
+                    stringifiedWords
                 }
             })
-            console.log("search button is clicked");
+            console.log("stringifiedWords",stringifiedWords);
         }
-    },[searchTerm])
+    },[keyWord])
 
   return (
     <div>
         <SearchBoxLayouts>
             <input
-                value={searchTerm}
+                value={keyWord}
                 onChange={handleChange}
                 className="
                 placeholder-darkGray_green

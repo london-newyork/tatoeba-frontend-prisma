@@ -1,32 +1,33 @@
-// import { NextRouter } from 'next/router'
-// import { ParsedUrlQuery } from 'querystring'
-// import { Words } from '../types/types'
+import { NextRouter, useRouter } from 'next/router'
+import { ParsedUrlQuery } from 'querystring'
+import { useRecoilState } from 'recoil'
+import { Words } from '../types/types'
+import { WordsAtom } from '../utils/atoms/WordsAtom'
 
-// export const useHandleMoveToResult= (props:{words:Words[] | ParsedUrlQuery[],router: NextRouter}) => {
-//     const { words, router } = props
+export const useHandleMoveToResult= () => {
 
-//     const tId = router.query.tId
-//     const title = router.query.title
-//     const shortParaphrase = router.query.shortParaphrase
-//     const description = router.query.description
+    const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
+    const router = useRouter()
 
-//     const handleMoveToResult = () => {
-//             words.forEach((item:Words) => {
-//                 if(item.tId === tId) {
+    const handleMoveToResult = (props:Words) => {
+        const { tId, title, shortParaphrase, description  } = props
 
-//                 router.push({
-//                     pathname:'/SearchResult/[tId]',
-//                     query: {
-//                         tId,
-//                         title,
-//                         shortParaphrase,
-//                         description,
-//                     }
-//                 })
-//             } return item
-//         }
-//         )
+            words.forEach((item:Words) => {
+                if(item.tId === tId) {
 
-//     }
-//     return { handleMoveToResult }
-// }
+                router.push({
+                    pathname:'/SearchResult/[tId]/',
+                    query: {
+                        tId,
+                        title,
+                        shortParaphrase,
+                        description,
+                    }
+                })
+            } return item
+        }
+        )
+
+    }
+    return { handleMoveToResult }
+}

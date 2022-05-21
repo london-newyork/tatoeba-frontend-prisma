@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 const SearchResultList = () => {
 
     const router = useRouter()
-    const filteredWords = router.query.filteredWords
+    const filteredWords = router.query.filteredWordsItems
     console.log("filteredWords",filteredWords);
     
   return (

@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head'
 import "tailwindcss/tailwind.css";
 import { Header } from '../../src/components/Header/Header';
 import Link from 'next/link';
 import { SearchMainLayouts } from '../../src/components/Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import {WordsAtom} from '../../src/components/utils/atoms/WordsAtom'
+import { Words } from '../../src/components/types/types';
 
 const SearchResultList = () => {
-
+    const [ words, setWords] = useRecoilState(WordsAtom)
     const router = useRouter()
-    console.log("router.query",router.query);
-    
-    const filteredWords = router.query.result
-    console.log("filteredWords",filteredWords);
-    
+
+    const queryKeyWord = router.query.keyWord.toString()
+
+    const [ keyWord, setKeyWord ] = useState(queryKeyWord)
+    const [ result, setResult ]= useState([])
+
+    console.log("keyWord",keyWord);
+
+    useEffect(() => {
+        console.log("keyWord 2",keyWord);
+        
+        if(keyWord) {
+            const filteredWords = words.filter((item:Words) => {
+
+                return (
+                    item.title.toLowerCase().indexOf(keyWord) !== -1 ||
+                    item.description.toLowerCase().indexOf(keyWord) !== -1 ||
+                    item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
+                );
+            });
+
+            console.log("filteredWords",filteredWords);//[{...},{...}]
+
+            setResult([...result].concat(filteredWords))
+            //resultが初期値のみになってしまう。
+        }
+        console.log("result",result);//[]
+    },[keyWord])
+
   return (
       <>
       <Head>
@@ -24,17 +51,15 @@ const SearchResultList = () => {
       <SearchMainLayouts>
           <div className='h-screen flex flex-col gap-y-2'>
           <small className="text-gray-500">検索結果一覧</small>
+          {console.log("result 2",result)}
+        <div className='pt-12 flex flex-col gap-6'>
         {
-            filteredWords
-            ? (
-            [filteredWords].map((item)=> {
-                <div>aaaa</div>
-            }))
-            : "検索結果は0件です"
-        }
-            <ul className="pt-12">
-                <li>
-                    <Link href="/SearchResult/[tId]">
+            keyWord
+            ? result.map((item)=> {
+               return (
+               <ul className='text-gray-800' key={item.tId}>
+                    <li>
+                        <Link href="/SearchResult/[tId]">
                         {/*  as={`/SearchResult/${router.query.id}`} */}
                         <a
                         className="
@@ -70,13 +95,17 @@ const SearchResultList = () => {
                             <span
                             className='group-hover:text-q_dark_green'
                             >
-                            {`test`}
+                            <li>{item.title}を例えると{item.shortParaphrase}</li>
                             </span>
                         </a>
                     </Link>
-                </li>
-            </ul>
-            </div>
+                    </li>
+                </ul>)
+            })
+            : "検索結果は0件です"
+        }
+        </div>
+        </div>
         </SearchMainLayouts>
       </>
   )

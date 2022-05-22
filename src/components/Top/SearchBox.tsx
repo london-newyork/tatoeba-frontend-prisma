@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react'
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { SearchBoxLayouts } from '../Layouts/SearchBoxLayouts';
 import { WordsAtom } from '../utils/atoms/WordsAtom';
 import type { Words } from '../types/types';
@@ -8,69 +8,47 @@ import type { Words } from '../types/types';
 export const SearchBox = () => {
     const [ words, setWords] = useRecoilState(WordsAtom)
     const [ keyWord, setKeyWord ] = useState('')
-    const [ filteredWordsItems, SetFilteredWordsItems ]= useState([])
+    const [ result, setResult ]= useState([])
     const router = useRouter()
     const handleChange = useCallback((e) => {
         setKeyWord(e.target.value)
     }, [keyWord]);
 
-    // //検索条件　小文字化と空白文字以外の任意の一文字以上連続ヒット
-    // const searchTerm = keyWord.trim().toLowerCase().match(/[^\s]+/g)
-    // //wordsをJSON化して文字列化
-    // const prepareWords = JSON.stringify(words)
-    // console.log("prepareWords",prepareWords);//wordsのJSON文字列
+    const handleClickSearch = () => {
 
-    const handleClickSearch = useCallback(() => {
-        console.log("keyWord",keyWord);
-
+        //KeyWordが入力されたら
         if(keyWord) {
-            const newItems = words.filter((item:Words) => {
-                console.log("useEffectItem",item);
+            const filteredWords = words.filter((item:Words) => {
                     return (
                       item.title.toLowerCase().indexOf(keyWord) !== -1 ||
                       item.description.toLowerCase().indexOf(keyWord) !== -1 ||
                       item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
                     );
             });
-            console.log("newItems",newItems)// [{...},{...},{...}]
-            //newItemsをさらに配列に入れる
-            SetFilteredWordsItems(newItems)
-            // useStateのところの初期値 ([])のとき []
-            // useStateのところの初期値 ()のとき undefined
-            console.log("filteredWordsItems",filteredWordsItems)// []
 
-            router.push({
-                pathname:"/SearchResult/SearchResultList/",
-                query:{
-                    filteredWordsItems
-                }
-            })
-        } else {
-            return
+             setResult([...result].concat(filteredWords))
         }
 
-      }, [keyWord]);
+        //mapで回して1つずつ
+        // result.map(item =>
+        //   {
+        //     return [item.title, item.description, item.shortParaphrase]
+        // })
 
+        //このonClickで発動する関数内だと空配列
+        console.log(result);
 
+        router.push({
 
-    // const handleClickSearch = useCallback(()=>{
-    //     if(keyWord){
-    //         // const filteredWords = [prepareWords].filter(item => {
-    //         //     //検索条件に部分一致するものを返す（小文字化、正規表現で空白を切り取って返す）
-    //         //     searchTerm.every(text => item.toLowerCase().indexOf(text) !== -1)
-    //         // })
-    //         // //配列の文字列化
-    //         // const stringWords = filteredWords.toString()
+          // pathname:"/SearchResult/SearchResultList/",
+          query: {
+           
+          }
+        })
 
-    //         // router.push({
-    //         //     pathname:'/SearchResult/SearchResultList/',
-    //         //     query: {
-    //         //         stringWords
-    //         //     }
-    //         // })
-    //         // console.log("stringWords",stringWords);
-    //     }
-    // },[keyWord])
+      }
+      //関数の外なら空ではない
+      console.log("result 2",result)
 
   return (
     <div>
@@ -96,7 +74,7 @@ export const SearchBox = () => {
                 "
                 placeholder='サーバーを例えると...' />
                 <button
-                    className={`
+                    className="
                     absolute
                     right-3
                     -top-[14px]
@@ -114,7 +92,7 @@ export const SearchBox = () => {
                     tracking-wide
                     text-sm
                     text-gray-800
-                    `}
+                    "
                     onClick={handleClickSearch}
                 >
                     <span

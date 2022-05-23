@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import {WordsAtom} from '../../src/components/utils/atoms/WordsAtom'
 import { Words } from '../../src/components/types/types';
-import { SearchResultAtom } from '../../src/components/utils/atoms/SearchResultAtom'
 
 const SearchResultList = () => {
     const [ words, setWords] = useRecoilState<Words[]>(WordsAtom)

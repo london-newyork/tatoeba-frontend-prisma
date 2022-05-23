@@ -9,7 +9,7 @@ export const SearchBox = () => {
         setKeyWord(e.target.value)
     }, [keyWord]);
 
-    const handleClickSearch = () => {
+    const handleClickSearch = useCallback(() => {
 
         router.push({
 
@@ -18,7 +18,7 @@ export const SearchBox = () => {
            keyWord
           }
         })
-      }
+      },[keyWord])
 
   return (
     <div>

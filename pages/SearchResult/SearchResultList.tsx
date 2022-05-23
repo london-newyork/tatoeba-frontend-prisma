@@ -8,21 +8,24 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import {WordsAtom} from '../../src/components/utils/atoms/WordsAtom'
 import { Words } from '../../src/components/types/types';
+import { SearchResultAtom } from '../../src/components/utils/atoms/SearchResultAtom'
 
 const SearchResultList = () => {
-    const [ words, setWords] = useRecoilState(WordsAtom)
+    const [ words, setWords] = useRecoilState<Words[]>(WordsAtom)
+    const [ result, setResult ]= useState([])
+    // const [ result, setResult ] = useRecoilState(SearchResultAtom)
     const router = useRouter()
 
-    const queryKeyWord = router.query.keyWord.toString()
+    //router query を１回だけ取得したい。toStringがquery = undefinedの時に機能しない
+    console.log(router.query.keyWord);
+    //1回目入力した値　2回目reload undefined
+    //1回目の状態を保持したい
+
+    const queryKeyWord:string = router.query.keyWord.toString()
 
     const [ keyWord, setKeyWord ] = useState(queryKeyWord)
-    const [ result, setResult ]= useState([])
-
-    console.log("keyWord",keyWord);
 
     useEffect(() => {
-        console.log("keyWord 2",keyWord);
-        
         if(keyWord) {
             const filteredWords = words.filter((item:Words) => {
 
@@ -32,14 +35,9 @@ const SearchResultList = () => {
                     item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
                 );
             });
-
-            console.log("filteredWords",filteredWords);//[{...},{...}]
-
             setResult([...result].concat(filteredWords))
-            //resultが初期値のみになってしまう。
         }
-        console.log("result",result);//[]
-    },[keyWord])
+    },[router.query.keyWord])
 
   return (
       <>
@@ -54,13 +52,12 @@ const SearchResultList = () => {
           {console.log("result 2",result)}
         <div className='pt-12 flex flex-col gap-6'>
         {
-            keyWord
+            router.query
             ? result.map((item)=> {
                return (
                <ul className='text-gray-800' key={item.tId}>
                     <li>
-                        <Link href="/SearchResult/[tId]">
-                        {/*  as={`/SearchResult/${router.query.id}`} */}
+                        <Link href={`/SearchResult/${item.tId}?title=${item.title}&shortParaphrase=${item.shortParaphrase}&description=${item.description}`}>
                         <a
                         className="
                         flex

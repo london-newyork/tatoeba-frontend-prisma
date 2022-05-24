@@ -2,29 +2,24 @@ import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { Words } from '../types/types'
 
-export const useHandleMoveToEdit = (props:{words:Words[] | ParsedUrlQuery[], tId:string}) => {
+export const useHandleMoveToEdit = (props:{tId:string, title:string, shortParaphrase: string, description: string}) => {
     const router = useRouter()
-    const { words } = props
     const handleMoveToEdit = () => {
-        const title = router.query.title
-        const shortParaphrase = router.query.shortParaphrase
-        const description = router.query.description
 
-        words.forEach((item:Words) => {
-            if(item.tId === props.tId) {
+        const tId = props.tId
+        const title = props.title
+        const shortParaphrase = props.shortParaphrase
+        const description = props.description
 
                 router.push({
                     pathname:'/Register/',
                     query: {
-                        tId: props.tId,
+                        tId,
                         title,
                         shortParaphrase,
                         description,
                     }
                 })
-            } return item
-        }
-        )
     }
 return { handleMoveToEdit }
 }

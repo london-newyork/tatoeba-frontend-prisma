@@ -1,4 +1,4 @@
-import React, { VFC, useState, useCallback } from 'react';
+import React, { VFC } from 'react';
 import Image from 'next/image';
 import { SearchBox } from './SearchBox';
 export const TopUpperContents:VFC = () => {

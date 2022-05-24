@@ -14,6 +14,8 @@ export const TatoeList = (props:any) => {
     const [follower, setFollower] = useRecoilState(FollowerAtom)
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
 
+    console.log("TatoeList words",words);
+    
     const handleConfirmFollower = () => {
         //WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
         // setFollower((prev:any)=>{
@@ -25,6 +27,7 @@ export const TatoeList = (props:any) => {
     <div>
        {words.length ?
        words.map(item => {
+
            return (
                     <ul
                     className='
@@ -76,7 +79,11 @@ export const TatoeList = (props:any) => {
                             opacity-0
                             group-hover:opacity-100
                             `}>
-                                <EditBtn tId={item.tId} />
+                                <EditBtn
+                                tId={item.tId}
+                                title={item.title}
+                                shortParaphrase={item.shortParaphrase}
+                                description={item.description}/>
                                 <DeleteWordsBtn tId={item.tId} />
                                 <li className='flex items-center'>
                                     <Link

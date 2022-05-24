@@ -6,22 +6,24 @@ import { WordsAtom } from '../utils/atoms/WordsAtom'
 
 export type EditBtnProps = {
     readonly tId: string
+    title: string
+    shortParaphrase: string
+    description: string
 }
 
 export const EditBtn:VFC<EditBtnProps> = (props) => {
-    const tId = props.tId
-    const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
-    const { handleMoveToEdit } = useHandleMoveToEdit({words, tId})
+    const { tId, title, shortParaphrase, description }= props
+    const { handleMoveToEdit } = useHandleMoveToEdit({ tId, title, shortParaphrase, description})
 
   return (
     <div>
          <li
-        className='
-        flex items-center
-        '
-        >
+            className='
+            flex
+            items-center
+            '
+            >
             <button
-                // onClick={handleMoveToEditTest}
                 onClick={handleMoveToEdit}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className='h-4 w-4 text-gray-400' fill="none" viewBox="0 0 24 24" stroke="currentColor">

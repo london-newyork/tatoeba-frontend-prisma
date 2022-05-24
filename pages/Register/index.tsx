@@ -6,7 +6,7 @@ import { RegisterWordHeadline } from './RegisterWordHeadline';
 import { RegisterWordParent } from './RegisterWordParent'
 import { useRouter } from 'next/router';
 
-export default function Register(props) {
+export default function Register() {
 const router = useRouter()
 
   return (

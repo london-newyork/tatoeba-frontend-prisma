@@ -16,6 +16,7 @@ export const ProfileLayouts:VFC<Layouts> = (props) => {
     shadow-plane_2xl
     mx-auto
     h-auto
+    w-full
     sm:w-full
     lg:w-auto
     '

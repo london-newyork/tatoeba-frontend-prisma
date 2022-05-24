@@ -48,6 +48,7 @@ export const RegisterWordCreateBtn = (props) => {
     }
 
     if(query_tId){
+
       const newWords = words.map(item=> {
         if(item.tId === query_tId){
           return {
@@ -67,13 +68,6 @@ export const RegisterWordCreateBtn = (props) => {
         if(item.tId === query_tId){
           router.push({
             pathname:'/DashBoard',
-            query: {
-              tId: item.tId,
-              title: item.title,
-              shortParaphrase: item.shortParaphrase,
-              description: item.description,
-              creationTime: item.creationTime,
-            }
           })
         }
       })

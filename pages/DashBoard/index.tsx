@@ -77,6 +77,8 @@ const testUserProfile: testUserProfile[] = [
     },
 ]
 
+console.log("DashBoard page router.query",router.query);
+
   return (
     <div>
         <Header />

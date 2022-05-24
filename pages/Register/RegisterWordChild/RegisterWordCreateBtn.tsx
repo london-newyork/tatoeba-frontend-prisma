@@ -4,13 +4,12 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom'
 
-export const RegisterWordCreateBtn = ({title, shortParaphrase, description, creationTime}) => {
+export const RegisterWordCreateBtn = (props) => {
+  const { query_tId, title, shortParaphrase, description, creationTime} = props
 
   const [words, setWords] = useRecoilState(WordsAtom)
   // const [show, setShow] = useState(false)
   const router = useRouter()
-
-  const query_tId = router.query.tId
 
   // const openModal = useCallback(() => {
   //   setShow(true)
@@ -45,13 +44,6 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
 
       router.push({
         pathname:'/DashBoard',
-        query: {
-          tId,
-          title,
-          shortParaphrase,
-          description,
-          creationTime
-        }
       })
     }
 
@@ -63,7 +55,7 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
               title,
               shortParaphrase,
               description,
-              creationTime
+              creationTime,
             }
         } else {
           return item
@@ -71,18 +63,22 @@ export const RegisterWordCreateBtn = ({title, shortParaphrase, description, crea
       })
       setWords(newWords)
 
-      router.push({
-        pathname:'/DashBoard',
-        query: {
-          tId: query_tId,
-          title,
-          shortParaphrase,
-          description,
-          creationTime
+      words.map(item=> {
+        if(item.tId === query_tId){
+          router.push({
+            pathname:'/DashBoard',
+            query: {
+              tId: item.tId,
+              title: item.title,
+              shortParaphrase: item.shortParaphrase,
+              description: item.description,
+              creationTime: item.creationTime,
+            }
+          })
         }
       })
     }
-}
+  }
 
   return (
     <div className="flex justify-end">

@@ -4,7 +4,7 @@ import { RegisterWordTitle } from './RegisterWordChild/RegisterWordTitle'
 import { RegisterWordShortParaphrase } from './RegisterWordChild/RegisterWordShortParaphrase'
 import { RegisterWordDescription } from './RegisterWordChild/RegisterWordDescription'
 import * as dayjs from 'dayjs';
-// import { RegisterWordCancelBtn } from './RegisterWordChild/RegisterWordCancelBtn'
+import { RegisterWordCancelBtn } from './RegisterWordChild/RegisterWordCancelBtn'
 
 export const RegisterWordParent = (props) => {
     //router pushでTatoeListでクリックされたリストのprops tIdなどがqueryとなり入ってくる
@@ -32,12 +32,13 @@ export const RegisterWordParent = (props) => {
                 description={description}
                 setDescription={setDescription}
             />
-            {/* <RegisterWordCancelBtn
+            <RegisterWordCancelBtn
+                query_tId={query.tId}
                 creationTime={creationTime}
                 title={title}
                 shortParaphrase={shortParaphrase}
                 description={description}
-            /> */}
+            />
             <RegisterWordCreateBtn
                 query_tId={query.tId}
                 creationTime={creationTime}

@@ -5,21 +5,31 @@ import { ProfileImage } from './ProfileImage'
 export const Profile = (props:any) => {
     const { userInfo } = props
   return (
-    <div>
+    <div
+    className='group'
+    >
          <div
             className='
             flex
             flex-row
             items-center
             md:min-w-[400px]
-            justify-between
+            sm:justify-between
+            justify-center
             '
             >
                     <div
                     className='
                     flex
                     items-center
-                    justify-between
+                    flex-col
+                    sm:flex-row
+                    sm:justify-between
+                    justify-center
+                    gap-y-2
+                    sm:gap-y-0
+                    position
+                    relative
                     '
                     >
                         <ProfileImage />
@@ -30,7 +40,7 @@ export const Profile = (props:any) => {
                         pb-2
                         border-b
                         border-gray-200
-                        ml-8
+                        sm:ml-8
                         '
                         >
                             <h1
@@ -42,15 +52,20 @@ export const Profile = (props:any) => {
                             </h1>
                         </div>
                     </div>
-                    <button
+                    {/* <button
                     className='
-                    text-gray-400
+                    text-gray-300
+                    text-opacity-0
+                    group-hover:text-opacity-100
                     '
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" className='h-5 w-5 text-gray-300' fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    > */}
+                        {/* <svg xmlns="http://www.w3.org/2000/svg" className='
+                        h-5
+                        w-5
+                        ' fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
-                    </button>
+                        </svg> */}
+                    {/* </button> */}
                 </div>
                 <ul
                 className='
@@ -61,8 +76,23 @@ export const Profile = (props:any) => {
                 gap-y-2
                 text-sm'>
                         <li>
-                            <ul className='flex items-center'>
-                                <li className='w-[128px] text-sm text-gray-400'>メールアドレス</li>
+                            <ul
+                            className='
+                            flex
+                            items-start
+                            sm:items-center
+                            flex-col
+                            sm:flex-row
+                            justify-start
+                            '>
+                                <li className='
+                                pl-3
+                                sm:pl-0
+                                sm:w-[128px]
+                                text-sm
+                                text-gray-400'>
+                                    メールアドレス
+                                </li>
                                 <li>
                                     <input
                                     value={userInfo[1].e_mail}
@@ -72,30 +102,51 @@ export const Profile = (props:any) => {
                                     flex-1
                                     rounded-full
                                     outline-none
-                                    min-w-[14rem]
-                                    w-[16rem]
+                                    sm:min-w-[14rem]
+                                    sm:w-[16rem]
                                     focus:bg-gray-700
                                     focus:text-white
-                                    p-3"
+                                    p-3
+                                    "
                                     />
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <ul className='flex items-center text-gray-600'>
-                                <li className='w-32 text-sm text-gray-400'>パスワード</li>
+                            <ul
+                            className='
+                            flex
+                            items-start
+                            sm:items-center
+                            flex-col
+                            sm:flex-row
+                            justify-start'>
+                                <li
+                                className='
+                                pl-3
+                                sm:pl-0
+                                sm:w-[128px]
+                                text-sm
+                                text-gray-400
+                                '
+                                >
+                                 パスワード
+                                </li>
                                 <li>
                                 <input
                                     value={userInfo[1].password}
                                     className="
                                     h-7
+                                    flex
+                                    flex-1
                                     rounded-full
                                     outline-none
-                                    min-w-[14rem]
-                                    w-[16rem]
+                                    sm:min-w-[14rem]
+                                    sm:w-[16rem]
                                     focus:bg-gray-700
                                     focus:text-white
-                                    p-3"
+                                    p-3
+                                    "
                                     />
                                 </li>
                             </ul>
@@ -106,6 +157,7 @@ export const Profile = (props:any) => {
                 flex
                 flex-row
                 justify-end
+                gap-x-3
                 pt-6
                 '
                 >
@@ -115,6 +167,18 @@ export const Profile = (props:any) => {
                     w-16
                     rounded-full
                     bg-dark_green
+                    text-xs
+                    '
+                    >
+                    編集
+                    </button>
+                    <button
+                    className='
+                    h-8
+                    w-16
+                    rounded-full
+                    border-dark_green
+                    border-2
                     text-xs
                     '
                     >保存</button>

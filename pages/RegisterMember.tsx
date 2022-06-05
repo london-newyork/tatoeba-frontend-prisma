@@ -1,12 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { Dispatch, useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
 export default function Login() {
   const router = useRouter()
+
+
+  const [data, setData] = useState<string>()
 
 const handleRegisterMember = () => {
   router.push({
@@ -14,6 +17,11 @@ const handleRegisterMember = () => {
   }
   )
 }
+
+const registrationToken = ''
+const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
+      .then(response => response.json())
+      .then(json =>  setData(registrationToken));
 
   return (
     <>
@@ -69,6 +77,7 @@ const handleRegisterMember = () => {
                         メールアドレス
                       </p>
                       <input
+                      value={data}
                       className='
                       outline-none
                       focus:ring-2

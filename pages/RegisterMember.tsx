@@ -1,3 +1,7 @@
+import bodyParser from "body-parser";
+import { promisify } from "util";
+
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,9 +10,11 @@ import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
 export default function Login() {
+  
   const router = useRouter()
 
-  const [post, setPost] = useState<string>()
+  const [postData, setPostData] = useState<string>()
+  const getBody = promisify(bodyParser.urlencoded());
 
 const handleRegisterMember = () => {
   router.push({
@@ -17,15 +23,24 @@ const handleRegisterMember = () => {
   )
 }
 
-const req = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
-      .then(response => response.json())
-      .then(email =>  setPost(email));
+const handleChangePost = (e) => {
+  setPostData(e.target.value)
+}
 
-const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
-      .then(response => response.json())
+const getServerSideProps: GetServerSideProps = async({ req, res }) => {
+  const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
 
-      console.log("送ります",res);
-      console.log("受け取りました",req);
+  if (req.method === "POST") {
+    await getBody(req, res);
+  }
+
+  return {
+    props: {
+      email: req.body?.email || postData,
+      message: req.body ? "received!" : "",
+    }
+  };
+}
 
   return (
     <>
@@ -81,7 +96,7 @@ const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
                         メールアドレス
                       </p>
                       <input
-                      value={post}
+                      value={postData}
                       className='
                       outline-none
                       focus:ring-2
@@ -98,6 +113,7 @@ const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
                       border-gray-200
                       rounded-full
                       '
+                      onChange={handleChangePost}
                       />
                     </div>
                     <div className='flex flex-col'>

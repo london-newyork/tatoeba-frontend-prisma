@@ -3,31 +3,16 @@ import { promisify } from "util";
 
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { Dispatch, useState } from 'react';
+import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
-export default function Login() {
+const [postData, setPostData] = useState<string>()
+
+export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
   
-  const router = useRouter()
-
-  const [postData, setPostData] = useState<string>()
   const getBody = promisify(bodyParser.urlencoded());
-
-const handleRegisterMember = () => {
-  router.push({
-    pathname:'/DashBoard/'
-  }
-  )
-}
-
-const handleChangePost = (e) => {
-  setPostData(e.target.value)
-}
-
-const getServerSideProps: GetServerSideProps = async({ req, res }) => {
   const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
 
   if (req.method === "POST") {
@@ -41,6 +26,20 @@ const getServerSideProps: GetServerSideProps = async({ req, res }) => {
     }
   };
 }
+
+export default function Login(props) {
+  const router = useRouter()
+
+    const handleRegisterMember = () => {
+      router.push({
+        pathname:'/DashBoard/'
+      }
+      )
+    }
+
+    const handleChangePost = (e) => {
+      setPostData(e.target.value)
+    }
 
   return (
     <>

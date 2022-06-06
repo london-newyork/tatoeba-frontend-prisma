@@ -8,7 +8,7 @@ import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 export default function Login() {
   const router = useRouter()
 
-  const [data, setData] = useState<string>()
+  const [post, setPost] = useState<string>()
 
 const handleRegisterMember = () => {
   router.push({
@@ -17,11 +17,15 @@ const handleRegisterMember = () => {
   )
 }
 
+const req = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
+      .then(response => response.json())
+      .then(email =>  setPost(email));
+
 const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
       .then(response => response.json())
-      .then(registrationToken =>  setData(registrationToken));
 
-      console.log(res);
+      console.log("送ります",res);
+      console.log("受け取りました",req);
 
   return (
     <>
@@ -77,7 +81,7 @@ const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
                         メールアドレス
                       </p>
                       <input
-                      value={data}
+                      value={post}
                       className='
                       outline-none
                       focus:ring-2

@@ -8,7 +8,6 @@ import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 export default function Login() {
   const router = useRouter()
 
-
   const [data, setData] = useState<string>()
 
 const handleRegisterMember = () => {
@@ -18,10 +17,11 @@ const handleRegisterMember = () => {
   )
 }
 
-const registrationToken = ''
 const res = fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
       .then(response => response.json())
-      .then(json =>  setData(registrationToken));
+      .then(registrationToken =>  setData(registrationToken));
+
+      console.log(res);
 
   return (
     <>

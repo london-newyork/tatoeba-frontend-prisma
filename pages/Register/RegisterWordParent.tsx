@@ -32,20 +32,22 @@ export const RegisterWordParent = (props) => {
                 description={description}
                 setDescription={setDescription}
             />
-            <RegisterWordCancelBtn
-                query_tId={query.tId}
-                creationTime={creationTime}
-                title={title}
-                shortParaphrase={shortParaphrase}
-                description={description}
-            />
-            <RegisterWordCreateBtn
-                query_tId={query.tId}
-                creationTime={creationTime}
-                title={title}
-                shortParaphrase={shortParaphrase}
-                description={description}
-            />
+            <div className='justify-end pt-6 flex flex-row gap-6'>
+                <RegisterWordCancelBtn
+                    query_tId={query.tId}
+                    creationTime={creationTime}
+                    title={title}
+                    shortParaphrase={shortParaphrase}
+                    description={description}
+                />
+                <RegisterWordCreateBtn
+                    query_tId={query.tId}
+                    creationTime={creationTime}
+                    title={title}
+                    shortParaphrase={shortParaphrase}
+                    description={description}
+                />
+            </div>
         </div>
   )
 }

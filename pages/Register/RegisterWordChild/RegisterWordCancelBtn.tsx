@@ -47,8 +47,10 @@ export const RegisterWordCancelBtn = (props) => {
       p-3
       w-[200px]
       rounded-full
-      bg-dark_green
+      bg-white
       text-gray-800
+      border-gray-800
+      border
       text-lg
       hover:bg-opacity-90
     ">

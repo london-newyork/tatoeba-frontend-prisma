@@ -8,10 +8,10 @@ import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
-const [postData, setPostData] = useState<string>()
+const [postData, setPostData] = useState<string>('')
 
 export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
-  
+
   const getBody = promisify(bodyParser.urlencoded());
   const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
 

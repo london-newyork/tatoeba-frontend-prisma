@@ -8,17 +8,22 @@ import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
-const [postData, setPostData] = useState<string>('')
+const usePostData = () => {
+  const [ postData, setPostData ] = useState<string>()
+  return { postData, setPostData }
+}
 
 export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
+  const { postData } = usePostData()
 
   const getBody = promisify(bodyParser.urlencoded());
-  const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
+  // const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
 
   if (req.method === "POST") {
     await getBody(req, res);
   }
 
+  //postDataはvalue = emailのデータ
   return {
     props: {
       email: req.body?.email || postData,
@@ -27,12 +32,19 @@ export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
   };
 }
 
-export default function Login(props) {
+const RegisterMember = () => {
+
+  const { postData, setPostData } = usePostData()
   const router = useRouter()
 
-    const handleRegisterMember = () => {
-      router.push({
-        pathname:'/DashBoard/'
+  //backend側にリクエストする
+    const handleRegisterMember = async() => {
+      fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
+      .then(req => req.json())
+      .then(email => setPostData({ email: postData }))
+
+      await router.push({
+        pathname: '/DashBoard/'
       }
       )
     }
@@ -166,3 +178,5 @@ export default function Login(props) {
     </>
   )
 };
+
+export default RegisterMember

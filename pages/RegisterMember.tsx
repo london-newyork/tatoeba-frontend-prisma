@@ -4,14 +4,10 @@ import { promisify } from "util";
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
-
-const usePostData = () => {
-  const [ postData, setPostData ] = useState<string>()
-  return { postData, setPostData }
-}
+import { usePostData } from '../src/components/hooks/usePostData'
 
 export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
   const { postData } = usePostData()
@@ -41,7 +37,7 @@ const RegisterMember = () => {
     const handleRegisterMember = async() => {
       fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
       .then(req => req.json())
-      .then(email => setPostData({ email: postData }))
+      .then(email => setPostData([{ email: postData }]))
 
       await router.push({
         pathname: '/DashBoard/'

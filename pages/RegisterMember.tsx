@@ -1,48 +1,54 @@
 import bodyParser from "body-parser";
 import { promisify } from "util";
-
-import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 import { usePostData } from '../src/components/hooks/usePostData'
 
-export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
-  const { postData } = usePostData()
 
-  const getBody = promisify(bodyParser.urlencoded());
-  // const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
+// export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
+//   const { postData } = usePostData()
 
-  if (req.method === "POST") {
-    await getBody(req, res);
-  }
+//   const getBody = promisify(bodyParser.urlencoded());
+//   // const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
 
-  //postDataはvalue = emailのデータ
-  return {
-    props: {
-      email: req.body?.email || postData,
-      message: req.body ? "received!" : "",
-    }
-  };
-}
+//   if (req.method === "POST") {
+//     await getBody(req, res);
+//   }
+
+//   //postDataはvalue = emailのデータ
+//   return {
+//     props: {
+//       email: req.body?.email || postData,
+//       message: req.body ? "received!" : "",
+//     }
+//   };
+// }
 
 const RegisterMember = () => {
 
-  const { postData, setPostData } = usePostData()
+  const [ postData, setPostData ] = useState<string | undefined>()
   const router = useRouter()
 
   //backend側にリクエストする
     const handleRegisterMember = async() => {
-      fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
-      .then(req => req.json())
-      .then(email => setPostData([{ email: postData }]))
-
-      await router.push({
-        pathname: '/DashBoard/'
+      await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: postData })
       }
       )
+      //登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
+      await router.push({
+        // pathname: '/DashBoard/'
+      }
+      )
+
     }
 
     const handleChangePost = (e) => {

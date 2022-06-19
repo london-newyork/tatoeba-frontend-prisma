@@ -1,19 +1,59 @@
+import bodyParser from "body-parser";
+import { promisify } from "util";
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
+import { usePostData } from '../src/components/hooks/usePostData'
 
-export default function Login() {
+
+// export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
+//   const { postData } = usePostData()
+
+//   const getBody = promisify(bodyParser.urlencoded());
+//   // const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
+
+//   if (req.method === "POST") {
+//     await getBody(req, res);
+//   }
+
+//   //postDataはvalue = emailのデータ
+//   return {
+//     props: {
+//       email: req.body?.email || postData,
+//       message: req.body ? "received!" : "",
+//     }
+//   };
+// }
+
+const RegisterMember = () => {
+
+  const [ postData, setPostData ] = useState<string | undefined>()
   const router = useRouter()
 
-const handleRegisterMember = () => {
-  router.push({
-    pathname:'/DashBoard/'
-  }
-  )
-}
+  //backend側にリクエストする
+    const handleRegisterMember = async() => {
+      console.log("postData",postData);
+      await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: postData })
+      }
+      )
+      //登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
+      await router.push({
+        pathname: '/DashBoard/'
+      }
+      )
+    }
+
+    const handleChangePost = (e) => {
+      setPostData(e.target.value)
+    }
 
   return (
     <>
@@ -69,6 +109,7 @@ const handleRegisterMember = () => {
                         メールアドレス
                       </p>
                       <input
+                      value={postData}
                       className='
                       outline-none
                       focus:ring-2
@@ -85,6 +126,7 @@ const handleRegisterMember = () => {
                       border-gray-200
                       rounded-full
                       '
+                      onChange={handleChangePost}
                       />
                     </div>
                     <div className='flex flex-col'>
@@ -138,3 +180,5 @@ const handleRegisterMember = () => {
     </>
   )
 };
+
+export default RegisterMember

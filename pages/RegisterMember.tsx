@@ -34,6 +34,7 @@ const RegisterMember = () => {
 
   //backend側にリクエストする
     const handleRegisterMember = async() => {
+      console.log("postData",postData);
       await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
       {
         method: 'POST',
@@ -45,10 +46,9 @@ const RegisterMember = () => {
       )
       //登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
       await router.push({
-        // pathname: '/DashBoard/'
+        pathname: '/DashBoard/'
       }
       )
-
     }
 
     const handleChangePost = (e) => {

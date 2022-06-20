@@ -7,6 +7,7 @@ import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 const CompleteRegisterMember = () => {
   const [confirm, setConfirm] = useState([])
   const [password, setPassWord] = useState<string | undefined>()
+  const [token, setToken] = useState<string | undefined>()
 
   //トークンをユーザーがアクセスしたURLから取得する
   useEffect(() => {
@@ -16,6 +17,7 @@ const CompleteRegisterMember = () => {
       setConfirm(data.registrations)
       //ユーザーがアクセスしたURLからトークンを抽出
       const findRegisterToken = data.registrations.substring(0,data.registrations.indexOf('complete/'))
+      setToken(findRegisterToken)
     }
     fetchRegistrationsComplete()
   },[])
@@ -35,7 +37,7 @@ const CompleteRegisterMember = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ password })
+      body: JSON.stringify({ password, token })
     }
     )
 

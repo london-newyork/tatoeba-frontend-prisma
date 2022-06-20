@@ -1,32 +1,8 @@
-import bodyParser from "body-parser";
-import { promisify } from "util";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
-import { usePostData } from '../src/components/hooks/usePostData'
-
-
-
-// export const getServerSideProps: GetServerSideProps = async({ req, res }) => {
-//   const { postData } = usePostData()
-
-//   const getBody = promisify(bodyParser.urlencoded());
-//   // const req_URL = await fetch(process.env.REACT_APP_BACKEND_URL + "/registrations")
-
-//   if (req.method === "POST") {
-//     await getBody(req, res);
-//   }
-
-//   //postDataはvalue = emailのデータ
-//   return {
-//     props: {
-//       email: req.body?.email || postData,
-//       message: req.body ? "received!" : "",
-//     }
-//   };
-// }
 
 const RegisterMember = () => {
 

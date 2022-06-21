@@ -15,12 +15,14 @@ const CompleteRegisterMember = () => {
       const response = await fetch('/api/registrations/complete')
       const data = await response.json()
       setConfirm(data.registrations)
-      //ユーザーがアクセスしたURLからトークンを抽出
-      const findRegisterToken = data.registrations.substring(0,data.registrations.indexOf('complete/'))
-      setToken(findRegisterToken)
+
     }
     fetchRegistrationsComplete()
   },[])
+
+  //ユーザーがアクセスしたURLからトークンを抽出
+  const findRegisterToken = location.href.substring(0,location.href.indexOf('complete/'))
+  setToken(findRegisterToken)
 
   const handleChangePassword = (e) => {
     setPassWord(e.target.value)

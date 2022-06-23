@@ -21,9 +21,9 @@ const RegisterMember = () => {
         body: JSON.stringify({ email: postData })
       }
       )
-      //登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
+      //仮登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
       await router.push({
-        pathname: '/DashBoard/'
+        pathname: '/'
       }
       )
     }

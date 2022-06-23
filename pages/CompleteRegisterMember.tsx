@@ -5,19 +5,25 @@ import { Header } from '../src/components/Header/Header'
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
 const CompleteRegisterMember = () => {
-  const [confirm, setConfirm] = useState([])
+  const [confirmRegistrations, setConfirmRegistrations] = useState([])
   const [password, setPassWord] = useState<string | undefined>()
-  const [token, setToken] = useState<string | undefined>()
+  const [token, setToken] = useState<string | undefined | string[]>()
+  const router = useRouter()
 
-  //トークンをユーザーがアクセスしたURLから取得する
+//バックエンドからきたレスポンスをもとにtokenを抽出
   useEffect(() => {
     const fetchRegistrationsComplete = async() => {
-      const response = await fetch('/api/registrations/')
+
+      //バックエンドのURLをかいてバックエンドからtokenを抽出
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
       const data = await response.json()
-      setConfirm(data.registrations)
-      //ユーザーがアクセスしたURLからトークンを抽出
-      const findRegisterToken = location.href.substring(0,location.href.indexOf('registrations/'))
-      setToken(findRegisterToken)
+
+      setConfirmRegistrations(data.registrations)
+      //ユーザーがアクセスしたURLからトークンを抽出（バックエンド側でのPOSTのレスポンスの中のregistrationsTokenを、フロントで下記のように抽出することもできる）
+      //const registrationsToken = data.registrationToken
+      const newToken = router.query.token
+      console.log(newToken);
+      setToken(newToken)
     }
     fetchRegistrationsComplete()
   },[])
@@ -27,10 +33,9 @@ const CompleteRegisterMember = () => {
   }
   console.log(password);//確認済み
 
+  //Backend側へパスワードとトークンを送る
   const handleSendPassword = async() => {
-    // const router = useRouter()
 
-    //Backend側へパスワードを送る
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
     {
       method: 'POST',
@@ -40,7 +45,6 @@ const CompleteRegisterMember = () => {
       body: JSON.stringify({ password, token })
     }
     )
-
     // await router.push(`/DashBoard/${users}`)
   }
 

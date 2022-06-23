@@ -12,22 +12,20 @@ const CompleteRegisterMember = () => {
   //トークンをユーザーがアクセスしたURLから取得する
   useEffect(() => {
     const fetchRegistrationsComplete = async() => {
-      const response = await fetch('/api/registrations/complete')
+      const response = await fetch('/api/registrations/')
       const data = await response.json()
       setConfirm(data.registrations)
       //ユーザーがアクセスしたURLからトークンを抽出
-      const findRegisterToken = location.href.substring(0,location.href.indexOf('complete/'))
+      const findRegisterToken = location.href.substring(0,location.href.indexOf('registrations/'))
       setToken(findRegisterToken)
     }
     fetchRegistrationsComplete()
-  },[]) 
-
-
+  },[])
 
   const handleChangePassword = (e) => {
     setPassWord(e.target.value)
   }
-  console.log(password);
+  console.log(password);//確認済み
 
   const handleSendPassword = async() => {
     // const router = useRouter()

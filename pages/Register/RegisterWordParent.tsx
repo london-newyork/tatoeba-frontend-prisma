@@ -4,9 +4,12 @@ import { RegisterWordTitle } from './RegisterWordChild/RegisterWordTitle'
 import { RegisterWordShortParaphrase } from './RegisterWordChild/RegisterWordShortParaphrase'
 import { RegisterWordDescription } from './RegisterWordChild/RegisterWordDescription'
 import * as dayjs from 'dayjs';
+import { RegisterWordCancelBtn } from './RegisterWordChild/RegisterWordCancelBtn'
 
 export const RegisterWordParent = (props) => {
+    //router pushでTatoeListでクリックされたリストのprops tIdなどがqueryとなり入ってくる
     const { query } = props
+
     const [ title, setTitle ] = useState('')
     const [ shortParaphrase, setShortParaphrase] = useState('')
     const [ description, setDescription ] = useState('')
@@ -29,12 +32,22 @@ export const RegisterWordParent = (props) => {
                 description={description}
                 setDescription={setDescription}
             />
-            <RegisterWordCreateBtn
-                creationTime={creationTime}
-                title={title}
-                shortParaphrase={shortParaphrase}
-                description={description}
-            />
+            <div className='justify-end pt-6 flex flex-row gap-6'>
+                <RegisterWordCancelBtn
+                    query_tId={query.tId}
+                    creationTime={creationTime}
+                    title={title}
+                    shortParaphrase={shortParaphrase}
+                    description={description}
+                />
+                <RegisterWordCreateBtn
+                    query_tId={query.tId}
+                    creationTime={creationTime}
+                    title={title}
+                    shortParaphrase={shortParaphrase}
+                    description={description}
+                />
+            </div>
         </div>
   )
 }

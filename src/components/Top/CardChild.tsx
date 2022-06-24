@@ -6,7 +6,7 @@ import { useHandleMoveToResult } from '../hooks/handleMoveToResult'
 import { CardProps, Words } from '../types/types'
 import { WordsAtom } from '../utils/atoms/WordsAtom'
 
-export const CardChild:VFC = (props) => {
+export const CardChild:VFC = () => {
     const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
     const router = useRouter()
 

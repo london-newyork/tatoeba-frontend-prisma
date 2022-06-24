@@ -18,28 +18,48 @@ export const Menu = () => {
 
   return (
     <div>
-        <nav className='h-10 w-12 bg-gray-300 z-20 absolute text-2xl text-gray-600 -left-2 rounded-r-md shadow-sm'>
+        <nav
+        className='
+        h-12
+        w-12
+        bg-white
+        z-30
+        fixed
+        text-2xl
+        text-gray-600
+        border
+        border-gray-700
+        left-4
+        top-16
+        rounded-lg
+        flex
+        justify-center
+        '>
             <button
-            className='position'
+            className='
+            position
+            '
             onClick={handleToolTip}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-4 mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
                 <ul
                 className={`
                 absolute
-                z-30
+                z-40
                 left-0
+                top-12
                 h-32
                 w-48
                 bg-white
                 flex-col
                 gap-y-3
                 rounded-xl
-                shadow-md
-                pl-2
+                border
+                border-gray-700
+                
                 ${isHover ? "hidden" : "flex"}
                 `}
                 >

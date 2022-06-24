@@ -49,6 +49,7 @@ export const TopUpperContents:VFC = () => {
             <SearchBox />
         </div>
         <div className="
+
                 w-[25%]
                 pl-none
                 pt-5

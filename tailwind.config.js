@@ -2,10 +2,13 @@ module.exports = {
   mode: 'jit',
   purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
   content: [],
+
   theme: {
     fontFamily: {
       'sans': ['Inter var', 'Graphik'],
-      'sans-serif': ['Noto Sans Japanses', 'Arial', 'sans-serif'],
+      'sans-serif': ['"Noto Sans Japanese"', 'Arial', 'sans-serif'],
+      'kakuGothic': ['"Zen Kaku Gothic New"'],
+
     },
     screens: {
       sm: '480px',
@@ -25,7 +28,7 @@ module.exports = {
         'dark_gray': '#5e5e5e',
       },
       fontFamily: {
-        'top_headline': ['Murecho'],
+        'kakuGothic': ['"Zen Kaku Gothic New"'],
       },
       animation: {
         'expand-border': 'expand-border 2s ease infinite'

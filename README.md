@@ -1,12 +1,19 @@
-# アプリ概要
+# アプリ概要[Prisma版]
 
 オリジナルアプリ「Tatoeba」。
 わかりにくい話をわかりやすく例える、「例え話を支援する」アプリです。
 
-※こちらはフロントのみのリポジトリです。
+※こちらは[Prisma版]フロントのみのリポジトリです。
 
-バックエンドを含むリポジトリはこちら
+[Prisma版]バックエンドを含むリポジトリはこちら
+https://github.com/london-newyork/tatoeba-api-prisma
 
+------------------------------------------------------
+
+[Prisma不使用版]
+https://github.com/london-newyork/tatoeba-frontend
+
+[Prisma不使用版]バックエンドを含むリポジトリはこちら
 https://github.com/london-newyork/tatoeba-api
 
 
@@ -18,7 +25,7 @@ CRUD処理/検索/タグによるソート機能/eメールによるメール認
 
 ### 言語とツール等
 
-Next.js/React/TypeScript/Tailwind CSS
+Next.js/React/TypeScript/TailwindCSS/Express/Prisma
 
 ### ライブラリ等
 

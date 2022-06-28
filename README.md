@@ -7,13 +7,13 @@
 
 -----
 
-[Prisma版]バックエンドを含むリポジトリはこちら
+[Prisma版]バックエンドを含むリポジトリ
 https://github.com/london-newyork/tatoeba-api-prisma
 
-[Prisma不使用版]
+[Prisma不使用版]フロントエンドリポジトリ
 https://github.com/london-newyork/tatoeba-frontend
 
-[Prisma不使用版]バックエンドを含むリポジトリはこちら
+[Prisma不使用版]バックエンドを含むリポジトリ
 https://github.com/london-newyork/tatoeba-api
 
 -----
@@ -25,7 +25,7 @@ CRUD処理/検索/タグによるソート機能/eメールによるメール認
 
 ### 言語とツール等
 
-Next.js/React/TypeScript/TailwindCSS/Express/Prisma
+Next.js/React/TypeScript/TailwindCSS/Express/Prisma/PlanetScale
 
 ### ライブラリ等
 

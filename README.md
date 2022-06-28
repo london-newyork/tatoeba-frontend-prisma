@@ -5,10 +5,10 @@
 
 ※こちらは[Prisma版]フロントのみのリポジトリです。
 
+-----
+
 [Prisma版]バックエンドを含むリポジトリはこちら
 https://github.com/london-newyork/tatoeba-api-prisma
-
-------------------------------------------------------
 
 [Prisma不使用版]
 https://github.com/london-newyork/tatoeba-frontend
@@ -16,7 +16,7 @@ https://github.com/london-newyork/tatoeba-frontend
 [Prisma不使用版]バックエンドを含むリポジトリはこちら
 https://github.com/london-newyork/tatoeba-api
 
-
+-----
 ### このアプリでの機能および主なやったこと
 
 CRUD処理/検索/タグによるソート機能/eメールによるメール認証・ログイン認証/API設計/APIによる画像登録/他のユーザーからの評価機能

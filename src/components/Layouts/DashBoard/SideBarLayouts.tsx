@@ -1,7 +1,7 @@
 import { MenuBtn } from '../../btn/MenuBtn';
 import React, { VFC } from 'react';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
-import { UserTatoeListBtn } from '../../btn/USerTatoeListBtn';
+import { UserTatoeListBtn } from '../../btn/UserTatoeListBtn';
 
 export const SideBarLayouts:VFC<WithoutPropsChildrenLayouts> = (props) => {
   return (

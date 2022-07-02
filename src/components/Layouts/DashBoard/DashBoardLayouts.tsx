@@ -15,8 +15,11 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
       <div
       className='
       pt-[100px]
+      pb-14
       max-w-[1200px]
-      mx-4
+      md:min-w-[640px]
+      min-w-[375px]
+      mx-auto
       flex
       lg:flex-row
       flex-col

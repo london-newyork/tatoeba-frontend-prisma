@@ -11,7 +11,7 @@ import { WordsAtom } from '../../src/components/utils/atoms/WordsAtom'
 import { Words } from '../../src/components/types/types'
 import { ParsedUrlQuery } from 'querystring'
 import { TatoeList } from '../../src/components/DashBoard/TatoeList'
-import { Menu } from '../../src/components/DashBoard/Menu'
+import Head from 'next/head'
 
 export type User = {
     userId: string //一意のid primaryKey tatoe listとひもづく
@@ -77,13 +77,18 @@ const testUserProfile: testUserProfile[] = [
     },
 ]
 
-console.log("DashBoard page router.query",router.query);
-
   return (
+    <div>
+    <Head>
+        <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        className='text-black pt-11'/>
+    </Head>
     <div>
         <Header />
         <DashBoardLayouts>
-        <Menu />
+        
             <ProfileLayouts>
                 <Profile userInfo={userInfo} />
             </ProfileLayouts>
@@ -93,6 +98,7 @@ console.log("DashBoard page router.query",router.query);
                 </TatoeListWrapper>
             </TatoeListLayouts>
         </DashBoardLayouts>
+    </div>
     </div>
   )
 }

@@ -52,3 +52,7 @@ export type Edit= {
 export type Layouts = {
     children: ReactNode
 }
+
+export type WithoutPropsChildrenLayouts = {
+    children?: ReactNode
+}

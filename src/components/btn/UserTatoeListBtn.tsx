@@ -1,4 +1,12 @@
+import { useRouter } from "next/router"
+
 export const UserTatoeListBtn = () => {
+  const router = useRouter()
+  const handleMoveToUserTatoeList = () => {
+        router.push({
+            pathname:'/DashBoard/UserTatoeList',
+        })
+  }
   return (
     <button
     className='
@@ -8,6 +16,7 @@ export const UserTatoeListBtn = () => {
     left-5
     top-40
     '
+    onClick={handleMoveToUserTatoeList}
     >
       <svg
       xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"

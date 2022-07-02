@@ -19,7 +19,7 @@ export const TatoeListLayouts:VFC<Layouts> = (props) => {
     h-auto
     w-full
     sm:w-full
-    lg:w-auto
+    lg:min-w-[800px]
     position
     relative
     '

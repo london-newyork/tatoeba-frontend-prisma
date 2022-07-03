@@ -1,23 +1,22 @@
 import { MenuBtn } from '../../btn/MenuBtn';
 import React, { VFC } from 'react';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
-import { UserTatoeListBtn } from '../../btn/UserTatoeListBtn';
+import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 
 export const SideBarLayouts:VFC<WithoutPropsChildrenLayouts> = (props) => {
   return (
     <div
     className='
     bg-gray-900
-    min-w-[60px]
-    max-w-[60px]
+    min-w-[64px]
+    max-w-[64px]
     flex
     flex-col
-    pt-6
     h-full
     '
     >
       <MenuBtn />
-      <UserTatoeListBtn />
+      <SideBarMainContentsLayouts />
     </div>
 
   )

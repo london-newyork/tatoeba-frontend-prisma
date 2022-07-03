@@ -11,7 +11,7 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
     md:px-18
     flex
     ">
-      <SideBarLayouts/>
+      <SideBarLayouts />
       <div
       className='
       pt-[100px]

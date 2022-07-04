@@ -23,11 +23,11 @@ export const MenuBtn = () => {
         fixed
         text-2xl
         text-white
+        sm:left-5
         left-5
-        top-16
+        top-[60px]
         rounded-lg
         flex
-        justify-center
         '>
             <button
             className='

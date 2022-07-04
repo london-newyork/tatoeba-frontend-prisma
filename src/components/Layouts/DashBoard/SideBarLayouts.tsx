@@ -5,19 +5,29 @@ import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 
 export const SideBarLayouts:VFC<WithoutPropsChildrenLayouts> = (props) => {
   return (
-    <div
+    <aside
     className='
     bg-gray-900
-    min-w-[64px]
-    max-w-[64px]
+    sm:min-w-[64px]
+    sm:max-w-[64px]
+    max-w-full
     flex
-    flex-col
-    h-full
+    md:flex-col
+    flex-row
+    min-h-[96px]
+    md:h-full
     '
     >
-      <MenuBtn />
-      <SideBarMainContentsLayouts />
-    </div>
+      <nav
+      className='
+      flex
+      md:flex-col
+      flex-row'
+      >
+        <MenuBtn />
+        <SideBarMainContentsLayouts />
+      </nav>
+    </aside>
 
   )
 }

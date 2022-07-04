@@ -6,30 +6,40 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
   return (
     <main
     className="
-    bg-gray-100
-    h-screen
+    bg-green-500
+    min-h-screen
+    h-full
     md:px-18
-    flex
     ">
-      <SideBarLayouts />
       <div
       className='
-      pt-[100px]
-      pb-14
-      max-w-[1200px]
-      md:min-w-[640px]
-      min-w-[375px]
-      mx-auto
+      h-screen
       flex
-      lg:flex-row
+      md:flex-row
       flex-col
-      gap-y-8
-      sm:gap-x-8
-      lg:gap-x-8
-      position
       '
       >
-        {props.children}
+        <SideBarLayouts />
+        <div
+        className='
+        sm:pt-[100px]
+        pt-0
+        pb-14
+        max-w-[1200px]
+        md:min-w-[640px]
+        min-w-[375px]
+        mx-auto
+        flex
+        lg:flex-row
+        flex-col
+        gap-y-8
+        sm:gap-x-8
+        lg:gap-x-8
+        position
+        '
+        >
+          {props.children}
+      </div>
       </div>
     </main>
   )

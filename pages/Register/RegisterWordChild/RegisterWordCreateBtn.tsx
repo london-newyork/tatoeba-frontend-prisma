@@ -43,7 +43,7 @@ export const RegisterWordCreateBtn = (props) => {
       setWords(firstAddWords)
 
       router.push({
-        pathname:'/DashBoard',
+        pathname:'/DashBoard/UserTatoeList',
       })
     }
 
@@ -67,7 +67,7 @@ export const RegisterWordCreateBtn = (props) => {
       words.map(item=> {
         if(item.tId === query_tId){
           router.push({
-            pathname:'/DashBoard',
+            pathname:'/DashBoard/UserTatoeList',
           })
         }
       })

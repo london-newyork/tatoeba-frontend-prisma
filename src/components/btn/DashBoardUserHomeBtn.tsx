@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React, { VFC } from 'react'
 import { Layouts } from '../types/types'
 
-export const DashBoardUserHome:VFC = (props) => {
+export const DashBoardUserHomeBtn:VFC = (props) => {
     const router = useRouter()
     const handleMoveToDashBoardHome = () => {
         router.push({

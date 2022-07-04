@@ -1,12 +1,13 @@
 import { VFC } from "react"
 import { MenuBtn } from "../../btn/MenuBtn"
 import { UserTatoeListBtn } from "../../btn/UserTatoeListBtn"
-import { DashBoardUserHome } from "../../DashBoard/DashBoardUserHome"
+import { DashBoardUserHomeBtn } from "../../btn/DashBoardUserHomeBtn"
 
 export const SideBarMainContentsLayouts:VFC = (props) => {
     return (
             <div
             className='
+            max-w-[64px]
             fixed
             md:left-5
             md:top-1/3
@@ -23,7 +24,7 @@ export const SideBarMainContentsLayouts:VFC = (props) => {
                 gap-x-6
                 "
                 >
-                    <DashBoardUserHome />
+                    <DashBoardUserHomeBtn />
                     <UserTatoeListBtn />
                 </div>
             </div>

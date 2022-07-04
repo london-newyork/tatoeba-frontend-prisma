@@ -6,7 +6,7 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
   return (
     <main
     className="
-    bg-green-500
+    bg-gray-100
     min-h-screen
     h-full
     md:px-18

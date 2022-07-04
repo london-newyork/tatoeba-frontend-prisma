@@ -10,6 +10,8 @@ export const ProfileLayouts:VFC<Layouts> = (props) => {
     px-7
     pt-12
     pb-10
+    mt-12
+    sm:mt-0
     rounded-2xl
     border-[1px]
     border-gray-800
@@ -18,7 +20,6 @@ export const ProfileLayouts:VFC<Layouts> = (props) => {
     h-auto
     w-full
     sm:w-full
-    lg:w-auto
     '
     >
       {props.children}

@@ -1,24 +1,24 @@
 #scss-wrapper-input {
-    position: relative;
-    max-width: 500px;
+  position: relative;
+  max-width: 500px;
 }
 
 .scss-border {
-    position: absolute;
-    -webkit-appearance: none;
-    width: calc(100% - 0.01%);
-    max-width: 340px;
-    top: 20;
-    transform: translate(7%, 3.5%);
-    border: 0;
-    font-family: inherit;
-    padding: 12px 0;
-    height: 48px;
-    font-size: 16px;
-    font-weight: 500;
-    background: none;
-    border-radius: 0;
-    transition: all 0.15s ease;
+  position: absolute;
+  -webkit-appearance: none;
+  width: calc(100% - 0.01%);
+  max-width: 340px;
+  top: 20;
+  transform: translate(7%, 3.5%);
+  border: 0;
+  font-family: inherit;
+  padding: 12px 0;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  background: none;
+  border-radius: 0;
+  transition: all 0.15s ease;
 
   &:focus {
     position: absolute;
@@ -29,25 +29,25 @@
     animation: border_anim 1s linear forwards;
   }
 }
-  @keyframes border_anim {
-    0%{
-      width: 0%;
-      transform: translate(21%, 3.5%);
-      cursor: none;
-      opacity: 0;
-    }
-    100%{
-      width: 100%;
-      max-width: 330px;
-      @media (max-width:768px) {
-      }
+@keyframes border_anim {
+  0% {
+    width: 0%;
+    transform: translate(21%, 3.5%);
+    cursor: none;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    max-width: 330px;
+    @media (max-width: 768px) {
     }
   }
+}
 
 .scss-underline {
   position: relative;
-  &::after{
-    position:absolute;
+  &::after {
+    position: absolute;
     content: '';
     display: block;
     left: 0;
@@ -59,7 +59,6 @@
 }
 
 .scss-card-toast {
-
   &:hover {
     animation: anim_toast 2s 1;
     @keyframes anim_toast {
@@ -72,5 +71,4 @@
       }
     }
   }
-
 }

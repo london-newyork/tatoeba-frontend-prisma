@@ -11,6 +11,8 @@ export const TatoeListLayouts:VFC<Layouts> = (props) => {
     px-7
     sm:pt-12
     pb-20
+    mt-12
+    sm:mt-0
     rounded-2xl
     border
     border-gray-800
@@ -19,7 +21,7 @@ export const TatoeListLayouts:VFC<Layouts> = (props) => {
     h-auto
     w-full
     sm:w-full
-    lg:w-auto
+    lg:min-w-[800px]
     position
     relative
     '

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useCallback, useState } from 'react'
 
-export const Menu = () => {
+export const MenuBtn = () => {
     const router = useRouter()
     const handleMoveToRemoveMember = () => {
         router.push({
@@ -20,20 +20,14 @@ export const Menu = () => {
     <div>
         <nav
         className='
-        h-12
-        w-12
-        bg-white
-        z-30
         fixed
         text-2xl
-        text-gray-600
-        border
-        border-gray-700
-        left-4
-        top-16
+        text-white
+        sm:left-5
+        left-5
+        top-[60px]
         rounded-lg
         flex
-        justify-center
         '>
             <button
             className='
@@ -41,7 +35,7 @@ export const Menu = () => {
             '
             onClick={handleToolTip}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
@@ -54,6 +48,7 @@ export const Menu = () => {
                 h-32
                 w-48
                 bg-white
+                text-gray-700
                 flex-col
                 gap-y-3
                 rounded-xl

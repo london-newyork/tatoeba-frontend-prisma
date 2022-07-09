@@ -23,7 +23,7 @@ const RegisterMember = () => {
       )
       //仮登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
       await router.push({
-        pathname: '/'
+        pathname: '/RegistrationMember/CompleteTempRegistrationMember'
       }
       )
     }

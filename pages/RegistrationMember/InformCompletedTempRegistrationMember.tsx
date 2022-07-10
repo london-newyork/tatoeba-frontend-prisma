@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { Header } from '../../src/components/Header/Header';
 
-const CompleteTempRegistrationMember = () => {
+const InformCompletedTempRegistrationMember = () => {
   return (
     <>
     <Head>
@@ -32,4 +32,4 @@ const CompleteTempRegistrationMember = () => {
       );
     };
 
-export default CompleteTempRegistrationMember;
+export default InformCompletedTempRegistrationMember;

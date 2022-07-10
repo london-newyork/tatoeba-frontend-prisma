@@ -1,15 +1,46 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
+import Router, { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { Header } from '../../src/components/Header/Header';
 import { LoginLayouts } from '../../src/components/Layouts/LoginLayouts';
 
 const SuggestCompleteRegistrationMember = () => {
+const [postEmail, setPostEmail] = useState<string>()
+const [postPassWord, setPostPassWord] = useState<string>()
+
+const router = useRouter()
+
+  const handleChangeEmail = (e) => {
+    setPostEmail(e.target.value)
+  }
+
+  const handleChangePassWord = (e) => {
+    setPostPassWord(e.target.value)
+  }
+  //パスワードとメールアドレスのデータをAPIへ送る
+  const handleCompleteRegisterMember = async() => {
+
+    //API側で受け取るエンドポイントはregistrationsではないはず
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ postEmail, postPassWord })
+    }
+    )
+    //topページへ戻る
+    await router.push({
+      pathname:"/"
+    })
+  }
+
   return (
     <>
       <Head>
-        <title>Tatoeba 例え話 本登録完了前ページ</title>
+        <title>Tatoeba 例え話 本登録操作ページ</title>
         <link rel='favicon.ico' />
       </Head>
       <Header />
@@ -78,6 +109,7 @@ const SuggestCompleteRegistrationMember = () => {
                       border-gray-200
                       rounded-full
                       '
+                      onChange={handleChangeEmail}
                       />
                     </div>
                     <div className='flex flex-col'>
@@ -107,6 +139,7 @@ const SuggestCompleteRegistrationMember = () => {
                         border-gray-200
                         rounded-full
                         '
+                        onChange={handleChangePassWord}
                         />
                       </div>
                     <button
@@ -123,7 +156,8 @@ const SuggestCompleteRegistrationMember = () => {
                     hover:bg-opacity-90
                     font-normal
                     '
-                    >text</button>
+                    onClick={handleCompleteRegisterMember}
+                    >本登録完了</button>
                   </div>
                   <Link
                   href="/RegisterMember"

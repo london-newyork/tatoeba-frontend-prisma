@@ -136,7 +136,7 @@ const handleLogin = () => {
                     >ログイン</button>
                   </div>
                   <Link
-                  href="/RegisterMember"
+                  href="/RegisterMember/RegisterMember"
                   >
                   <p
                   className='

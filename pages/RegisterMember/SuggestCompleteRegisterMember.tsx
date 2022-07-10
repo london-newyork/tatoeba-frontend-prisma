@@ -1,40 +1,56 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import { Header } from '../src/components/Header/Header';
-import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import {useState,useEffect} from 'react'
+import { Header } from '../../src/components/Header/Header'
+import { LoginLayouts } from '../../src/components/Layouts/LoginLayouts'
 
-const RegisterMember = () => {
-
-  const [ postData, setPostData ] = useState<string | undefined>()
+const SuggestCompleteRegisterMember = () => {
+  const [confirmRegistrations, setConfirmRegistrations] = useState([])
+  const [password, setPassWord] = useState<string | undefined>()
+  const [token, setToken] = useState<string | undefined | string[]>()
   const router = useRouter()
 
-  //backend側にリクエストする
-    const handleRegisterMember = async() => {
-      console.log("postData",postData);
-      await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: postData })
-      }
-      )
-      //仮登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
-      await router.push({
-        pathname: '/RegistrationMember/InformCompletedTempRegistrationMember'
-      }
-      )
-    }
+//バックエンドからきたレスポンスをもとにtokenを抽出
+  useEffect(() => {
+    const fetchRegistrationsComplete = async() => {
 
-    const handleChangePost = (e) => {
-      setPostData(e.target.value)
+      //バックエンドのURLをかいてバックエンドからtokenを抽出
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
+      const data = await response.json()
+
+      setConfirmRegistrations(data.registrations)
+      //ユーザーがアクセスしたURLからトークンを抽出（バックエンド側でのPOSTのレスポンスの中のregistrationsTokenを、フロントで下記のように抽出することもできる）
+      //const registrationsToken = data.registrationToken
+      const newToken = router.query.token
+      console.log(newToken);
+      setToken(newToken)
     }
+    fetchRegistrationsComplete()
+  },[])
+
+  const handleChangePassword = (e) => {
+    setPassWord(e.target.value)
+  }
+  console.log(password);//確認済み
+
+  //Backend側へパスワードとトークンを送る
+  const handleSendPassword = async() => {
+
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ password, token })
+    }
+    )
+    await router.push(`/RegisterMember/InformCompletedRegistrationMember`)
+  }
 
   return (
-    <>
-      <Head>
+    <div>
+         <Head>
         <title>新規会員登録</title>
         <link rel='favicon.ico' />
       </Head>
@@ -64,14 +80,15 @@ const RegisterMember = () => {
                 items-center
                 ">
                   <h1 className="
-                  text-3xl
+                  text-2xl
                   text-gray-500
                   select-none
                   font-normal
                   "
                   >
-                      新規会員登録
+                    新規会員登録完了手続き
                   </h1>
+                  <p className='pt-10 text-gray-400'>パスワードを入力してください</p>
                   <div className='pt-14 flex flex-col gap-6'>
                     <div className='flex flex-col'>
                       <p
@@ -83,10 +100,10 @@ const RegisterMember = () => {
                       text-sm
                       pb-2
                       '>
-                        メールアドレス
+                        パスワード
                       </p>
                       <input
-                      value={postData}
+                      value={password}
                       className='
                       outline-none
                       focus:ring-2
@@ -103,38 +120,9 @@ const RegisterMember = () => {
                       border-gray-200
                       rounded-full
                       '
-                      onChange={handleChangePost}
+                      onChange={handleChangePassword}
                       />
                     </div>
-                    <div className='flex flex-col'>
-                      <p
-                      className='
-                      pr-2
-                      text-gray-600
-                      w-[128px]
-                      text-sm
-                      pb-2
-                      '>パスワード</p>
-                        <input
-                        className='
-                        shadow-sm
-                        outline-none
-                        focus:ring-2
-                        focus:ring-offset-3
-                        focus:ring-green-100
-                        focus:ring-offset-green-50
-                        focus:border-green-100
-                        focus:placeholder-gray-300
-                        h-8
-                        py-2
-                        px-3
-                        w-[300px]
-                        border
-                        border-gray-200
-                        rounded-full
-                        '
-                        />
-                      </div>
                     <button
                     className='
                     mt-4
@@ -148,14 +136,14 @@ const RegisterMember = () => {
                     text-lg
                     hover:bg-opacity-90
                     '
-                    onClick={handleRegisterMember}
-                    >新規会員登録</button>
+                    onClick={handleSendPassword}
+                    >登録を完了する</button>
                   </div>
                 </div>
         </section>
       </LoginLayouts>
-    </>
+    </div>
   )
-};
+}
 
-export default RegisterMember
+export default SuggestCompleteRegisterMember

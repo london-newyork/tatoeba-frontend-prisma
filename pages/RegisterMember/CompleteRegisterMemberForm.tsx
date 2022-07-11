@@ -4,7 +4,7 @@ import {useState,useEffect} from 'react'
 import { Header } from '../../src/components/Header/Header'
 import { LoginLayouts } from '../../src/components/Layouts/LoginLayouts'
 
-const SuggestCompleteRegisterMember = () => {
+const CompleteRegisterMemberForm = () => {
   const [confirmRegistrations, setConfirmRegistrations] = useState([])
   const [password, setPassWord] = useState<string | undefined>()
   const [token, setToken] = useState<string | undefined | string[]>()
@@ -147,4 +147,4 @@ const SuggestCompleteRegisterMember = () => {
   )
 }
 
-export default SuggestCompleteRegisterMember
+export default CompleteRegisterMemberForm

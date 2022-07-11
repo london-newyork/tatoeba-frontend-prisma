@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 import { Header } from '../../src/components/Header/Header';
 import { LoginLayouts } from '../../src/components/Layouts/LoginLayouts'
 
-const RegisterMember = () => {
+const TempRegisterMember = () => {
 
   const [ postData, setPostData ] = useState<string | undefined>()
   const router = useRouter()
 
   //backend側にリクエストする
-    const handleRegisterMember = async() => {
+    const handleTempRegisterMember = async() => {
       console.log("postData",postData);
       await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
       {
@@ -119,7 +119,7 @@ const RegisterMember = () => {
                     text-lg
                     hover:bg-opacity-90
                     '
-                    onClick={handleRegisterMember}
+                    onClick={handleTempRegisterMember}
                     >新規会員登録</button>
                   </div>
                 </div>
@@ -129,4 +129,4 @@ const RegisterMember = () => {
   )
 };
 
-export default RegisterMember
+export default TempRegisterMember

@@ -35,14 +35,15 @@ const SuggestCompleteRegisterMember = () => {
 
   //Backend側へパスワードとトークンを送る
   const handleSendPassword = async() => {
+  console.log(router.query);
 
-    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/set_password",
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ password, token })
+      body: JSON.stringify({ password, token:router.query.token })
     }
     )
     await router.push(`/RegisterMember/InformCompletedRegistrationMember`)

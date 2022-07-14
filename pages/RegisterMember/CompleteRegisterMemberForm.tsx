@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import {useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Header } from '../../src/components/Header/Header'
 import { LoginLayouts } from '../../src/components/Layouts/LoginLayouts'
 

@@ -143,6 +143,7 @@ const handleLogin = () => {
                   mx-auto
                   text-sm
                   text-gray-600
+                  cursor-pointer
                   '>新規会員登録</p>
                   </Link>
                 </div>

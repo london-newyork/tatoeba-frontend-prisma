@@ -1,19 +1,52 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
 
 export default function Login() {
   const router = useRouter()
+  const [loginToken, setLoginToken] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  //バックエンドからきたレスポンスをもとにtokenを抽出
+  useEffect(() => {
+    const extractLoginToken = async() => {
 
-const handleLogin = () => {
-  router.push({
-    pathname:'/DashBoard/'
-  }
-  )
+      //バックエンドのURLをかいてバックエンドからtokenを抽出
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
+      const data = await response.json()
+
+      setLoginToken(data.token)
+      console.log("loginToken",loginToken);
+    }
+    extractLoginToken()
+  },[])
+const handleChangeEmail = (e) => {
+  setEmail(e.target.value)
 }
+
+const handleChangePassword = (e) => {
+  setPassword(e.target.value)
+}
+
+//Backend側へパスワードとメールアドレスを送る
+const handleLogin = async() => {
+  // console.log(router.query);
+  
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/login",
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ password, email })
+    }
+    )
+    //個々のuserのページへ飛ぶ
+    await router.push(`/DashBoard`)
+  }
 
   return (
     <>
@@ -71,6 +104,7 @@ const handleLogin = () => {
                         メールアドレス
                       </p>
                       <input
+                      value={email}
                       className='
                       outline-none
                       focus:ring-2
@@ -87,6 +121,7 @@ const handleLogin = () => {
                       border-gray-200
                       rounded-full
                       '
+                      onChange={handleChangeEmail}
                       />
                     </div>
                     <div className='flex flex-col'>
@@ -99,6 +134,7 @@ const handleLogin = () => {
                       pb-2
                       '>パスワード</p>
                         <input
+                        value={password}
                         className='
                         shadow-sm
                         outline-none
@@ -116,6 +152,7 @@ const handleLogin = () => {
                         border-gray-200
                         rounded-full
                         '
+                        onChange={handleChangePassword}
                         />
                       </div>
                     <button

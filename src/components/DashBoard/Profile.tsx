@@ -4,6 +4,13 @@ import { ProfileImage } from './ProfileImage'
 
 export const Profile = (props:any) => {
     const { userInfo } = props
+    const handleChangePassword = () => {
+        //passwordをe.target.valueで吸い上げる
+    }
+    const handleChangeEmail = () => {
+        //Emailをe.target.valueで吸い上げる
+    }
+
   return (
     <div
     className='group'
@@ -108,6 +115,7 @@ export const Profile = (props:any) => {
                                     focus:text-white
                                     p-3
                                     "
+                                    onChange={handleChangeEmail}
                                     />
                                 </li>
                             </ul>
@@ -147,6 +155,7 @@ export const Profile = (props:any) => {
                                     focus:text-white
                                     p-3
                                     "
+                                    onChange={handleChangePassword}
                                     />
                                 </li>
                             </ul>

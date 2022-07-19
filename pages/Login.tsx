@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
+import { setStorage } from '../src/lib/storage';
 
 export default function Login() {
   const router = useRouter()
@@ -13,13 +14,11 @@ export default function Login() {
   //バックエンドからきたレスポンスをもとにtokenを抽出
   useEffect(() => {
     const extractLoginToken = async() => {
-
       //バックエンドのURLをかいてバックエンドからtokenを抽出
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
       const data = await response.json()
 
       setLoginToken(data.token)
-      console.log("loginToken",loginToken);
     }
     extractLoginToken()
   },[])
@@ -34,16 +33,21 @@ const handleChangePassword = (e) => {
 //Backend側へパスワードとメールアドレスを送る
 const handleLogin = async() => {
   // console.log(router.query);
-  
-    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/login",
+
+    // ここで login 成功した場合に jwt トークンを保存するようにする。
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/login",
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ password, email })
+      body: JSON.stringify({ password, email }),
     }
     )
+    const data = await res.json()
+
+    setStorage('jwt', data.token)
+
     //個々のuserのページへ飛ぶ
     await router.push(`/DashBoard`)
   }

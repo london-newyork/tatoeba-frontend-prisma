@@ -1,19 +1,57 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
+import { setStorage } from '../src/lib/storage';
 
 export default function Login() {
   const router = useRouter()
+  const [loginToken, setLoginToken] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  //バックエンドからきたレスポンスをもとにtokenを抽出
+  useEffect(() => {
+    const extractLoginToken = async() => {
+      //バックエンドのURLをかいてバックエンドからtokenを抽出
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
+      const data = await response.json()
 
-const handleLogin = () => {
-  router.push({
-    pathname:'/DashBoard/'
-  }
-  )
+      setLoginToken(data.token)
+    }
+    extractLoginToken()
+  },[])
+const handleChangeEmail = (e) => {
+  setEmail(e.target.value)
 }
+
+const handleChangePassword = (e) => {
+  setPassword(e.target.value)
+}
+
+//Backend側へパスワードとメールアドレスを送る
+const handleLogin = async() => {
+  // console.log(router.query);
+
+    // ここで login 成功した場合に jwt トークンを保存するようにする。
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/login",
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer //トークン'
+      },
+      body: JSON.stringify({ password, email }),
+    }
+    )
+    const data = await res.json()
+
+    setStorage('jwt', data.token)
+
+    //個々のuserのページへ飛ぶ
+    await router.push(`/DashBoard`)
+  }
 
   return (
     <>
@@ -71,6 +109,7 @@ const handleLogin = () => {
                         メールアドレス
                       </p>
                       <input
+                      value={email}
                       className='
                       outline-none
                       focus:ring-2
@@ -87,6 +126,7 @@ const handleLogin = () => {
                       border-gray-200
                       rounded-full
                       '
+                      onChange={handleChangeEmail}
                       />
                     </div>
                     <div className='flex flex-col'>
@@ -99,6 +139,7 @@ const handleLogin = () => {
                       pb-2
                       '>パスワード</p>
                         <input
+                        value={password}
                         className='
                         shadow-sm
                         outline-none
@@ -116,6 +157,7 @@ const handleLogin = () => {
                         border-gray-200
                         rounded-full
                         '
+                        onChange={handleChangePassword}
                         />
                       </div>
                     <button

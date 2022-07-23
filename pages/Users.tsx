@@ -1,19 +1,17 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
-import { setStorage, getStorage } from '../src/lib/storage';
+import { getStorage } from '../src/lib/storage';
 
-export default function Login() {
-  const router = useRouter()
-//   const [loginToken, setLoginToken] = useState()
+export default function Users() {
 
-  //バックエンドからきたレスポンスをもとにtokenを抽出
+  // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
+  // 汎用性を考えると関数名がこれでいいかはわからない。
+  // 一旦ユーザーページとしたが、DashBoardへ振り返る予定
   useEffect(() => {
-    const extractLoginToken = async() => {
-      //バックエンドからtokenを抽出。この時アクセストークン(JWT)を認証に使う
+    const sendAuthUsersAccessToken = async() => {
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
         headers: {
             Authorization: `Bearer ${getStorage('jwt')}`
@@ -21,22 +19,23 @@ export default function Login() {
       })
       const data = await response.json()
 
-      console.log(data)
+      // console.log(data)
     }
-    extractLoginToken()
+    sendAuthUsersAccessToken()
   },[])
 
   return (
     <>
       <Head>
-        <title>Tatoeba 例え話 ログインページ</title>
+        <title>Tatoeba 例え話 ユーザーページ</title>
         <link rel='favicon.ico' />
       </Head>
       <Header />
       <LoginLayouts>
-        <section className="
-                ">
-                    <h1>Hello World</h1>
+        <section
+        className="
+        ">
+            <h1>Hello World</h1>
         </section>
       </LoginLayouts>
     </>

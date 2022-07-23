@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Header } from '../../src/components/Header/Header'
 import { DashBoardLayouts } from '../../src/components/Layouts/DashBoard/DashBoardLayouts'
 import {ProfileLayouts} from '../../src/components/Layouts/DashBoard/ProfileLayouts'
@@ -13,6 +13,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { TatoeList } from '../../src/components/DashBoard/TatoeList'
 import Head from 'next/head'
 import { userInfo } from '../../src/components/mock/userInfo'
+import { getStorage } from '../../src/lib/storage'
 
 export type User = {
     userId: string //一意のid primaryKey tatoe listとひもづく
@@ -61,6 +62,24 @@ const testUserProfile: testUserProfile[] = [
     },
 ]
 
+// バックエンドに対してアクセストークンを渡してユーザー一覧を要求
+// 汎用性を考えると関数名がこれでいいかはわからない。
+useEffect(() => {
+    const sendAuthUsersAccessToken = async() => {
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+        headers: {
+            Authorization: `Bearer ${getStorage('jwt')}`
+        }
+      })
+      const data = await response.json()
+
+      // console.log(data)
+    }
+    sendAuthUsersAccessToken()
+  },[])
+
+// 個々の情報をとってくるようにする。Mockになっているデータと置き換える。
   return (
     <div>
     <Head>

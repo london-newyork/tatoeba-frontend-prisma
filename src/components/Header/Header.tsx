@@ -10,7 +10,7 @@ type LoginInfo = {
   email : string | undefined;
 }
 
-export const Header = (props: LoginInfo ) => {
+export const Header = (props: LoginInfo) => {
   const [isHover, setIsHover] = useState(true)
   const handleToolTip = useCallback(
     () => {
@@ -19,12 +19,12 @@ export const Header = (props: LoginInfo ) => {
     [isHover],
   )
 
-  const handleClickLogout = async (props:LoginInfo):Promise<void> => {
+  const handleClickLogout = async ():Promise<void> => {
     const password = props.password
     const email = props.email
-    const router = useRouter()
+    // const router = useRouter()
     //ログアウト処理
-    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/login",
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`,
     {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ export const Header = (props: LoginInfo ) => {
     deleteStorage(data.token)
 
     // トップページへ飛ぶ
-    await router.push('/')
+    // await router.push('/')
   }
 
   return (

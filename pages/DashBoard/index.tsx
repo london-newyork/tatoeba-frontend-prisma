@@ -52,16 +52,6 @@ const DashBoard = () => {
 const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
 const router = useRouter()
 
-//userとfollower　list以外で例え登録ページから入ってきた情報のテストデータ
-// const testUserProfile: testUserProfile[] = [
-//     {
-//     userId: "222222",
-//     user_name: "Nola StradFord",
-//     e_mail: "test_Nola@gmail.com",
-//     password:"15555xxrQ",
-//     },
-// ]
-
 // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
 // 汎用性を考えると関数名がこれでいいかはわからない。
 useEffect(() => {
@@ -72,9 +62,7 @@ useEffect(() => {
             Authorization: `Bearer ${getStorage('jwt')}`
         }
       })
-      const data = await response.json()
-
-      // console.log(data)
+      const userData = await response.json()
     }
     sendAuthUsersAccessToken()
   },[])

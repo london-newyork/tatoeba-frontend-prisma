@@ -40,7 +40,6 @@ const handleLogin = async() => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer //トークン'
       },
       body: JSON.stringify({ password, email }),
     }

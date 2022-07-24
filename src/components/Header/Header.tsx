@@ -1,19 +1,46 @@
-import React, { useCallback, useState } from 'react'
+import React, { MouseEventHandler, useCallback, useState } from 'react'
+import { useRouter } from 'next/router'
+import { deleteStorage } from '../../lib/storage';
+import Link from 'next/link';
+
 import { PencilAltIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 
-type Props = {
-
+type LoginInfo = {
+  password : string | undefined;
+  email : string | undefined;
 }
 
-export const Header = (props:Props) => {
-  const [isHover, setIsHover]= useState(true)
+export const Header = (props: LoginInfo ) => {
+  const [isHover, setIsHover] = useState(true)
   const handleToolTip = useCallback(
     () => {
       setIsHover(!isHover)
     },
     [isHover],
   )
+
+  const handleClickLogout = async (props:LoginInfo):Promise<void> => {
+    const password = props.password
+    const email = props.email
+    const router = useRouter()
+    //ログアウト処理
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/login",
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ password, email }),
+    }
+    )
+    const data = await res.json()
+
+    deleteStorage(data.token)
+
+    // トップページへ飛ぶ
+    await router.push('/')
+  }
+
   return (
     <header>
       <div className='
@@ -98,9 +125,11 @@ export const Header = (props:Props) => {
                 </Link>
               </li>
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                <Link href="/">
+                <button
+                onClick={handleClickLogout}
+                >
                   ログアウト
-                </Link>
+                </button>
               </li>
             </ul>
           </div>

@@ -35,12 +35,11 @@ const handleLogin = async() => {
   // console.log(router.query);
 
     // ここで login 成功した場合に jwt トークンを保存するようにする。
-    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/login",
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer //トークン'
       },
       body: JSON.stringify({ password, email }),
     }

@@ -1,14 +1,39 @@
-import React from 'react'
-import type { User } from "../../../pages/DashBoard/index"
+import React, { useState } from 'react'
 import { ProfileImage } from './ProfileImage'
 
+type ProfileVal = string | undefined
+
 export const Profile = (props:any) => {
-    const { userInfo } = props
-    const handleChangePassword = () => {
-        //passwordをe.target.valueで吸い上げる
+    // const { userInfo } = props
+    const [ email, setEmail ] = useState<ProfileVal>()
+    const [ password, setPassword ] = useState<ProfileVal>()
+    const [ userName, setUserName ] = useState<ProfileVal>()
+    const handleChangePassword = (
+        e: React.ChangeEvent<HTMLInputElement> | undefined
+        ):void => {
+            const existingPassword = "" //DBからユーザーのデータをここに送る
+            if(!password){
+                setPassword(existingPassword)
+            }
+            setPassword(e.target.value)
     }
-    const handleChangeEmail = () => {
-        //Emailをe.target.valueで吸い上げる
+    const handleChangeEmail = (
+        e: React.ChangeEvent<HTMLInputElement> | undefined
+        ):void => {
+            const existingEmail = "" //DBからユーザーのデータをここに送る
+            if(!email){
+                setEmail(existingEmail)
+            }
+            setEmail(e.target.value)
+    }
+    const handleChangeUserName = (
+        e: React.ChangeEvent<HTMLInputElement> | undefined
+        ):void  => {
+            const existingUserName = "" //DBからユーザーのデータをここに送る
+            if(!userName){
+                setUserName(existingUserName)
+            }
+            setUserName(e.target.value)
     }
 
   return (
@@ -55,24 +80,14 @@ export const Profile = (props:any) => {
                                 text-2xl
                                 text-gray-700
                                 '>
-                                {userInfo[1].user_name}
+                                    <input
+                                    value={userName}
+                                    onChange={handleChangeUserName}>
+                                    </input>
                             </h1>
+
                         </div>
                     </div>
-                    {/* <button
-                    className='
-                    text-gray-300
-                    text-opacity-0
-                    group-hover:text-opacity-100
-                    '
-                    > */}
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" className='
-                        h-5
-                        w-5
-                        ' fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg> */}
-                    {/* </button> */}
                 </div>
                 <ul
                 className='
@@ -102,7 +117,7 @@ export const Profile = (props:any) => {
                                 </li>
                                 <li>
                                     <input
-                                    value={userInfo[1].e_mail}
+                                    value={email}
                                     className="
                                     h-7
                                     flex
@@ -142,7 +157,7 @@ export const Profile = (props:any) => {
                                 </li>
                                 <li>
                                 <input
-                                    value={userInfo[1].password}
+                                    value={password}
                                     className="
                                     h-7
                                     flex

@@ -1,19 +1,28 @@
 import React, { useCallback, useState } from 'react'
+import { useRouter } from 'next/router'
+import { deleteStorage } from '../../lib/storage';
+import Link from 'next/link';
+
 import { PencilAltIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
 
-type Props = {
-
-}
-
-export const Header = (props:Props) => {
-  const [isHover, setIsHover]= useState(true)
+export const Header = () => {
+  const [isHover, setIsHover] = useState(true)
+  const router = useRouter()
   const handleToolTip = useCallback(
     () => {
       setIsHover(!isHover)
     },
     [isHover],
   )
+
+  const handleClickLogout = async () => {
+    // ログアウト処理(フロント側でjwtを削除するだけで成立する)
+    deleteStorage('jwt')
+
+    // トップページへ飛ぶ
+    await router.push('/')
+  }
+
   return (
     <header>
       <div className='
@@ -98,9 +107,11 @@ export const Header = (props:Props) => {
                 </Link>
               </li>
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                <Link href="/">
+                <button
+                onClick={handleClickLogout}
+                >
                   ログアウト
-                </Link>
+                </button>
               </li>
             </ul>
           </div>

@@ -16,3 +16,7 @@ export const setStorage = <T extends StorageKey>(
 ) => {
   localStorage.setItem(`${PREFIX}${key}`, value);
 };
+
+export const deleteStorage = <T extends StorageKey>(key: T) => {
+  return localStorage.removeItem(`${PREFIX}${key}`);
+};

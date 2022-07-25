@@ -1,17 +1,13 @@
-import React, { MouseEventHandler, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 import { deleteStorage } from '../../lib/storage';
 import Link from 'next/link';
 
 import { PencilAltIcon } from '@heroicons/react/outline'
 
-type LoginInfo = {
-  password : string | undefined;
-  email : string | undefined;
-}
-
-export const Header = (props: LoginInfo) => {
+export const Header = () => {
   const [isHover, setIsHover] = useState(true)
+  const router = useRouter()
   const handleToolTip = useCallback(
     () => {
       setIsHover(!isHover)
@@ -19,26 +15,12 @@ export const Header = (props: LoginInfo) => {
     [isHover],
   )
 
-  const handleClickLogout = async ():Promise<void> => {
-    const password = props.password
-    const email = props.email
-    // const router = useRouter()
-    //ログアウト処理
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ password, email }),
-    }
-    )
-    const data = await res.json()
-
-    deleteStorage(data.token)
+  const handleClickLogout = async () => {
+    // ログアウト処理(フロント側でjwtを削除するだけで成立する)
+    deleteStorage('jwt')
 
     // トップページへ飛ぶ
-    // await router.push('/')
+    await router.push('/')
   }
 
   return (

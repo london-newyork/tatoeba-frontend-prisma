@@ -8,20 +8,10 @@ import { setStorage } from '../src/lib/storage';
 
 export default function Login() {
   const router = useRouter()
-  const [loginToken, setLoginToken] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  //バックエンドからきたレスポンスをもとにtokenを抽出
-  useEffect(() => {
-    const extractLoginToken = async() => {
-      //バックエンドのURLをかいてバックエンドからtokenを抽出
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`)
-      const data = await response.json()
+  // const [loginToken, setLoginToken] = useState()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-      setLoginToken(data.token)
-    }
-    extractLoginToken()
-  },[])
 const handleChangeEmail = (e) => {
   setEmail(e.target.value)
 }

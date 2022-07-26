@@ -48,7 +48,7 @@ const handleLogin = async() => {
         <title>Tatoeba 例え話 ログインページ</title>
         <link rel='favicon.ico' />
       </Head>
-      <Header password={password} email={email} />
+      <Header />
       <LoginLayouts>
         <section className="
             bg-gray-100

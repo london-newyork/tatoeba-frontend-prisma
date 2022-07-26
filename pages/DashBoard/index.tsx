@@ -52,21 +52,6 @@ const DashBoard = () => {
 const [words, setWords] = useRecoilState<Words[] | ParsedUrlQuery[]>(WordsAtom)
 const router = useRouter()
 
-// バックエンドに対してアクセストークンを渡してユーザー一覧を要求
-// 汎用性を考えると関数名がこれでいいかはわからない。
-useEffect(() => {
-    const sendAuthUsersAccessToken = async() => {
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
-        headers: {
-            Authorization: `Bearer ${getStorage('jwt')}`
-        }
-      })
-      const userData = await response.json()
-    }
-    sendAuthUsersAccessToken()
-  },[])
-
 // 個々の情報をとってくるようにする。Mockになっているデータと置き換える。
   return (
     <div>

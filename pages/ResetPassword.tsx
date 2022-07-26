@@ -2,30 +2,35 @@ import { Header } from "../src/components/Header/Header"
 import { LoginLayouts } from "../src/components/Layouts/LoginLayouts"
 import React, { useState } from 'react'
 import Head from "next/head"
-import Link from "next/link"
 import { useRouter } from "next/router"
+import { AuthLoggedInUser } from "../src/lib/authLoggedInUser"
 
+// ログインした時のみこのページにアクセスできるようにする
 const ResetPassword = () => {
     const router = useRouter()
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
-  const handleChangeCurrentPassword = (e) => {
-    setCurrentPassword(e.target.value)
-  }
+    // ログイン済みユーザーは認証が走る
+    AuthLoggedInUser()
 
-  const handleChangeNewPassword = (e) => {
-    setNewPassword(e.target.value)
-  }
-  //ここにパスワード再設定を書く ログイン必須の状態にする
-  const handleResetPassword = async () => {
-    if(!currentPassword || !newPassword){
-        alert('パスワードが入力されていません')
+    // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
+    const handleChangeCurrentPassword = (e) => {
+        setCurrentPassword(e.target.value)
     }
-    //成功時
-    await alert('パスワードが再設定されました。')
-    await router.push('/')
-  }
+
+    const handleChangeNewPassword = (e) => {
+        setNewPassword(e.target.value)
+    }
+    //ここにパスワード再設定を書く
+    const handleResetPassword = async () => {
+        if(!currentPassword || !newPassword){
+            alert('パスワードが入力されていません')
+        }
+        //成功時
+        await alert('パスワードが再設定されました。')
+        await router.push('/')
+    }
 
     return (
         <div>

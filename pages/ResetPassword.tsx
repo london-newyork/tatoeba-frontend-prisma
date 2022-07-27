@@ -1,9 +1,10 @@
 import { Header } from "../src/components/Header/Header"
 import { LoginLayouts } from "../src/components/Layouts/LoginLayouts"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { AuthLoggedInUser } from "../src/lib/authLoggedInUser"
+import { getStorage } from "../src/lib/storage"
 
 // ログインした時のみこのページにアクセスできるようにする
 const ResetPassword = () => {
@@ -12,7 +13,23 @@ const ResetPassword = () => {
     const [newPassword, setNewPassword] = useState('')
 
     // ログイン済みユーザーは認証が走る
-    AuthLoggedInUser()
+    // AuthLoggedInUser()
+
+    useEffect(() => {
+        const sendAuthUserAccessToken = async () => {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/reset_password`,
+            {
+              headers: {
+                Authorization: `Bearer ${getStorage('jwt')}`,
+              },
+            }
+          );
+          await response.json();
+
+        };
+        sendAuthUserAccessToken();
+      }, []);
 
     // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
     const handleChangeCurrentPassword = (e) => {
@@ -27,9 +44,21 @@ const ResetPassword = () => {
         if(!currentPassword || !newPassword){
             alert('パスワードが入力されていません')
         }
-        //成功時
-        await alert('パスワードが再設定されました。')
-        await router.push('/')
+        // API側に現在のパスワードと新しいパスワードを送る
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/password/reset`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ currentPassword, newPassword }),
+        }
+        )
+        const data = await res.json()
+        // setStorage('jwt', data.token)
+
+        //個々のuserのページへ飛ぶ
+        await router.push(`/reset_password_success`)
     }
 
     return (

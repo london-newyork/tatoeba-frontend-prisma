@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Head from "next/head"
 import { useRouter } from "next/router";
 
-
 // ログインした時のみこのページにアクセスできるようにする
-const ResetPasswordSucceeded = () => {
+const CompleteResetPassword = () => {
     const [now, ] = useState(Date.now());
     const router= useRouter()
     useEffect(() => {
@@ -49,4 +48,4 @@ const ResetPasswordSucceeded = () => {
     )
 }
 
-export default ResetPasswordSucceeded
+export default CompleteResetPassword

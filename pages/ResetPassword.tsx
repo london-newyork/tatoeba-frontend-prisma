@@ -1,35 +1,16 @@
 import { Header } from "../src/components/Header/Header"
 import { LoginLayouts } from "../src/components/Layouts/LoginLayouts"
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { AuthLoggedInUser } from "../src/lib/authLoggedInUser"
 import { getStorage } from "../src/lib/storage"
 
-// ログインした時のみこのページにアクセスできるようにする
+// [WIP]ログインした時のみこのページにアクセスできるようにする
 const ResetPassword = () => {
     const router = useRouter()
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
-
-    // ログイン済みユーザーは認証が走る
-    // AuthLoggedInUser()
-
-    useEffect(() => {
-        const sendAuthUserAccessToken = async () => {
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/reset_password`,
-            {
-              headers: {
-                Authorization: `Bearer ${getStorage('jwt')}`,
-              },
-            }
-          );
-          await response.json();
-
-        };
-        sendAuthUserAccessToken();
-      }, []);
+    const [confirmPassword, setConfirmPassword] = useState('')
 
     // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
     const handleChangeCurrentPassword = (e) => {
@@ -39,26 +20,37 @@ const ResetPassword = () => {
     const handleChangeNewPassword = (e) => {
         setNewPassword(e.target.value)
     }
+
+    const handleChangeConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value)
+    }
     //ここにパスワード再設定を書く
     const handleResetPassword = async () => {
         if(!currentPassword || !newPassword){
             alert('パスワードが入力されていません')
+            return
         }
+        // パスワード確認失敗
+        if(!(newPassword === confirmPassword)){
+            alert('パスワードが一致していません')
+            return
+        }
+
         // API側に現在のパスワードと新しいパスワードを送る
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/password/reset`,
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/password_reset`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${getStorage('jwt')}`,
           },
           body: JSON.stringify({ currentPassword, newPassword }),
         }
         )
         const data = await res.json()
-        // setStorage('jwt', data.token)
 
-        //個々のuserのページへ飛ぶ
-        await router.push(`/reset_password_success`)
+        //パスワード再設定完了ページへ飛ぶ
+        await router.push('/complete_reset_password')
     }
 
     return (
@@ -164,6 +156,37 @@ const ResetPassword = () => {
                             rounded-full
                             '
                             onChange={handleChangeNewPassword}
+                            />
+                        </div>
+                        <div className='flex flex-col'>
+                        <p
+                        className='
+                        pr-2
+                        text-gray-600
+                        w-[128px]
+                        text-sm
+                        pb-2
+                        '>新パスワード確認</p>
+                            <input
+                            value={newPassword}
+                            className='
+                            shadow-sm
+                            outline-none
+                            focus:ring-2
+                            focus:ring-offset-3
+                            focus:ring-green-100
+                            focus:ring-offset-green-50
+                            focus:border-green-100
+                            focus:placeholder-gray-300
+                            h-8
+                            py-2
+                            px-3
+                            w-[300px]
+                            border
+                            border-gray-200
+                            rounded-full
+                            '
+                            onChange={handleChangeConfirmPassword}
                             />
                         </div>
                         <button

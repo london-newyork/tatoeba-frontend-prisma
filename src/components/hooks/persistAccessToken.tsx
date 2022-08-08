@@ -6,9 +6,9 @@ import { useEffect } from 'react';
 export const usePersistAccessToken = () => {
   const [accessToken, setAccessToken] = useRecoilState<string>(LoginUserAtom);
   useEffect(() => {
-    if (!accessToken) {
-      throw new Error();
-    }
+    // if (!accessToken) {
+    //   throw new Error();
+    // }
     setAccessToken(getStorage('jwt'));
   }, []);
   return { accessToken };

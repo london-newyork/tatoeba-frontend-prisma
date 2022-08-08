@@ -38,13 +38,13 @@ export default function Login() {
       }
     );
     const data = await res.json();
-    // setStorage('jwt', data.token);
-    if (!accessToken) {
-      setStorage('jwt', data.token);
-          //個々のuserのページへ飛ぶ
-    await router.push(`/DashBoard`);
-    }
-    setStorage('jwt', accessToken as unknown as string);
+    setStorage('jwt', data.token);
+    // if (!accessToken) {
+    //   setStorage('jwt', data.token);
+    //       //個々のuserのページへ飛ぶ
+    // await router.push(`/DashBoard`);
+    // }
+    // setStorage('jwt', accessToken as unknown as string);
     await router.push(`/DashBoard`);
 
   };

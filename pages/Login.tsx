@@ -12,7 +12,7 @@ export default function Login() {
   // const [loginToken, setLoginToken] = useState()
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const accessToken = usePersistAccessToken();
+  const persistAccessToken = usePersistAccessToken();
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -39,14 +39,13 @@ export default function Login() {
     );
     const data = await res.json();
     setStorage('jwt', data.token);
-    // if (!accessToken) {
+    // if (!persistAccessToken) {
     //   setStorage('jwt', data.token);
     //       //個々のuserのページへ飛ぶ
     // await router.push(`/DashBoard`);
     // }
-    // setStorage('jwt', accessToken as unknown as string);
+    // setStorage('jwt', persistAccessToken as unknown as string);
     await router.push(`/DashBoard`);
-
   };
 
   return (

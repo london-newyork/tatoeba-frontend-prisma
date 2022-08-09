@@ -4,12 +4,13 @@ import { getStorage } from '../../lib/storage';
 import { useEffect } from 'react';
 
 export const usePersistAccessToken = () => {
-  const [accessToken, setAccessToken] = useRecoilState<string>(LoginUserAtom);
+  const [persistAccessToken, setAccessToken] =
+    useRecoilState<string>(LoginUserAtom);
   useEffect(() => {
-    // if (!accessToken) {
+    // if (!persistAccessToken) {
     //   throw new Error();
     // }
     setAccessToken(getStorage('jwt'));
   }, []);
-  return { accessToken };
+  return { persistAccessToken };
 };

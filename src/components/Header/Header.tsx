@@ -7,7 +7,7 @@ import { PencilAltIcon } from '@heroicons/react/outline';
 import { usePersistAccessToken } from '../hooks/persistAccessToken';
 
 export const Header = () => {
-  const accessToken = usePersistAccessToken();
+  const persistAccessToken = usePersistAccessToken();
   const [isHover, setIsHover] = useState(true);
   const router = useRouter();
   const handleToolTip = useCallback(() => {
@@ -114,7 +114,7 @@ export const Header = () => {
               `}
             >
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                {accessToken ? (
+                {persistAccessToken ? (
                   <Link href='/DashBoard'>ログイン</Link>
                 ) : (
                   <Link href='/Login'>ログイン</Link>
@@ -125,7 +125,7 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-          {accessToken ? (
+          {persistAccessToken ? (
             <Link href='/DashBoard/UserTatoeList'>
               <button
                 className='

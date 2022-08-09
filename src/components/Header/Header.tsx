@@ -5,23 +5,30 @@ import Link from 'next/link';
 
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { usePersistAccessToken } from '../hooks/persistAccessToken';
+import { useHandleLogout } from '../hooks/handleLogout';
 
 export const Header = () => {
   const persistAccessToken = usePersistAccessToken();
+  console.log(persistAccessToken);
+
   const [isHover, setIsHover] = useState(true);
   const router = useRouter();
   const handleToolTip = useCallback(() => {
     setIsHover(!isHover);
   }, [isHover]);
 
-  const handleClickLogout = async () => {
-    // ログアウト処理(フロント側でjwtを削除するだけで成立する)
-    deleteStorage('jwt');
+  // const handleLogout = async () => {
+  //   // const [isLogout, setIsLogout] = useState<boolean>(true);
+  //   // if (isLogout) {
+  //   deleteStorage('jwt');
+  //   await router.push('/');
+  //   //   return isLogout;
+  //   // }
+  //   // setIsLogout(false);
+  // };
 
-    // トップページへ飛ぶ
-    await router.push('/');
-  };
-
+  // promiseの型と合っていないというエラー発生
+  const { handleLogout } = useHandleLogout();
   return (
     <header>
       <div
@@ -114,6 +121,7 @@ export const Header = () => {
               `}
             >
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
+                {/* <Link href='/Login'>ログイン</Link> */}
                 {persistAccessToken ? (
                   <Link href='/DashBoard'>ログイン</Link>
                 ) : (
@@ -121,7 +129,7 @@ export const Header = () => {
                 )}
               </li>
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                <button onClick={handleClickLogout}>ログアウト</button>
+                <button onClick={handleLogout}>ログアウト</button>
               </li>
             </ul>
           </div>

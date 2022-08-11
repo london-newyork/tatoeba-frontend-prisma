@@ -3,44 +3,31 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Header } from '../src/components/Header/Header';
-import { LoginLayouts } from '../src/components/Layouts/LoginLayouts'
+import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
 import { setStorage } from '../src/lib/storage';
+import { usePersistAccessToken } from '../src/components/hooks/persistAccessToken';
+import { useAuth } from '../src/components/hooks/useAuth';
 
 export default function Login() {
-  const router = useRouter()
+  const router = useRouter();
   // const [loginToken, setLoginToken] = useState()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-const handleChangeEmail = (e) => {
-  setEmail(e.target.value)
-}
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-const handleChangePassword = (e) => {
-  setPassword(e.target.value)
-}
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-//Backend側へパスワードとメールアドレスを送る
-const handleLogin = async() => {
-  // console.log(router.query);
-
-    // ここで login 成功した場合に jwt トークンを保存するようにする。
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ password, email }),
-    }
-    )
-    const data = await res.json()
-
-    setStorage('jwt', data.token)
-
-    //個々のuserのページへ飛ぶ
-    await router.push(`/DashBoard`)
-  }
+  //Backend側へパスワードとメールアドレスを送る
+  const { login } = useAuth();
+  const handleLogin = async () => {
+    login(email, password);
+    await router.push(`/DashBoard`);
+  };
 
   return (
     <>
@@ -50,7 +37,8 @@ const handleLogin = async() => {
       </Head>
       <Header />
       <LoginLayouts>
-        <section className="
+        <section
+          className='
             bg-gray-100
             h-screen
             px-2
@@ -58,8 +46,10 @@ const handleLogin = async() => {
             mx-auto
             flex
             justify-center
-            ">
-                <div className="
+            '
+        >
+          <div
+            className='
                 bg-white
                 px-7
                 pt-20
@@ -73,33 +63,36 @@ const handleLogin = async() => {
                 flex
                 flex-col
                 items-center
-                ">
-                  <h1 className="
+                '
+          >
+            <h1
+              className='
                   relative
                   text-3xl
                   text-gray-700
                   select-none
                   font-normal
-                  "
-                  >
-                      ログイン
-                  </h1>
-                  <div className='pt-14 flex flex-col gap-6'>
-                    <div className='flex flex-col'>
-                      <p
-                      className='
+                  '
+            >
+              ログイン
+            </h1>
+            <div className='pt-14 flex flex-col gap-6'>
+              <div className='flex flex-col'>
+                <p
+                  className='
                       pr-2
                       font-normal
                       text-gray-600
                       w-[128px]
                       text-sm
                       pb-2
-                      '>
-                        メールアドレス
-                      </p>
-                      <input
-                      value={email}
-                      className='
+                      '
+                >
+                  メールアドレス
+                </p>
+                <input
+                  value={email}
+                  className='
                       outline-none
                       focus:ring-2
                       focus:ring-offset-3
@@ -115,21 +108,24 @@ const handleLogin = async() => {
                       border-gray-200
                       rounded-full
                       '
-                      onChange={handleChangeEmail}
-                      />
-                    </div>
-                    <div className='flex flex-col'>
-                      <p
-                      className='
+                  onChange={handleChangeEmail}
+                />
+              </div>
+              <div className='flex flex-col'>
+                <p
+                  className='
                       pr-2
                       text-gray-600
                       w-[128px]
                       text-sm
                       pb-2
-                      '>パスワード</p>
-                        <input
-                        value={password}
-                        className='
+                      '
+                >
+                  パスワード
+                </p>
+                <input
+                  value={password}
+                  className='
                         shadow-sm
                         outline-none
                         focus:ring-2
@@ -146,11 +142,11 @@ const handleLogin = async() => {
                         border-gray-200
                         rounded-full
                         '
-                        onChange={handleChangePassword}
-                        />
-                      </div>
-                    <button
-                    className='
+                  onChange={handleChangePassword}
+                />
+              </div>
+              <button
+                className='
                     mt-4
                     mb-4
                     mx-auto
@@ -163,22 +159,25 @@ const handleLogin = async() => {
                     hover:bg-opacity-90
                     font-normal
                     '
-                    onClick={handleLogin}
-                    >ログイン</button>
-                  </div>
-                  <Link
-                  href="/RegisterMember/TempRegisterMember"
-                  >
-                  <p
-                  className='
+                onClick={handleLogin}
+              >
+                ログイン
+              </button>
+            </div>
+            <Link href='/RegisterMember/TempRegisterMember'>
+              <p
+                className='
                   mx-auto
                   text-sm
                   text-gray-600
-                  '>新規会員登録</p>
-                  </Link>
-                </div>
+                  '
+              >
+                新規会員登録
+              </p>
+            </Link>
+          </div>
         </section>
       </LoginLayouts>
     </>
-  )
-};
+  );
+}

@@ -1,34 +1,23 @@
 import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
-import { deleteStorage } from '../../lib/storage';
 import Link from 'next/link';
 
 import { PencilAltIcon } from '@heroicons/react/outline';
-import { usePersistAccessToken } from '../hooks/persistAccessToken';
-import { useHandleLogout } from '../hooks/handleLogout';
+import { useAuth } from '../hooks/useAuth';
 
 export const Header = () => {
-  const persistAccessToken = usePersistAccessToken();
-  console.log(persistAccessToken);
-
   const [isHover, setIsHover] = useState(true);
   const router = useRouter();
   const handleToolTip = useCallback(() => {
     setIsHover(!isHover);
   }, [isHover]);
 
-  // const handleLogout = async () => {
-  //   // const [isLogout, setIsLogout] = useState<boolean>(true);
-  //   // if (isLogout) {
-  //   deleteStorage('jwt');
-  //   await router.push('/');
-  //   //   return isLogout;
-  //   // }
-  //   // setIsLogout(false);
-  // };
+  const { logout, isLoggedIn } = useAuth();
+  const handleLogout = async () => {
+    await logout();
+    await router.push('/');
+  };
 
-  // promiseの型と合っていないというエラー発生
-  const { handleLogout } = useHandleLogout();
   return (
     <header>
       <div
@@ -54,11 +43,11 @@ export const Header = () => {
           <Link href='/'>
             <a
               className='
-            text-2xl
-            text-gray-700
-            tracking-wider
-            hover:opacity-50
-            duration-300'
+              text-2xl
+              text-gray-700
+              tracking-wider
+              hover:opacity-50
+              duration-300'
             >
               <span className='text-dark_green'>T</span>
               atoeba
@@ -69,20 +58,20 @@ export const Header = () => {
           <div className='flex flex-col items-end'>
             <div
               className='
-            position
-            my-auto
-            mr-3
-            bg-gray-100
-            rounded-full
-            h-7
-            w-7
-            flex
-            justify-center
-            items-center
-            text-xs
-            text-gray-500
-            cursor-pointer
-            '
+              position
+              my-auto
+              mr-3
+              bg-gray-100
+              rounded-full
+              h-7
+              w-7
+              flex
+              justify-center
+              items-center
+              text-xs
+              text-gray-500
+              cursor-pointer
+              '
               onClick={handleToolTip}
             >
               <svg
@@ -121,8 +110,7 @@ export const Header = () => {
               `}
             >
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                {/* <Link href='/Login'>ログイン</Link> */}
-                {persistAccessToken ? (
+                {isLoggedIn ? (
                   <Link href='/DashBoard'>ログイン</Link>
                 ) : (
                   <Link href='/Login'>ログイン</Link>
@@ -133,30 +121,30 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-          {persistAccessToken ? (
+          {isLoggedIn ? (
             <Link href='/DashBoard/UserTatoeList'>
               <button
                 className='
-              hover:bg-mint_green
-              bg-light_green
-              rounded-full
-              h-7
-              w-7'
+                hover:bg-mint_green
+                bg-light_green
+                rounded-full
+                h-7
+                w-7'
               >
                 <ul
                   className='
-              flex
-              flex-col
-              hover:text-white
-              items-center'
+                  flex
+                  flex-col
+                  hover:text-white
+                  items-center'
                 >
                   <li>
                     <PencilAltIcon
                       className='
-                    h-4
-                    w-4
-                    text-q_dark_green
-                    duration-300'
+                      h-4
+                      w-4
+                      text-q_dark_green
+                      duration-300'
                     />
                   </li>
                 </ul>
@@ -174,18 +162,18 @@ export const Header = () => {
               >
                 <ul
                   className='
-              flex
-              flex-col
-              hover:text-white
-              items-center'
+                  flex
+                  flex-col
+                  hover:text-white
+                  items-center'
                 >
                   <li>
                     <PencilAltIcon
                       className='
-                    h-4
-                    w-4
-                    text-q_dark_green
-                    duration-300'
+                      h-4
+                      w-4
+                      text-q_dark_green
+                      duration-300'
                     />
                   </li>
                 </ul>

@@ -6,13 +6,13 @@ import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
 import { setStorage } from '../src/lib/storage';
 import { usePersistAccessToken } from '../src/components/hooks/persistAccessToken';
+import { useAuth } from '../src/components/hooks/useAuth';
 
 export default function Login() {
   const router = useRouter();
   // const [loginToken, setLoginToken] = useState()
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const persistAccessToken = usePersistAccessToken();
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -23,28 +23,9 @@ export default function Login() {
   };
 
   //Backend側へパスワードとメールアドレスを送る
+  const { login } = useAuth();
   const handleLogin = async () => {
-    // console.log(router.query);
-
-    // ここで login 成功した場合に jwt トークンを保存するようにする。
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password, email }),
-      }
-    );
-    const data = await res.json();
-    setStorage('jwt', data.token);
-    // if (!persistAccessToken) {
-    //   setStorage('jwt', data.token);
-    //       //個々のuserのページへ飛ぶ
-    // await router.push(`/DashBoard`);
-    // }
-    // setStorage('jwt', persistAccessToken as unknown as string);
+    login(email, password);
     await router.push(`/DashBoard`);
   };
 

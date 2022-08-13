@@ -10,7 +10,10 @@ import React, {
 import { getStorage } from '../../lib/storage';
 import { ProfileImage } from './ProfileImage';
 
-type ProfileVal = string | string[] | undefined;
+// type ProfileVal = {
+//   userName: string | undefined;
+//   //   email: string | undefined;
+// };
 
 export const Profile = () => {
   // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
@@ -33,17 +36,20 @@ export const Profile = () => {
   // emailとuserNameをapiのデータから取り出して表示(passwordは表示しない)
 
   // 新規会員登録した際の情報を更新する
-  const [userName, setUserName] = useState<ProfileVal>();
+  const [userName, setUserName] = useState<string | null>();
   const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [isFocus, setIsFocus] = useState<boolean>(true);
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
+    setIsFocus(true);
     setUserName(e.target.value);
-    console.log('handleChangeUserName', userName);
 
     // 名前がない場合、投稿できないようにする => 必須
     // 現状、投稿時に投稿者名を入れていない仕様なので追加
   };
+
+  console.log('確定', userName);
 
   const handleCompositionStart = () => {
     setIsTyping(true);
@@ -53,7 +59,11 @@ export const Profile = () => {
     setIsTyping(false);
   };
 
-  // エンターキーを押され,isTypingが動作していて、漢字変換されたら名前を登録する
+  const focusCSS =
+    'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
+  const unFocusCSS = 'focus:outline-0';
+
+  // isTypingが動作中でなく漢字変換中でないときにエンターキーが押されたら名前を登録する
   const handleOnKeyDown = (
     event:
       | DetailedHTMLProps<
@@ -64,8 +74,10 @@ export const Profile = () => {
   ): void => {
     // @ts-ignore shiftKeyの型が解決できないので一旦無視
     if (event.key === 'Enter' && !isTyping && !event.shiftKey) {
-      //   setUserName(event.target.value);
-      //   console.log('名前変更後', userName);
+      setUserName((prev): string => {
+        return prev;
+      });
+      setIsFocus(false);
     }
   };
 
@@ -119,6 +131,10 @@ export const Profile = () => {
                 onCompositionStart={handleCompositionStart}
                 onCompositionEnd={handleCompositionEnd}
                 placeholder='Nola Stradford'
+                className={`${isFocus ? focusCSS : unFocusCSS}
+                rounded-md
+                px-2
+                `}
               ></input>
             </h1>
           </div>

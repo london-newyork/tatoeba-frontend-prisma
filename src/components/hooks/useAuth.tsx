@@ -14,6 +14,7 @@ export const useAuth = (): Auth => {
   const [persistAccessToken, setPersistAccessToken] =
     useRecoilState(LoginUserAtom);
   const [email, setEmail] = useState<string>('');
+  console.log('useAuth.tsx email', email); //ログイン時のemailが入っていることを確認済み
 
   const login = async (email: string, password: string) => {
     const res = await fetch(

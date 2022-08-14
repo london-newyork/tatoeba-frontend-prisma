@@ -18,6 +18,7 @@ export const Profile = () => {
   // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
   // 汎用性を考えると関数名がこれでいいかはわからない。
   const { email } = useAuth();
+  console.log('useAuth', email);
 
   // かならずあとで削除する
   //   const updateUserName = async () => {
@@ -41,9 +42,10 @@ export const Profile = () => {
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
     setUserName(e.target.value);
+    console.log('handleChangeUserName', userName);
 
-    // 名前がない場合、投稿できないようにする => 必須
-    // 現状、投稿時に投稿者名を入れていない仕様なので追加
+    // TODO 名前がない場合、投稿できないようにする => 投稿時必須
+    // TODO 現状、投稿時に投稿者名を入れていない仕様なので追加
   };
 
   const handleCompositionStart = () => {
@@ -61,7 +63,6 @@ export const Profile = () => {
     'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
   const unFocusCSS = 'focus:outline-0';
 
-  // isTypingが動作中でなく漢字変換中でないときにエンターキーが押されたら名前を登録する
   const handleOnKeyDown = async (
     event:
       | DetailedHTMLProps<
@@ -85,7 +86,12 @@ export const Profile = () => {
         body: JSON.stringify({ userName, email }),
       });
       await res.json();
+      console.log('email, userName', email, userName);
+      // emailが入ってない　=> カスタムフックのemail呼び出しているのに来ていない　=> 構造に問題ある
 
+      // TODO userName 永続化をする
+
+      // onFocus　inputアウトライン非表示
       setIsFocus(false);
     }
   };
@@ -181,7 +187,6 @@ export const Profile = () => {
               メールアドレス
             </li>
             <li
-              //   value={currentEmail}
               className='
                 h-7
                 flex

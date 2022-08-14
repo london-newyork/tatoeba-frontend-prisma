@@ -42,7 +42,7 @@ export const Profile = () => {
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
-    setIsFocus(true);
+    // setIsFocus(true);
     setUserName(e.target.value);
 
     // 名前がない場合、投稿できないようにする => 必須
@@ -57,6 +57,9 @@ export const Profile = () => {
 
   const handleCompositionEnd = () => {
     setIsTyping(false);
+  };
+  const handleOnFocus = () => {
+    setIsFocus(true);
   };
 
   const focusCSS =
@@ -127,6 +130,7 @@ export const Profile = () => {
               <input
                 value={userName}
                 onChange={handleChangeUserName}
+                onFocus={handleOnFocus}
                 onKeyDown={handleOnKeyDown}
                 onCompositionStart={handleCompositionStart}
                 onCompositionEnd={handleCompositionEnd}

@@ -18,16 +18,18 @@ export const Profile = () => {
   // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
   // 汎用性を考えると関数名がこれでいいかはわからない。
   const { email } = useAuth();
-  const updateUserName = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userName, email }),
-    });
-    await res.json();
-  };
+
+  // かならずあとで削除する
+  //   const updateUserName = async () => {
+  //     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ userName, email }),
+  //     });
+  //     await res.json();
+  //   };
 
   // emailとuserNameをapiのデータから取り出して表示(passwordは表示しない)
 

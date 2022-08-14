@@ -4,10 +4,9 @@ import React, {
   ChangeEvent,
   DetailedHTMLProps,
   InputHTMLAttributes,
-  useEffect,
   useState,
 } from 'react';
-import { getStorage } from '../../lib/storage';
+import { useAuth } from '../hooks/useAuth';
 import { ProfileImage } from './ProfileImage';
 
 // type ProfileVal = {
@@ -18,20 +17,17 @@ import { ProfileImage } from './ProfileImage';
 export const Profile = () => {
   // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
   // 汎用性を考えると関数名がこれでいいかはわからない。
-  useEffect(() => {
-    const sendAuthUsersAccessToken = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users`,
-        {
-          headers: {
-            Authorization: `Bearer ${getStorage('jwt')}`,
-          },
-        }
-      );
-      await response.json();
-    };
-    sendAuthUsersAccessToken();
-  }, []);
+  const { email } = useAuth();
+  const updateUserName = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userName, email }),
+    });
+    await res.json();
+  };
 
   // emailとuserNameをapiのデータから取り出して表示(passwordは表示しない)
 
@@ -42,14 +38,11 @@ export const Profile = () => {
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
-    // setIsFocus(true);
     setUserName(e.target.value);
 
     // 名前がない場合、投稿できないようにする => 必須
     // 現状、投稿時に投稿者名を入れていない仕様なので追加
   };
-
-  console.log('確定', userName);
 
   const handleCompositionStart = () => {
     setIsTyping(true);
@@ -67,19 +60,30 @@ export const Profile = () => {
   const unFocusCSS = 'focus:outline-0';
 
   // isTypingが動作中でなく漢字変換中でないときにエンターキーが押されたら名前を登録する
-  const handleOnKeyDown = (
+  const handleOnKeyDown = async (
     event:
       | DetailedHTMLProps<
           InputHTMLAttributes<HTMLInputElement>,
           HTMLInputElement
         >
       | undefined
-  ): void => {
+  ): Promise<any> => {
+    // Promise型解決できないので一旦any
     // @ts-ignore shiftKeyの型が解決できないので一旦無視
     if (event.key === 'Enter' && !isTyping && !event.shiftKey) {
       setUserName((prev): string => {
         return prev;
       });
+      // user一覧にemailとuserNameを送る
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userName, email }),
+      });
+      await res.json();
+
       setIsFocus(false);
     }
   };

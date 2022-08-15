@@ -1,4 +1,3 @@
-import { UsersIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import React, {
   ChangeEvent,
@@ -6,36 +5,21 @@ import React, {
   InputHTMLAttributes,
   useState,
 } from 'react';
+import { useRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
+import { UserNameAtom } from '../utils/atoms/userNameAtom';
 import { ProfileImage } from './ProfileImage';
-
-// type ProfileVal = {
-//   userName: string | undefined;
-//   //   email: string | undefined;
-// };
 
 export const Profile = () => {
   // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
   // 汎用性を考えると関数名がこれでいいかはわからない。
   const { email } = useAuth();
-  console.log('useAuth', email);
-
-  // かならずあとで削除する
-  //   const updateUserName = async () => {
-  //     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ userName, email }),
-  //     });
-  //     await res.json();
-  //   };
+  // console.log('useAuth', email);
 
   // emailとuserNameをapiのデータから取り出して表示(passwordは表示しない)
 
   // 新規会員登録した際の情報を更新する
-  const [userName, setUserName] = useState<string | null>();
+  const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const handleChangeUserName = (
@@ -61,7 +45,7 @@ export const Profile = () => {
 
   const focusCSS =
     'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
-  const unFocusCSS = 'focus:outline-0';
+  const unFocusCSS = 'focus:outline-0 outline-0';
 
   const handleOnKeyDown = async (
     event:
@@ -77,7 +61,9 @@ export const Profile = () => {
       setUserName((prev): string => {
         return prev;
       });
-      // user一覧にemailとuserNameを送る
+      console.log('email, userName', email, userName);
+      setIsFocus(false);
+      // users一覧にemailとuserNameを送る
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
         method: 'POST',
         headers: {
@@ -86,13 +72,10 @@ export const Profile = () => {
         body: JSON.stringify({ userName, email }),
       });
       await res.json();
-      console.log('email, userName', email, userName);
-      // emailが入ってない　=> カスタムフックのemail呼び出しているのに来ていない　=> 構造に問題ある
+      // payloadにemail userName確認済み
 
-      // TODO userName 永続化をする
-
-      // onFocus　inputアウトライン非表示
-      setIsFocus(false);
+      // API側 localhost:3003/usersでUnAuthorized
+      // PrismaにuserNameカラムを作成する
     }
   };
 

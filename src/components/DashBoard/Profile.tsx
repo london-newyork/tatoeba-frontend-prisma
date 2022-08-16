@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { useRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
-import { UserNameAtom } from '../utils/atoms/userNameAtom';
+import { UserNameAtom } from '../utils/atoms/UserNameAtom';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {

@@ -1,15 +1,22 @@
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { EmailAtom } from '../utils/atoms/EmailAtom';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 
 export type Auth = {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   isLoggedIn: boolean;
+  email: string;
+  setEmail: Dispatch<SetStateAction<string>>;
 };
 
 export const useAuth = (): Auth => {
   const [persistAccessToken, setPersistAccessToken] =
     useRecoilState(LoginUserAtom);
+  // const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useRecoilState<string | null>(EmailAtom);
+  // console.log('useAuth.tsx email', email); //ログイン時のemailが入っていることを確認済み
 
   const login = async (email: string, password: string) => {
     const res = await fetch(
@@ -34,5 +41,5 @@ export const useAuth = (): Auth => {
 
   const isLoggedIn = persistAccessToken ? true : false;
 
-  return { login, logout, isLoggedIn };
+  return { login, logout, isLoggedIn, email, setEmail };
 };

@@ -1,17 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Header } from '../src/components/Header/Header';
 import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
-import { setStorage } from '../src/lib/storage';
-import { usePersistAccessToken } from '../src/components/hooks/persistAccessToken';
 import { useAuth } from '../src/components/hooks/useAuth';
 
 export default function Login() {
+  const { login, email, setEmail } = useAuth();
   const router = useRouter();
-  // const [loginToken, setLoginToken] = useState()
-  const [email, setEmail] = useState<string>('');
+  // const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const handleChangeEmail = (e) => {
@@ -23,7 +21,7 @@ export default function Login() {
   };
 
   //Backend側へパスワードとメールアドレスを送る
-  const { login } = useAuth();
+
   const handleLogin = async () => {
     login(email, password);
     await router.push(`/DashBoard`);

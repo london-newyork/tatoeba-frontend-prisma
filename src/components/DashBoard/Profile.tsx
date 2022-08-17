@@ -5,20 +5,15 @@ import React, {
   InputHTMLAttributes,
   useState,
 } from 'react';
-import { useRecoilState } from 'recoil';
+import { RecoilState, useRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
 import { UserNameAtom } from '../utils/atoms/UserNameAtom';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
-  // バックエンドに対してアクセストークンを渡してユーザー一覧を要求
-  // 汎用性を考えると関数名がこれでいいかはわからない。
   const { email } = useAuth();
-  // console.log('useAuth', email);
 
-  // emailとuserNameをapiのデータから取り出して表示(passwordは表示しない)
-
-  // 新規会員登録した際の情報を更新する
+  // TODO 名前がない場合、投稿できないようにする => 投稿時必須
   const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -26,10 +21,6 @@ export const Profile = () => {
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
     setUserName(e.target.value);
-    console.log('handleChangeUserName', userName);
-
-    // TODO 名前がない場合、投稿できないようにする => 投稿時必須
-    // TODO 現状、投稿時に投稿者名を入れていない仕様なので追加
   };
 
   const handleCompositionStart = () => {
@@ -61,7 +52,7 @@ export const Profile = () => {
       setUserName((prev): string => {
         return prev;
       });
-      console.log('email, userName', email, userName);
+
       setIsFocus(false);
       // users一覧にemailとuserNameを送る
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
@@ -72,10 +63,6 @@ export const Profile = () => {
         body: JSON.stringify({ userName, email }),
       });
       await res.json();
-      // payloadにemail userName確認済み
-
-      // API側 localhost:3003/usersでUnAuthorized
-      // PrismaにuserNameカラムを作成する
     }
   };
 

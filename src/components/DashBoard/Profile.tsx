@@ -10,10 +10,6 @@ import { useAuth } from '../hooks/useAuth';
 import { UserNameAtom } from '../utils/atoms/UserNameAtom';
 import { ProfileImage } from './ProfileImage';
 
-type User = {
-  userName: Required<string>;
-};
-
 export const Profile = () => {
   const { email } = useAuth();
 

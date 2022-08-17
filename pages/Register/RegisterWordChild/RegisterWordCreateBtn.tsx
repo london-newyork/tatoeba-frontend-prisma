@@ -8,7 +8,7 @@ import { UserNameAtom } from '../../../src/components/utils/atoms/UserNameAtom';
 export const RegisterWordCreateBtn = (props) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
-  const [userName, setUserName] = useRecoilState(UserNameAtom);
+  const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
   const [words, setWords] = useRecoilState(WordsAtom);
   // const [show, setShow] = useState(false)
   const router = useRouter();

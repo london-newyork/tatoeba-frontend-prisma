@@ -62,7 +62,7 @@ const DashBoard = () => {
         <Header />
         <DashBoardLayouts>
           <ProfileLayouts>
-            <Profile userInfo={userInfo} />
+            <Profile />
           </ProfileLayouts>
         </DashBoardLayouts>
       </div>

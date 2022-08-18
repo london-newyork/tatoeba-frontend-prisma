@@ -5,16 +5,20 @@ import React, {
   InputHTMLAttributes,
   useState,
 } from 'react';
-import { RecoilState, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
+import { useUserInfo } from '../hooks/useUserInfo';
+import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { UserNameAtom } from '../utils/atoms/UserNameAtom';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
-  const { email } = useAuth();
+  const { userId } = useAuth();
+  const user = useUserInfo(userId);
 
-  // TODO 名前がない場合、投稿できないようにする => 投稿時必須
   const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
+  const [persistAccessToken, setPersistAccessToken] =
+    useRecoilState(LoginUserAtom);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const handleChangeUserName = (
@@ -54,14 +58,18 @@ export const Profile = () => {
       });
 
       setIsFocus(false);
-      // users一覧にemailとuserNameを送る
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userName, email }),
-      });
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/:id `,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${persistAccessToken}`,
+          },
+          body: JSON.stringify({ userName, userId }),
+        }
+      );
       await res.json();
     }
   };

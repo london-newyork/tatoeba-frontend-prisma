@@ -15,21 +15,6 @@ import Head from 'next/head';
 import { userInfo } from '../../src/components/mock/userInfo';
 import { getStorage } from '../../src/lib/storage';
 
-export type User = {
-  userId: string; //一意のid primaryKey tatoe listとひもづく
-  user_name: string;
-  e_mail: string;
-  password: string;
-  tId: string | string[]; //既存の型を追加予定 一意のid primaryKey? =>follower listとひもづく
-  creationTime: string | string[]; //数値を日付へ置き換える
-  title: string | string[]; //既存の型を追加予定
-  shortParaphrase: string | string[]; //既存の型を追加予定
-  description: string | string[]; //既存の型を追加予定
-  tImageUrl: string | string[]; //既存の型を追加予定
-  followedCount: number | null; //その例えをフォローしている人の数
-  followerId: string; //例えをフォローしている人のid =>　その人の情報はidからどう取得するか課題
-};
-
 export type testUserProfile = {
   userId: string; //一意のid primaryKey tatoe listとひもづく
   user_name: string;

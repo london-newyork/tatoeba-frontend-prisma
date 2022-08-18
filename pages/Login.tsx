@@ -7,9 +7,9 @@ import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
 import { useAuth } from '../src/components/hooks/useAuth';
 
 export default function Login() {
-  const { login, email, setEmail } = useAuth();
+  const { login } = useAuth();
   const router = useRouter();
-  // const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const handleChangeEmail = (e) => {

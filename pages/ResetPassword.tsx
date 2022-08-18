@@ -1,67 +1,68 @@
-import { Header } from "../src/components/Header/Header"
-import { LoginLayouts } from "../src/components/Layouts/LoginLayouts"
-import React, { useState } from 'react'
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { getStorage } from "../src/lib/storage"
+import { Header } from '../src/components/Header/Header';
+import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
+import React, { useState } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { getStorage } from '../src/lib/storage';
 
-// [WIP]ログインした時のみこのページにアクセスできるようにする
 const ResetPassword = () => {
-    const router = useRouter()
-    const [currentPassword, setCurrentPassword] = useState('')
-    const [newPassword, setNewPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
+  const router = useRouter();
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-    // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
-    const handleChangeCurrentPassword = (e) => {
-        setCurrentPassword(e.target.value)
+  // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
+  const handleChangeCurrentPassword = (e) => {
+    setCurrentPassword(e.target.value);
+  };
+
+  const handleChangeNewPassword = (e) => {
+    setNewPassword(e.target.value);
+  };
+
+  const handleChangeConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+  //ここにパスワード再設定を書く
+  const handleResetPassword = async () => {
+    if (!currentPassword || !newPassword) {
+      alert('パスワードが入力されていません');
+      return;
+    }
+    // パスワード確認失敗
+    if (!(newPassword === confirmPassword)) {
+      alert('パスワードが一致していません');
+      return;
     }
 
-    const handleChangeNewPassword = (e) => {
-        setNewPassword(e.target.value)
-    }
+    // API側に現在のパスワードと新しいパスワードを送る
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/password_reset`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getStorage('jwt')}`,
+        },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      }
+    );
+    const data = await res.json();
 
-    const handleChangeConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value)
-    }
-    //ここにパスワード再設定を書く
-    const handleResetPassword = async () => {
-        if(!currentPassword || !newPassword){
-            alert('パスワードが入力されていません')
-            return
-        }
-        // パスワード確認失敗
-        if(!(newPassword === confirmPassword)){
-            alert('パスワードが一致していません')
-            return
-        }
+    //パスワード再設定完了ページへ飛ぶ
+    await router.push('/complete_reset_password');
+  };
 
-        // API側に現在のパスワードと新しいパスワードを送る
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/password_reset`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${getStorage('jwt')}`,
-          },
-          body: JSON.stringify({ currentPassword, newPassword }),
-        }
-        )
-        const data = await res.json()
-
-        //パスワード再設定完了ページへ飛ぶ
-        await router.push('/complete_reset_password')
-    }
-
-    return (
-        <div>
-            <Head>
-                <title>Tatoeba 例え話 パスワード再設定ページ</title>
-                <link rel='favicon.ico' />
-            </Head>
-            <Header />
-            <LoginLayouts>
-                <section className="
+  return (
+    <div>
+      <Head>
+        <title>Tatoeba 例え話 パスワード再設定ページ</title>
+        <link rel='favicon.ico' />
+      </Head>
+      <Header />
+      <LoginLayouts>
+        <section
+          className='
                 bg-gray-100
                 h-screen
                 px-2
@@ -69,8 +70,10 @@ const ResetPassword = () => {
                 mx-auto
                 flex
                 justify-center
-                ">
-                    <div className="
+                '
+        >
+          <div
+            className='
                     bg-white
                     px-7
                     pt-20
@@ -84,30 +87,35 @@ const ResetPassword = () => {
                     flex
                     flex-col
                     items-center
-                    ">
-                    <h1 className="
+                    '
+          >
+            <h1
+              className='
                     relative
                     text-3xl
                     text-gray-700
                     select-none
                     font-normal
-                    "
-                    >
-                        パスワード再設定
-                    </h1>
-                    <div className='pt-14 flex flex-col gap-6'>
-                        <div className='flex flex-col'>
-                        <p
-                        className='
+                    '
+            >
+              パスワード再設定
+            </h1>
+            <div className='pt-14 flex flex-col gap-6'>
+              <div className='flex flex-col'>
+                <p
+                  className='
                         pr-2
                         text-gray-600
                         w-[128px]
                         text-sm
                         pb-2
-                        '>現在のパスワード</p>
-                            <input
-                            value={currentPassword}
-                            className='
+                        '
+                >
+                  現在のパスワード
+                </p>
+                <input
+                  value={currentPassword}
+                  className='
                             shadow-sm
                             outline-none
                             focus:ring-2
@@ -124,21 +132,24 @@ const ResetPassword = () => {
                             border-gray-200
                             rounded-full
                             '
-                            onChange={handleChangeCurrentPassword}
-                            />
-                        </div>
-                        <div className='flex flex-col'>
-                        <p
-                        className='
+                  onChange={handleChangeCurrentPassword}
+                />
+              </div>
+              <div className='flex flex-col'>
+                <p
+                  className='
                         pr-2
                         text-gray-600
                         w-[128px]
                         text-sm
                         pb-2
-                        '>新パスワード</p>
-                            <input
-                            value={newPassword}
-                            className='
+                        '
+                >
+                  新パスワード
+                </p>
+                <input
+                  value={newPassword}
+                  className='
                             shadow-sm
                             outline-none
                             focus:ring-2
@@ -155,21 +166,24 @@ const ResetPassword = () => {
                             border-gray-200
                             rounded-full
                             '
-                            onChange={handleChangeNewPassword}
-                            />
-                        </div>
-                        <div className='flex flex-col'>
-                        <p
-                        className='
+                  onChange={handleChangeNewPassword}
+                />
+              </div>
+              <div className='flex flex-col'>
+                <p
+                  className='
                         pr-2
                         text-gray-600
                         w-[128px]
                         text-sm
                         pb-2
-                        '>新パスワード確認</p>
-                            <input
-                            value={newPassword}
-                            className='
+                        '
+                >
+                  新パスワード確認
+                </p>
+                <input
+                  value={newPassword}
+                  className='
                             shadow-sm
                             outline-none
                             focus:ring-2
@@ -186,11 +200,11 @@ const ResetPassword = () => {
                             border-gray-200
                             rounded-full
                             '
-                            onChange={handleChangeConfirmPassword}
-                            />
-                        </div>
-                        <button
-                        className='
+                  onChange={handleChangeConfirmPassword}
+                />
+              </div>
+              <button
+                className='
                         mt-4
                         mb-4
                         mx-auto
@@ -203,15 +217,16 @@ const ResetPassword = () => {
                         hover:bg-opacity-90
                         font-normal
                         '
-                        onClick={handleResetPassword}
-                        >パスワード再設定</button>
-                    </div>
-                    </div>
-                </section>
-            </LoginLayouts>
-        </div>
+                onClick={handleResetPassword}
+              >
+                パスワード再設定
+              </button>
+            </div>
+          </div>
+        </section>
+      </LoginLayouts>
+    </div>
+  );
+};
 
-    )
-}
-
-export default ResetPassword
+export default ResetPassword;

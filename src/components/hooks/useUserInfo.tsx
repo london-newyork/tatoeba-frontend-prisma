@@ -6,9 +6,6 @@ import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 export const useUserInfo = (userId: string) => {
   const [user, setUser] = useState(null);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-  console.log('persistAccessToken *** useUserInfo **** : ', persistAccessToken); // 確認済み
-  console.log('userId *** useUserInfo **** : ', userId);
-  // ログイン直後は確認できるが、永続化していないため１回きり。
 
   // dataは確認できない
   useEffect(() => {

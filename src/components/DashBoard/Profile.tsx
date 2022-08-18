@@ -15,6 +15,7 @@ import { ProfileImage } from './ProfileImage';
 export const Profile = () => {
   const { userId } = useAuth();
   const user = useUserInfo(userId);
+  // console.log('Profile userId **** ', userId);
 
   const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
   const [persistAccessToken, setPersistAccessToken] =

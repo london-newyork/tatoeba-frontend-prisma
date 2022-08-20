@@ -3,6 +3,7 @@ import React, {
   ChangeEvent,
   DetailedHTMLProps,
   InputHTMLAttributes,
+  useEffect,
   useState,
 } from 'react';
 import { useRecoilState } from 'recoil';
@@ -15,9 +16,8 @@ import { ProfileImage } from './ProfileImage';
 export const Profile = () => {
   const { userId } = useAuth();
   const user = useUserInfo(userId);
-  // console.log('Profile userId **** ', userId);
 
-  const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
+  const [userName, setUserName] = useState<string>('');
   const [persistAccessToken, setPersistAccessToken] =
     useRecoilState(LoginUserAtom);
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -61,19 +61,36 @@ export const Profile = () => {
       setIsFocus(false);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/:id `,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}`,
         {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${persistAccessToken}`,
           },
-          body: JSON.stringify({ userName, userId }),
+          body: JSON.stringify({ userName }),
         }
       );
       await res.json();
     }
   };
+
+  useEffect(() => {
+    // `user` の値が null でない時、 `setUserName` に `user` の値を入れる
+    if (user) {
+      setUserName(user.userName);
+    }
+  }, [user]);
+
+  if (!user) {
+    // データ読みこ中やエラーが発生した場合。
+    // * 実際は読み込み中とエラーを区別して扱う必要があります。
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className='group'>
@@ -119,6 +136,7 @@ export const Profile = () => {
                 '
             >
               <input
+                defaultValue={user}
                 value={userName}
                 onChange={handleChangeUserName}
                 onFocus={handleOnFocus}

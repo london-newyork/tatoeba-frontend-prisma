@@ -10,13 +10,12 @@ import { useRecoilState } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { UserNameAtom } from '../utils/atoms/UserNameAtom';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
   const { userId } = useAuth();
   const user = useUserInfo(userId);
-
+  // TODO userNameはuseStateで管理 => atom化しているところを修正
   const [userName, setUserName] = useState<string>('');
   const [persistAccessToken, setPersistAccessToken] =
     useRecoilState(LoginUserAtom);
@@ -83,8 +82,6 @@ export const Profile = () => {
   }, [user]);
 
   if (!user) {
-    // データ読みこ中やエラーが発生した場合。
-    // * 実際は読み込み中とエラーを区別して扱う必要があります。
     return (
       <div>
         <p>loading...</p>

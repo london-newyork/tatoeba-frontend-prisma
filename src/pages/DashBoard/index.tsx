@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { Header } from '../../src/components/Header/Header';
-import { DashBoardLayouts } from '../../src/components/Layouts/DashBoard/DashBoardLayouts';
-import { ProfileLayouts } from '../../src/components/Layouts/DashBoard/ProfileLayouts';
+import { Header } from '../../components/Header/Header';
+import { DashBoardLayouts } from '../../components/Layouts/DashBoard/DashBoardLayouts';
+import { ProfileLayouts } from '../../components/Layouts/DashBoard/ProfileLayouts';
 
-import { Profile } from '../../src/components/DashBoard/Profile';
+import { Profile } from '../../components/DashBoard/Profile';
 
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../src/components/utils/atoms/WordsAtom';
-import { Words } from '../../src/components/types/types';
+import { WordsAtom } from '../../components/utils/atoms/WordsAtom';
+import { Words } from '../../components/types/types';
 import { ParsedUrlQuery } from 'querystring';
 
 import Head from 'next/head';
-import { userInfo } from '../../src/components/mock/userInfo';
-import { getStorage } from '../../src/lib/storage';
 
 export type testUserProfile = {
   userId: string; //一意のid primaryKey tatoe listとひもづく

@@ -1,13 +1,13 @@
-import React from 'react'
-import Head from 'next/head'
-import "tailwindcss/tailwind.css";
-import { Header } from '../../src/components/Header/Header';
+import React from 'react';
+import Head from 'next/head';
+import 'tailwindcss/tailwind.css';
+import { Header } from '../../components/Header/Header';
 import { RegisterWordHeadline } from './RegisterWordHeadline';
-import { RegisterWordParent } from './RegisterWordParent'
+import { RegisterWordParent } from './RegisterWordParent';
 import { useRouter } from 'next/router';
 
 export default function Register() {
-const router = useRouter()
+  const router = useRouter();
 
   return (
     <>
@@ -17,7 +17,7 @@ const router = useRouter()
       </Head>
       <Header />
       <section
-          className="
+        className='
           md:pt-[100px]
           sm:pt-[80px]
           bg-gray-100
@@ -26,9 +26,10 @@ const router = useRouter()
           md:px-18
           mx-auto
           pt-9
-          ">
-            <div
-              className="
+          '
+      >
+        <div
+          className='
               lg:px-12
               px-7
               pt-10
@@ -39,12 +40,12 @@ const router = useRouter()
               border-gray-800
               mx-auto
               max-w-[1000px]
-              ">
-                <RegisterWordHeadline />
-                <RegisterWordParent query={router.query} />
-            </div>
-        </section>
+              '
+        >
+          <RegisterWordHeadline />
+          <RegisterWordParent query={router.query} />
+        </div>
+      </section>
     </>
-
-  )
+  );
 }

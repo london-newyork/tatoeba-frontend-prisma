@@ -1,9 +1,9 @@
-import { Header } from '../src/components/Header/Header';
-import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
+import { Header } from '../components/Header/Header';
+import { LoginLayouts } from '../components/Layouts/LoginLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { getStorage } from '../src/lib/storage';
+import { getStorage } from '../lib/storage';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -12,15 +12,21 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
-  const handleChangeCurrentPassword = (e) => {
+  const handleChangeCurrentPassword = (
+    e: React.ChangeEvent<HTMLInputElement> | undefined
+  ) => {
     setCurrentPassword(e.target.value);
   };
 
-  const handleChangeNewPassword = (e) => {
+  const handleChangeNewPassword = (
+    e: React.ChangeEvent<HTMLInputElement> | undefined
+  ) => {
     setNewPassword(e.target.value);
   };
 
-  const handleChangeConfirmPassword = (e) => {
+  const handleChangeConfirmPassword = (
+    e: React.ChangeEvent<HTMLInputElement> | undefined
+  ) => {
     setConfirmPassword(e.target.value);
   };
   //ここにパスワード再設定を書く

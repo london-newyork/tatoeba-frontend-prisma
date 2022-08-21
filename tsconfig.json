@@ -23,9 +23,9 @@
   },
   "include": [
     "src/**/*",
-    "pages/TestParent.tsx",
-    "pages/Top",
-    "pages/**/*",
+    "src/pages/TestParent.tsx",
+    "src/pages/Top",
+    "src/pages/**/*",
     "**/*.ts",
     "**/*.tsx"
   ],

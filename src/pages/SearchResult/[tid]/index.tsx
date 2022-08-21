@@ -7,12 +7,19 @@ import { SearchMainLayouts } from '../../../components/Layouts/SearchMainLayouts
 import { useRecoilState } from 'recoil';
 import { UserNameAtom } from '../../../components/utils/atoms/UserNameAtom';
 import Image from 'next/image';
+import { useUserInfo } from '../../../components/hooks/useUserInfo';
+import { useAuth } from '../../../components/hooks/useAuth';
 
 const SearchResult = () => {
   const router = useRouter();
   const { title, shortParaphrase, description } = router.query;
-  const userName = useRecoilState(UserNameAtom);
+  // const userName = useRecoilState(UserNameAtom);
+  const { userId } = useAuth();
+  const { user } = useUserInfo(userId);
 
+  if (!userId || !user) {
+    return null;
+  }
   return (
     <>
       <Head>
@@ -33,7 +40,7 @@ const SearchResult = () => {
                           rounded-full
                           object-cover'
               />
-              <small className='text-gray-400'>{userName}が投稿</small>
+              <small className='text-gray-400'>{user.userName}が投稿</small>
             </div>
             <div
               className='

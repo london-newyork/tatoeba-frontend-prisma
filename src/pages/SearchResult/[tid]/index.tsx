@@ -2,10 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../../src/components/Header/Header';
-import { SearchMainLayouts } from '../../../src/components/Layouts/SearchMainLayouts';
+import { Header } from '../../../components/Header/Header';
+import { SearchMainLayouts } from '../../../components/Layouts/SearchMainLayouts';
 import { useRecoilState } from 'recoil';
-import { UserNameAtom } from '../../../src/components/utils/atoms/UserNameAtom';
+import { UserNameAtom } from '../../../components/utils/atoms/UserNameAtom';
 import Image from 'next/image';
 
 const SearchResult = () => {

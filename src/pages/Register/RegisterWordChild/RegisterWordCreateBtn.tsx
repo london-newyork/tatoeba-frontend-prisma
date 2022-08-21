@@ -1,10 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom';
-import { useUserInfo } from '../../../src/components/hooks/useUserInfo';
-import { useAuth } from '../../../src/components/hooks/useAuth';
-import { Words } from '../../../src/components/types/types';
+import { WordsAtom } from '../../../components/utils/atoms/WordsAtom';
+import { useUserInfo } from '../../../components/hooks/useUserInfo';
+import { useAuth } from '../../../components/hooks/useAuth';
+import { Words } from '../../../components/types/types';
 
 export const RegisterWordCreateBtn = (props: Words) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =

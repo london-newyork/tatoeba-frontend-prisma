@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { useEffect, useState, VFC } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
 import { Words } from '../types/types';
@@ -22,8 +22,14 @@ export const CardChild: VFC = () => {
   const { handleMoveToResult } = useHandleMoveToResult();
 
   const { userId } = useAuth();
+  console.log('CARD CHILD userId ****** ', userId);
   const { user } = useUserInfo(userId);
+
+  if (!userId || !user) {
+    return null;
+  }
   const userName = user.userName;
+
   return (
     <>
       {words

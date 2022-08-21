@@ -11,16 +11,13 @@ export const RegisterWordCreateBtn = (props: Words) => {
     props;
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  // userId user userName 3つともnullまたはundefinedの可能性になってる
-
-  // Profile.tsx >> userId : string ... nullがない
-  // RegisterWordCreateBtn.tsx >> userId : string | null
-
-  console.log(user.userName);
 
   const [words, setWords] = useRecoilState(WordsAtom);
   const router = useRouter();
 
+  if (!userId || !user) {
+    return null;
+  }
   function getUniqueId() {
     return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
   }
@@ -31,9 +28,7 @@ export const RegisterWordCreateBtn = (props: Words) => {
       alert('入力されていない箇所があります。');
       return;
     }
-    if (user === null || typeof user === 'undefined') {
-      return;
-    }
+
     if (user.userName === '') {
       alert('ユーザー名を登録して投稿してください。');
       return;

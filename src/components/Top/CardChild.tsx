@@ -1,16 +1,14 @@
-import { useRouter } from 'next/router';
-
 import React, { VFC } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
-import { CardProps, Words } from '../types/types';
-import { UserNameAtom } from '../utils/atoms/UserNameAtom';
+import { Words } from '../types/types';
 import { WordsAtom } from '../utils/atoms/WordsAtom';
 import Image from 'next/image';
+import { useAuth } from '../hooks/useAuth';
+import { useUserInfo } from '../hooks/useUserInfo';
 
 export const CardChild: VFC = () => {
   const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
-  const router = useRouter();
 
   const RandomColors = [
     'hover:shadow-plane_2xl_card_prime',
@@ -22,7 +20,10 @@ export const CardChild: VFC = () => {
   const colors = RandomColors[Math.floor(Math.random() * RandomColors.length)];
   const shadowColor = colors.toString();
   const { handleMoveToResult } = useHandleMoveToResult();
-  const userName = useRecoilState(UserNameAtom);
+
+  const { userId } = useAuth();
+  const { user } = useUserInfo(userId);
+  const userName = user.userName;
   return (
     <>
       {words

@@ -24,7 +24,10 @@
   "include": [
     "src/**/*",
     "pages/TestParent.tsx",
-    "pages/Top"
+    "pages/Top",
+    "pages/**/*",
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"

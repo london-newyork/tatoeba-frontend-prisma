@@ -1,21 +1,25 @@
 import React from 'react';
-// import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { WordsAtom } from '../../../src/components/utils/atoms/WordsAtom';
-import { UserNameAtom } from '../../../src/components/utils/atoms/UserNameAtom';
+import { useUserInfo } from '../../../src/components/hooks/useUserInfo';
+import { useAuth } from '../../../src/components/hooks/useAuth';
+import { Words } from '../../../src/components/types/types';
 
-export const RegisterWordCreateBtn = (props) => {
+export const RegisterWordCreateBtn = (props: Words) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
-  const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
-  const [words, setWords] = useRecoilState(WordsAtom);
-  // const [show, setShow] = useState(false)
-  const router = useRouter();
+  const { userId } = useAuth();
+  const { user } = useUserInfo(userId);
+  // userId user userName 3つともnullまたはundefinedの可能性になってる
 
-  // const openModal = useCallback(() => {
-  //   setShow(true)
-  // }, [])
+  // Profile.tsx >> userId : string ... nullがない
+  // RegisterWordCreateBtn.tsx >> userId : string | null
+
+  console.log(user.userName);
+
+  const [words, setWords] = useRecoilState(WordsAtom);
+  const router = useRouter();
 
   function getUniqueId() {
     return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
@@ -27,14 +31,13 @@ export const RegisterWordCreateBtn = (props) => {
       alert('入力されていない箇所があります。');
       return;
     }
-    if (userName === '' || userName === null) {
+    if (user === null || typeof user === 'undefined') {
+      return;
+    }
+    if (user.userName === '') {
       alert('ユーザー名を登録して投稿してください。');
       return;
     }
-    {
-      /* @ts-ignore */
-    }
-    // setShow(false)
 
     if (!query_tId) {
       const firstAddWords = [
@@ -55,7 +58,7 @@ export const RegisterWordCreateBtn = (props) => {
     }
 
     if (query_tId) {
-      const newWords = words.map((item) => {
+      const newWords = words.map((item: Words) => {
         if (item.tId === query_tId) {
           return {
             tId: item.tId,
@@ -70,7 +73,7 @@ export const RegisterWordCreateBtn = (props) => {
       });
       setWords(newWords);
 
-      words.map((item) => {
+      words.map((item: Words) => {
         if (item.tId === query_tId) {
           router.push({
             pathname: '/DashBoard/UserTatoeList',
@@ -83,7 +86,6 @@ export const RegisterWordCreateBtn = (props) => {
   return (
     <div className='flex justify-end'>
       <button
-        // onClick={openModal}
         onClick={submitWords}
         type='submit'
         className='
@@ -98,8 +100,6 @@ export const RegisterWordCreateBtn = (props) => {
       >
         投稿する
       </button>
-      {/* @ts-ignore */}
-      {/* <Modal show={show} setShow={setShow}/> */}
     </div>
   );
 };

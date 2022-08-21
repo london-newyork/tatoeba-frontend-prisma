@@ -10,6 +10,7 @@ export type Words = {
   description?: string;
   creationTime?: string;
   tImageUrl?: string;
+  query_tId?: string;
 };
 
 export type Title = {

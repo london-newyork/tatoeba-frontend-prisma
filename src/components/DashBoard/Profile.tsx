@@ -6,21 +6,20 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useRecoilState } from 'recoil';
+
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
   const { userId } = useAuth();
-  const user = useUserInfo(userId);
   // TODO userNameはuseStateで管理 => atom化しているところを修正
   const [userName, setUserName] = useState<string>('');
-  const [persistAccessToken, setPersistAccessToken] =
-    useRecoilState(LoginUserAtom);
+  const { user, updateUser } = useUserInfo(userId);
+
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
+
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
@@ -59,23 +58,11 @@ export const Profile = () => {
 
       setIsFocus(false);
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${persistAccessToken}`,
-          },
-          body: JSON.stringify({ userName }),
-        }
-      );
-      await res.json();
+      updateUser({ userName });
     }
   };
 
   useEffect(() => {
-    // `user` の値が null でない時、 `setUserName` に `user` の値を入れる
     if (user) {
       setUserName(user.userName);
     }

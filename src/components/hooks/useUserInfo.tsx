@@ -5,8 +5,12 @@ import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 export const useUserInfo = (userId: string | null) => {
   const [user, setUser] = useState(null);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setIsLoading(true);
+    setError(null);
     const main = async () => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}`,
@@ -24,7 +28,13 @@ export const useUserInfo = (userId: string | null) => {
       }
       setUser(data);
     };
-    main();
+    main()
+      .catch(() => {
+        setError('データの取得に失敗しました。');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [userId]);
 
   const updateUser = async (data: { userName?: string }) => {
@@ -42,7 +52,6 @@ export const useUserInfo = (userId: string | null) => {
     );
     await res.json();
     setUser(data);
-    console.log('user of updateUser ***** ', user.userName);
   };
-  return { user, updateUser };
+  return { user, updateUser, isLoading, error };
 };

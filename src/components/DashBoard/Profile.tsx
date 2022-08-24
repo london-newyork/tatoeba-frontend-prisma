@@ -13,9 +13,8 @@ import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
   const { userId } = useAuth();
-  // TODO userNameはuseStateで管理 => atom化しているところを修正
   const [userName, setUserName] = useState<string>('');
-  const { user, updateUser } = useUserInfo(userId);
+  const { user, updateUser, isLoading, error } = useUserInfo(userId);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -57,8 +56,7 @@ export const Profile = () => {
       });
 
       setIsFocus(false);
-
-      updateUser({ userName });
+      await updateUser({ userName });
     }
   };
 
@@ -68,12 +66,16 @@ export const Profile = () => {
     }
   }, [user]);
 
-  if (!user) {
+  if (isLoading) {
     return (
       <div>
         <p>loading...</p>
       </div>
     );
+  }
+
+  if (error) {
+    return 'データの取得に失敗しました';
   }
 
   return (

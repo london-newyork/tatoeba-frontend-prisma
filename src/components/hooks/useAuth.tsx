@@ -23,8 +23,6 @@ export const useAuth = (): Auth => {
     return id;
   }, [persistAccessToken]);
 
-  // console.log('userId ***** useAuth *****', userId);
-
   const login = async (email: string, password: string) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,

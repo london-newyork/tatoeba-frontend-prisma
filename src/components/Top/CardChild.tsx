@@ -22,7 +22,7 @@ export const CardChild: VFC = () => {
   const { handleMoveToResult } = useHandleMoveToResult();
 
   const { userId } = useAuth();
-  console.log('CARD CHILD userId ****** ', userId);
+
   const { user } = useUserInfo(userId);
 
   if (!userId || !user) {

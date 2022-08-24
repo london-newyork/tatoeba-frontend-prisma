@@ -1,22 +1,27 @@
-import { Dispatch, SetStateAction, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { EmailAtom } from '../utils/atoms/EmailAtom';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+import { useMemo } from 'react';
 
 export type Auth = {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   isLoggedIn: boolean;
-  email: string;
-  setEmail: Dispatch<SetStateAction<string>>;
+  userId: string | null;
 };
 
 export const useAuth = (): Auth => {
   const [persistAccessToken, setPersistAccessToken] =
     useRecoilState(LoginUserAtom);
-  // const [email, setEmail] = useState<string>('');
-  const [email, setEmail] = useRecoilState<string | null>(EmailAtom);
-  // console.log('useAuth.tsx email', email); //ログイン時のemailが入っていることを確認済み
+
+  // userIdをmemo化して何度も利用
+  const userId = useMemo(() => {
+    if (!persistAccessToken) return null;
+    const decoded = JSON.parse(window.atob(persistAccessToken.split('.')[1]));
+
+    if (!decoded) return null;
+    const id = decoded.id;
+    return id;
+  }, [persistAccessToken]);
 
   const login = async (email: string, password: string) => {
     const res = await fetch(
@@ -30,16 +35,14 @@ export const useAuth = (): Auth => {
       }
     );
     const data = await res.json();
-    // login に成功したら、persistAccessToken に accessToken をセットする。
     setPersistAccessToken(data.token);
   };
 
-  // recoil使うのでjwtいらない
   const logout = () => {
     setPersistAccessToken(null);
   };
 
   const isLoggedIn = persistAccessToken ? true : false;
 
-  return { login, logout, isLoggedIn, email, setEmail };
+  return { login, logout, isLoggedIn, userId };
 };

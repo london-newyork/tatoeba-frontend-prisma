@@ -3,20 +3,22 @@ import React, {
   ChangeEvent,
   DetailedHTMLProps,
   InputHTMLAttributes,
+  useEffect,
   useState,
 } from 'react';
-import { RecoilState, useRecoilState } from 'recoil';
+
 import { useAuth } from '../hooks/useAuth';
-import { UserNameAtom } from '../utils/atoms/UserNameAtom';
+import { useUserInfo } from '../hooks/useUserInfo';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
-  const { email } = useAuth();
+  const { userId } = useAuth();
+  const [userName, setUserName] = useState<string>('');
+  const { user, updateUser, isLoading, error } = useUserInfo(userId);
 
-  // TODO 名前がない場合、投稿できないようにする => 投稿時必須
-  const [userName, setUserName] = useRecoilState<string | null>(UserNameAtom);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
+
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
@@ -54,17 +56,27 @@ export const Profile = () => {
       });
 
       setIsFocus(false);
-      // users一覧にemailとuserNameを送る
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userName, email }),
-      });
-      await res.json();
+      await updateUser({ userName });
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      setUserName(user.userName);
+    }
+  }, [user]);
+
+  if (isLoading) {
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return 'データの取得に失敗しました';
+  }
 
   return (
     <div className='group'>
@@ -110,6 +122,7 @@ export const Profile = () => {
                 '
             >
               <input
+                defaultValue={user}
                 value={userName}
                 onChange={handleChangeUserName}
                 onFocus={handleOnFocus}

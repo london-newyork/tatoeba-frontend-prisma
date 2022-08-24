@@ -1,36 +1,34 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Header } from '../../src/components/Header/Header';
-import { LoginLayouts } from '../../src/components/Layouts/LoginLayouts'
+import { Header } from '../../components/Header/Header';
+import { LoginLayouts } from '../../components/Layouts/LoginLayouts';
 
 const TempRegisterMember = () => {
-
-  const [ postData, setPostData ] = useState<string | undefined>()
-  const router = useRouter()
+  const [postData, setPostData] = useState<string | undefined>();
+  const router = useRouter();
 
   //backend側にリクエストする
-    const handleTempRegisterMember = async() => {
-      console.log("postData",postData);
-      await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/registrations",
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: postData })
-      }
-      )
-      //仮登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
-      await router.push({
-        pathname: '/RegisterMember/InformCompletedTempRegistrationMember'
-      }
-      )
-    }
+  const handleTempRegisterMember = async () => {
+    console.log('postData', postData);
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/registrations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: postData }),
+    });
+    //仮登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
+    await router.push({
+      pathname: '/RegisterMember/InformCompletedTempRegistrationMember',
+    });
+  };
 
-    const handleChangePost = (e) => {
-      setPostData(e.target.value)
-    }
+  const handleChangePost = (
+    e: React.ChangeEvent<HTMLInputElement> | undefined
+  ) => {
+    setPostData(e.target.value);
+  };
 
   return (
     <>
@@ -40,15 +38,18 @@ const TempRegisterMember = () => {
       </Head>
       <Header />
       <LoginLayouts>
-        <section className="
+        <section
+          className='
             h-screen
             px-2
             md:px-0
             mx-auto
             flex
             justify-center
-            ">
-                <div className="
+            '
+        >
+          <div
+            className='
                 bg-white
                 px-7
                 pt-20
@@ -62,32 +63,35 @@ const TempRegisterMember = () => {
                 flex
                 flex-col
                 items-center
-                ">
-                  <h1 className="
+                '
+          >
+            <h1
+              className='
                   text-3xl
                   text-gray-500
                   select-none
                   font-normal
-                  "
-                  >
-                      新規会員登録
-                  </h1>
-                  <div className='pt-14 flex flex-col gap-6'>
-                    <div className='flex flex-col'>
-                      <p
-                      className='
+                  '
+            >
+              新規会員登録
+            </h1>
+            <div className='pt-14 flex flex-col gap-6'>
+              <div className='flex flex-col'>
+                <p
+                  className='
                       pr-2
                       font-normal
                       text-gray-600
                       w-[128px]
                       text-sm
                       pb-2
-                      '>
-                        メールアドレス
-                      </p>
-                      <input
-                      value={postData}
-                      className='
+                      '
+                >
+                  メールアドレス
+                </p>
+                <input
+                  value={postData}
+                  className='
                       outline-none
                       focus:ring-2
                       focus:ring-offset-3
@@ -103,11 +107,11 @@ const TempRegisterMember = () => {
                       border-gray-200
                       rounded-full
                       '
-                      onChange={handleChangePost}
-                      />
-                    </div>
-                    <button
-                    className='
+                  onChange={handleChangePost}
+                />
+              </div>
+              <button
+                className='
                     mt-4
                     mb-4
                     mx-auto
@@ -119,14 +123,16 @@ const TempRegisterMember = () => {
                     text-lg
                     hover:bg-opacity-90
                     '
-                    onClick={handleTempRegisterMember}
-                    >新規会員登録</button>
-                  </div>
-                </div>
+                onClick={handleTempRegisterMember}
+              >
+                新規会員登録
+              </button>
+            </div>
+          </div>
         </section>
       </LoginLayouts>
     </>
-  )
+  );
 };
 
-export default TempRegisterMember
+export default TempRegisterMember;

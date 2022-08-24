@@ -2,21 +2,25 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Header } from '../src/components/Header/Header';
-import { LoginLayouts } from '../src/components/Layouts/LoginLayouts';
-import { useAuth } from '../src/components/hooks/useAuth';
+import { Header } from '../components/Header/Header';
+import { LoginLayouts } from '../components/Layouts/LoginLayouts';
+import { useAuth } from '../components/hooks/useAuth';
 
 export default function Login() {
-  const { login, email, setEmail } = useAuth();
+  const { login } = useAuth();
   const router = useRouter();
-  // const [email, setEmail] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleChangeEmail = (e) => {
+  const handleChangeEmail = (
+    e: React.ChangeEvent<HTMLInputElement> | undefined
+  ) => {
     setEmail(e.target.value);
   };
 
-  const handleChangePassword = (e) => {
+  const handleChangePassword = (
+    e: React.ChangeEvent<HTMLInputElement> | undefined
+  ) => {
     setPassword(e.target.value);
   };
 

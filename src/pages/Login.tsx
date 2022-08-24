@@ -172,6 +172,7 @@ export default function Login() {
                   mx-auto
                   text-sm
                   text-gray-600
+                  cursor-pointer
                   '
               >
                 新規会員登録

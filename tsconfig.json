@@ -23,8 +23,11 @@
   },
   "include": [
     "src/**/*",
-    "pages/TestParent.tsx",
-    "pages/Top"
+    "src/pages/TestParent.tsx",
+    "src/pages/Top",
+    "src/pages/**/*",
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"

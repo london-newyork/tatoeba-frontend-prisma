@@ -1,188 +1,253 @@
-import React from 'react'
-import type { User } from "../../../pages/DashBoard/index"
-import { ProfileImage } from './ProfileImage'
+import Link from 'next/link';
+import React, {
+  ChangeEvent,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 
-export const Profile = (props:any) => {
-    const { userInfo } = props
+import { useAuth } from '../hooks/useAuth';
+import { useUserInfo } from '../hooks/useUserInfo';
+import { ProfileImage } from './ProfileImage';
+
+export const Profile = () => {
+  const { userId } = useAuth();
+  const [userName, setUserName] = useState<string>('');
+  const { user, updateUser, isLoading, error } = useUserInfo(userId);
+
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [isFocus, setIsFocus] = useState<boolean>(true);
+
+  const handleChangeUserName = (
+    e: ChangeEvent<{ value: string }> | undefined
+  ): void => {
+    setUserName(e.target.value);
+  };
+
+  const handleCompositionStart = () => {
+    setIsTyping(true);
+  };
+
+  const handleCompositionEnd = () => {
+    setIsTyping(false);
+  };
+  const handleOnFocus = () => {
+    setIsFocus(true);
+  };
+
+  const focusCSS =
+    'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
+  const unFocusCSS = 'focus:outline-0 outline-0';
+
+  const handleOnKeyDown = async (
+    event:
+      | DetailedHTMLProps<
+          InputHTMLAttributes<HTMLInputElement>,
+          HTMLInputElement
+        >
+      | undefined
+  ): Promise<any> => {
+    // Promise型解決できないので一旦any
+    // @ts-ignore shiftKeyの型が解決できないので一旦無視
+    if (event.key === 'Enter' && !isTyping && !event.shiftKey) {
+      setUserName((prev): string => {
+        return prev;
+      });
+
+      setIsFocus(false);
+      await updateUser({ userName });
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      setUserName(user.userName);
+    }
+  }, [user]);
+
+  if (isLoading) {
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return 'データの取得に失敗しました';
+  }
+
   return (
-    <div
-    className='group'
-    >
-         <div
-            className='
+    <div className='group'>
+      <div
+        className='
+        flex
+        flex-row
+        items-center
+        md:min-w-[400px]
+        sm:justify-between
+        justify-center
+        '
+      >
+        <div
+          className='
             flex
-            flex-row
             items-center
-            md:min-w-[400px]
+            flex-col
+            sm:flex-row
             sm:justify-between
             justify-center
+            gap-y-2
+            sm:gap-y-0
+            position
+            relative
             '
-            >
-                    <div
-                    className='
-                    flex
-                    items-center
-                    flex-col
-                    sm:flex-row
-                    sm:justify-between
-                    justify-center
-                    gap-y-2
-                    sm:gap-y-0
-                    position
-                    relative
-                    '
-                    >
-                        <ProfileImage />
-                        <div
-                        className='
-                        flex
-                        flex-col
-                        pb-2
-                        border-b
-                        border-gray-200
-                        sm:ml-8
-                        '
-                        >
-                            <h1
-                                className='
-                                text-2xl
-                                text-gray-700
-                                '>
-                                {userInfo[1].user_name}
-                            </h1>
-                        </div>
-                    </div>
-                    {/* <button
-                    className='
-                    text-gray-300
-                    text-opacity-0
-                    group-hover:text-opacity-100
-                    '
-                    > */}
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" className='
-                        h-5
-                        w-5
-                        ' fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg> */}
-                    {/* </button> */}
-                </div>
-                <ul
-                className='
-                text-gray-600
-                mt-6
-                flex
-                flex-col
-                gap-y-2
-                text-sm'>
-                        <li>
-                            <ul
-                            className='
-                            flex
-                            items-start
-                            sm:items-center
-                            flex-col
-                            sm:flex-row
-                            justify-start
-                            '>
-                                <li className='
-                                pl-3
-                                sm:pl-0
-                                sm:w-[128px]
-                                text-sm
-                                text-gray-400'>
-                                    メールアドレス
-                                </li>
-                                <li>
-                                    <input
-                                    value={userInfo[1].e_mail}
-                                    className="
-                                    h-7
-                                    flex
-                                    flex-1
-                                    rounded-full
-                                    outline-none
-                                    sm:min-w-[14rem]
-                                    sm:w-[16rem]
-                                    focus:bg-gray-700
-                                    focus:text-white
-                                    p-3
-                                    "
-                                    />
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul
-                            className='
-                            flex
-                            items-start
-                            sm:items-center
-                            flex-col
-                            sm:flex-row
-                            justify-start'>
-                                <li
-                                className='
-                                pl-3
-                                sm:pl-0
-                                sm:w-[128px]
-                                text-sm
-                                text-gray-400
-                                '
-                                >
-                                 パスワード
-                                </li>
-                                <li>
-                                <input
-                                    value={userInfo[1].password}
-                                    className="
-                                    h-7
-                                    flex
-                                    flex-1
-                                    rounded-full
-                                    outline-none
-                                    sm:min-w-[14rem]
-                                    sm:w-[16rem]
-                                    focus:bg-gray-700
-                                    focus:text-white
-                                    p-3
-                                    "
-                                    />
-                                </li>
-                            </ul>
-                        </li>
-                </ul>
-                <div
-                className='
-                flex
-                flex-row
-                justify-end
-                gap-x-3
-                pt-6
+        >
+          <ProfileImage />
+          <div
+            className='
+            flex
+            flex-col
+            pb-2
+            border-b
+            border-gray-200
+            sm:ml-8
+            '
+          >
+            <h1
+              className='
+                text-2xl
+                text-gray-700
                 '
-                >
-                    <button
-                    className='
-                    h-8
-                    w-16
-                    rounded-full
-                    bg-dark_green
-                    text-xs
-                    '
-                    >
-                    編集
-                    </button>
-                    <button
-                    className='
-                    h-8
-                    w-16
-                    rounded-full
-                    border-dark_green
-                    border-2
-                    text-xs
-                    '
-                    >保存</button>
-                </div>
+            >
+              <input
+                defaultValue={user}
+                value={userName}
+                onChange={handleChangeUserName}
+                onFocus={handleOnFocus}
+                onKeyDown={handleOnKeyDown}
+                onCompositionStart={handleCompositionStart}
+                onCompositionEnd={handleCompositionEnd}
+                placeholder='Nola Stradford'
+                className={`${isFocus ? focusCSS : unFocusCSS}
+                rounded-md
+                px-2
+                `}
+              ></input>
+            </h1>
+          </div>
+        </div>
+      </div>
+      <ul
+        className='
+        text-gray-600
+        mt-6
+        flex
+        flex-col
+        gap-y-2
+        text-sm'
+      >
+        <li>
+          <ul
+            className='
+            flex
+            items-start
+            sm:items-center
+            flex-col
+            sm:flex-row
+            justify-start
+            '
+          >
+            <li
+              className='
+                pl-3
+                sm:pl-0
+                sm:w-[128px]
+                text-sm
+                text-gray-400'
+            >
+              メールアドレス
+            </li>
+            <li
+              className='
+                h-7
+                flex
+                flex-1
+                sm:min-w-[14rem]
+                sm:w-[20rem]
+                w-[18rem]
+                p-4
+                m-2
+                '
+            ></li>
+          </ul>
+        </li>
+        <li
+          className='
+            min-w-[16rem]
+            w-full
+            pl-3
+            sm:pl-0
+            flex
+            flex-col
+            sm:flex-row
+            justify-between'
+        >
+          <ul
+            className='
+            flex
+            items-start
+            sm:items-center
+            flex-col
+            sm:flex-row
+            justify-start'
+          >
+            <li
+              className='
+                sm:w-[128px]
+                text-sm
+                text-gray-400
+                '
+            >
+              パスワード
+            </li>
+            <li
+              className='
+                sm:pl-4
+                pl-2
+                m-2
+                text-gray-400
+                tracking-widest
+                '
+            >
+              ******
+            </li>
+          </ul>
+          <Link href='/ResetPassword'>
+            <button
+              className='
+                text-gray-400
+                '
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-4 w-4'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth='2'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
+                />
+              </svg>
+            </button>
+          </Link>
+        </li>
+      </ul>
     </div>
-  )
-}
+  );
+};

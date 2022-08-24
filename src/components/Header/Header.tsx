@@ -1,22 +1,27 @@
-import React, { useCallback, useState } from 'react'
-import { PencilAltIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
+import React, { useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-type Props = {
+import { PencilAltIcon } from '@heroicons/react/outline';
+import { useAuth } from '../hooks/useAuth';
 
-}
+export const Header = () => {
+  const [isHover, setIsHover] = useState(true);
+  const router = useRouter();
+  const handleToolTip = useCallback(() => {
+    setIsHover(!isHover);
+  }, [isHover]);
 
-export const Header = (props:Props) => {
-  const [isHover, setIsHover]= useState(true)
-  const handleToolTip = useCallback(
-    () => {
-      setIsHover(!isHover)
-    },
-    [isHover],
-  )
+  const { logout, isLoggedIn } = useAuth();
+  const handleLogout = async () => {
+    await logout();
+    await router.push('/');
+  };
+
   return (
     <header>
-      <div className='
+      <div
+        className='
         pl-6
         pr-0
         sm:pl-6
@@ -32,44 +37,56 @@ export const Header = (props:Props) => {
         border-b-2
         border-gray-800
         fixed
-        z-10'>
-        <div className="my-auto">
-          <Link href="/">
-            <a className="
-            text-2xl
-            text-gray-700
-            tracking-wider
-            hover:opacity-50
-            duration-300">
-              <span className="text-dark_green">
-                T
-              </span>
+        z-10'
+      >
+        <div className='my-auto'>
+          <Link href='/'>
+            <a
+              className='
+              text-2xl
+              text-gray-700
+              tracking-wider
+              hover:opacity-50
+              duration-300'
+            >
+              <span className='text-dark_green'>T</span>
               atoeba
             </a>
           </Link>
         </div>
-        <div className="flex my-auto mr-3 md:mr-0">
+        <div className='flex my-auto mr-3 md:mr-0'>
           <div className='flex flex-col items-end'>
             <div
-            className='
-            position
-            my-auto
-            mr-3
-            bg-gray-100
-            rounded-full
-            h-7
-            w-7
-            flex
-            justify-center
-            items-center
-            text-xs
-            text-gray-500
-            cursor-pointer
-            '
-            onClick={handleToolTip}
+              className='
+              position
+              my-auto
+              mr-3
+              bg-gray-100
+              rounded-full
+              h-7
+              w-7
+              flex
+              justify-center
+              items-center
+              text-xs
+              text-gray-500
+              cursor-pointer
+              '
+              onClick={handleToolTip}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-4 w-4'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+                />
               </svg>
             </div>
             <ul
@@ -89,46 +106,82 @@ export const Header = (props:Props) => {
               top-[48px]
               lg:right-24
               md:right-10
-              ${isHover ? "hidden" : "flex-col"}
+              ${isHover ? 'hidden' : 'flex-col'}
               `}
             >
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                <Link href="/Login">
-                  ログイン
-                </Link>
+                {isLoggedIn ? (
+                  <Link href='/DashBoard'>ログイン</Link>
+                ) : (
+                  <Link href='/Login'>ログイン</Link>
+                )}
               </li>
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
-                <Link href="/">
-                  ログアウト
-                </Link>
+                <button onClick={handleLogout}>ログアウト</button>
               </li>
             </ul>
           </div>
-          <Link href="/Login/">
-            <button className="
+          {isLoggedIn ? (
+            <Link href='/DashBoard/UserTatoeList'>
+              <button
+                className='
+                hover:bg-mint_green
+                bg-light_green
+                rounded-full
+                h-7
+                w-7'
+              >
+                <ul
+                  className='
+                  flex
+                  flex-col
+                  hover:text-white
+                  items-center'
+                >
+                  <li>
+                    <PencilAltIcon
+                      className='
+                      h-4
+                      w-4
+                      text-q_dark_green
+                      duration-300'
+                    />
+                  </li>
+                </ul>
+              </button>
+            </Link>
+          ) : (
+            <Link href='/Login/'>
+              <button
+                className='
               hover:bg-mint_green
               bg-light_green
               rounded-full
               h-7
-              w-7">
-              <ul className="
-              flex
-              flex-col
-              hover:text-white
-              items-center">
-                <li>
-                  <PencilAltIcon
-                  className="
-                    h-4
-                    w-4
-                    text-q_dark_green
-                    duration-300"/>
-                </li>
-              </ul>
-            </button>
-          </Link>
+              w-7'
+              >
+                <ul
+                  className='
+                  flex
+                  flex-col
+                  hover:text-white
+                  items-center'
+                >
+                  <li>
+                    <PencilAltIcon
+                      className='
+                      h-4
+                      w-4
+                      text-q_dark_green
+                      duration-300'
+                    />
+                  </li>
+                </ul>
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </header>
-  )
+  );
 };

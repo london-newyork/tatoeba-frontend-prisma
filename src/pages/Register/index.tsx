@@ -7,8 +7,6 @@ import { RegisterWordParent } from './RegisterWordParent';
 import { useRouter } from 'next/router';
 
 export default function Register() {
-  const router = useRouter();
-
   return (
     <>
       <Head>
@@ -43,7 +41,8 @@ export default function Register() {
               '
         >
           <RegisterWordHeadline />
-          <RegisterWordParent query={router.query} />
+          {/* <RegisterWordParent query={router.query} /> */}
+          <RegisterWordParent />
         </div>
       </section>
     </>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { RegisterWordCreateBtn } from './RegisterWordChild/RegisterWordCreateBtn';
-import { RegisterWordTitle } from './RegisterWordChild/RegisterWordTitle';
-import { RegisterWordShortParaphrase } from './RegisterWordChild/RegisterWordShortParaphrase';
-import { RegisterWordDescription } from './RegisterWordChild/RegisterWordDescription';
+import { RegisterWordCreateBtn } from './RegisterTatoeChild/RegisterTatoeCreateBtn';
+import { RegisterWordTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
+import { RegisterWordShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
+import { RegisterWordDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
 import dayjs from 'dayjs';
-import { RegisterWordCancelBtn } from './RegisterWordChild/RegisterWordCancelBtn';
+import { RegisterWordCancelBtn } from './RegisterTatoeChild/RegisterTatoeCancelBtn';
 import { useRouter } from 'next/router';
 
 export const RegisterWordParent = () => {

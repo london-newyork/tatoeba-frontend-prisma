@@ -75,7 +75,11 @@ export const Profile = () => {
   }
 
   if (error) {
-    return <div>データの取得に失敗しました</div>;
+    return (
+      <div>
+        <p>データの取得に失敗しました</p>
+      </div>
+    );
   }
 
   return (

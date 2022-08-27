@@ -2,18 +2,18 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { WordsAtom } from '../../../components/utils/atoms/WordsAtom';
-import { Words } from '../../../components/types/types';
+import { Tatoe } from '../../../components/types/types';
 
-export const RegisterWordCancelBtn = (props: Words) => {
+export const RegisterWordCancelBtn = (props: Tatoe) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
   const router = useRouter();
 
-  const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(WordsAtom);
 
   const handleClickCancel = () => {
     if (query_tId) {
-      const newWords = words.map((item) => {
+      const newWords = tatoe.map((item) => {
         if (item.tId === query_tId) {
           return {
             tId: item.tId,
@@ -26,9 +26,9 @@ export const RegisterWordCancelBtn = (props: Words) => {
           return item;
         }
       });
-      setWords(newWords);
+      setTatoe(newWords);
 
-      words.map((item) => {
+      tatoe.map((item) => {
         if (item.tId === query_tId) {
           router.push({
             pathname: '/DashBoard',

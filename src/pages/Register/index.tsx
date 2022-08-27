@@ -41,7 +41,6 @@ export default function Register() {
               '
         >
           <RegisterWordHeadline />
-          {/* <RegisterWordParent query={router.query} /> */}
           <RegisterWordParent />
         </div>
       </section>

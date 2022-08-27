@@ -1,33 +1,30 @@
-import { NextRouter, useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
-import { useRecoilState } from 'recoil'
-import { Words } from '../types/types'
-import { WordsAtom } from '../utils/atoms/WordsAtom'
+import { NextRouter, useRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
+import { useRecoilState } from 'recoil';
+import { Tatoe } from '../types/types';
+import { WordsAtom } from '../utils/atoms/WordsAtom';
 
-export const useHandleMoveToResult= () => {
+export const useHandleMoveToResult = () => {
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(WordsAtom);
+  const router = useRouter();
 
-    const [words, setWords] = useRecoilState<Words[]>(WordsAtom)
-    const router = useRouter()
+  const handleMoveToResult = (props: Tatoe) => {
+    const { tId, title, shortParaphrase, description } = props;
 
-    const handleMoveToResult = (props:Words) => {
-        const { tId, title, shortParaphrase, description  } = props
-
-            words.forEach((item:Words) => {
-                if(item.tId === tId) {
-
-                router.push({
-                    pathname:'/SearchResult/[tId]/',
-                    query: {
-                        tId,
-                        title,
-                        shortParaphrase,
-                        description,
-                    }
-                })
-            } return item
-        }
-        )
-
-    }
-    return { handleMoveToResult }
-}
+    tatoe.forEach((item: Tatoe) => {
+      if (item.tId === tId) {
+        router.push({
+          pathname: '/SearchResult/[tId]/',
+          query: {
+            tId,
+            title,
+            shortParaphrase,
+            description,
+          },
+        });
+      }
+      return item;
+    });
+  };
+  return { handleMoveToResult };
+};

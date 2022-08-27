@@ -4,10 +4,8 @@ import { getStorage } from '../../lib/storage';
 import { useEffect } from 'react';
 
 export const usePersistAccessToken = () => {
-  // 引数にした関数とRecoilStateのもつ型とぶつかるため強引に型解決
-  const [persistAccessToken, setPersistAccessToken] = useRecoilState<string>(
-    LoginUserAtom as unknown as RecoilState<string>
-  );
+  const [persistAccessToken, setPersistAccessToken] =
+    useRecoilState(LoginUserAtom);
   useEffect(() => {
     setPersistAccessToken(getStorage('jwt'));
   }, []);

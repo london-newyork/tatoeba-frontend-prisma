@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../components/Header/Header';
-import { RegisterWordHeadline } from './RegisterWordHeadline';
-import { RegisterWordParent } from './RegisterWordParent';
+import { RegisterWordHeadline } from './RegisterTatoeHeadline';
+import { RegisterWordParent } from './RegisterTatoeParent';
 import { useRouter } from 'next/router';
 
 export default function Register() {

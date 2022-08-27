@@ -1,39 +1,52 @@
-import React, { useEffect } from 'react'
+import { ParsedUrlQuery } from 'querystring';
+import React, { useEffect } from 'react';
 
-export const RegisterWordShortParaphrase = ({ shortParaphrase, setShortParaphrase, query }) => {
+type ShortParaphraseProps = {
+  query: ParsedUrlQuery;
+  shortParaphrase: string | null;
+  setShortParaphrase: React.Dispatch<
+    React.SetStateAction<string | string[] | null>
+  >;
+};
+
+export const RegisterWordShortParaphrase = (props: ShortParaphraseProps) => {
+  const { shortParaphrase, setShortParaphrase, query } = props;
 
   useEffect(() => {
-    if(query.tId){
-      setShortParaphrase(query.shortParaphrase)
+    if (query.tId) {
+      setShortParaphrase(query.shortParaphrase);
     }
-  }, [query.tId])
+  }, [query.tId]);
 
   return (
     <div
-        className="
+      className='
         flex
         justify-between
         flex-col
         lg:flex-row
-        ">
-        <label className='
+        '
+    >
+      <label
+        className='
             text-gray-500
             leading-tight
             w-[300px]
             pb-2
             md:pb-2
             lg:pb-0
-            select-none'>
-            短く例えると
-            <br />
-            <span className="text-xs text-gray-300">50文字以内</span>
-        </label>
-        <input
+            select-none'
+      >
+        短く例えると
+        <br />
+        <span className='text-xs text-gray-300'>50文字以内</span>
+      </label>
+      <input
         value={shortParaphrase}
-        onChange={(e)=>setShortParaphrase(e.target.value)}
+        onChange={(e) => setShortParaphrase(e.target.value)}
         name='short_paraphrase'
         placeholder='土地'
-        type="text"
+        type='text'
         className='
         lg:max-w-[650px]
         max-w-full
@@ -52,7 +65,7 @@ export const RegisterWordShortParaphrase = ({ shortParaphrase, setShortParaphras
         border-gray-300
         rounded-md
         '
-        ></input>
+      ></input>
     </div>
-  )
-}
+  );
+};

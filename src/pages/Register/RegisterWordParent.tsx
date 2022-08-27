@@ -3,7 +3,6 @@ import { RegisterWordCreateBtn } from './RegisterWordChild/RegisterWordCreateBtn
 import { RegisterWordTitle } from './RegisterWordChild/RegisterWordTitle';
 import { RegisterWordShortParaphrase } from './RegisterWordChild/RegisterWordShortParaphrase';
 import { RegisterWordDescription } from './RegisterWordChild/RegisterWordDescription';
-// import * as dayjs from 'dayjs';
 import dayjs from 'dayjs';
 import { RegisterWordCancelBtn } from './RegisterWordChild/RegisterWordCancelBtn';
 import { useRouter } from 'next/router';
@@ -11,9 +10,9 @@ import { useRouter } from 'next/router';
 export const RegisterWordParent = () => {
   const router = useRouter();
   const query = router.query;
-  const [title, setTitle] = useState('');
-  const [shortParaphrase, setShortParaphrase] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState<string | null>('');
+  const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
+  const [description, setDescription] = useState<string | null>('');
   const creationTime = dayjs().format('YY/MM/DD HH:mm A');
 
   return (

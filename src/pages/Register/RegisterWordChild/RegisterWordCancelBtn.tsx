@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { WordsAtom } from '../../../components/utils/atoms/WordsAtom';
@@ -8,9 +7,9 @@ import { Words } from '../../../components/types/types';
 export const RegisterWordCancelBtn = (props: Words) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
+  const router = useRouter();
 
   const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
-  const router = useRouter();
 
   const handleClickCancel = () => {
     if (query_tId) {

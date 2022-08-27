@@ -13,12 +13,6 @@ export type Words = {
   query_tId?: string | string[];
 };
 
-export type Title = {
-  tId: Words['tId'] | string[];
-  title: string;
-  setTitle: Dispatch<SetStateAction<string>>;
-};
-
 export type Edit = {
   handleMoveToEdit: (
     tId: string,

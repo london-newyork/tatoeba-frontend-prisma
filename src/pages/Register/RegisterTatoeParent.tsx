@@ -13,6 +13,7 @@ export const RegisterWordParent = () => {
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
+
   const creationTime = dayjs().format('YY/MM/DD HH:mm A');
 
   return (

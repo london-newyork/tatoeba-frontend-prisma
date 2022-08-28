@@ -7,7 +7,7 @@ import { Profile } from '../../components/DashBoard/Profile';
 
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../components/utils/atoms/WordsAtom';
+import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../components/types/types';
 import { ParsedUrlQuery } from 'querystring';
 
@@ -33,7 +33,7 @@ export type testUserFollower = testUserId & testFollower;
 
 const DashBoard = () => {
   const [tatoe, setTatoe] = useRecoilState<Tatoe[] | ParsedUrlQuery[]>(
-    WordsAtom
+    TatoeAtom
   );
   const router = useRouter();
 

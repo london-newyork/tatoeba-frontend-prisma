@@ -2,7 +2,7 @@ import React, { VFC } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHandleMoveToEdit } from '../hooks/handleMoveToEdit';
 import { Tatoe } from '../types/types';
-import { WordsAtom } from '../utils/atoms/WordsAtom';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
 export type EditBtnProps = {
   readonly tId: string;

@@ -3,7 +3,7 @@ import { recoilPersist } from 'recoil-persist';
 
 const { persistAtom } = recoilPersist();
 
-export const WordsAtom = atom({
+export const TatoeAtom = atom({
   key: 'tatoe',
   default: [],
 

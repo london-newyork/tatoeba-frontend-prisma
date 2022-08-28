@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { SearchMainLayouts } from '../../components/Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../components/utils/atoms/WordsAtom';
+import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../components/types/types';
 
 const SearchResultList = () => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const [result, setResult] = useState([]);
   // const [ result, setResult ] = useRecoilState(SearchResultAtom)
   const router = useRouter();

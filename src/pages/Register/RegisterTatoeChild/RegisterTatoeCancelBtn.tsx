@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../../components/utils/atoms/WordsAtom';
+import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../../components/types/types';
 
 export const RegisterWordCancelBtn = (props: Tatoe) => {
@@ -9,7 +9,7 @@ export const RegisterWordCancelBtn = (props: Tatoe) => {
     props;
   const router = useRouter();
 
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   const handleClickCancel = () => {
     if (query_tId) {

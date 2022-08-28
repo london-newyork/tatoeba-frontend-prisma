@@ -2,10 +2,10 @@ import { NextRouter, useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import { useRecoilState } from 'recoil';
 import { Tatoe } from '../types/types';
-import { WordsAtom } from '../utils/atoms/WordsAtom';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
 export const useHandleMoveToResult = () => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const router = useRouter();
 
   const handleMoveToResult = (props: Tatoe) => {

@@ -1,14 +1,14 @@
 import React, { VFC } from 'react';
 import { useRecoilState } from 'recoil';
 import { Tatoe } from '../types/types';
-import { WordsAtom } from '../utils/atoms/WordsAtom';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
 type DeleteProps = {
   tId: string;
 };
 
 export const DeleteWordsBtn: VFC<DeleteProps> = (props) => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   const handleDeleteWords = () => {
     const deleteWords = tatoe.filter((item) => {

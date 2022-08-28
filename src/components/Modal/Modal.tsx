@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
-// import { WordsAtom } from '../../../src/components/atom/atom'
+// import { TatoeAtom } from '../../../src/components/atom/atom'
 
 // type Modal = {
 //     show: boolean
@@ -24,7 +24,7 @@ type ModalNewWords = {
 };
 
 export const Modal = (props: ModalNewWords) => {
-  // const [ title, setTitle ] = useAtom(writableWordsAtom)
+  // const [ title, setTitle ] = useAtom(writableTatoeAtom)
   // const [ tatoe, setTatoe ] = useState<ModalNewWords>()
   const [tatoe, setTatoe] = useState<ModalNewWords>();
   const [title, setTitle] = useState();

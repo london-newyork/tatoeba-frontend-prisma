@@ -1,11 +1,10 @@
-import React, { JSXElementConstructor } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { WordsAtom } from '../../../components/utils/atoms/WordsAtom';
+import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 import { useUserInfo } from '../../../components/hooks/useUserInfo';
 import { useAuth } from '../../../components/hooks/useAuth';
 import { Tatoe } from '../../../components/types/types';
-import { usePersistAccessToken } from '../../../components/hooks/persistAccessToken';
 import { LoginUserAtom } from '../../../components/utils/atoms/LoginUserAtom';
 
 export const RegisterWordCreateBtn = (props: Tatoe) => {
@@ -14,7 +13,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
-  const [tatoe, setTatoe] = useRecoilState(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   //
   const persistAccessToken = useRecoilValue(LoginUserAtom);
 
@@ -25,8 +24,8 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
   }
   const tId = getUniqueId();
 
-  // TODO async awaitしてAPIにデータを送る
-  const submitWords = (): void => {
+  // TODO ユーザーが title, description, shortParaphrase 入力したら async await して API にデータを送る
+  const submitWords = async (): Promise<string> => {
     if (!userId || !user) {
       return null;
     }
@@ -39,6 +38,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
       alert('ユーザー名を登録して投稿してください。');
       return;
     }
+
     // 初回登録
     if (!query_tId) {
       const firstAddWords = [
@@ -52,7 +52,6 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
         ...tatoe,
       ];
       // API通信
-      // const userName = data.userName;
       // const res = await fetch(
       //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/tatoe`,
       //   {
@@ -61,12 +60,11 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
       //       'Content-Type': 'application/json',
       //       Authorization: `Bearer ${persistAccessToken}`,
       //     },
-      //     body: JSON.stringify({ userName, tatoe }),
+      //     body: JSON.stringify({ userId, tatoe }),
       //   }
       // );
       // await res.json();
       setTatoe(firstAddWords);
-      // };
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',

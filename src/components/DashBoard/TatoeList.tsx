@@ -4,7 +4,7 @@ import { FollowerAtom } from '../utils/atoms/FollowerAtom';
 import { Tatoe } from '../../../src/components/types/types';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import Link from 'next/link';
-import { DeleteWordsBtn } from '../btn/DeleteWordsBtn';
+import { DeleteTatoeBtn } from '../btn/DeleteTatoeBtn';
 import { EditBtn } from '../btn/EditBtn';
 import { useAuth } from '../hooks/useAuth';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
@@ -135,7 +135,7 @@ export const TatoeList = (props: any) => {
                             shortParaphrase={item.shortParaphrase}
                             description={item.description}
                           />
-                          <DeleteWordsBtn tId={item.tId} />
+                          <DeleteTatoeBtn tId={item.tId} />
                           <li
                             className='
                                         flex

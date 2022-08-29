@@ -7,7 +7,7 @@ type TitleProps = {
   setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
-export const RegisterWordTitle = (props: TitleProps) => {
+export const RegisterTatoeTitle = (props: TitleProps) => {
   const { title, setTitle, query } = props;
 
   useEffect(() => {

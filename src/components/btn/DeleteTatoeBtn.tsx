@@ -7,21 +7,21 @@ type DeleteProps = {
   tId: string;
 };
 
-export const DeleteWordsBtn: VFC<DeleteProps> = (props) => {
+export const DeleteTatoeBtn: VFC<DeleteProps> = (props) => {
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
-  const handleDeleteWords = () => {
-    const deleteWords = tatoe.filter((item) => {
+  const handleDeleteTatoe = () => {
+    const deleteTatoe = tatoe.filter((item) => {
       return item.tId !== props.tId;
     });
-    setTatoe(deleteWords);
+    setTatoe(deleteTatoe);
     console.log('delete Tatoe');
   };
   // console.log("tatoeList tatoe : ",tatoe);
   return (
     <div>
       <li className='flex items-center'>
-        <button onClick={handleDeleteWords}>
+        <button onClick={handleDeleteTatoe}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-4 w-4 text-gray-400'

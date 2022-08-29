@@ -9,7 +9,7 @@ type ShortParaphraseProps = {
   >;
 };
 
-export const RegisterWordShortParaphrase = (props: ShortParaphraseProps) => {
+export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
   const { shortParaphrase, setShortParaphrase, query } = props;
 
   useEffect(() => {

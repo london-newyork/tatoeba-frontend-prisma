@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const RegisterWordHeadline = () => {
+export const RegisterTatoeHeadline = () => {
   return (
     <div className='pb-8 sm:pb-12'>
       <h1

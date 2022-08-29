@@ -2,8 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../components/Header/Header';
-import { RegisterWordHeadline } from './RegisterTatoeHeadline';
-import { RegisterWordParent } from './RegisterTatoeParent';
+import { RegisterTatoeHeadline } from './RegisterTatoeHeadline';
+import { RegisterTatoeParent } from './RegisterTatoeParent';
 import { useRouter } from 'next/router';
 
 export default function Register() {
@@ -38,8 +38,8 @@ export default function Register() {
               max-w-[1000px]
               '
         >
-          <RegisterWordHeadline />
-          <RegisterWordParent />
+          <RegisterTatoeHeadline />
+          <RegisterTatoeParent />
         </div>
       </section>
     </>

@@ -7,7 +7,7 @@ import { useAuth } from '../../../components/hooks/useAuth';
 import { Tatoe } from '../../../components/types/types';
 import { LoginUserAtom } from '../../../components/utils/atoms/LoginUserAtom';
 
-export const RegisterWordCreateBtn = (props: Tatoe) => {
+export const RegisterTatoeCreateBtn = (props: Tatoe) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
   const { userId } = useAuth();
@@ -25,7 +25,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
   const tId = getUniqueId();
 
   // TODO ユーザーが title, description, shortParaphrase 入力したら async await して API にデータを送る
-  const submitWords = async (): Promise<string> => {
+  const submitTatoe = async (): Promise<string> => {
     if (!userId || !user) {
       return null;
     }
@@ -41,7 +41,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
 
     // 初回登録
     if (!query_tId) {
-      const firstAddWords = [
+      const firstAddTatoe = [
         {
           tId,
           title,
@@ -64,7 +64,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
       //   }
       // );
       // await res.json();
-      setTatoe(firstAddWords);
+      setTatoe(firstAddTatoe);
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',
@@ -72,7 +72,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
     }
     // 更新時
     if (query_tId) {
-      const newWords = tatoe.map((item: Tatoe) => {
+      const newTatoe = tatoe.map((item: Tatoe) => {
         if (item.tId === query_tId) {
           return {
             tId: item.tId,
@@ -85,7 +85,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
           return item;
         }
       });
-      setTatoe(newWords);
+      setTatoe(newTatoe);
       // API通信
 
       tatoe.map((item: Tatoe) => {
@@ -101,7 +101,7 @@ export const RegisterWordCreateBtn = (props: Tatoe) => {
   return (
     <div className='flex justify-end'>
       <button
-        onClick={submitWords}
+        onClick={submitTatoe}
         type='submit'
         className='
       p-3

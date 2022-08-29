@@ -29,7 +29,7 @@ export const RegisterTatoeParent = () => {
         description={description}
         setDescription={setDescription}
       />
-      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-row gap-6'>
+      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col md:flex-row gap-6'>
         <RegisterTatoeCancelBtn
           query_tId={query.tId}
           creationTime={creationTime}

@@ -115,15 +115,7 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-          {isLoggedIn ? (
-            <Link href='/DashBoard/UserTatoeList'>
-              <HeaderEditBtn />
-            </Link>
-          ) : (
-            <Link href='/Login/'>
-              <HeaderEditBtn />
-            </Link>
-          )}
+          <HeaderEditBtn />
         </div>
       </div>
     </header>

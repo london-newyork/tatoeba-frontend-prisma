@@ -68,7 +68,7 @@ export const TatoeList = (props: any) => {
                     '
                 key={item.tId}
               >
-                <li>
+                <li className='flex-grow'>
                   <ul
                     className={`
                             lg:flex

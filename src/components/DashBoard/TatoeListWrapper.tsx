@@ -11,6 +11,7 @@ export const TatoeListWrapper: VFC<Layouts> = (props) => {
         className='
     pt-8
     sm:pt-0
+    md:pt-0
     position'
       >
         <div>

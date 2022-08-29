@@ -10,7 +10,7 @@ export const TatoeListLayouts: VFC<Layouts> = (props) => {
     lg:px-12
     px-4
     md:px-7
-    sm:pt-12
+    sm:pt-8
     pb-20
     mt-12
     sm:mt-0

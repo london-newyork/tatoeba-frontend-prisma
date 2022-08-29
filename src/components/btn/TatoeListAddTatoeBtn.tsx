@@ -6,11 +6,11 @@ export const TatoeListAddTatoeBtn = () => {
     <div
       className='
   absolute
-  top-5
+  top-6
   right-4
-  md:top-10
+  md:top-6
   md:right-8
-  lg:top-10
+  lg:top-6
   lg:right-10
   '
     >

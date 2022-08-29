@@ -95,10 +95,7 @@ export const TatoeList = (props: any) => {
                     <li>
                       <ul
                         className='
-                                    min-w-[20rem]
                                     w-full
-                                    sm:min-w-[24rem]
-                                    sm:w-full
                                     sm:max-w-none
                                     flex
                                     flex-row

@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { PencilAltIcon } from '@heroicons/react/outline';
 import { useAuth } from '../hooks/useAuth';
 import { HeaderEditBtn } from '../btn/HeaderEditBtn';
 import { Logo } from './Logo';

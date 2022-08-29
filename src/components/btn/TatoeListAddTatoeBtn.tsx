@@ -5,23 +5,23 @@ export const TatoeListAddTatoeBtn = () => {
   return (
     <div
       className='
-  absolute
-  top-6
-  right-4
-  md:top-6
-  md:right-8
-  lg:top-6
-  lg:right-10
-  '
+      absolute
+      top-4
+      right-4
+      md:top-5
+      md:right-6
+      lg:top-6
+      lg:right-7
+      '
     >
       <Link href='/Register'>
         <button
           type='button'
           className='
-      w-9
-      h-9
-      bg-dark_green
-      rounded-full'
+          w-9
+          h-9
+          bg-dark_green
+          rounded-full'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

@@ -2,8 +2,9 @@ import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { PencilAltIcon } from '@heroicons/react/outline';
 import { useAuth } from '../hooks/useAuth';
+import { HeaderEditBtn } from '../btn/HeaderEditBtn';
+import { Logo } from './Logo';
 
 export const Header = () => {
   const [isHover, setIsHover] = useState(true);
@@ -37,30 +38,23 @@ export const Header = () => {
         border-b-2
         border-gray-800
         fixed
-        z-10'
+        z-10
+        position'
       >
-        <div className='my-auto'>
-          <Link href='/'>
-            <a
-              className='
-              text-2xl
-              text-gray-700
-              tracking-wider
-              hover:opacity-50
-              duration-300'
-            >
-              <span className='text-dark_green'>T</span>
-              atoeba
-            </a>
-          </Link>
-        </div>
-        <div className='flex my-auto mr-3 md:mr-0'>
+        <Logo />
+        <div
+          className='flex my-auto gap-x-4 md:mr-0 fixed
+            right-[14.5px]
+            top-[10px]
+            md:inset-auto
+            md:static
+            '
+        >
           <div className='flex flex-col items-end'>
             <div
               className='
               position
               my-auto
-              mr-3
               bg-gray-100
               rounded-full
               h-7
@@ -123,61 +117,11 @@ export const Header = () => {
           </div>
           {isLoggedIn ? (
             <Link href='/DashBoard/UserTatoeList'>
-              <button
-                className='
-                hover:bg-mint_green
-                bg-light_green
-                rounded-full
-                h-7
-                w-7'
-              >
-                <ul
-                  className='
-                  flex
-                  flex-col
-                  hover:text-white
-                  items-center'
-                >
-                  <li>
-                    <PencilAltIcon
-                      className='
-                      h-4
-                      w-4
-                      text-q_dark_green
-                      duration-300'
-                    />
-                  </li>
-                </ul>
-              </button>
+              <HeaderEditBtn />
             </Link>
           ) : (
             <Link href='/Login/'>
-              <button
-                className='
-              hover:bg-mint_green
-              bg-light_green
-              rounded-full
-              h-7
-              w-7'
-              >
-                <ul
-                  className='
-                  flex
-                  flex-col
-                  hover:text-white
-                  items-center'
-                >
-                  <li>
-                    <PencilAltIcon
-                      className='
-                      h-4
-                      w-4
-                      text-q_dark_green
-                      duration-300'
-                    />
-                  </li>
-                </ul>
-              </button>
+              <HeaderEditBtn />
             </Link>
           )}
         </div>

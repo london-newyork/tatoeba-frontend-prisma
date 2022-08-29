@@ -1,26 +1,37 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { VFC } from 'react'
-import { Layouts } from '../types/types'
+import { useRouter } from 'next/router';
+import React, { VFC } from 'react';
 
-export const DashBoardUserHomeBtn:VFC = (props) => {
-    const router = useRouter()
-    const handleMoveToDashBoardHome = () => {
-        router.push({
-            pathname: '/DashBoard'
-        })
-    }
-    return (
-        <div
-        className="
+export const DashBoardUserHomeBtn: VFC = (props) => {
+  const router = useRouter();
+  const handleMoveToDashBoardHome = () => {
+    router.push({
+      pathname: '/DashBoard',
+    });
+  };
+  return (
+    <div
+      className='
         text-white
+        sm:text-gray-800
+        md:text-white
         cursor-pointer
-        "
-        onClick={handleMoveToDashBoardHome}
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-        </div>
-  )
-}
+        '
+      onClick={handleMoveToDashBoardHome}
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        className='h-6 w-6'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke='currentColor'
+        strokeWidth='1'
+      >
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
+        />
+      </svg>
+    </div>
+  );
+};

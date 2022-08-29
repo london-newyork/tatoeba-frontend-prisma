@@ -9,7 +9,7 @@ import { EditBtn } from '../btn/EditBtn';
 import { useAuth } from '../hooks/useAuth';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 
-export const TatoeList = () => {
+export const TatoeList = (props: any) => {
   const { userId } = useAuth();
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   // TODO followerを作るときに下記活用する可能性あり

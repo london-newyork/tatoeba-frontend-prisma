@@ -17,13 +17,11 @@ export default function Register() {
       <section
         className='
           md:pt-[100px]
-          sm:pt-[80px]
-          bg-gray-100
-          h-screen
+          pt-[80px]
           px-7
           md:px-18
           mx-auto
-          pt-9
+          mb-12
           '
       >
         <div

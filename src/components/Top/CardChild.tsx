@@ -1,14 +1,14 @@
 import React, { useEffect, useState, VFC } from 'react';
 import { useRecoilState } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
-import { Words } from '../types/types';
-import { WordsAtom } from '../utils/atoms/WordsAtom';
+import { Tatoe } from '../types/types';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import Image from 'next/image';
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
 
 export const CardChild: VFC = () => {
-  const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   const RandomColors = [
     'hover:shadow-plane_2xl_card_prime',
@@ -32,8 +32,8 @@ export const CardChild: VFC = () => {
 
   return (
     <>
-      {words
-        ? words.map((item: Words) => (
+      {tatoe
+        ? tatoe.map((item: Tatoe) => (
             <li
               key={item.tId}
               className={`

@@ -3,20 +3,14 @@ import { ParsedUrlQuery } from 'querystring';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { SetterOrUpdater } from 'recoil';
 
-export type Words = {
+export type Tatoe = {
   tId?: string;
   title?: string;
   shortParaphrase?: string;
   description?: string;
   creationTime?: string;
   tImageUrl?: string;
-  query_tId?: string;
-};
-
-export type Title = {
-  tId: Words['tId'] | string[];
-  title: string;
-  setTitle: Dispatch<SetStateAction<string>>;
+  query_tId?: string | string[];
 };
 
 export type Edit = {
@@ -27,8 +21,8 @@ export type Edit = {
     description: string
   ) => void;
   creationTime: string;
-  words: Words[];
-  setWords: SetterOrUpdater<Words[]>;
+  tatoe: Tatoe[];
+  setTatoe: SetterOrUpdater<Tatoe[]>;
   router: NextRouter;
 };
 
@@ -40,13 +34,13 @@ export type Result = {
     description: string
   ) => void;
   creationTime: string;
-  words: Words[] | ParsedUrlQuery[];
-  setWords: SetterOrUpdater<Words[] | ParsedUrlQuery[]>;
+  tatoe: Tatoe[] | ParsedUrlQuery[];
+  setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
   router: NextRouter;
 };
 
 export type CardProps = {
-  words: Edit['words'];
+  tatoe: Edit['tatoe'];
   // handleMoveToEdit: Edit["handleMoveToEdit"]
   handleMoveToResult: Edit['handleMoveToEdit'];
 };

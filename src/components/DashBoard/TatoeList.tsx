@@ -1,21 +1,50 @@
-import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { FollowerAtom } from '../utils/atoms/FollowerAtom';
-import { Words } from '../../../src/components/types/types';
-import { WordsAtom } from '../utils/atoms/WordsAtom';
+import { Tatoe } from '../../../src/components/types/types';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { DeleteWordsBtn } from '../btn/DeleteWordsBtn';
 import { EditBtn } from '../btn/EditBtn';
+import { useAuth } from '../hooks/useAuth';
+import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 
 export const TatoeList = (props: any) => {
-  const { userInfo } = props;
+  const { userId } = useAuth();
+  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  // TODO followerを作るときに下記活用する可能性あり
+  // const [follower, setFollower] = useRecoilState(FollowerAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
-  const [follower, setFollower] = useRecoilState(FollowerAtom);
-  const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
+  if (!userId) {
+    return null;
+  }
+
+  // userのtatoeをAPIからGET
+  useEffect(() => {
+    const getUserTatoeList = async () => {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/tatoe`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${persistAccessToken}`,
+          },
+        }
+      );
+      const { data } = await res.json();
+      getUserTatoeList();
+      if (!data) {
+        throw Error('データがありません');
+      }
+
+      console.log('data', data);
+    };
+  }, []);
 
   const handleConfirmFollower = () => {
-    //WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
+    // TODO WIP userInfoのうち、ユーザーのクリックされた例えリスト固有のfollower情報を取得して、配列へ押し込む
     // setFollower((prev:any)=>{
     // [{userInfo}, ...prev]
     // })
@@ -23,8 +52,8 @@ export const TatoeList = (props: any) => {
 
   return (
     <div>
-      {words.length
-        ? words.map((item) => {
+      {tatoe.length
+        ? tatoe.map((item) => {
             return (
               <ul
                 className='

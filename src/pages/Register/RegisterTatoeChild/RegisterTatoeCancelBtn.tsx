@@ -1,20 +1,19 @@
 import React from 'react';
-// import { Modal } from '../../../src/components/Modal/Modal'
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../../components/utils/atoms/WordsAtom';
-import { Words } from '../../../components/types/types';
+import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
+import { Tatoe } from '../../../components/types/types';
 
-export const RegisterWordCancelBtn = (props: Words) => {
+export const RegisterWordCancelBtn = (props: Tatoe) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
-
-  const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
   const router = useRouter();
+
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   const handleClickCancel = () => {
     if (query_tId) {
-      const newWords = words.map((item) => {
+      const newWords = tatoe.map((item) => {
         if (item.tId === query_tId) {
           return {
             tId: item.tId,
@@ -27,9 +26,9 @@ export const RegisterWordCancelBtn = (props: Words) => {
           return item;
         }
       });
-      setWords(newWords);
+      setTatoe(newWords);
 
-      words.map((item) => {
+      tatoe.map((item) => {
         if (item.tId === query_tId) {
           router.push({
             pathname: '/DashBoard',

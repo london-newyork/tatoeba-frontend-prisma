@@ -10,7 +10,6 @@ const TempRegisterMember = () => {
 
   //backend側にリクエストする
   const handleTempRegisterMember = async () => {
-    console.log('postData', postData);
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/registrations', {
       method: 'POST',
       headers: {

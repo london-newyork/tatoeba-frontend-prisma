@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { SearchMainLayouts } from '../../components/Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { WordsAtom } from '../../components/utils/atoms/WordsAtom';
-import { Words } from '../../components/types/types';
+import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
+import { Tatoe } from '../../components/types/types';
 
 const SearchResultList = () => {
-  const [words, setWords] = useRecoilState<Words[]>(WordsAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const [result, setResult] = useState([]);
   // const [ result, setResult ] = useRecoilState(SearchResultAtom)
   const router = useRouter();
@@ -26,7 +26,7 @@ const SearchResultList = () => {
 
   useEffect(() => {
     if (keyWord) {
-      const filteredWords = words.filter((item: Words) => {
+      const filteredWords = tatoe.filter((item: Tatoe) => {
         return (
           item.title.toLowerCase().indexOf(keyWord) !== -1 ||
           item.description.toLowerCase().indexOf(keyWord) !== -1 ||

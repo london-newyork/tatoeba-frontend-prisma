@@ -2,17 +2,18 @@ import React, { VFC } from 'react';
 import { Layouts } from '../../types/types';
 import { SideBarLayouts } from './SideBarLayouts';
 
-export const DashBoardLayouts:VFC<Layouts> = (props) => {
+export const DashBoardLayouts: VFC<Layouts> = (props) => {
   return (
     <main
-    className="
+      className='
     bg-gray-100
     min-h-screen
     h-full
     md:px-18
-    ">
+    '
+    >
       <div
-      className='
+        className='
       h-screen
       flex
       md:flex-row
@@ -21,13 +22,12 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
       >
         <SideBarLayouts />
         <div
-        className='
+          className='
         sm:pt-[100px]
         pt-0
         pb-14
         max-w-[1200px]
         md:min-w-[640px]
-        min-w-[375px]
         mx-auto
         flex
         lg:flex-row
@@ -39,8 +39,8 @@ export const DashBoardLayouts:VFC<Layouts> = (props) => {
         '
         >
           {props.children}
-      </div>
+        </div>
       </div>
     </main>
-  )
+  );
 };

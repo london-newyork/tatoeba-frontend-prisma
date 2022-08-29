@@ -9,7 +9,7 @@ type DescriptionProps = {
   >;
 };
 
-export const RegisterWordDescription = (props: DescriptionProps) => {
+export const RegisterTatoeDescription = (props: DescriptionProps) => {
   const { description, setDescription, query } = props;
 
   useEffect(() => {

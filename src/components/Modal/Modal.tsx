@@ -7,14 +7,14 @@ import { useRouter } from 'next/router';
 //     setShow: boolean
 // }
 
-// const newWords = {
+// const newTatoe = {
 //     id:'',
 //     title: '',
 //     short_paraphrase: '',
 //     description: '',
 // } as const
 
-type ModalNewWords = {
+type ModalNewTatoe = {
   tId: number | string;
   title: string;
   short_paraphrase: string;
@@ -23,25 +23,25 @@ type ModalNewWords = {
   setShow: boolean;
 };
 
-export const Modal = (props: ModalNewWords) => {
+export const Modal = (props: ModalNewTatoe) => {
   // const [ title, setTitle ] = useAtom(writableTatoeAtom)
-  // const [ tatoe, setTatoe ] = useState<ModalNewWords>()
-  const [tatoe, setTatoe] = useState<ModalNewWords>();
+  // const [ tatoe, setTatoe ] = useState<ModalNewTatoe>()
+  const [tatoe, setTatoe] = useState<ModalNewTatoe>();
   const [title, setTitle] = useState();
   const router = useRouter();
   const { show, setShow } = props;
-  const closeModalSubmitWords = useCallback((e): void => {
+  const closeModalSubmitTatoe = useCallback((e): void => {
     {
       /* @ts-ignore */
     }
     setShow(false);
 
     //関数の中に関数は入れない。関数にしなくてもいい
-    // const routerPushWords = () => {
+    // const routerPushTatoe = () => {
 
     //Firebaseに渡すので状態管理させなくてOK
     // //useStateでもいいのでは・・？
-    //     const newWords = [
+    //     const newTatoe = [
     //         {
     //             tId:'',
     //             title,
@@ -51,7 +51,7 @@ export const Modal = (props: ModalNewWords) => {
     //         ...tatoe,
     //     ]
     //     // console.log(tatoe)
-    //     setTatoe(newWords)
+    //     setTatoe(newTatoe)
     // // }
     //routerでクエリを渡すという手もある
     router.push('/');
@@ -96,7 +96,7 @@ export const Modal = (props: ModalNewWords) => {
                 ご投稿ありがとうございました!
               </p>
               <button
-                onClick={closeModalSubmitWords}
+                onClick={closeModalSubmitTatoe}
                 className='
                     p-3
                     w-[200px]

@@ -26,14 +26,14 @@ const SearchResultList = () => {
 
   useEffect(() => {
     if (keyWord) {
-      const filteredWords = tatoe.filter((item: Tatoe) => {
+      const filteredTatoe = tatoe.filter((item: Tatoe) => {
         return (
           item.title.toLowerCase().indexOf(keyWord) !== -1 ||
           item.description.toLowerCase().indexOf(keyWord) !== -1 ||
           item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
         );
       });
-      setResult([...result].concat(filteredWords));
+      setResult([...result].concat(filteredTatoe));
     }
   }, [router.query.keyWord]);
 

@@ -27,7 +27,7 @@ export type testFollower = {
 
 export type testUserId = Pick<testUserProfile, 'userId'>;
 
-export type testUserWords = testUserId & Tatoe;
+export type testUserTatoe = testUserId & Tatoe;
 
 export type testUserFollower = testUserId & testFollower;
 

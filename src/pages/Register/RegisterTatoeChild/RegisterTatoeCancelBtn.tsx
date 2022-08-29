@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../../components/types/types';
 
-export const RegisterWordCancelBtn = (props: Tatoe) => {
+export const RegisterTatoeCancelBtn = (props: Tatoe) => {
   const { query_tId, title, shortParaphrase, description, creationTime } =
     props;
   const router = useRouter();
@@ -13,7 +13,7 @@ export const RegisterWordCancelBtn = (props: Tatoe) => {
 
   const handleClickCancel = () => {
     if (query_tId) {
-      const newWords = tatoe.map((item) => {
+      const newTatoe = tatoe.map((item) => {
         if (item.tId === query_tId) {
           return {
             tId: item.tId,
@@ -26,7 +26,7 @@ export const RegisterWordCancelBtn = (props: Tatoe) => {
           return item;
         }
       });
-      setTatoe(newWords);
+      setTatoe(newTatoe);
 
       tatoe.map((item) => {
         if (item.tId === query_tId) {

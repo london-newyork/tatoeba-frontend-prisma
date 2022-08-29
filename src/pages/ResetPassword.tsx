@@ -3,7 +3,8 @@ import { LoginLayouts } from '../components/Layouts/LoginLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { getStorage } from '../lib/storage';
+import { useRecoilValue } from 'recoil';
+import { LoginUserAtom } from '../components/utils/atoms/LoginUserAtom';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -11,7 +12,9 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // 現在のパスワードをユーザーに入力させて、API側で、その入力内容と今持っているDB側のデータが一致するかを確認する
+  // TODO usePersistAccessTokenの使い所確認
+  const persistAccessToken = useRecoilValue(LoginUserAtom);
+
   const handleChangeCurrentPassword = (
     e: React.ChangeEvent<HTMLInputElement> | undefined
   ) => {
@@ -48,12 +51,12 @@ const ResetPassword = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${getStorage('jwt')}`,
+          Authorization: `Bearer ${persistAccessToken}`,
         },
         body: JSON.stringify({ currentPassword, newPassword }),
       }
     );
-    const data = await res.json();
+    await res.json();
 
     //パスワード再設定完了ページへ飛ぶ
     await router.push('/complete_reset_password');
@@ -188,7 +191,7 @@ const ResetPassword = () => {
                   新パスワード確認
                 </p>
                 <input
-                  value={newPassword}
+                  value={confirmPassword}
                   className='
                             shadow-sm
                             outline-none

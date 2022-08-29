@@ -9,16 +9,17 @@ export const TatoeListWrapper: VFC<Layouts> = (props) => {
       <TatoeListAddTatoeBtn />
       <div
         className='
-    pt-8
-    sm:pt-0
-    md:pt-0
-    position'
+        pt-6
+        sm:pt-0
+        md:pt-0
+        position'
       >
         <div>
           <h2
             className='
             text-md
             text-gray-600
+            pb-2
             '
           >
             [投稿一覧]

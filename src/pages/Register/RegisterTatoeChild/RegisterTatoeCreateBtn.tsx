@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
@@ -39,31 +38,20 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
       return;
     }
 
-    // 初回登録
+    // // 初回登録
     if (!query_tId) {
-      const firstAddTatoe = [
-        {
-          tId,
-          title,
-          shortParaphrase,
-          description,
-          creationTime,
-        },
-        ...tatoe,
-      ];
       // API通信
-      // const res = await fetch(
-      //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/tatoe`,
-      //   {
-      //     method: 'PUT',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       Authorization: `Bearer ${persistAccessToken}`,
-      //     },
-      //     body: JSON.stringify({ userId, tatoe }),
-      //   }
-      // );
-      // await res.json();
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${persistAccessToken}`,
+        },
+        body: JSON.stringify({ title, shortParaphrase, description }),
+      });
+      const { data: newTatoe } = await res.json();
+
+      const firstAddTatoe = [newTatoe, ...tatoe];
       setTatoe(firstAddTatoe);
 
       router.push({
@@ -102,7 +90,8 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
     <div className='flex justify-end'>
       <button
         onClick={submitTatoe}
-        type='submit'
+        // onClick={props.onClick}
+        // type='submit'
         className='
       p-3
       w-[200px]
@@ -114,6 +103,7 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
     '
       >
         投稿する
+        {/* {props.children} */}
       </button>
     </div>
   );

@@ -14,7 +14,7 @@ export const RegisterTatoeParent = () => {
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
 
-  const creationTime = dayjs().format('YY/MM/DD HH:mm A');
+  const createdAt = dayjs().format('YY/MM/DD HH:mm A');
 
   return (
     <div className='flex flex-col gap-6'>
@@ -32,14 +32,14 @@ export const RegisterTatoeParent = () => {
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col md:flex-row gap-6'>
         <RegisterTatoeCancelBtn
           query_tId={query.tId}
-          creationTime={creationTime}
+          createdAt={createdAt}
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
         />
         <RegisterTatoeCreateBtn
           query_tId={query.tId}
-          creationTime={creationTime}
+          createdAt={createdAt}
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}

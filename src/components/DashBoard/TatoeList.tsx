@@ -79,7 +79,7 @@ export const TatoeList = (props: any): JSX.Element => {
                                 text-xs
                                 w-[124px]'
                     >
-                      {item.creationTime}
+                      {item.createdAt}
                     </li>
                     <li className='flex-grow'>
                       <ul

@@ -5,10 +5,12 @@ import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
   tId?: string;
+  userId?: string;
   title?: string;
   shortParaphrase?: string;
   description?: string;
-  creationTime?: string;
+  createdAt?: string;
+  updatedAt?: string;
   tImageUrl?: string;
   query_tId?: string | string[];
 };
@@ -20,7 +22,7 @@ export type Edit = {
     shortParaphrase: string,
     description: string
   ) => void;
-  creationTime: string;
+  createdAt: string;
   tatoe: Tatoe[];
   setTatoe: SetterOrUpdater<Tatoe[]>;
   router: NextRouter;
@@ -33,7 +35,7 @@ export type Result = {
     shortParaphrase: string,
     description: string
   ) => void;
-  creationTime: string;
+  createdAt: string;
   tatoe: Tatoe[] | ParsedUrlQuery[];
   setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
   router: NextRouter;

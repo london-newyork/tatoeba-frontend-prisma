@@ -7,8 +7,7 @@ import { Tatoe } from '../../../components/types/types';
 import { LoginUserAtom } from '../../../components/utils/atoms/LoginUserAtom';
 
 export const RegisterTatoeCreateBtn = (props: Tatoe) => {
-  const { query_tId, title, shortParaphrase, description, creationTime } =
-    props;
+  const { query_tId, title, shortParaphrase, description, createdAt } = props;
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
@@ -47,12 +46,27 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${persistAccessToken}`,
         },
-        body: JSON.stringify({ title, shortParaphrase, description }),
+        body: JSON.stringify({
+          title,
+          shortParaphrase,
+          description,
+          tId,
+          createdAt,
+        }),
       });
-      const { data: newTatoe } = await res.json();
-
-      const firstAddTatoe = [newTatoe, ...tatoe];
-      setTatoe(firstAddTatoe);
+      const { data } = await res.json();
+      // フロント側で使えるようにデータ加工
+      const formattedData: Tatoe = {
+        tId: data.id,
+        userId: data.userId,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+        title: data.title,
+        description: data.description,
+        shortParaphrase: data.shortParaphrase,
+      };
+      const newTatoe = [formattedData, ...tatoe];
+      setTatoe(newTatoe);
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',
@@ -67,7 +81,7 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
             title,
             shortParaphrase,
             description,
-            creationTime,
+            createdAt,
           };
         } else {
           return item;

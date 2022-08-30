@@ -7,7 +7,7 @@ type DeleteProps = {
   tId: string;
 };
 
-export const DeleteTatoeBtn: VFC<DeleteProps> = (props) => {
+export const TatoeListDeleteTatoeBtn: VFC<DeleteProps> = (props) => {
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   const handleDeleteTatoe = () => {
@@ -17,9 +17,8 @@ export const DeleteTatoeBtn: VFC<DeleteProps> = (props) => {
     setTatoe(deleteTatoe);
     console.log('delete Tatoe');
   };
-  // console.log("tatoeList tatoe : ",tatoe);
   return (
-    <div>
+    <ul>
       <li className='flex items-center'>
         <button onClick={handleDeleteTatoe}>
           <svg
@@ -38,6 +37,6 @@ export const DeleteTatoeBtn: VFC<DeleteProps> = (props) => {
           </svg>
         </button>
       </li>
-    </div>
+    </ul>
   );
 };

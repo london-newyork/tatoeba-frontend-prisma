@@ -105,9 +105,13 @@ export const Header = () => {
             >
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
                 {isLoggedIn ? (
-                  <Link href='/DashBoard'>ログイン</Link>
+                  <Link href='/DashBoard'>
+                    <a>ログイン</a>
+                  </Link>
                 ) : (
-                  <Link href='/Login'>ログイン</Link>
+                  <Link href='/Login'>
+                    <a>ログイン</a>
+                  </Link>
                 )}
               </li>
               <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>

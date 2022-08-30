@@ -1,8 +1,5 @@
 import React, { VFC } from 'react';
-import { useRecoilState } from 'recoil';
 import { useHandleMoveToEdit } from '../hooks/handleMoveToEdit';
-import { Tatoe } from '../types/types';
-import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
 export type EditBtnProps = {
   readonly tId: string;
@@ -11,7 +8,7 @@ export type EditBtnProps = {
   description: string;
 };
 
-export const EditBtn: VFC<EditBtnProps> = (props) => {
+export const TatoeListEditExistingTatoeBtn: VFC<EditBtnProps> = (props) => {
   const { tId, title, shortParaphrase, description } = props;
   const { handleMoveToEdit } = useHandleMoveToEdit({
     tId,
@@ -21,7 +18,7 @@ export const EditBtn: VFC<EditBtnProps> = (props) => {
   });
 
   return (
-    <div>
+    <ul>
       <li
         className='
             flex
@@ -45,6 +42,6 @@ export const EditBtn: VFC<EditBtnProps> = (props) => {
           </svg>
         </button>
       </li>
-    </div>
+    </ul>
   );
 };

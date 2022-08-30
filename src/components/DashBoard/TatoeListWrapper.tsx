@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import React, { VFC } from 'react';
-import { TatoeListAddTatoeBtn } from '../btn/TatoeListAddTatoeBtn';
+import { TatoeListAddNewTatoeBtn } from '../btn/TatoeListAddNewTatoeBtn';
 import { Layouts } from '../types/types';
 
 export const TatoeListWrapper: VFC<Layouts> = (props) => {
   return (
     <div>
-      <TatoeListAddTatoeBtn />
+      <TatoeListAddNewTatoeBtn />
       <div
         className='
         pt-6

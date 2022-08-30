@@ -1,5 +1,4 @@
 import React, { VFC } from 'react';
-import { TatoeListAddTatoeBtn } from '../../btn/TatoeListAddTatoeBtn';
 import { Layouts } from '../../types/types';
 
 export const TatoeListLayouts: VFC<Layouts> = (props) => {

@@ -24,11 +24,6 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
 
   const router = useRouter();
 
-  // function getUniqueId() {
-  //   return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
-  // }
-  // const tId = getUniqueId();
-
   // TODO ユーザーが title, description, shortParaphrase 入力したら async await して API にデータを送る
   const submitTatoe = async (): Promise<string> => {
     if (!userId || !user) {

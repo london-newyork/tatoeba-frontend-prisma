@@ -7,20 +7,27 @@ import { Tatoe } from '../../../components/types/types';
 import { LoginUserAtom } from '../../../components/utils/atoms/LoginUserAtom';
 
 export const RegisterTatoeCreateBtn = (props: Tatoe) => {
-  const { query_tId, title, shortParaphrase, description, createdAt } = props;
+  const {
+    query_tId,
+    title,
+    shortParaphrase,
+    description,
+    createdAt,
+    updatedAt,
+  } = props;
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
-  //
+
   const persistAccessToken = useRecoilValue(LoginUserAtom);
 
   const router = useRouter();
 
-  function getUniqueId() {
-    return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
-  }
-  const tId = getUniqueId();
+  // function getUniqueId() {
+  //   return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
+  // }
+  // const tId = getUniqueId();
 
   // TODO ユーザーが title, description, shortParaphrase 入力したら async await して API にデータを送る
   const submitTatoe = async (): Promise<string> => {
@@ -39,7 +46,6 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
 
     // // 初回登録
     if (!query_tId) {
-      // API通信
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe`, {
         method: 'POST',
         headers: {
@@ -50,8 +56,6 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
           title,
           shortParaphrase,
           description,
-          tId,
-          createdAt,
         }),
       });
       const { data } = await res.json();
@@ -66,6 +70,7 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
         shortParaphrase: data.shortParaphrase,
       };
       const newTatoe = [formattedData, ...tatoe];
+
       setTatoe(newTatoe);
 
       router.push({
@@ -74,21 +79,47 @@ export const RegisterTatoeCreateBtn = (props: Tatoe) => {
     }
     // 更新時
     if (query_tId) {
-      const newTatoe = tatoe.map((item: Tatoe) => {
+      tatoe.map(async (item: Tatoe) => {
         if (item.tId === query_tId) {
-          return {
-            tId: item.tId,
-            title,
-            shortParaphrase,
-            description,
-            createdAt,
-          };
-        } else {
-          return item;
+          const tId = item.tId;
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}`,
+            {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${persistAccessToken}`,
+              },
+              body: JSON.stringify({
+                title,
+                shortParaphrase,
+                description,
+                tId,
+                createdAt,
+                updatedAt,
+              }),
+            }
+          );
+          const { data } = await res.json();
+
+          const updatedTatoe = tatoe.map((item: Tatoe) => {
+            if (item.tId === query_tId) {
+              return {
+                tId: item.tId,
+                userId: data.userId,
+                createdAt: data.createdAt,
+                updatedAt: data.updatedAt,
+                title: data.title,
+                description: data.description,
+                shortParaphrase: data.shortParaphrase,
+              };
+            }
+            return item;
+          });
+
+          setTatoe(updatedTatoe);
         }
       });
-      setTatoe(newTatoe);
-      // API通信
 
       tatoe.map((item: Tatoe) => {
         if (item.tId === query_tId) {

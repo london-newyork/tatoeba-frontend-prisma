@@ -3,7 +3,7 @@ import { RegisterTatoeCreateBtn } from './RegisterTatoeChild/RegisterTatoeCreate
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
-import dayjs from 'dayjs';
+
 import { RegisterTatoeCancelBtn } from './RegisterTatoeChild/RegisterTatoeCancelBtn';
 import { useRouter } from 'next/router';
 
@@ -13,8 +13,8 @@ export const RegisterTatoeParent = () => {
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
-
-  const createdAt = dayjs().format('YY/MM/DD HH:mm A');
+  const [createdAt, setCreatedAt] = useState<string | null>('');
+  const [updatedAt, setUpdatedAt] = useState<string | null>('');
 
   return (
     <div className='flex flex-col gap-6'>
@@ -33,6 +33,7 @@ export const RegisterTatoeParent = () => {
         <RegisterTatoeCancelBtn
           query_tId={query.tId}
           createdAt={createdAt}
+          updatedAt={updatedAt}
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
@@ -40,6 +41,7 @@ export const RegisterTatoeParent = () => {
         <RegisterTatoeCreateBtn
           query_tId={query.tId}
           createdAt={createdAt}
+          updatedAt={updatedAt}
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}

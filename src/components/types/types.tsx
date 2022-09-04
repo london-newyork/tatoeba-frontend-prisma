@@ -54,3 +54,8 @@ export type Layouts = {
 export type WithoutPropsChildrenLayouts = {
   children?: ReactNode;
 };
+
+export type TatoeBtnProps = {
+  onClick: () => void;
+  tatoe: Tatoe[];
+} & Tatoe;

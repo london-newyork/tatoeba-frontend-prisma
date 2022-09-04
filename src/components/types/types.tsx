@@ -59,3 +59,16 @@ export type TatoeBtnProps = {
   onClick: () => void;
   tatoe: Tatoe[];
 } & Tatoe;
+
+export type User = {
+  userId: string | null;
+  userName: string | null;
+};
+export type TatoeBtnHooksProps = {
+  // onClick: () => void;
+  tatoe: Tatoe[];
+  router: NextRouter;
+  user: User;
+  setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
+  persistAccessToken: string | null;
+} & Tatoe;

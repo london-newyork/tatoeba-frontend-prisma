@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useTatoe } from '../../../components/hooks/useTatoe';
 import { Tatoe, TatoeBtnProps } from '../../../components/types/types';
 
 export const CreateTatoeBtn = (props: TatoeBtnProps) => {

@@ -1,18 +1,31 @@
-import React, { VFC } from 'react';
-import { useRecoilState } from 'recoil';
+import React from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { Tatoe } from '../types/types';
+import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
-type DeleteProps = {
-  tId: string;
-};
-
-export const TatoeListDeleteTatoeBtn: VFC<DeleteProps> = (props) => {
+export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
+  const { tId } = props;
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
+  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const handleDeleteTatoe = async () => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${persistAccessToken}`,
+        },
+        body: JSON.stringify({
+          tId,
+        }),
+      }
+    );
+    const { data } = await res.json();
 
-  const handleDeleteTatoe = () => {
     const deleteTatoe = tatoe.filter((item) => {
-      return item.tId !== props.tId;
+      return item.tId !== data.id;
     });
     setTatoe(deleteTatoe);
     console.log('delete Tatoe');

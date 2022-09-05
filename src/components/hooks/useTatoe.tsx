@@ -18,29 +18,18 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   } = props;
 
   const handleOnClickCreateTatoe = async (): Promise<void> => {
-    // TODO アラートは出るのにリターンにならない。そのまま遷移して空の１個のリストができてしまう。更新もおなじく。
-    const { alertRegisterTatoe } = useAlert({
+    const { alertRegisterTatoe, noInputsData } = useAlert({
       userId,
       user,
       title,
       shortParaphrase,
       description,
     });
-    alertRegisterTatoe();
+    if (noInputsData) {
+      alertRegisterTatoe();
+      return;
+    }
 
-    // if (!userId || !user) {
-    //   return null;
-    // }
-    // if (title === '' || shortParaphrase === '' || description === '') {
-    //   alert('入力されていない箇所があります。');
-    //   return;
-    // }
-
-    // if (user.userName === '') {
-    //   alert('ユーザー名を登録して投稿してください。');
-    //   return;
-    // }
-    // 例え登録のロジックを書く
     if (!query_tId) {
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe`, {
         method: 'POST',
@@ -76,26 +65,18 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   };
 
   const handleOnclickUpdateTatoe = async (): Promise<void> => {
-    const { alertRegisterTatoe } = useAlert({
+    const { alertRegisterTatoe, noInputsData } = useAlert({
       userId,
       user,
       title,
       shortParaphrase,
       description,
     });
-    alertRegisterTatoe();
-    // if (!userId || !user) {
-    //   return null;
-    // }
-    // if (title === '' || shortParaphrase === '' || description === '') {
-    //   alert('入力されていない箇所があります。');
-    //   return;
-    // }
+    if (noInputsData) {
+      alertRegisterTatoe();
+      return;
+    }
 
-    // if (user.userName === '') {
-    //   alert('ユーザー名を登録して投稿してください。');
-    //   return;
-    // }
     // 例え更新のロジックを書く
     if (query_tId) {
       tatoe.map(async (item: Tatoe) => {

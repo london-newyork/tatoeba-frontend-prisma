@@ -1,5 +1,3 @@
-import Router from 'next/router';
-import React from 'react';
 import { TatoeBtnHooksProps } from '../types/types';
 
 export const useAlert = (
@@ -9,6 +7,9 @@ export const useAlert = (
   >
 ) => {
   const { userId, user, title, shortParaphrase, description } = props;
+
+  const noInputsData =
+    !userId || !user || !title || !shortParaphrase || !description;
 
   const alertRegisterTatoe = (): void => {
     if (!userId || !user) {
@@ -25,5 +26,5 @@ export const useAlert = (
     }
   };
 
-  return { alertRegisterTatoe };
+  return { alertRegisterTatoe, noInputsData };
 };

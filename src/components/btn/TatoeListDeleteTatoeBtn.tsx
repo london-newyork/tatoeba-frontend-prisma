@@ -9,13 +9,14 @@ import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
 export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
-  const { tId /* onClick */ } = props;
+  const { tId } = props;
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
   const router = useRouter();
-  // TODO onClickで上から関数を渡す => TatoeListからtId={item.tId}が渡ってくるので不可能
+  // TODO onClickで上から関数を渡す => 親のTatoeListから tId={item.tId} が渡ってきて、
+  // それを用いて例えを削除していくため、不可能
   const { deleteTatoe } = useTatoe({
     tId,
     tatoe,
@@ -28,11 +29,6 @@ export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
   const handleOnClickDeleteTatoeBtn = async () => {
     await deleteTatoe({ tId });
   };
-
-  // あとで消す
-  // const deleteTatoe = async () => {
-  //   onClick();
-  // };
 
   return (
     <ul>

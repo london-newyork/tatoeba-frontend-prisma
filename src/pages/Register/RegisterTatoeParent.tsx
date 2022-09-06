@@ -28,10 +28,12 @@ export const RegisterTatoeParent = () => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-
   const query_tId = query.tId;
 
+  // stringしか来ないので強引にasで型をつける
+  const tId = query.tId as string;
   const { updateTatoe, createTatoe } = useTatoe({
+    tId,
     router,
     tatoe,
     user,
@@ -83,23 +85,13 @@ export const RegisterTatoeParent = () => {
     if (query_tId) {
       tatoe.map(async (item: Tatoe) => {
         if (item.tId === query_tId) {
-          // あとで消す
-          console.log('*********************');
-          console.log('@RegisterTatoeParent query_tId', query_tId); // OK
-          console.log('@RegisterTatoeParent item.tId', item.tId); // OK
-          console.log('*********************');
-
           const tId = item.tId;
-          // あとで消す
-          console.log('@RegisterTatoeParent tId', tId);
           await updateTatoe({
             title,
             shortParaphrase,
             description,
             tId,
-            query_tId,
-            // createdAt,
-            // updatedAt,
+            userId,
           });
         }
       });

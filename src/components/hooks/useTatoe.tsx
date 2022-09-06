@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Tatoe, TatoeBtnHooksProps } from '../types/types';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
@@ -6,12 +6,15 @@ import { useApi } from './useApi';
 
 export const useTatoe = (props: TatoeBtnHooksProps) => {
   const { tId, userId, query_tId } = props;
+  // const { userId, query_tId } = props;
 
   const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
   const { api: getTatoeApi } = useApi(`/users/${userId}/tatoe`, {
     method: 'GET',
   });
-  // const { api: putTatoeApi } = useApi(`/tatoe/${tId}`, { method: 'PUT' });
+  const { api: putTatoeApi } = useApi(`/tatoe/${tId}`, {
+    method: 'PUT',
+  });
   const { api: deleteTatoeApi } = useApi(`/tatoe/${tId}`, { method: 'DELETE' });
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
@@ -54,53 +57,14 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
 
     setTatoe(newTatoe);
   };
-  type PutSendData = {
-    title?: string;
-    shortParaphrase?: string;
-    description?: string;
-    tId?: string;
-  };
-  const [putSendData, setPutSendData] = useState<SetStateAction<PutSendData>>();
-  // あとで消す
-  console.log(putSendData.tId); // 値が取れない
-  console.log('================');
-  console.log('@useTatoe @useApi putSendData', putSendData); // 初回OK
-  console.log('================');
-
-  const { api: putTatoeApi } = useApi(`/tatoe/${tId}`, {
-    method: 'PUT',
-  });
 
   const updateTatoe = async (
     value: Pick<
       Tatoe,
-      'title' | 'shortParaphrase' | 'description' | 'tId' | 'query_tId'
+      'title' | 'shortParaphrase' | 'description' | 'tId' | 'userId'
     >
   ) => {
-    const title = value.title;
-    const shortParaphrase = value.shortParaphrase;
-    const description = value.description;
-    const tId = value.tId;
-
-    const query_tId = value.query_tId;
-
-    const newPutSendData: PutSendData = {
-      title,
-      shortParaphrase,
-      description,
-      tId,
-    };
-    setPutSendData(newPutSendData);
-    // あとで消す
-    console.log('@useTatoe updateTatoe == newPutSendData', newPutSendData); // 初回OK
-    console.log('@putTatoeApi 前 putSendData', putSendData);
-
-    // const { data } = await putTatoeApi(value);
-    const { data } = await putTatoeApi(putSendData);
-    // あとで消す
-    console.log('@putTatoeApi 後 putSendData', putSendData);
-
-    console.log('@useTatoe updateTatoe data', data);
+    const { data } = await putTatoeApi(value);
 
     const updatedTatoe = tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
@@ -122,6 +86,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
 
   const deleteTatoe = async (value: Pick<Tatoe, 'tId'>) => {
     const { data } = await deleteTatoeApi(value);
+    console.log('delete data', data);
+
     const deleteData = tatoe.filter((item: Tatoe) => {
       return item.tId !== data.id;
     });
@@ -272,11 +238,6 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   // };
 
   return {
-    // あとで消す
-    // handleOnClickCreateTatoe,
-    // handleOnclickUpdateTatoe,
-    // handleOnClickDeleteTatoe,
-
     createTatoe,
     updateTatoe,
     deleteTatoe,

@@ -1,63 +1,26 @@
-import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { getStorage } from '../../lib/storage';
-import { Tatoe } from '../types/types';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { useAuth } from './useAuth';
-
-const persistAccessToken = useRecoilValue(LoginUserAtom);
-
-const TokenType = {
-  persistAccessToken: persistAccessToken,
-  jwt: getStorage('jwt'),
-} as const;
-
-type TokenType = keyof typeof TokenType;
-
-type AddAuthorization = {
-  Authorization: `Bearer ${TokenType}`;
-};
 
 type UseApiOptions = {
-  method: 'GET' | 'POST' | 'PUT' | 'Delete';
-  addAuthorization: AddAuthorization | null;
-  tokenType: TokenType;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
 };
 
-export const useApi = (
-  url: string,
-  { method, addAuthorization, tokenType }: UseApiOptions
-) => {
-  const { login, logout, isLoggedIn, userId } = useAuth();
+export const useApi = (url: string, { method }: UseApiOptions) => {
+  const persistAccessToken = useRecoilValue(LoginUserAtom);
 
-  const api = async (sendData: Tatoe) => {
-    //   // この中で fetch を行う
+  const api = async (sendData?: any): Promise<any> => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${url}`, {
-      method: `${method}`,
+      method,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${TokenType}`,
+        Authorization: `Bearer ${persistAccessToken}`,
       },
-      body: JSON.stringify({
-        sendData,
-      }),
+
+      body: JSON.stringify(sendData),
     });
-    const { data } = await res.json();
+    const data = await res.json();
+    return data;
   };
 
   return { api };
 };
-// 使う側
-// const Hoge = () => {
-//   const api = useApi(`/users/hoge/tatoe`, {
-//     method: 'POST',
-//     addAuthorization: AddAuthorization,
-//     tokenType: 'persistAccessToken',
-//   });
-
-//   const submitTatoe = async () => {
-//     const [title, setTitle] = useState('');
-//     const [description, setDescription] = useState('');
-//     const submitData = await api(title, description);
-//   };
-// };

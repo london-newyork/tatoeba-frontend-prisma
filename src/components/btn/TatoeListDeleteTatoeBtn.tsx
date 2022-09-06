@@ -1,38 +1,43 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Tatoe } from '../types/types';
+import { useAuth } from '../hooks/useAuth';
+import { useTatoe } from '../hooks/useTatoe';
+import { useUserInfo } from '../hooks/useUserInfo';
+import { Tatoe, TatoeBtnProps } from '../types/types';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
 export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
-  const { tId } = props;
+  const { tId /* onClick */ } = props;
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-  const handleDeleteTatoe = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${persistAccessToken}`,
-        },
-        body: JSON.stringify({
-          tId,
-        }),
-      }
-    );
-    const { data } = await res.json();
+  const { userId } = useAuth();
+  const { user } = useUserInfo(userId);
+  const router = useRouter();
+  // TODO onClickで上から関数を渡す => TatoeListからtId={item.tId}が渡ってくるので不可能
+  const { deleteTatoe } = useTatoe({
+    tId,
+    tatoe,
+    router,
+    user,
+    setTatoe,
+    persistAccessToken,
+  });
 
-    const deleteTatoe = tatoe.filter((item) => {
-      return item.tId !== data.id;
-    });
-    setTatoe(deleteTatoe);
+  const handleOnClickDeleteTatoeBtn = async () => {
+    await deleteTatoe({ tId });
   };
+
+  // あとで消す
+  // const deleteTatoe = async () => {
+  //   onClick();
+  // };
+
   return (
     <ul>
       <li className='flex items-center'>
-        <button onClick={handleDeleteTatoe}>
+        <button onClick={handleOnClickDeleteTatoeBtn}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-4 w-4 text-gray-400'

@@ -13,6 +13,8 @@ import { UpdateTatoeBtn } from './RegisterTatoeChild/UpdateTatoeBtn';
 import { useAuth } from '../../components/hooks/useAuth';
 import { useUserInfo } from '../../components/hooks/useUserInfo';
 import { useTatoe } from '../../components/hooks/useTatoe';
+import { useAlert } from '../../components/hooks/useAlert';
+import { Tatoe } from '../../components/types/types';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();
@@ -29,7 +31,7 @@ export const RegisterTatoeParent = () => {
 
   const query_tId = query.tId;
 
-  const { handleOnClickCreateTatoe, handleOnclickUpdateTatoe } = useTatoe({
+  const { updateTatoe, createTatoe } = useTatoe({
     router,
     tatoe,
     user,
@@ -43,6 +45,66 @@ export const RegisterTatoeParent = () => {
     createdAt,
     updatedAt,
   });
+
+  const handleOnClickCreateTatoe = async () => {
+    if (!query_tId) {
+      // データのバリデーションを行う
+      const { alertRegisterTatoe, noInputsData } = useAlert({
+        userId,
+        user,
+        title,
+        shortParaphrase,
+        description,
+      });
+      if (noInputsData) {
+        alertRegisterTatoe();
+        return;
+      }
+      await createTatoe({ title, shortParaphrase, description });
+      router.push({
+        pathname: '/DashBoard/UserTatoeList',
+      });
+    }
+  };
+
+  const handleOnclickUpdateTatoe = async () => {
+    const { alertRegisterTatoe, noInputsData } = useAlert({
+      userId,
+      user,
+      title,
+      shortParaphrase,
+      description,
+    });
+    if (noInputsData) {
+      alertRegisterTatoe();
+      return;
+    }
+
+    if (query_tId) {
+      tatoe.map(async (item: Tatoe) => {
+        if (item.tId === query_tId) {
+          // あとで消す
+          console.log('*********************');
+          console.log('@RegisterTatoeParent query_tId', query_tId); // OK
+          console.log('@RegisterTatoeParent item.tId', item.tId); // OK
+          console.log('*********************');
+
+          const tId = item.tId;
+          // あとで消す
+          console.log('@RegisterTatoeParent tId', tId);
+          await updateTatoe({
+            title,
+            shortParaphrase,
+            description,
+            tId,
+            query_tId,
+            // createdAt,
+            // updatedAt,
+          });
+        }
+      });
+    }
+  };
 
   return (
     <div className='flex flex-col gap-6'>

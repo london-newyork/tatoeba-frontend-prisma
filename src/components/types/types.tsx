@@ -57,7 +57,7 @@ export type WithoutPropsChildrenLayouts = {
 
 export type TatoeBtnProps = {
   onClick: () => void;
-  tatoe: Tatoe[];
+  tatoe?: Tatoe[];
 } & Tatoe;
 
 export type User = {

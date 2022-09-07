@@ -10,6 +10,10 @@ module.exports = {
       'kakuGothic': ['"Zen Kaku Gothic New"'],
 
     },
+    fontSize: {
+      'extreme-s': '.5rem',
+      'xxs': '.625rem'
+    },
     screens: {
       sm: '480px',
       md: '768px',

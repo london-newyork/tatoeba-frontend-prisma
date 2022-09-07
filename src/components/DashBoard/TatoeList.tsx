@@ -72,7 +72,7 @@ export const TatoeList = (): JSX.Element => {
                       className='
                                 flex
                                 text-gray-400
-                                text-xs
+                                text-xxs
                                 w-[124px]'
                     >
                       {item.createdAt}

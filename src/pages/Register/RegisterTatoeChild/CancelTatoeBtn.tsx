@@ -4,8 +4,8 @@ import { useRecoilState } from 'recoil';
 import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../../components/types/types';
 
-export const RegisterTatoeCancelBtn = (props: Tatoe) => {
-  const { query_tId, title, shortParaphrase, description, createdAt } = props;
+export const CancelTatoeBtn = (props: Tatoe) => {
+  const { query_tId } = props;
   const router = useRouter();
 
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
@@ -16,10 +16,11 @@ export const RegisterTatoeCancelBtn = (props: Tatoe) => {
         if (item.tId === query_tId) {
           return {
             tId: item.tId,
-            title,
-            shortParaphrase,
-            description,
-            createdAt,
+            title: item.title,
+            shortParaphrase: item.shortParaphrase,
+            description: item.description,
+            createdAt: item.createdAt,
+            updatedAt: item.updatedAt,
           };
         } else {
           return item;
@@ -30,7 +31,7 @@ export const RegisterTatoeCancelBtn = (props: Tatoe) => {
       tatoe.map((item) => {
         if (item.tId === query_tId) {
           router.push({
-            pathname: '/DashBoard',
+            pathname: '/DashBoard/UserTatoeList',
           });
         }
       });

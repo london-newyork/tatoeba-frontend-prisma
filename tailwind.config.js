@@ -10,12 +10,10 @@ module.exports = {
       'kakuGothic': ['"Zen Kaku Gothic New"'],
 
     },
-    fontSize: {
-      'extreme-s': '.5rem',
-      'xxs': '.625rem'
-    },
     screens: {
+      xs: '376px',
       sm: '480px',
+      smd: '600px',
       md: '768px',
       lg: '976px',
       xl: '1440px',
@@ -33,6 +31,13 @@ module.exports = {
       },
       fontFamily: {
         'kakuGothic': ['"Zen Kaku Gothic New"'],
+      },
+      fontSize: {
+        'extreme-s': ['.5rem', null],
+        'xxs': ['.625rem', null],
+        'xs': ['.75rem', null],
+        'sm': ['.875rem', null],
+        'base': ['1rem', null]
       },
       animation: {
         'expand-border': 'expand-border 2s ease infinite'

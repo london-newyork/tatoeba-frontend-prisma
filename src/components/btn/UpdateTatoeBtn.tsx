@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TatoeBtnProps } from '../types/types';
 
 export const UpdateTatoeBtn = (props: TatoeBtnProps) => {
-  const { onClick } = props;
+  const { onClick, query_tId } = props;
 
-  return (
-    <div className='flex justify-end'>
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  useEffect(() => {
+    const btnStyle = () => {
+      if (query_tId) {
+        setIsUpdate(true);
+      }
+    };
+    btnStyle();
+  }, [query_tId]);
+
+  return isUpdate ? (
+    <div className='flex justify-end group'>
       <button
         onClick={onClick}
         className='
-      p-3
-      w-[200px]
-      rounded-full
-      bg-dark_green
-      text-gray-800
-      text-lg
-      hover:bg-opacity-90
-    '
+        btn-m-color
+        '
       >
         更新する
       </button>
+      <div
+        className='
+      position
+      relative
+      '
+      >
+        <span
+          className='
+          absolute
+          material-symbols-outlined
+          btn-m-icon-white
+          '
+        >
+          chevron_right
+        </span>
+      </div>
     </div>
-  );
+  ) : null;
 };

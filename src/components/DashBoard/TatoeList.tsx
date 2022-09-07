@@ -31,38 +31,9 @@ export const TatoeList = (): JSX.Element => {
   useEffect(() => {
     const getUserTatoeList = async () => {
       await getTatoe();
-      //   const res = await fetch(
-      //     `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/tatoe`,
-      //     {
-      //       method: 'GET',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //         Authorization: `Bearer ${persistAccessToken}`,
-      //       },
-      //     }
-      //   );
-      //   const { data } = await res.json();
-      // getUserTatoeList();
-      // if (!data) {
-      //   throw Error('データがありません');
-      // }
     };
     getUserTatoeList();
   }, []);
-
-  // TODO onClickで上から関数を渡す
-  // const { deleteTatoe } = useTatoe({
-  //   tId,
-  //   tatoe,
-  //   router,
-  //   user,
-  //   setTatoe,
-  //   persistAccessToken,
-  // });
-
-  // const handleOnClickDeleteTatoeBtn = async () => {
-  //   await deleteTatoe({ tId });
-  // };
 
   return (
     <div>
@@ -146,10 +117,7 @@ export const TatoeList = (): JSX.Element => {
                             shortParaphrase={item.shortParaphrase}
                             description={item.description}
                           />
-                          <TatoeListDeleteTatoeBtn
-                            tId={item.tId}
-                            // onClick={handleOnClickDeleteTatoeBtn}
-                          />
+                          <TatoeListDeleteTatoeBtn tId={item.tId} />
                           <TatoeListCountFollowerBtn />
                         </li>
                       </ul>

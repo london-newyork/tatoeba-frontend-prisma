@@ -65,7 +65,6 @@ export type User = {
   userName: string | null;
 };
 export type TatoeBtnHooksProps = {
-  // onClick: () => void;
   tatoe: Tatoe[];
   router: NextRouter;
   user: User;

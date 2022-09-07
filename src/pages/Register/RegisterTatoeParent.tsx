@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CreateTatoeBtn } from './RegisterTatoeChild/CreateTatoeBtn';
+import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
 import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
-import { UpdateTatoeBtn } from './RegisterTatoeChild/UpdateTatoeBtn';
+import { UpdateTatoeBtn } from '../../components/btn/UpdateTatoeBtn';
 import { useAuth } from '../../components/hooks/useAuth';
 import { useUserInfo } from '../../components/hooks/useUserInfo';
 import { useTatoe } from '../../components/hooks/useTatoe';
@@ -19,19 +19,22 @@ import { Tatoe } from '../../components/types/types';
 export const RegisterTatoeParent = () => {
   const router = useRouter();
   const query = router.query;
+  const query_tId = query.tId;
+  // stringしか来ないので強引にasで型をつける
+  const tId = query.tId as string;
+
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
   const [createdAt, setCreatedAt] = useState<string | null>('');
   const [updatedAt, setUpdatedAt] = useState<string | null>('');
+
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
+
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  const query_tId = query.tId;
 
-  // stringしか来ないので強引にasで型をつける
-  const tId = query.tId as string;
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
     router,
@@ -63,6 +66,7 @@ export const RegisterTatoeParent = () => {
         return;
       }
       await createTatoe({ title, shortParaphrase, description });
+
       router.push({
         pathname: '/DashBoard/UserTatoeList',
       });
@@ -96,6 +100,13 @@ export const RegisterTatoeParent = () => {
         }
       });
     }
+    tatoe.map((item: Tatoe) => {
+      if (item.tId === query_tId) {
+        router.push({
+          pathname: '/DashBoard/UserTatoeList',
+        });
+      }
+    });
   };
 
   return (

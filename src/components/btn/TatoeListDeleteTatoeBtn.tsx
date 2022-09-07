@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useAuth } from '../hooks/useAuth';
 import { useTatoe } from '../hooks/useTatoe';
 import { useUserInfo } from '../hooks/useUserInfo';
-import { Tatoe, TatoeBtnProps } from '../types/types';
+import { Tatoe } from '../types/types';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
@@ -15,8 +15,7 @@ export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
   const router = useRouter();
-  // TODO onClickで上から関数を渡す => 親のTatoeListから tId={item.tId} が渡ってきて、
-  // それを用いて例えを削除していくため、不可能
+
   const { deleteTatoe } = useTatoe({
     tId,
     tatoe,

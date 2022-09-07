@@ -7,11 +7,10 @@ export const TatoeListAddNewTatoeBtn = () => {
       className='
       absolute
       top-4
-      right-4
-      md:top-5
-      md:right-6
-      lg:top-6
-      lg:right-7
+      sm:-top-2
+      right-0
+      sm:right-0
+      md:-right-2
       '
     >
       <Link href='/Register'>

@@ -3,29 +3,42 @@ import React, { VFC } from 'react';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
 import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 
-export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = (props) => {
+export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
   return (
     <aside
       className='
-    bg-gray-900
-    sm:min-w-[64px]
-    sm:max-w-[64px]
-    max-w-full
-    flex
-    md:flex-col
-    flex-row
-    min-h-[96px]
-    md:h-full
-    '
+      position
+      relative
+      '
     >
       <nav
         className='
-      flex
-      md:flex-col
-      flex-row'
+        fixed
+        top-12
+        sm:top-12
+        left-0
+        z-10
+        bg-black
+        min-w-full
+        sm:min-w-[64px]
+        sm:max-w-[64px]
+        max-w-full
+        min-h-[48px]
+        md:h-full
+        flex
+        md:flex-col
+        flex-row
+        '
       >
-        <DashBoardMenuBtn />
-        <SideBarMainContentsLayouts />
+        <div
+          className='
+          flex
+          md:flex-col
+          flex-row'
+        >
+          <DashBoardMenuBtn />
+          <SideBarMainContentsLayouts />
+        </div>
       </nav>
     </aside>
   );

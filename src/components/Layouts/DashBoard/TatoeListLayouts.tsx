@@ -5,7 +5,6 @@ export const TatoeListLayouts: VFC<Layouts> = (props) => {
   return (
     <div
       className='
-      bg-white
       lg:px-9
       px-4
       md:px-7
@@ -22,8 +21,7 @@ export const TatoeListLayouts: VFC<Layouts> = (props) => {
       w-[320px]
       sm:w-full
       lg:min-w-[800px]
-      position
-      relative
+      bg-white
       '
     >
       {props.children}

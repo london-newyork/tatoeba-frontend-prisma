@@ -23,6 +23,7 @@ export const Header = () => {
     <header>
       <div
         className='
+        z-20
         pl-6
         pr-0
         sm:pl-6
@@ -38,7 +39,6 @@ export const Header = () => {
         border-b-2
         border-gray-800
         fixed
-        z-10
         position'
       >
         <Logo />

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
-import { Tatoe } from '../../../components/types/types';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
+import { Tatoe } from '../types/types';
 
 export const CancelTatoeBtn = (props: Tatoe) => {
   const { query_tId } = props;

@@ -4,7 +4,7 @@ import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
 
-import { CancelTatoeBtn } from './RegisterTatoeChild/CancelTatoeBtn';
+import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';

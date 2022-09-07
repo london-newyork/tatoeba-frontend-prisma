@@ -24,7 +24,7 @@
   }
 }
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
 }
 
 .headline-m {
@@ -69,4 +69,8 @@ text-xs transition-all group-hover:opacity-60;
 
 .btn-m-icon-black {
   @apply btn-m-icon-base text-black;
+}
+
+.header-icon {
+  @apply text-black;
 }

@@ -11,8 +11,9 @@ export const HeaderEditBtn = () => {
         <Link href='/DashBoard/UserTatoeList'>
           <button
             className='
-              hover:bg-mint_green
-              bg-light_green
+              hover:bg-gray-100
+              bg-white
+              transition-all
               rounded-full
               h-7
               w-7'
@@ -25,13 +26,14 @@ export const HeaderEditBtn = () => {
                   items-center'
             >
               <li>
-                <PencilAltIcon
+                <span
                   className='
-                      h-4
-                      w-4
-                      text-q_dark_green
-                      duration-300'
-                />
+                material-symbols-outlined
+                text-base
+                header-icon'
+                >
+                  edit_square
+                </span>
               </li>
             </ul>
           </button>

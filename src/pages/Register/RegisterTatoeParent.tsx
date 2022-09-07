@@ -109,12 +109,6 @@ export const RegisterTatoeParent = () => {
     });
   };
 
-  // tatoe.map((item: Tatoe) => {
-  //   if (item.tId === query_tId) {
-  //     console.log('@RegisterTatoeParent tatoe.createdAt *** ', tatoe.createdAt);
-  //   }
-  // });
-
   return (
     <div className='flex flex-col gap-6'>
       <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
@@ -128,7 +122,7 @@ export const RegisterTatoeParent = () => {
         description={description}
         setDescription={setDescription}
       />
-      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col md:flex-row gap-6'>
+      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />
         <CreateTatoeBtn
           tatoe={tatoe}

@@ -36,27 +36,37 @@ export const CancelTatoeBtn = (props: Tatoe) => {
         }
       });
     }
+    router.push({
+      pathname: '/DashBoard/UserTatoeList',
+    });
   };
 
   return (
-    <div className='flex justify-end'>
+    <div className='flex justify-end group'>
       <button
         onClick={handleClickCancel}
         type='submit'
         className='
-      p-3
-      w-[200px]
-      rounded-full
-      bg-white
-      text-gray-800
-      border-gray-800
-      border
-      text-lg
-      hover:bg-opacity-90
-    '
+        btn-m-white
+      '
       >
         キャンセル
       </button>
+      <div
+        className='
+      position
+      relative
+      '
+      >
+        <span
+          className='
+          absolute
+          material-symbols-outlined
+          btn-m-icon-black'
+        >
+          chevron_right
+        </span>
+      </div>
     </div>
   );
 };

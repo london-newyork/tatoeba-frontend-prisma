@@ -26,14 +26,7 @@ export default function Register() {
       >
         <div
           className='
-              lg:px-12
-              px-7
-              pt-10
-              pb-10
-              rounded-3xl
-              bg-white
-              border-[1px]
-              border-gray-800
+              frame-large
               mx-auto
               max-w-[1000px]
               '

@@ -26,18 +26,12 @@ export const RegisterTatoeTitle = (props: TitleProps) => {
     >
       <label
         className='
-            text-gray-500
-            leading-tight
-            w-[300px]
-            pb-2
-            md:pb-2
-            lg:pb-0
-            select-none
-            '
+        headline-s
+        '
       >
         わかりにくい専門用語・文章
         <br />
-        <span className='text-xs text-gray-300'>50文字以内</span>
+        <span className='caption-s'>50文字以内</span>
       </label>
       <textarea
         value={title}
@@ -46,24 +40,7 @@ export const RegisterTatoeTitle = (props: TitleProps) => {
         rows={2}
         placeholder='サーバー'
         maxLength={50}
-        className='
-            lg:max-w-[650px]
-            max-w-full
-            outline-none
-            focus:ring-2
-            focus:ring-green-400
-            focus:border-green-400
-            focus:placeholder-gray-300
-            p-3
-            block
-            w-full
-            text-sm
-            md:text-sm
-            text-gray-700
-            border
-            border-gray-300
-            rounded-md
-        '
+        className='input-area'
       ></textarea>
     </div>
   );

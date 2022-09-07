@@ -5,8 +5,7 @@ import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../../components/types/types';
 
 export const RegisterTatoeCancelBtn = (props: Tatoe) => {
-  const { query_tId, title, shortParaphrase, description, creationTime } =
-    props;
+  const { query_tId, title, shortParaphrase, description, createdAt } = props;
   const router = useRouter();
 
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
@@ -20,7 +19,7 @@ export const RegisterTatoeCancelBtn = (props: Tatoe) => {
             title,
             shortParaphrase,
             description,
-            creationTime,
+            createdAt,
           };
         } else {
           return item;

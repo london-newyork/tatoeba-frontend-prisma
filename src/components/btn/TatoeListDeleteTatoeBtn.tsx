@@ -1,26 +1,38 @@
-import React, { VFC } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { useAuth } from '../hooks/useAuth';
+import { useTatoe } from '../hooks/useTatoe';
+import { useUserInfo } from '../hooks/useUserInfo';
 import { Tatoe } from '../types/types';
+import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
-type DeleteProps = {
-  tId: string;
-};
-
-export const TatoeListDeleteTatoeBtn: VFC<DeleteProps> = (props) => {
+export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
+  const { tId } = props;
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
+  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const { userId } = useAuth();
+  const { user } = useUserInfo(userId);
+  const router = useRouter();
 
-  const handleDeleteTatoe = () => {
-    const deleteTatoe = tatoe.filter((item) => {
-      return item.tId !== props.tId;
-    });
-    setTatoe(deleteTatoe);
-    console.log('delete Tatoe');
+  const { deleteTatoe } = useTatoe({
+    tId,
+    tatoe,
+    router,
+    user,
+    setTatoe,
+    persistAccessToken,
+  });
+
+  const handleOnClickDeleteTatoeBtn = async () => {
+    await deleteTatoe({ tId });
   };
+
   return (
     <ul>
       <li className='flex items-center'>
-        <button onClick={handleDeleteTatoe}>
+        <button onClick={handleOnClickDeleteTatoeBtn}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-4 w-4 text-gray-400'

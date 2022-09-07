@@ -7,36 +7,32 @@ import { TatoeListEditExistingTatoeBtn } from '../btn/TatoeListEditExistingTatoe
 import { useAuth } from '../hooks/useAuth';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { TatoeListCountFollowerBtn } from '../btn/TatoeListCountFollowerBtn';
+import { useTatoe } from '../hooks/useTatoe';
+import { useRouter } from 'next/router';
+import { useUserInfo } from '../hooks/useUserInfo';
 
-export const TatoeList = (props: any): JSX.Element => {
+export const TatoeList = (): JSX.Element => {
   const { userId } = useAuth();
+  const { user } = useUserInfo(userId);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-
+  const router = useRouter();
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
-
   if (!userId) {
     return null;
   }
+  const { getTatoe } = useTatoe({
+    tatoe,
+    router,
+    user,
+    setTatoe,
+    persistAccessToken,
+  });
 
-  // userのtatoeをAPIからGET
   useEffect(() => {
     const getUserTatoeList = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/tatoe`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${persistAccessToken}`,
-          },
-        }
-      );
-      const { data } = await res.json();
-      getUserTatoeList();
-      if (!data) {
-        throw Error('データがありません');
-      }
+      await getTatoe();
     };
+    getUserTatoeList();
   }, []);
 
   return (
@@ -79,7 +75,7 @@ export const TatoeList = (props: any): JSX.Element => {
                                 text-xs
                                 w-[124px]'
                     >
-                      {item.creationTime}
+                      {item.createdAt}
                     </li>
                     <li className='flex-grow'>
                       <ul

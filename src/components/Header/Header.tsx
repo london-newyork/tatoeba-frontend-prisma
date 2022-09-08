@@ -5,19 +5,20 @@ import Link from 'next/link';
 import { useAuth } from '../hooks/useAuth';
 import { HeaderEditBtn } from '../btn/HeaderEditBtn';
 import { Logo } from './Logo';
+import { AccountDefaultIconBtn } from '../btn/AccountDefaultIconBtn';
 
 export const Header = () => {
-  const [isHover, setIsHover] = useState(true);
   const router = useRouter();
-  const handleToolTip = useCallback(() => {
-    setIsHover(!isHover);
-  }, [isHover]);
-
   const { logout, isLoggedIn } = useAuth();
   const handleLogout = async () => {
     await logout();
     await router.push('/');
   };
+  const [isHover, setIsHover] = useState(true);
+
+  const handleToolTip = useCallback(() => {
+    setIsHover(!isHover);
+  }, [isHover]);
 
   return (
     <header>
@@ -43,41 +44,20 @@ export const Header = () => {
       >
         <Logo />
         <div
-          className='flex my-auto gap-x-4 md:mr-0 fixed
-            right-[14.5px]
-            top-[10px]
-            md:inset-auto
-            md:static
-            '
+          className='
+          flex
+          my-auto
+          gap-x-4
+          md:mr-0
+          fixed
+          right-[14.5px]
+          top-[8px]
+          md:inset-auto
+          md:static
+          '
         >
           <div className='flex flex-col items-end'>
-            <div
-              className='
-              position
-              my-auto
-              rounded-full
-              hover:bg-gray-100
-              transition-all
-              h-7
-              w-7
-              flex
-              justify-center
-              items-center
-              text-xs
-              text-gray-500
-              cursor-pointer
-              '
-              onClick={handleToolTip}
-            >
-              <span
-                className='
-              material-symbols-outlined
-              text-lg
-              header-icon'
-              >
-                person
-              </span>
-            </div>
+            <AccountDefaultIconBtn onClick={handleToolTip} />
             <ul
               className={`
               absolute

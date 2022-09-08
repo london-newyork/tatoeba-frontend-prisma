@@ -19,7 +19,7 @@ export const SideBarMainContentsLayouts: VFC = (props) => {
                 flex
                 md:flex-col
                 flex-row
-                sm:gap-y-12
+                sm:gap-y-8
                 gap-x-6
                 '
       >

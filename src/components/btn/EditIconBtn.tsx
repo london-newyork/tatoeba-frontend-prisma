@@ -1,10 +1,10 @@
 import React from 'react';
+import { OnClick } from '../types/types';
 
-export const EditIconBtn = () => {
+export const EditIconBtn = ({ onClick }: OnClick) => {
   return (
-    <div>
-      <button
-        className='
+    <button
+      className='
         h-7
         w-7
         position
@@ -13,9 +13,10 @@ export const EditIconBtn = () => {
         transition-all
         rounded-full
         '
-      >
-        <ul
-          className='
+      onClick={onClick}
+    >
+      <ul
+        className='
           flex
           flex-col
           absolute
@@ -23,19 +24,18 @@ export const EditIconBtn = () => {
           left-1
           hover:text-white
           '
-        >
-          <li>
-            <span
-              className='
+      >
+        <li>
+          <span
+            className='
               material-symbols-outlined
               text-xl
               header-icon'
-            >
-              edit_square
-            </span>
-          </li>
-        </ul>
-      </button>
-    </div>
+          >
+            edit_square
+          </span>
+        </li>
+      </ul>
+    </button>
   );
 };

@@ -1,10 +1,7 @@
 import React from 'react';
+import { OnClick } from '../types/types';
 
-type AccountDefaultIconBtnProps = {
-  onClick: () => void;
-};
-
-export const AccountDefaultIconBtn = (props: AccountDefaultIconBtnProps) => {
+export const AccountDefaultIconBtn = (props: OnClick) => {
   const { onClick } = props;
   return (
     <div>

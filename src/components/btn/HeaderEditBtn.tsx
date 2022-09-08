@@ -5,10 +5,9 @@ import { EditIconBtn } from './EditIconBtn';
 
 export const HeaderEditBtn = () => {
   const { isLoggedIn } = useAuth();
-  console.log(isLoggedIn);
   const router = useRouter();
 
-  const handleOnClickLinkDistribute = () => {
+  const handleOnClickDistributeLink = () => {
     if (isLoggedIn) {
       router.push({
         pathname: '/Register',
@@ -21,7 +20,7 @@ export const HeaderEditBtn = () => {
 
   return (
     <div>
-      <EditIconBtn onClick={handleOnClickLinkDistribute} />
+      <EditIconBtn onClick={handleOnClickDistributeLink} />
     </div>
   );
 };

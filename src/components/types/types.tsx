@@ -71,3 +71,7 @@ export type TatoeBtnHooksProps = {
   setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
   persistAccessToken: string | null;
 } & Tatoe;
+
+export type OnClick = {
+  onClick: () => void;
+};

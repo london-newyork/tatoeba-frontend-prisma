@@ -5,19 +5,20 @@ import Link from 'next/link';
 import { useAuth } from '../hooks/useAuth';
 import { HeaderEditBtn } from '../btn/HeaderEditBtn';
 import { Logo } from './Logo';
+import { AccountDefaultIconBtn } from '../btn/AccountDefaultIconBtn';
 
 export const Header = () => {
-  const [isHover, setIsHover] = useState(true);
   const router = useRouter();
-  const handleToolTip = useCallback(() => {
-    setIsHover(!isHover);
-  }, [isHover]);
-
   const { logout, isLoggedIn } = useAuth();
   const handleLogout = async () => {
     await logout();
     await router.push('/');
   };
+  const [isHover, setIsHover] = useState(true);
+
+  const handleToolTip = useCallback(() => {
+    setIsHover(!isHover);
+  }, [isHover]);
 
   return (
     <header>
@@ -43,46 +44,20 @@ export const Header = () => {
       >
         <Logo />
         <div
-          className='flex my-auto gap-x-4 md:mr-0 fixed
-            right-[14.5px]
-            top-[10px]
-            md:inset-auto
-            md:static
-            '
+          className='
+          flex
+          my-auto
+          gap-x-4
+          md:mr-0
+          fixed
+          right-[14.5px]
+          top-[8px]
+          md:inset-auto
+          md:static
+          '
         >
           <div className='flex flex-col items-end'>
-            <div
-              className='
-              position
-              my-auto
-              bg-gray-100
-              rounded-full
-              h-7
-              w-7
-              flex
-              justify-center
-              items-center
-              text-xs
-              text-gray-500
-              cursor-pointer
-              '
-              onClick={handleToolTip}
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-4 w-4'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
-                />
-              </svg>
-            </div>
+            <AccountDefaultIconBtn onClick={handleToolTip} />
             <ul
               className={`
               absolute

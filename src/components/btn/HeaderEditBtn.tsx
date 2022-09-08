@@ -1,71 +1,26 @@
-import { PencilAltIcon } from '@heroicons/react/outline';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useAuth } from '../hooks/useAuth';
+import { EditIconBtn } from './EditIconBtn';
 
 export const HeaderEditBtn = () => {
   const { isLoggedIn } = useAuth();
+  const router = useRouter();
+
+  const handleOnClickDistributeLink = () => {
+    if (isLoggedIn) {
+      router.push({
+        pathname: '/Register',
+      });
+    }
+    router.push({
+      pathname: '/DashBoard',
+    });
+  };
+
   return (
     <div>
-      {isLoggedIn ? (
-        <Link href='/DashBoard/UserTatoeList'>
-          <button
-            className='
-              hover:bg-mint_green
-              bg-light_green
-              rounded-full
-              h-7
-              w-7'
-          >
-            <ul
-              className='
-                  flex
-                  flex-col
-                  hover:text-white
-                  items-center'
-            >
-              <li>
-                <PencilAltIcon
-                  className='
-                      h-4
-                      w-4
-                      text-q_dark_green
-                      duration-300'
-                />
-              </li>
-            </ul>
-          </button>
-        </Link>
-      ) : (
-        <Link href='/Login/'>
-          <button
-            className='
-              hover:bg-mint_green
-              bg-light_green
-              rounded-full
-              h-7
-              w-7'
-          >
-            <ul
-              className='
-                  flex
-                  flex-col
-                  hover:text-white
-                  items-center'
-            >
-              <li>
-                <PencilAltIcon
-                  className='
-                      h-4
-                      w-4
-                      text-q_dark_green
-                      duration-300'
-                />
-              </li>
-            </ul>
-          </button>
-        </Link>
-      )}
+      <EditIconBtn onClick={handleOnClickDistributeLink} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import React, {
   ChangeEvent,
   DetailedHTMLProps,
@@ -82,6 +83,10 @@ export const Profile = () => {
     );
   }
 
+  //　TODO 画像登録
+  const handleOnSubmit = () => {};
+  const handleOnChangeAvatar = () => {};
+
   return (
     <div className='group'>
       <div
@@ -108,7 +113,22 @@ export const Profile = () => {
             relative
             '
         >
-          <ProfileImage />
+          {userId ? (
+            <ProfileImage
+              onSubmit={handleOnSubmit}
+              onChange={handleOnChangeAvatar}
+            />
+          ) : (
+            <Image
+              src='/images/women3.jpg'
+              alt='ユーザーの画像'
+              width={200}
+              height={200}
+              className='
+                rounded-full
+                object-cover'
+            />
+          )}
           <div
             className='
             flex

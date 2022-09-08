@@ -1,29 +1,35 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from 'next/image';
+import React from 'react';
 
-export const ProfileImage = () => {
+type SubmitAvatar = {
+  onSubmit: () => void;
+  onChange: () => void;
+};
+
+export const ProfileImage = ({ onSubmit, onChange }: SubmitAvatar) => {
   return (
     <div>
-        <div
-            className='
+      <div
+        className='
             h-[100px]
             w-[100px]
             '
-            >
-              {/* 画像変更できるようにする */}
-              <button
-              >
-                <Image
-                  src="/images/women3.jpg"
-                  alt="ユーザーの画像"
-                  width={200}
-                  height={200}
-                  className="
+      >
+        <form onSubmit={onSubmit}>
+          <input type='file' onChange={onChange} />
+          <button type='submit'>
+            <Image
+              src='/images/women3.jpg'
+              alt='ユーザーの画像'
+              width={200}
+              height={200}
+              className='
                   rounded-full
-                  object-cover"
-                />
-              </button>
-        </div>
+                  object-cover'
+            />
+          </button>
+        </form>
+      </div>
     </div>
-  )
-}
+  );
+};

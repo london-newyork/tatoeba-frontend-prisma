@@ -53,5 +53,22 @@ export const useUserInfo = (userId: string | null) => {
     await res.json();
     setUser(data);
   };
-  return { user, updateUser, isLoading, error };
+
+  const updateUserProfileImage = async (file: File) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${persistAccessToken}`,
+        },
+        body: formData,
+      }
+    );
+    // const { data } = await res.json();
+    // setUser(data);
+  };
+  return { user, updateUser, isLoading, error, updateUserProfileImage };
 };

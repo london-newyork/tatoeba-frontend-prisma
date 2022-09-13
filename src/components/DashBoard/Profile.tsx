@@ -36,6 +36,7 @@ export const Profile = () => {
   const handleOnFocus = () => {
     setIsFocus(true);
   };
+  const { updateUserProfileImage } = useUserInfo(userId);
 
   const focusCSS =
     'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
@@ -67,6 +68,11 @@ export const Profile = () => {
     }
   }, [user]);
 
+  const handleOnSubmit = (file: File) => {
+    updateUserProfileImage(file);
+  };
+  // const handleOnChangeAvatar = () => {};
+
   if (isLoading) {
     return (
       <div>
@@ -82,10 +88,6 @@ export const Profile = () => {
       </div>
     );
   }
-
-  //　TODO 画像登録
-  const handleOnSubmit = () => {};
-  const handleOnChangeAvatar = () => {};
 
   return (
     <div className='group'>
@@ -116,7 +118,7 @@ export const Profile = () => {
           {userId ? (
             <ProfileImage
               onSubmit={handleOnSubmit}
-              onChange={handleOnChangeAvatar}
+              // onChange={handleOnChangeAvatar}
             />
           ) : (
             <Image

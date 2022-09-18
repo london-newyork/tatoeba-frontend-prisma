@@ -9,6 +9,7 @@ export const useUserInfo = (userId: string | null) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   console.log('useUserInfo after ### useState ### user', user);
+  const [avatarImagePath, setAvatarImagePath] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -62,7 +63,7 @@ export const useUserInfo = (userId: string | null) => {
     console.log('user userName', user?.userName); // 1週遅れ
   };
 
-  const getUserProfileImage = async (file: File) => {
+  const getUserProfileImage = async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image`,
       {
@@ -81,13 +82,12 @@ export const useUserInfo = (userId: string | null) => {
       .then((blobData) => {
         // TODO Profile avatarのsrcに変数を入れる
 
-        const avatarImagePath = URL.createObjectURL(blobData);
-        console.log(avatarImagePath);
-
-        // これだとブロック外では使えない
-        return avatarImagePath;
+        const newAvatarImagePath = URL.createObjectURL(blobData);
+        console.log(newAvatarImagePath);
+        setAvatarImagePath(newAvatarImagePath);
       });
   };
+  console.log();
 
   const updateUserProfileImage = async (file: File) => {
     const formData = new FormData();
@@ -113,5 +113,6 @@ export const useUserInfo = (userId: string | null) => {
     error,
     updateUserProfileImage,
     getUserProfileImage,
+    avatarImagePath,
   };
 };

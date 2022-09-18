@@ -16,7 +16,8 @@ import { ProfileImage } from './ProfileImage';
 export const Profile = () => {
   const { userId } = useAuth();
   const [userName, setUserName] = useState<string | undefined>('');
-  const { user, updateUser, isLoading, error } = useUserInfo(userId);
+  const { user, updateUser, isLoading, error, avatarImagePath } =
+    useUserInfo(userId);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -82,7 +83,6 @@ export const Profile = () => {
   // TODO 動的にsrcURLを変更する
   // ユーザーが画像変更したらそのsrcがここに入る
   // => ユーザーは画像をAPI側へ投げているので、そのAPIの画像データが返ってきたらそのパスを取得？
-  const avatarImagePath = '';
 
   if (isLoading) {
     return (

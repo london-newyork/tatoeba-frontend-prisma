@@ -63,6 +63,8 @@ export const useUserInfo = (userId: string | null) => {
     console.log('user userName', user?.userName); // 1週遅れ
   };
 
+  // これだとマウント時に機能するわけではないためuseEffect使いたい
+  // => 使うとエラーになる
   const getUserProfileImage = async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image`,
@@ -87,7 +89,6 @@ export const useUserInfo = (userId: string | null) => {
         setAvatarImagePath(newAvatarImagePath);
       });
   };
-  console.log();
 
   const updateUserProfileImage = async (file: File) => {
     const formData = new FormData();

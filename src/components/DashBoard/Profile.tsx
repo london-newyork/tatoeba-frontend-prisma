@@ -80,10 +80,6 @@ export const Profile = () => {
   };
   // const handleOnChangeAvatar = () => {};
 
-  // TODO 動的にsrcURLを変更する
-  // ユーザーが画像変更したらそのsrcがここに入る
-  // => ユーザーは画像をAPI側へ投げているので、そのAPIの画像データが返ってきたらそのパスを取得？
-
   if (isLoading) {
     return (
       <div>

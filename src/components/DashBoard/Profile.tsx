@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React, {
   ChangeEvent,
+  ChangeEventHandler,
   DetailedHTMLProps,
   InputHTMLAttributes,
   useEffect,
@@ -14,7 +15,7 @@ import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
   const { userId } = useAuth();
-  const [userName, setUserName] = useState<string>('');
+  const [userName, setUserName] = useState<string | undefined>('');
   const { user, updateUser, isLoading, error } = useUserInfo(userId);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -23,6 +24,9 @@ export const Profile = () => {
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
+    if (!e) {
+      return;
+    }
     setUserName(e.target.value);
   };
 
@@ -53,12 +57,14 @@ export const Profile = () => {
     // Promise型解決できないので一旦any
     // @ts-ignore shiftKeyの型が解決できないので一旦無視
     if (event.key === 'Enter' && !isTyping && !event.shiftKey) {
-      setUserName((prev): string => {
+      setUserName((prev): string | undefined => {
         return prev;
       });
 
       setIsFocus(false);
       await updateUser({ userName });
+      console.log('===== @profile userName ===== ', userName);
+      console.log('===== @profile user =====', user);
     }
   };
 
@@ -72,6 +78,11 @@ export const Profile = () => {
     updateUserProfileImage(file);
   };
   // const handleOnChangeAvatar = () => {};
+
+  // TODO 動的にsrcURLを変更する
+  // ユーザーが画像変更したらそのsrcがここに入る
+  // => ユーザーは画像をAPI側へ投げているので、そのAPIの画像データが返ってきたらそのパスを取得？
+  const avatarImagePath = '';
 
   if (isLoading) {
     return (
@@ -119,6 +130,7 @@ export const Profile = () => {
             <ProfileImage
               onSubmit={handleOnSubmit}
               // onChange={handleOnChangeAvatar}
+              avatarImagePath={avatarImagePath}
             />
           ) : (
             <Image
@@ -148,7 +160,7 @@ export const Profile = () => {
                 '
             >
               <input
-                defaultValue={user}
+                defaultValue={user as unknown as string | undefined}
                 value={userName}
                 onChange={handleChangeUserName}
                 onFocus={handleOnFocus}

@@ -1,26 +1,44 @@
 import Image from 'next/image';
-import React, { useRef, MouseEventHandler, ChangeEventHandler } from 'react';
+import React, {
+  useRef,
+  MouseEventHandler,
+  ChangeEventHandler,
+  useState,
+  ReactEventHandler,
+} from 'react';
 
 type SubmitImage = {
   onSubmit: (file: File) => void;
   // onChange: (file: File) => void;
+  avatarImagePath: string | undefined;
 };
 
-export const ProfileImage = ({ onSubmit /*onChange*/ }: SubmitImage) => {
+export const ProfileImage = ({
+  onSubmit /*onChange*/,
+  avatarImagePath,
+}: SubmitImage) => {
   const ref = useRef<HTMLInputElement>(null);
+  const [avatar, setAvatar] = useState('');
 
   const handleClickImageButton: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
+    if (!ref.current) {
+      return;
+    }
     ref.current.click();
   };
 
   const handleChangeFile: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const file = e.target.files[0];
-
-    if (!file) {
+    if (!e.target.files) {
       return;
     }
+    const file = e.target.files[0];
     onSubmit(file);
+  };
+
+  const handleOnLoadImage: ChangeEventHandler<HTMLImageElement> = (e) => {
+    //　メモリの開放
+    URL.revokeObjectURL(e.target.src);
   };
 
   // TODO モーダルをかませる可能性あり モーダル使用時はformを使うこと
@@ -35,15 +53,28 @@ export const ProfileImage = ({ onSubmit /*onChange*/ }: SubmitImage) => {
         {/* <form onSubmit={onSubmit}> */}
         <input type='file' onChange={handleChangeFile} hidden ref={ref} />
         <button type='button' onClick={handleClickImageButton}>
-          <Image
-            src='/images/women3.jpg'
-            alt='ユーザーの画像'
-            width={200}
-            height={200}
-            className='
+          {avatar ? (
+            <Image
+              src={avatarImagePath}
+              onLoad={handleOnLoadImage}
+              alt='ユーザーの画像'
+              width={200}
+              height={200}
+              className='
                   rounded-full
                   object-cover'
-          />
+            />
+          ) : (
+            <Image
+              src='/images/women3.jpg'
+              alt='ユーザーの画像'
+              width={200}
+              height={200}
+              className='
+                rounded-full
+                object-cover'
+            />
+          )}
         </button>
         {/* </form> */}
       </div>

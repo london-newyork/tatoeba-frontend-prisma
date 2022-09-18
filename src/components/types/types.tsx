@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { ReactNode } from 'react';
 import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
@@ -62,7 +62,11 @@ export type TatoeBtnProps = {
 
 export type User = {
   userId: string | null;
-  userName: string | null;
+  userName: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+  createdAt: string | undefined;
+  updatedAt: string | undefined;
 };
 export type TatoeBtnHooksProps = {
   tatoe: Tatoe[];

@@ -71,19 +71,22 @@ export const useUserInfo = (userId: string | null) => {
       {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${persistAccessToken}`,
+          'Content-Type': 'application/json',
         },
       }
     )
       .then((res) => {
         if (!res.ok) {
-          throw '画像取得エラー';
+          throw '画像取得エラーがおきました。';
         }
         return res.blob();
       })
       .then((blobData) => {
-        // TODO Profile avatarのsrcに変数を入れる
+        // TODO Profile avatarの<img src>に変数を入れる
+        // 直接 GCS URLをsrc指定だと使い切りタイプ?のようなので
+        // 一意のURLを作成して変数化、ただし同じURL使って再度画像を取得することはできない
 
+        // 赤いボタンを押すとblobは生成されてる
         const newAvatarImagePath = URL.createObjectURL(blobData);
         console.log(newAvatarImagePath);
         setAvatarImagePath(newAvatarImagePath);
@@ -104,6 +107,7 @@ export const useUserInfo = (userId: string | null) => {
       }
     );
     // TODO APIでGCS登録されたデータが返ってきてそれをフロントのアバターに登録？
+    // Blob: {size:}が返ってきた
     const data = await res.blob();
     console.log(data);
   };

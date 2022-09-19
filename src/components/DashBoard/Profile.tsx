@@ -16,8 +16,14 @@ import { ProfileImage } from './ProfileImage';
 export const Profile = () => {
   const { userId } = useAuth();
   const [userName, setUserName] = useState<string | undefined>('');
-  const { user, updateUser, isLoading, error, avatarImagePath } =
-    useUserInfo(userId);
+  const {
+    user,
+    updateUser,
+    isLoading,
+    error,
+    avatarImagePath,
+    getUserProfileImage,
+  } = useUserInfo(userId);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -122,6 +128,15 @@ export const Profile = () => {
             relative
             '
         >
+          {/* ここはあとで消す */}
+          <button
+            type='button'
+            onClick={getUserProfileImage}
+            className='bg-red-600 px-3 py-2 rounded-full text-xxs'
+          >
+            GET IMAGE
+          </button>
+          {/* ここからほんもの */}
           {userId ? (
             <ProfileImage
               onSubmit={handleOnSubmit}

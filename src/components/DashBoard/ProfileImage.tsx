@@ -1,29 +1,55 @@
-import Image from 'next/image'
-import React from 'react'
+import React, { useRef, MouseEventHandler, ChangeEventHandler } from 'react';
+import { useRecoilValue } from 'recoil';
+import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
 
-export const ProfileImage = () => {
+type ProfileImageProps = {
+  onSubmit: (file: File) => void;
+  userId: string;
+};
+
+export const ProfileImage = ({ onSubmit, userId }: ProfileImageProps) => {
+  const ref = useRef<HTMLInputElement>(null);
+  const profileImage = useRecoilValue(ProfileImageAtom);
+  const handleClickImageButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault();
+    if (!ref.current) {
+      return;
+    }
+    ref.current.click();
+  };
+
+  const handleChangeFile: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (!e.target.files) {
+      return;
+    }
+    const file = e.target.files[0];
+    onSubmit(file);
+  };
+
+  // TODO モーダルをかませる可能性あり モーダル使用時はformを使うこと
   return (
     <div>
-        <div
-            className='
+      <div
+        className='
             h-[100px]
             w-[100px]
             '
-            >
-              {/* 画像変更できるようにする */}
-              <button
-              >
-                <Image
-                  src="/images/women3.jpg"
-                  alt="ユーザーの画像"
-                  width={200}
-                  height={200}
-                  className="
+      >
+        {/* <form onSubmit={onSubmit}> */}
+        <input type='file' onChange={handleChangeFile} hidden ref={ref} />
+        <button type='button' onClick={handleClickImageButton}>
+          <img
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
+            alt='ユーザーの画像'
+            width={200}
+            height={200}
+            className='
                   rounded-full
-                  object-cover"
-                />
-              </button>
-        </div>
+                  object-cover'
+          />
+        </button>
+        {/* </form> */}
+      </div>
     </div>
-  )
-}
+  );
+};

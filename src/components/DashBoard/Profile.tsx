@@ -13,8 +13,9 @@ import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
   const { userId } = useAuth();
-  const [userName, setUserName] = useState<string>('');
-  const { user, updateUser, isLoading, error } = useUserInfo(userId);
+  const [userName, setUserName] = useState<string | undefined>('');
+  const { user, updateUser, isLoading, error, updateUserProfileImage } =
+    useUserInfo(userId);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -22,6 +23,9 @@ export const Profile = () => {
   const handleChangeUserName = (
     e: ChangeEvent<{ value: string }> | undefined
   ): void => {
+    if (!e) {
+      return;
+    }
     setUserName(e.target.value);
   };
 
@@ -51,12 +55,14 @@ export const Profile = () => {
     // Promise型解決できないので一旦any
     // @ts-ignore shiftKeyの型が解決できないので一旦無視
     if (event.key === 'Enter' && !isTyping && !event.shiftKey) {
-      setUserName((prev): string => {
+      setUserName((prev): string | undefined => {
         return prev;
       });
 
       setIsFocus(false);
       await updateUser({ userName });
+      console.log('===== @profile userName ===== ', userName);
+      console.log('===== @profile user =====', user);
     }
   };
 
@@ -65,6 +71,10 @@ export const Profile = () => {
       setUserName(user.userName);
     }
   }, [user]);
+
+  const handleOnSubmit = (file: File) => {
+    updateUserProfileImage(file);
+  };
 
   if (isLoading) {
     return (
@@ -108,7 +118,7 @@ export const Profile = () => {
             relative
             '
         >
-          <ProfileImage />
+          <ProfileImage onSubmit={handleOnSubmit} userId={userId} />
           <div
             className='
             flex
@@ -126,7 +136,7 @@ export const Profile = () => {
                 '
             >
               <input
-                defaultValue={user}
+                defaultValue={user as unknown as string | undefined}
                 value={userName}
                 onChange={handleChangeUserName}
                 onFocus={handleOnFocus}

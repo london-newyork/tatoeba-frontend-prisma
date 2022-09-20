@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import React, {
   ChangeEvent,
-  ChangeEventHandler,
   DetailedHTMLProps,
   InputHTMLAttributes,
   useEffect,
@@ -16,14 +14,8 @@ import { ProfileImage } from './ProfileImage';
 export const Profile = () => {
   const { userId } = useAuth();
   const [userName, setUserName] = useState<string | undefined>('');
-  const {
-    user,
-    updateUser,
-    isLoading,
-    error,
-    avatarImagePath,
-    getUserProfileImage,
-  } = useUserInfo(userId);
+  const { user, updateUser, isLoading, error, updateUserProfileImage } =
+    useUserInfo(userId);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -47,7 +39,6 @@ export const Profile = () => {
   const handleOnFocus = () => {
     setIsFocus(true);
   };
-  const { updateUserProfileImage } = useUserInfo(userId);
 
   const focusCSS =
     'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
@@ -84,7 +75,6 @@ export const Profile = () => {
   const handleOnSubmit = (file: File) => {
     updateUserProfileImage(file);
   };
-  // const handleOnChangeAvatar = () => {};
 
   if (isLoading) {
     return (
@@ -128,32 +118,7 @@ export const Profile = () => {
             relative
             '
         >
-          {/* ここはあとで消す */}
-          <button
-            type='button'
-            onClick={getUserProfileImage}
-            className='bg-red-600 px-3 py-2 rounded-full text-xxs'
-          >
-            GET IMAGE
-          </button>
-          {/* ここからほんもの */}
-          {userId ? (
-            <ProfileImage
-              onSubmit={handleOnSubmit}
-              // onChange={handleOnChangeAvatar}
-              avatarImagePath={avatarImagePath}
-            />
-          ) : (
-            <Image
-              src='/images/women3.jpg'
-              alt='ユーザーの画像'
-              width={200}
-              height={200}
-              className='
-                rounded-full
-                object-cover'
-            />
-          )}
+          <ProfileImage onSubmit={handleOnSubmit} userId={userId} />
           <div
             className='
             flex

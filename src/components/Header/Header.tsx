@@ -9,7 +9,7 @@ import { AccountDefaultIconBtn } from '../btn/AccountDefaultIconBtn';
 
 export const Header = () => {
   const router = useRouter();
-  const { logout, isLoggedIn } = useAuth();
+  const { logout, isLoggedIn, userId } = useAuth();
   const handleLogout = async () => {
     await logout();
     await router.push('/');
@@ -57,7 +57,7 @@ export const Header = () => {
           '
         >
           <div className='flex flex-col items-end'>
-            <AccountDefaultIconBtn onClick={handleToolTip} />
+            <AccountDefaultIconBtn userId={userId} onClick={handleToolTip} />
             <ul
               className={`
               absolute

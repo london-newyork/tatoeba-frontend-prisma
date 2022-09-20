@@ -26,6 +26,9 @@ export const ProfileImage = ({ onSubmit, userId }: ProfileImageProps) => {
     onSubmit(file);
   };
 
+  console.log('@ProfileImage profileImage', profileImage);
+  console.log('@ProfileImage userId', userId);
+
   // TODO モーダルをかませる可能性あり モーダル使用時はformを使うこと
   return (
     <div>

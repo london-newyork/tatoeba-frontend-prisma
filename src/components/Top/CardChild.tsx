@@ -1,11 +1,12 @@
-import React, { useEffect, useState, VFC } from 'react';
-import { useRecoilState } from 'recoil';
+import React, { VFC } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
 import { Tatoe } from '../types/types';
 import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import Image from 'next/image';
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
+import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
 
 export const CardChild: VFC = () => {
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
@@ -22,6 +23,10 @@ export const CardChild: VFC = () => {
   const { handleMoveToResult } = useHandleMoveToResult();
 
   const { userId } = useAuth();
+  const profileImage = useRecoilValue(ProfileImageAtom);
+
+  console.log('CardChild profileImage', profileImage);
+  console.log('CardChild userId', userId);
 
   const { user } = useUserInfo(userId);
 
@@ -72,14 +77,14 @@ export const CardChild: VFC = () => {
                     pb-2
                     '
                   >
-                    <Image
-                      src='/images/women3.jpg'
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
                       alt='ユーザーの画像'
-                      width={24}
-                      height={24}
                       className='
-                        rounded-full
-                        object-cover'
+                      w-6
+                      h-6
+                      rounded-full
+                      object-cover'
                     />
                     <p
                       className='

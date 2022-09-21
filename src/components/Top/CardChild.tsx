@@ -25,9 +25,6 @@ export const CardChild: VFC = () => {
   const { userId } = useAuth();
   const profileImage = useRecoilValue(ProfileImageAtom);
 
-  console.log('CardChild profileImage', profileImage);
-  console.log('CardChild userId', userId);
-
   const { user } = useUserInfo(userId);
 
   if (!userId || !user) {

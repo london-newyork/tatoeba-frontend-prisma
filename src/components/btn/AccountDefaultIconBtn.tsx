@@ -13,9 +13,6 @@ export const AccountDefaultIconBtn = ({
 }: AccountDefaultIconBtn) => {
   const profileImage = useRecoilValue(ProfileImageAtom);
 
-  console.log('Header profileImage', profileImage);
-  console.log('Header userId', userId);
-
   return (
     <div>
       <button

@@ -27,7 +27,7 @@ const CompleteRegisterMemberForm = () => {
       //ユーザーがアクセスしたURLからトークンを抽出（バックエンド側でのPOSTのレスポンスの中のregistrationsTokenを、フロントで下記のように抽出することもできる）
       //const registrationsToken = data.registrationToken
       const newToken = router.query.token;
-      console.log(newToken);
+
       setToken(newToken);
     };
     fetchRegistrationsComplete();
@@ -38,7 +38,6 @@ const CompleteRegisterMemberForm = () => {
   ) => {
     setPassWord(e.target.value);
   };
-  console.log(password); //確認済み
 
   //Backend側へパスワードとトークンを送る
   const handleSendPassword = async () => {

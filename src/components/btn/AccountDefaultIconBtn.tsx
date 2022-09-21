@@ -1,8 +1,18 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import { OnClick } from '../types/types';
+import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
 
-export const AccountDefaultIconBtn = (props: OnClick) => {
-  const { onClick } = props;
+type AccountDefaultIconBtn = {
+  userId: string;
+} & OnClick;
+
+export const AccountDefaultIconBtn = ({
+  onClick,
+  userId,
+}: AccountDefaultIconBtn) => {
+  const profileImage = useRecoilValue(ProfileImageAtom);
+
   return (
     <div>
       <button
@@ -23,16 +33,30 @@ export const AccountDefaultIconBtn = (props: OnClick) => {
         '
         onClick={onClick}
       >
-        <span
-          className='
-          material-symbols-outlined
+        {userId ? (
+          <img
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
+            alt='ユーザーの画像'
+            className='
+          w-5
+          h-5
           absolute
-          top-[1px]
-          text-2xl
-          header-icon'
-        >
-          person
-        </span>
+          bottom-[2px]
+          rounded-full
+          object-cover'
+          />
+        ) : (
+          <span
+            className='
+            material-symbols-outlined
+            absolute
+            top-[1px]
+            text-2xl
+            header-icon'
+          >
+            person
+          </span>
+        )}
       </button>
     </div>
   );

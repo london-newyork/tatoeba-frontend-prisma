@@ -40,6 +40,8 @@ export const AccountDefaultIconBtn = ({
             className='
           w-5
           h-5
+          absolute
+          bottom-[2px]
           rounded-full
           object-cover'
           />

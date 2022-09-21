@@ -36,25 +36,28 @@ export const AccountDefaultIconBtn = ({
         '
         onClick={onClick}
       >
-        {/* <span
-          className='
-          material-symbols-outlined
-          absolute
-          top-[1px]
-          text-2xl
-          header-icon'
-        >
-          person
-        </span> */}
-        <img
-          src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
-          alt='ユーザーの画像'
-          className='
+        {userId ? (
+          <img
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
+            alt='ユーザーの画像'
+            className='
           w-5
           h-5
           rounded-full
           object-cover'
-        />
+          />
+        ) : (
+          <span
+            className='
+            material-symbols-outlined
+            absolute
+            top-[1px]
+            text-2xl
+            header-icon'
+          >
+            person
+          </span>
+        )}
       </button>
     </div>
   );

@@ -44,11 +44,12 @@ export const ProfileImage = ({ onSubmit, userId }: ProfileImageProps) => {
           <img
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
             alt='ユーザーの画像'
-            width={200}
-            height={200}
             className='
-                  rounded-full
-                  object-cover'
+            w-[100px]
+            h-[100px]
+            bg-green-50
+            rounded-full
+            object-cover'
           />
         </button>
         {/* </form> */}

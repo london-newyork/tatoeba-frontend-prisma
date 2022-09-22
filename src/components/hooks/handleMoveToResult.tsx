@@ -1,25 +1,22 @@
-import { NextRouter, useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
-import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
 import { Tatoe } from '../types/types';
-import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 
-export const useHandleMoveToResult = () => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
+export const useHandleMoveToResult = (allUserTatoe: Tatoe[]) => {
   const router = useRouter();
 
   const handleMoveToResult = (props: Tatoe) => {
-    const { tId, title, shortParaphrase, description } = props;
+    const { tId, title, shortParaphrase, description, userId } = props;
 
-    tatoe.forEach((item: Tatoe) => {
+    allUserTatoe.forEach((item: Tatoe) => {
       if (item.tId === tId) {
         router.push({
-          pathname: '/SearchResult/[tId]/',
+          pathname: '/SearchResult/[tId]',
           query: {
             tId,
             title,
             shortParaphrase,
             description,
+            userId,
           },
         });
       }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, VFC } from 'react';
+import React, { SetStateAction, useEffect, useState, VFC } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
 import { Tatoe } from '../types/types';
@@ -10,6 +10,7 @@ import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
 import { useTatoe } from '../hooks/useTatoe';
 import { useRouter } from 'next/router';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+import { useApi } from '../hooks/useApi';
 
 export const CardChild: VFC = () => {
   // const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
@@ -23,36 +24,39 @@ export const CardChild: VFC = () => {
 
   const colors = RandomColors[Math.floor(Math.random() * RandomColors.length)];
   const shadowColor = colors.toString();
-  const { handleMoveToResult } = useHandleMoveToResult();
+  const [allUserTatoe, setAllUserTatoe] = useState<Tatoe[]>();
+  const { handleMoveToResult } = useHandleMoveToResult(allUserTatoe);
 
   const { userId } = useAuth();
   const profileImage = useRecoilValue(ProfileImageAtom);
-  const [allUserTatoe, setAllUserTatoe] = useState([]);
 
   const { user } = useUserInfo(userId);
-  // ここから　getTatoeを使った実装　テスト
-  // 外からでも見られるように実装する => ログインユーザーの user いらない persistAccessToken いらない ?
+
+  const { api: getUserTatoeApi } = useApi(`/tatoe`, {
+    method: 'GET',
+  });
+
+  // TODO Prisma Tatoeモデル にuserNameを登録しないといけない
+
   useEffect(() => {
     const main = async () => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const { tatoe } = await getUserTatoeApi();
+      const formattedTatoe = tatoe.map((item: any) => {
+        const formattedData = {
+          tId: item.id,
+          userId: item.userId,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+          title: item.title,
+          description: item.description,
+          shortParaphrase: item.shortParaphrase,
+        };
+        return formattedData;
       });
-      const { tatoe } = await res.json();
-      console.log(tatoe);
-
-      setAllUserTatoe(tatoe);
+      setAllUserTatoe(formattedTatoe);
     };
     main();
   }, []);
-
-  // これだとログアウトしたらリストが消える
-  // if (!userId || !user) {
-  //   return null;
-  // }
-  // const userName = user.userName;
 
   return (
     <>
@@ -78,6 +82,7 @@ export const CardChild: VFC = () => {
                   title: item.title,
                   shortParaphrase: item.shortParaphrase,
                   description: item.description,
+                  userId: item.userId,
                 })
               }
             >
@@ -97,7 +102,7 @@ export const CardChild: VFC = () => {
                     '
                   >
                     <img
-                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
+                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${item.userId}/profile_image?t=${profileImage}`}
                       alt='ユーザーの画像'
                       className='
                       w-6

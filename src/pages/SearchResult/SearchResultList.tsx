@@ -8,35 +8,50 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
 import { Tatoe } from '../../components/types/types';
+import { useApi } from '../../components/hooks/useApi';
+import { useGetUserTatoeApi } from '../../components/hooks/useGetUserTatoeApi';
 
 const SearchResultList = () => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
+  // const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const [result, setResult] = useState([]);
-  // const [ result, setResult ] = useRecoilState(SearchResultAtom)
+
   const router = useRouter();
 
-  //router query を１回だけ取得したい。toStringがquery = undefinedの時に機能しない
-  console.log(router.query.keyWord);
-  //1回目入力した値　2回目reload undefined
-  //1回目の状態を保持したい
-
-  const queryKeyWord: string = router.query.keyWord.toString();
+  // const queryKeyWord: string = router.query.keyWord.toString();
+  const queryKeyWord: string = router.query.keyWord as string;
 
   const [keyWord, setKeyWord] = useState(queryKeyWord);
+  const [filteredTatoe, setFilteredTatoe] = useState<Tatoe[] | undefined>();
+
+  // useEffect(() => {
+  //   if (!router.query.tId) return;
+  //   const main = async () => {
+  //     const { data: tatoe } = await getTatoeApi();
+  //     setTatoe(tatoe);
+  //   };
+  //   main();
+  // }, [router.query.tId]);
+  const { getEachTatoe, allUserTatoe } = useGetUserTatoeApi(filteredTatoe);
 
   useEffect(() => {
+    const main = async () => {
+      await getEachTatoe();
+    };
+    main();
+
+    if (!allUserTatoe) return;
     if (keyWord) {
-      const filteredTatoe = tatoe.filter((item: Tatoe) => {
+      const newFilteredTatoe = allUserTatoe.filter((item: Tatoe) => {
         return (
           item.title.toLowerCase().indexOf(keyWord) !== -1 ||
           item.description.toLowerCase().indexOf(keyWord) !== -1 ||
           item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
         );
       });
-      setResult([...result].concat(filteredTatoe));
+      setResult([...result].concat(newFilteredTatoe));
+      setFilteredTatoe(newFilteredTatoe);
     }
   }, [router.query.keyWord]);
-
   return (
     <>
       <Head>

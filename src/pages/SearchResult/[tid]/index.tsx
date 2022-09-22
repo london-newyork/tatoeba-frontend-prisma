@@ -4,11 +4,8 @@ import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../../components/Header/Header';
 import { SearchMainLayouts } from '../../../components/Layouts/SearchMainLayouts';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { UserNameAtom } from '../../../components/utils/atoms/UserNameAtom';
-import Image from 'next/image';
-import { useUserInfo } from '../../../components/hooks/useUserInfo';
-import { useAuth } from '../../../components/hooks/useAuth';
+import { useRecoilValue } from 'recoil';
+
 import { ProfileImageAtom } from '../../../components/utils/atoms/ProfileImageAtom';
 import { useApi } from '../../../components/hooks/useApi';
 

@@ -5,6 +5,7 @@ import { useApi } from './useApi';
 
 export const useTatoe = (props: TatoeBtnHooksProps) => {
   const { tId, userId, query_tId } = props;
+  const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
   const { api: getTatoeApi } = useApi(`/users/${userId}/tatoe`, {
@@ -14,10 +15,34 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     method: 'PUT',
   });
   const { api: deleteTatoeApi } = useApi(`/tatoe/${tId}`, { method: 'DELETE' });
-  const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   const getTatoe = async () => {
     const { data } = await getTatoeApi();
+
+    const newData = data.map((item: any) => {
+      return {
+        tId: item.id,
+        userId: item.userId,
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+        title: item.title,
+        description: item.description,
+        shortParaphrase: item.shortParaphrase,
+      };
+    });
+
+    const sortedData = newData.sort((a: Tatoe, b: Tatoe) => {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    });
+
+    setTatoe(sortedData);
+
     if (!data) {
       throw Error('データがありません');
     }

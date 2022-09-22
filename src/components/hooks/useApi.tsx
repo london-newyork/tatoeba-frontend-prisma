@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 
@@ -16,7 +17,7 @@ export const useApi = (url: string, { method }: UseApiOptions) => {
         Authorization: `Bearer ${persistAccessToken}`,
       },
 
-      body: JSON.stringify(sendData),
+      body: method === 'GET' ? null : JSON.stringify(sendData),
     });
     const data = await res.json();
     return data;

@@ -1,16 +1,14 @@
-import React, { VFC } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useEffect, useState, VFC } from 'react';
+import { useRecoilValue } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
 import { Tatoe } from '../types/types';
-import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import Image from 'next/image';
-import { useAuth } from '../hooks/useAuth';
-import { useUserInfo } from '../hooks/useUserInfo';
+
 import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
+import { useApi } from '../hooks/useApi';
+import { useGetUserTatoeApi } from '../hooks/useGetUserTatoeApi';
 
 export const CardChild: VFC = () => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
-
   const RandomColors = [
     'hover:shadow-plane_2xl_card_prime',
     'hover:shadow-plane_2xl_card_second',
@@ -20,22 +18,50 @@ export const CardChild: VFC = () => {
 
   const colors = RandomColors[Math.floor(Math.random() * RandomColors.length)];
   const shadowColor = colors.toString();
-  const { handleMoveToResult } = useHandleMoveToResult();
+  // const [allUserTatoe, setAllUserTatoe] = useState<Tatoe[]>();
 
-  const { userId } = useAuth();
+  const { getAllUserTatoe, allUserTatoe } = useGetUserTatoeApi();
+  const { handleMoveToResult } = useHandleMoveToResult(allUserTatoe);
+
   const profileImage = useRecoilValue(ProfileImageAtom);
 
-  const { user } = useUserInfo(userId);
+  // const { api: getUserTatoeApi } = useApi(`/tatoe`, {
+  //   method: 'GET',
+  // });
 
-  if (!userId || !user) {
-    return null;
-  }
-  const userName = user.userName;
+  // TODO Prisma Tatoeモデル にuserNameを登録しないといけない
+
+  useEffect(() => {
+    const main = async () => {
+      await getAllUserTatoe();
+    };
+    main();
+  }, []);
+
+  // useEffect(() => {
+  //   const main = async () => {
+  //     const { tatoe } = await getUserTatoeApi();
+  //     const formattedTatoe = tatoe.map((item: any) => {
+  //       const formattedData = {
+  //         tId: item.id,
+  //         userId: item.userId,
+  //         createdAt: item.createdAt,
+  //         updatedAt: item.updatedAt,
+  //         title: item.title,
+  //         description: item.description,
+  //         shortParaphrase: item.shortParaphrase,
+  //       };
+  //       return formattedData;
+  //     });
+  //     setAllUserTatoe(formattedTatoe);
+  //   };
+  //   main();
+  // }, []);
 
   return (
     <>
-      {tatoe
-        ? tatoe.map((item: Tatoe) => (
+      {allUserTatoe
+        ? allUserTatoe.map((item: Tatoe) => (
             <li
               key={item.tId}
               className={`
@@ -56,6 +82,7 @@ export const CardChild: VFC = () => {
                   title: item.title,
                   shortParaphrase: item.shortParaphrase,
                   description: item.description,
+                  userId: item.userId,
                 })
               }
             >
@@ -75,7 +102,7 @@ export const CardChild: VFC = () => {
                     '
                   >
                     <img
-                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
+                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${item.userId}/profile_image?t=${profileImage}`}
                       alt='ユーザーの画像'
                       className='
                       w-6
@@ -89,7 +116,7 @@ export const CardChild: VFC = () => {
                     text-gray-400
                     '
                     >
-                      {userName}が投稿
+                      {item.userName}が投稿
                     </p>
                   </ul>
                   <h3

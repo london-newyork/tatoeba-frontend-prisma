@@ -1,27 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../../components/Header/Header';
 import { SearchMainLayouts } from '../../../components/Layouts/SearchMainLayouts';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { UserNameAtom } from '../../../components/utils/atoms/UserNameAtom';
-import Image from 'next/image';
-import { useUserInfo } from '../../../components/hooks/useUserInfo';
-import { useAuth } from '../../../components/hooks/useAuth';
+import { useRecoilValue } from 'recoil';
+
 import { ProfileImageAtom } from '../../../components/utils/atoms/ProfileImageAtom';
+import { useApi } from '../../../components/hooks/useApi';
 
 const SearchResult = () => {
   const router = useRouter();
   const profileImage = useRecoilValue(ProfileImageAtom);
-  const { title, shortParaphrase, description } = router.query;
-  // const userName = useRecoilState(UserNameAtom);
-  const { userId } = useAuth();
-  const { user } = useUserInfo(userId);
+  const { title, shortParaphrase, description, userId } = router.query;
 
-  if (!userId || !user) {
-    return null;
-  }
+  const [tatoe, setTatoe] = useState();
+  const { api: getTatoeApi } = useApi(`/tatoe/${router.query.tId}`, {
+    method: 'GET',
+  });
+
+  useEffect(() => {
+    if (!router.query.tId) return;
+    const main = async () => {
+      const { data: tatoe } = await getTatoeApi();
+      setTatoe(tatoe);
+    };
+    main();
+  }, [router.query.tId]);
 
   return (
     <>
@@ -43,7 +48,7 @@ const SearchResult = () => {
                 rounded-full
                 object-cover'
               />
-              <small className='text-gray-400'>{user.userName}が投稿</small>
+              {/* <small className='text-gray-400'>{user.userName}が投稿</small> */}
             </div>
             <div
               className='

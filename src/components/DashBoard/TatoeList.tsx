@@ -35,8 +35,6 @@ export const TatoeList = (): JSX.Element => {
   useEffect(() => {
     const getUserTatoeList = async () => {
       await getTatoe();
-
-      // setTatoe(newTatoe);
     };
     getUserTatoeList();
   }, []);

@@ -1,13 +1,6 @@
-import React, { VFC } from 'react';
+import React from 'react';
 import { useHandleMoveToEdit } from '../hooks/handleMoveToEdit';
 import { Tatoe } from '../types/types';
-
-// export type EditBtnProps = {
-//   readonly tId: string;
-//   title: string;
-//   shortParaphrase: string;
-//   description: string;
-// };
 
 export const TatoeListEditExistingTatoeBtn = ({
   tId,
@@ -15,9 +8,6 @@ export const TatoeListEditExistingTatoeBtn = ({
   shortParaphrase,
   description,
 }: Tatoe) => {
-  console.log('編集ボタン大元　tId :', tId);
-
-  // const { tId, title, shortParaphrase, description } = props;
   const { handleMoveToEdit } = useHandleMoveToEdit({
     tId,
     title,

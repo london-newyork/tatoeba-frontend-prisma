@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../components/Header/Header';
-import Link from 'next/link';
 import { SearchMainLayouts } from '../../components/Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
 
@@ -30,6 +29,7 @@ const SearchResultList = () => {
     main();
 
     if (!allUserTatoe) return;
+
     if (keyWord) {
       const newFilteredTatoe = allUserTatoe.filter((item: Tatoe) => {
         return (
@@ -38,7 +38,9 @@ const SearchResultList = () => {
           item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
         );
       });
+
       setResult([...result].concat(newFilteredTatoe));
+
       setFilteredTatoe(newFilteredTatoe);
     }
   }, [router.query.keyWord]);

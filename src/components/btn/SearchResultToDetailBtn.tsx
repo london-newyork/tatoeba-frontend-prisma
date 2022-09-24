@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
-import { Tatoe } from '../types/types';
 
 type SearchResultToDetailBtnProps = {
   userId?: string;

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Tatoe } from '../types/types';
 import { AllUserTatoeAtom } from '../utils/atoms/AllUserTatoeAtom';
 import { useApi } from './useApi';
 
-export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[], url?: string) => {
+export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
   const { api: getAllUserTatoesApi } = useApi(`/tatoe`, {
     method: 'GET',
   });

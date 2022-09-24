@@ -19,6 +19,7 @@ const SearchResult = () => {
     method: 'GET',
   });
 
+  // TODO サーバー側で用意したデフォルト画像が、リロード時に少し出る
   useEffect(() => {
     if (!router.query.tId) return;
     const main = async () => {

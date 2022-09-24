@@ -2,35 +2,24 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../components/Header/Header';
-import Link from 'next/link';
 import { SearchMainLayouts } from '../../components/Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
-import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
+
 import { Tatoe } from '../../components/types/types';
-import { useApi } from '../../components/hooks/useApi';
+
 import { useGetUserTatoeApi } from '../../components/hooks/useGetUserTatoeApi';
+import { SearchResultToDetailBtn } from '../../components/btn/SearchResultToDetailBtn';
 
 const SearchResultList = () => {
-  // const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const [result, setResult] = useState([]);
 
   const router = useRouter();
 
-  // const queryKeyWord: string = router.query.keyWord.toString();
   const queryKeyWord: string = router.query.keyWord as string;
 
   const [keyWord, setKeyWord] = useState(queryKeyWord);
   const [filteredTatoe, setFilteredTatoe] = useState<Tatoe[] | undefined>();
 
-  // useEffect(() => {
-  //   if (!router.query.tId) return;
-  //   const main = async () => {
-  //     const { data: tatoe } = await getTatoeApi();
-  //     setTatoe(tatoe);
-  //   };
-  //   main();
-  // }, [router.query.tId]);
   const { getEachTatoe, allUserTatoe } = useGetUserTatoeApi(filteredTatoe);
 
   useEffect(() => {
@@ -40,6 +29,7 @@ const SearchResultList = () => {
     main();
 
     if (!allUserTatoe) return;
+
     if (keyWord) {
       const newFilteredTatoe = allUserTatoe.filter((item: Tatoe) => {
         return (
@@ -48,7 +38,9 @@ const SearchResultList = () => {
           item.shortParaphrase.toLowerCase().indexOf(keyWord) !== -1
         );
       });
+
       setResult([...result].concat(newFilteredTatoe));
+
       setFilteredTatoe(newFilteredTatoe);
     }
   }, [router.query.keyWord]);
@@ -69,8 +61,12 @@ const SearchResultList = () => {
                   return (
                     <ul className='text-gray-800' key={item.tId}>
                       <li>
-                        <Link
-                          href={`/SearchResult/${item.tId}?title=${item.title}&shortParaphrase=${item.shortParaphrase}&description=${item.description}`}
+                        <SearchResultToDetailBtn
+                          userId={item.userId}
+                          tId={item.tId}
+                          title={item.title}
+                          shortParaphrase={item.shortParaphrase}
+                          description={item.description}
                         >
                           <a
                             className='
@@ -121,7 +117,7 @@ const SearchResultList = () => {
                               </li>
                             </span>
                           </a>
-                        </Link>
+                        </SearchResultToDetailBtn>
                       </li>
                     </ul>
                   );

@@ -15,6 +15,7 @@ import { useUserInfo } from '../../components/hooks/useUserInfo';
 import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
+import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();
@@ -122,6 +123,7 @@ export const RegisterTatoeParent = () => {
         description={description}
         setDescription={setDescription}
       />
+      <RegisterImageForExplanationTatoe />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />
         <CreateTatoeBtn

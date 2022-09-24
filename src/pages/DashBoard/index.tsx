@@ -32,10 +32,10 @@ export type testUserTatoe = testUserId & Tatoe;
 export type testUserFollower = testUserId & testFollower;
 
 const DashBoard = () => {
-  const [tatoe, setTatoe] = useRecoilState<Tatoe[] | ParsedUrlQuery[]>(
-    TatoeAtom
-  );
-  const router = useRouter();
+  // const [tatoe, setTatoe] = useRecoilState<Tatoe[] | ParsedUrlQuery[]>(
+  //   TatoeAtom
+  // );
+  // const router = useRouter();
 
   // 個々の情報をとってくるようにする。Mockになっているデータと置き換える。
   return (

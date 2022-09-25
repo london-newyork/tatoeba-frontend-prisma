@@ -32,7 +32,7 @@
 }
 
 .headline-s {
-  @apply text-sm text-gray-500 leading-tight w-[300px] pb-1 md:pb-1 lg:pb-0 select-none;
+  @apply text-sm text-gray-500 leading-tight lg:w-[300px] pb-1 md:pb-1 lg:pb-0 select-none;
 }
 
 .caption-s {

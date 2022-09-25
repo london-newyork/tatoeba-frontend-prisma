@@ -74,6 +74,10 @@ export const RegisterTatoeParent = () => {
     }
   };
 
+  const handleOnSubmit = (file: File) => {
+    // updateUserProfileImage(file);
+  };
+
   const handleOnclickUpdateTatoe = async () => {
     const { alertRegisterTatoe, noInputsData } = useAlert({
       userId,
@@ -123,7 +127,7 @@ export const RegisterTatoeParent = () => {
         description={description}
         setDescription={setDescription}
       />
-      <RegisterImageForExplanationTatoe />
+      <RegisterImageForExplanationTatoe tId={tId} onSubmit={handleOnSubmit} />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />
         <CreateTatoeBtn

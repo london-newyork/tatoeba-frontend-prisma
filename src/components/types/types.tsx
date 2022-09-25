@@ -79,3 +79,9 @@ export type TatoeBtnHooksProps = {
 export type OnClick = {
   onClick: () => void;
 };
+
+export type SubmitImageProps = {
+  onSubmit: (file: File) => void;
+  userId?: string;
+  tId?: string;
+};

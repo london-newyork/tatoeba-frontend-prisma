@@ -75,6 +75,9 @@ text-xs transition-all group-hover:opacity-60;
   @apply text-black;
 }
 
+.submit-image-icon {
+  @apply text-black;
+}
 .sidebar-icon {
   @apply text-white sm:text-black md:text-white text-xl lg:text-2xl;
 }

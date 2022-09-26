@@ -39,6 +39,10 @@
   @apply text-xxs text-gray-300;
 }
 
+.error-message-s {
+  @apply text-xs text-red-600 leading-5;
+}
+
 .frame-large {
   @apply lg:px-12 px-7 pt-10 pb-10 rounded-3xl bg-white border border-black;
 }
@@ -84,4 +88,16 @@ text-xs transition-all group-hover:opacity-60;
 
 .sidebar-icon-menu {
   @apply text-white text-xl lg:text-2xl;
+}
+
+.explanation-img-wrapper {
+  @apply w-full aspect-[4/3] bg-gray-100 rounded-md;
+}
+
+.explanation-img {
+  @apply border-0 z-10 rounded-md aspect-[4/3] object-cover w-full;
+}
+
+.text-on-explanation-img {
+  @apply top-1/2 z-30 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl text-gray-400;
 }

@@ -13,7 +13,6 @@ export const RegisterImageForExplanationTatoe = ({
   query,
   onSubmit,
   tId,
-  userId,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isImage, setIsImage] = useState<boolean>(false);
@@ -29,6 +28,7 @@ export const RegisterImageForExplanationTatoe = ({
     }
     ref.current.click();
   };
+
   const handleChangeFile: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (!e.target.files) {
       return;
@@ -60,15 +60,11 @@ export const RegisterImageForExplanationTatoe = ({
     //fetch
   };
 
-  // TODO queryを使って例え編集時に画像が表示されているようにする。
-
   useEffect(() => {
     if (query.tId) {
       setIsImage(true);
     }
   }, [query.tId]);
-
-  console.log('【 tId 】 : ', tId); // ok
 
   return (
     <div
@@ -90,30 +86,27 @@ export const RegisterImageForExplanationTatoe = ({
           ※登録できるのはjpg、png、svg、gif形式の1MBまでです。
         </span>
         {isFileTypeError ? (
-          <span className='text-xs text-red-600 leading-5'>
+          <span className='error-message-s'>
             <br />
             <p>画像はjpg、png、svg、gif形式のみアップロードできます。</p>
           </span>
         ) : null}
         {isFileSizeError ? (
-          <span className='text-xs text-red-600 leading-5'>
+          <span className='error-message-s'>
             <br />
             <p>画像は1MBまで登録できます。</p>
           </span>
         ) : null}
       </label>
-      <div className='w-full aspect-[4/3] bg-gray-100 rounded-md  position relative'>
+      <div className='explanation-img-wrapper position relative'>
         {isImage ? (
           <img
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image?t=${explanationImage}`}
-            className='border-0 z-10 rounded-md
-            aspect-[4/3] object-cover w-full'
+            className='explanation-img'
             alt='例えの説明画像'
           />
         ) : (
-          <div className='absolute top-1/2 z-30 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl text-gray-400'>
-            画像を追加
-          </div>
+          <div className='absolute text-on-explanation-img'>画像を追加</div>
         )}
         <div className='z-20 absolute top-1 right-2'>
           <div className='position relative'>

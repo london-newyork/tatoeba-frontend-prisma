@@ -6,7 +6,7 @@ import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDesc
 
 import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
 import { useRouter } from 'next/router';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
 import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
 import { UpdateTatoeBtn } from '../../components/btn/UpdateTatoeBtn';
@@ -16,6 +16,7 @@ import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
+import { ExplanationImageAtom } from '../../components/utils/atoms/ExplanationImageAtom';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();
@@ -32,7 +33,7 @@ export const RegisterTatoeParent = () => {
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-
+  const setExplanationImage = useSetRecoilState(ExplanationImageAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
@@ -75,7 +76,22 @@ export const RegisterTatoeParent = () => {
   };
 
   const handleOnSubmit = (file: File) => {
-    // updateUserProfileImage(file);
+    const updateExplanationImage = async (file: File) => {
+      const formData = new FormData();
+      formData.append('image', file);
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${persistAccessToken}`,
+          },
+          body: formData,
+        }
+      );
+      setExplanationImage(new Date().getTime());
+    };
+    updateExplanationImage(file);
   };
 
   const handleOnclickUpdateTatoe = async () => {
@@ -127,7 +143,11 @@ export const RegisterTatoeParent = () => {
         description={description}
         setDescription={setDescription}
       />
-      <RegisterImageForExplanationTatoe tId={tId} onSubmit={handleOnSubmit} />
+      <RegisterImageForExplanationTatoe
+        tId={tId}
+        userId={userId}
+        onSubmit={handleOnSubmit}
+      />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />
         <CreateTatoeBtn

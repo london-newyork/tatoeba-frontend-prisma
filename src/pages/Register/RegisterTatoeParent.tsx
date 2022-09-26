@@ -130,6 +130,20 @@ export const RegisterTatoeParent = () => {
     });
   };
 
+  // TODO 削除
+  const handleClickDeleteImage = async () => {
+    //
+    await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${persistAccessToken}`,
+        },
+      }
+    );
+  };
+
   return (
     <div className='flex flex-col gap-6'>
       <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
@@ -148,6 +162,7 @@ export const RegisterTatoeParent = () => {
         tId={tId}
         userId={userId}
         onSubmit={handleOnSubmit}
+        deleteImage={handleClickDeleteImage}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />

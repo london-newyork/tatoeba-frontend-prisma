@@ -1,3 +1,4 @@
+import { ParsedUrlQuery } from 'querystring';
 import React, {
   ChangeEventHandler,
   MouseEventHandler,
@@ -6,13 +7,21 @@ import React, {
   useState,
 } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { SubmitImageProps } from '../../../components/types/types';
 import { ExplanationImageAtom } from '../../../components/utils/atoms/ExplanationImageAtom';
+
+export type SubmitImageProps = {
+  onSubmit: (file: File) => void;
+  userId?: string;
+  tId?: string;
+  query?: ParsedUrlQuery;
+  deleteImage: () => void;
+};
 
 export const RegisterImageForExplanationTatoe = ({
   query,
   onSubmit,
   tId,
+  deleteImage,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isImage, setIsImage] = useState<boolean>(false);
@@ -20,8 +29,14 @@ export const RegisterImageForExplanationTatoe = ({
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
   const explanationImage = useSetRecoilState(ExplanationImageAtom);
 
+  useEffect(() => {
+    if (query.tId) {
+      setIsImage(true);
+    }
+  }, [query.tId]);
+
   // 登録・編集
-  const handleClickImageButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     if (!ref.current) {
       return;
@@ -36,9 +51,12 @@ export const RegisterImageForExplanationTatoe = ({
     const file = e.target.files[0];
     e.target.value = '';
 
-    if (file.size > 1000000) {
+    if (file.size >= 1000000) {
       setIsFileSizeError(true);
+      return;
     }
+    console.log('file size :', file.size);
+    console.log('isFileSizeError', isFileSizeError);
 
     if (
       file.type !== 'image/gif' &&
@@ -54,17 +72,6 @@ export const RegisterImageForExplanationTatoe = ({
     onSubmit(file);
     setIsImage(true);
   };
-
-  // TODO 削除
-  const handleDeleteImage = async () => {
-    //fetch
-  };
-
-  useEffect(() => {
-    if (query.tId) {
-      setIsImage(true);
-    }
-  }, [query.tId]);
 
   return (
     <div
@@ -114,7 +121,7 @@ export const RegisterImageForExplanationTatoe = ({
             <button
               type='button'
               className='w-8 h-10 right-8 absolute'
-              onClick={handleClickImageButton}
+              onClick={handleClickChangeImage}
             >
               <span
                 className='
@@ -126,7 +133,7 @@ export const RegisterImageForExplanationTatoe = ({
               </span>
             </button>
           </div>
-          <button className='w-8 h-10' onClick={handleDeleteImage}>
+          <button className='w-8 h-10' onClick={deleteImage}>
             <span
               className='material-symbols-outlined text-2xl mt-[3px]
               submit-image-icon'

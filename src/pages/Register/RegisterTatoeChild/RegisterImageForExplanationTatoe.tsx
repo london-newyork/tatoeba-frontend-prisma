@@ -1,6 +1,7 @@
 import React, {
   ChangeEventHandler,
   MouseEventHandler,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -9,6 +10,7 @@ import { SubmitImageProps } from '../../../components/types/types';
 import { ExplanationImageAtom } from '../../../components/utils/atoms/ExplanationImageAtom';
 
 export const RegisterImageForExplanationTatoe = ({
+  query,
   onSubmit,
   tId,
   userId,
@@ -53,10 +55,18 @@ export const RegisterImageForExplanationTatoe = ({
     setIsImage(true);
   };
 
-  // 削除
+  // TODO 削除
   const handleDeleteImage = async () => {
     //fetch
   };
+
+  // TODO queryを使って例え編集時に画像が表示されているようにする。
+
+  useEffect(() => {
+    if (query.tId) {
+      setIsImage(true);
+    }
+  }, [query.tId]);
 
   console.log('【 tId 】 : ', tId); // ok
 

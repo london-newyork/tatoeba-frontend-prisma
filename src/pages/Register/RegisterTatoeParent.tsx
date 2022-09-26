@@ -144,6 +144,7 @@ export const RegisterTatoeParent = () => {
         setDescription={setDescription}
       />
       <RegisterImageForExplanationTatoe
+        query={query}
         tId={tId}
         userId={userId}
         onSubmit={handleOnSubmit}

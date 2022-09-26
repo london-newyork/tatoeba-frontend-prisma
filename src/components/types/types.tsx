@@ -84,4 +84,5 @@ export type SubmitImageProps = {
   onSubmit: (file: File) => void;
   userId?: string;
   tId?: string;
+  query?: ParsedUrlQuery;
 };

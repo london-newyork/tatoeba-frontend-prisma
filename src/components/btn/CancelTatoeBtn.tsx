@@ -45,7 +45,7 @@ export const CancelTatoeBtn = (props: Tatoe) => {
     <div className='flex justify-end group'>
       <button
         onClick={handleClickCancel}
-        type='submit'
+        type='button'
         className='
         btn-m-white
       '

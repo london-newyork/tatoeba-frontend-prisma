@@ -19,6 +19,7 @@ export const UpdateTatoeBtn = (props: TatoeBtnProps) => {
     <div className='flex justify-end group'>
       <button
         onClick={onClick}
+        type='submit'
         className='
         btn-m-color
         '

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -17,6 +17,7 @@ import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { ExplanationImageAtom } from '../../components/utils/atoms/ExplanationImageAtom';
+import { useApi } from '../../components/hooks/useApi';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();
@@ -33,9 +34,10 @@ export const RegisterTatoeParent = () => {
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-  const setExplanationImage = useSetRecoilState(ExplanationImageAtom);
+  // const setExplanationImage = useSetRecoilState(ExplanationImageAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
+  const { api: createTatoeApi } = useApi('/tatoe', { method: 'POST' });
 
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
@@ -75,23 +77,17 @@ export const RegisterTatoeParent = () => {
     }
   };
 
-  const handleOnSubmit = (file: File) => {
-    const updateExplanationImage = async (file: File) => {
-      const formData = new FormData();
-      formData.append('image', file);
-      await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
-        {
-          method: 'PUT',
-          headers: {
-            Authorization: `Bearer ${persistAccessToken}`,
-          },
-          body: formData,
-        }
-      );
-      setExplanationImage(new Date().getTime());
-    };
-    updateExplanationImage(file);
+  // TODO 1回の投稿につき、例え一覧に二重に例えができているので、その解消をしたい
+  // resが返ってきたときの挙動か
+  const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    // formData.forEach((value, key) => {
+    //   console.log(`FormData[${key}] = ${value}`);
+    // }); // formDataは画像も他のコンテンツもきている
+
+    const res = await createTatoeApi(formData);
+    console.log('RES: ', res); // ある
   };
 
   const handleOnclickUpdateTatoe = async () => {
@@ -130,22 +126,22 @@ export const RegisterTatoeParent = () => {
     });
   };
 
-  // TODO 削除
+  // TODO 削除 後で削除
   const handleClickDeleteImage = async () => {
     //
-    await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${persistAccessToken}`,
-        },
-      }
-    );
+    // await fetch(
+    //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
+    //   {
+    //     method: 'DELETE',
+    //     headers: {
+    //       Authorization: `Bearer ${persistAccessToken}`,
+    //     },
+    //   }
+    // );
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
       <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
       <RegisterTatoeShortParaphrase
         query={query}
@@ -159,10 +155,11 @@ export const RegisterTatoeParent = () => {
       />
       <RegisterImageForExplanationTatoe
         query={query}
-        tId={tId}
+        query_tId={query.tId}
         userId={userId}
-        onSubmit={handleOnSubmit}
-        deleteImage={handleClickDeleteImage}
+        persistAccessToken={persistAccessToken}
+        // 後で消す
+        // onSubmit={handleOnSubmit}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />
@@ -187,6 +184,6 @@ export const RegisterTatoeParent = () => {
           onClick={handleOnclickUpdateTatoe}
         />
       </div>
-    </div>
+    </form>
   );
 };

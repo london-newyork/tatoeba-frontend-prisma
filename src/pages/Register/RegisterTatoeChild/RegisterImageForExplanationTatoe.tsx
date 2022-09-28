@@ -10,31 +10,24 @@ import { useSetRecoilState } from 'recoil';
 import { ExplanationImageAtom } from '../../../components/utils/atoms/ExplanationImageAtom';
 
 export type SubmitImageProps = {
-  onSubmit: (file: File) => void;
+  // onSubmit: (file: File) => void;
   userId?: string;
-  tId?: string;
+  query_tId?: string | string[];
   query?: ParsedUrlQuery;
-  deleteImage: () => void;
+  persistAccessToken?: string;
 };
 
 export const RegisterImageForExplanationTatoe = ({
   query,
-  onSubmit,
-  tId,
-  deleteImage,
+  query_tId,
+  // onSubmit,
+  persistAccessToken,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
-  const [isImage, setIsImage] = useState<boolean>(false);
-  const [isFileTypeError, setIsFileTypeError] = useState<boolean>(false);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
-  const explanationImage = useSetRecoilState(ExplanationImageAtom);
-
-  useEffect(() => {
-    if (query.tId) {
-      setIsImage(true);
-    }
-  }, [query.tId]);
-
+  // const explanationImage = useSetRecoilState(ExplanationImageAtom);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const tId = query.tId;
   // 登録・編集
   const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
@@ -48,30 +41,68 @@ export const RegisterImageForExplanationTatoe = ({
     if (!e.target.files) {
       return;
     }
-    const file = e.target.files[0];
-    e.target.value = '';
 
+    const file = e.target.files[0];
+
+    // TODO キャンセル時の実装をしないとエラーになる
     if (file.size >= 1000000) {
       setIsFileSizeError(true);
       return;
     }
-    console.log('file size :', file.size);
-    console.log('isFileSizeError', isFileSizeError);
 
-    if (
-      file.type !== 'image/gif' &&
-      file.type !== 'image/jpeg' &&
-      file.type !== 'image/png' &&
-      file.type !== 'image/svg+xml'
-    ) {
-      setIsFileTypeError(true);
-    } else {
-      setIsFileTypeError(false);
+    // onSubmit(file);
+    // setIsImage(true);
+
+    // 既存のimageがあったらそれを解放
+    if (imageUrl) {
+      URL.revokeObjectURL(imageUrl);
     }
-
-    onSubmit(file);
-    setIsImage(true);
+    setImageUrl(URL.createObjectURL(file));
   };
+
+  useEffect(() => {
+    // Reactがこのコンポーネントを破棄するときにimageUrl解放
+    return () => {
+      if (imageUrl) {
+        URL.revokeObjectURL(imageUrl);
+      }
+    };
+  }, [imageUrl]);
+
+  useEffect(() => {
+    if (query_tId) {
+      // setIsImage(true);
+      setImageUrl(imageUrl);
+    }
+  }, [query_tId]);
+
+  const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
+    e.preventDefault();
+    // プレビュー画面の処理
+    if (!imageUrl) {
+      return;
+    }
+    URL.revokeObjectURL(imageUrl);
+    setImageUrl(null);
+
+    // TODO 例えが二重にできているのを解消することで解決しそう
+    console.log('query_tId ?? ', query_tId); //ない
+    console.log('query ::', query);
+    console.log('tId ** ', tId);
+
+    // storageに対する処理
+    await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${persistAccessToken}`,
+        },
+      }
+    );
+  };
+
+  console.log('Image URL: ', imageUrl);
 
   return (
     <div
@@ -90,14 +121,8 @@ export const RegisterImageForExplanationTatoe = ({
         <br />
         <span className='caption-s'>
           例えに必要な説明画像の登録<br></br>
-          ※登録できるのはjpg、png、svg、gif形式の1MBまでです。
+          ※登録できるのは画像ファイルの1MBまでです。
         </span>
-        {isFileTypeError ? (
-          <span className='error-message-s'>
-            <br />
-            <p>画像はjpg、png、svg、gif形式のみアップロードできます。</p>
-          </span>
-        ) : null}
         {isFileSizeError ? (
           <span className='error-message-s'>
             <br />
@@ -106,9 +131,9 @@ export const RegisterImageForExplanationTatoe = ({
         ) : null}
       </label>
       <div className='explanation-img-wrapper position relative'>
-        {isImage ? (
+        {imageUrl ? (
           <img
-            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image?t=${explanationImage}`}
+            src={imageUrl}
             className='explanation-img'
             alt='例えの説明画像'
           />
@@ -117,7 +142,14 @@ export const RegisterImageForExplanationTatoe = ({
         )}
         <div className='z-20 absolute top-1 right-2'>
           <div className='position relative'>
-            <input type='file' onChange={handleChangeFile} hidden ref={ref} />
+            <input
+              type='file'
+              accept='image/*'
+              onChange={handleChangeFile}
+              hidden
+              name='image'
+              ref={ref}
+            />
             <button
               type='button'
               className='w-8 h-10 right-8 absolute'

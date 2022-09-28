@@ -37,6 +37,7 @@ export const TatoeList = (): JSX.Element => {
     };
     getUserTatoeList();
   }, []);
+  console.log('@TatoeList tatoe : ', tatoe); //tIdになおっている
 
   return (
     <div>

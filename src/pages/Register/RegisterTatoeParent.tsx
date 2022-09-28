@@ -109,6 +109,8 @@ export const RegisterTatoeParent = () => {
     // handleOnClickCreateTatoe の中身　おわり
   };
 
+  // TODO formDataをどう扱うか
+  // TODO 登録ページであらかじめ画像が表示されているようにGETしてこないといけない
   const handleOnclickUpdateTatoe = async () => {
     const { alertRegisterTatoe, noInputsData } = useAlert({
       userId,

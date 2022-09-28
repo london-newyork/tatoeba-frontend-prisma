@@ -7,6 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { useSetRecoilState } from 'recoil';
+import { useApi } from '../../../components/hooks/useApi';
 import { ExplanationImageAtom } from '../../../components/utils/atoms/ExplanationImageAtom';
 
 export type SubmitImageProps = {
@@ -60,6 +61,12 @@ export const RegisterImageForExplanationTatoe = ({
     setImageUrl(URL.createObjectURL(file));
   };
 
+  // TODO 更新のときはあらかじめ画像が表示されている必要がある
+  // GET してくる
+  const { api: getTatoeApi } = useApi(`/tatoe/${query_tId}/explanation_image`, {
+    method: 'GET',
+  });
+
   useEffect(() => {
     // Reactがこのコンポーネントを破棄するときにimageUrl解放
     return () => {
@@ -70,9 +77,14 @@ export const RegisterImageForExplanationTatoe = ({
   }, [imageUrl]);
 
   useEffect(() => {
-    if (query_tId) {
-      setImageUrl(imageUrl);
-    }
+    const main = async () => {
+      if (query_tId) {
+        setImageUrl(imageUrl);
+        const { data } = await getTatoeApi();
+        console.log('HERE : GET RESPONSE DATA : ', data);
+      }
+    };
+    main();
   }, [query_tId]);
 
   // TODO あとで名前を修正する可能性がある

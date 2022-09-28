@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { TatoeBtnProps } from '../types/types';
 
 export const CreateTatoeBtn = (props: TatoeBtnProps) => {
-  const { onClick, query_tId } = props;
+  const { /*onClick,*/ query_tId } = props;
   const [isUpdate, setIsUpdate] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const CreateTatoeBtn = (props: TatoeBtnProps) => {
   return isUpdate ? null : (
     <div className='flex justify-end group'>
       <button
-        onClick={onClick}
+        // onClick={onClick}
         type='submit'
         className='
         btn-m-color

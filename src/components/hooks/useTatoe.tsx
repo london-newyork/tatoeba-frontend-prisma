@@ -7,7 +7,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   const { tId, userId, query_tId } = props;
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
-  const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
+  // const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
+  const { api: createTatoeApi } = useApi('/tatoe', { method: 'POST' });
   const { api: getTatoeApi } = useApi(`/users/${userId}/tatoe`, {
     method: 'GET',
   });
@@ -49,10 +50,14 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   };
 
   const createTatoe = async (
-    value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description'>
+    value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>
   ) => {
-    const { data } = await postTatoeApi(value);
+    console.log(value);
 
+    // あとで消す
+    // const { data } = await postTatoeApi(value);
+    const { data } = await createTatoeApi(value.formData);
+    console.log('RES DATA: ', data); // ある
     const formattedData: Tatoe = {
       tId: data.id,
       userId: data.userId,

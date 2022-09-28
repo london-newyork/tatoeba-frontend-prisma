@@ -28,6 +28,7 @@ export const RegisterImageForExplanationTatoe = ({
   // const explanationImage = useSetRecoilState(ExplanationImageAtom);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const tId = query.tId;
+
   // 登録・編集
   const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
@@ -51,7 +52,6 @@ export const RegisterImageForExplanationTatoe = ({
     }
 
     // onSubmit(file);
-    // setIsImage(true);
 
     // 既存のimageがあったらそれを解放
     if (imageUrl) {
@@ -71,11 +71,11 @@ export const RegisterImageForExplanationTatoe = ({
 
   useEffect(() => {
     if (query_tId) {
-      // setIsImage(true);
       setImageUrl(imageUrl);
     }
   }, [query_tId]);
 
+  // TODO あとで名前を修正する可能性がある
   const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     // プレビュー画面の処理

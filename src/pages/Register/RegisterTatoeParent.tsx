@@ -37,7 +37,7 @@ export const RegisterTatoeParent = () => {
   // const setExplanationImage = useSetRecoilState(ExplanationImageAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  const { api: createTatoeApi } = useApi('/tatoe', { method: 'POST' });
+  // const { api: createTatoeApi } = useApi('/tatoe', { method: 'POST' });
 
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
@@ -55,7 +55,32 @@ export const RegisterTatoeParent = () => {
     updatedAt,
   });
 
-  const handleOnClickCreateTatoe = async () => {
+  // const handleOnClickCreateTatoe = async () => {
+  //   if (!query_tId) {
+  //     // データのバリデーションを行う
+  //     const { alertRegisterTatoe, noInputsData } = useAlert({
+  //       userId,
+  //       user,
+  //       title,
+  //       shortParaphrase,
+  //       description,
+  //     });
+  //     if (noInputsData) {
+  //       alertRegisterTatoe();
+  //       return;
+  //     }
+  //     await createTatoe({ title, shortParaphrase, description });
+
+  //     router.push({
+  //       pathname: '/DashBoard/UserTatoeList',
+  //     });
+  //   }
+  // };
+
+  const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    // handleOnClickCreateTatoe の中身
     if (!query_tId) {
       // データのバリデーションを行う
       const { alertRegisterTatoe, noInputsData } = useAlert({
@@ -69,25 +94,19 @@ export const RegisterTatoeParent = () => {
         alertRegisterTatoe();
         return;
       }
-      await createTatoe({ title, shortParaphrase, description });
+      const formData = new FormData(e.currentTarget);
+      // formData.forEach((value, key) => {
+      //   console.log(`FormData[${key}] = ${value}`);
+      // });
+      // const res = await createTatoeApi(formData);
+      // console.log('RES: ', res); // ある
+      await createTatoe({ title, shortParaphrase, description, formData });
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',
       });
     }
-  };
-
-  // TODO 1回の投稿につき、例え一覧に二重に例えができているので、その解消をしたい
-  // resが返ってきたときの挙動か
-  const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    // formData.forEach((value, key) => {
-    //   console.log(`FormData[${key}] = ${value}`);
-    // }); // formDataは画像も他のコンテンツもきている
-
-    const res = await createTatoeApi(formData);
-    console.log('RES: ', res); // ある
+    // handleOnClickCreateTatoe の中身　おわり
   };
 
   const handleOnclickUpdateTatoe = async () => {
@@ -171,7 +190,7 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-          onClick={handleOnClickCreateTatoe}
+          // onClick={handleOnClickCreateTatoe}
         />
         <UpdateTatoeBtn
           tatoe={tatoe}
@@ -181,7 +200,7 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-          onClick={handleOnclickUpdateTatoe}
+          // onClick={handleOnclickUpdateTatoe}
         />
       </div>
     </form>

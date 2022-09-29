@@ -26,7 +26,7 @@ export const RegisterImageForExplanationTatoe = ({
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
-  // const explanationImage = useSetRecoilState(ExplanationImageAtom);
+  const explanationImage = useSetRecoilState(ExplanationImageAtom);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const tId = query.tId;
 
@@ -63,9 +63,12 @@ export const RegisterImageForExplanationTatoe = ({
 
   // TODO 更新のときはあらかじめ画像が表示されている必要がある
   // GET してくる
-  const { api: getTatoeApi } = useApi(`/tatoe/${query_tId}/explanation_image`, {
-    method: 'GET',
-  });
+  const { api: getTatoeApi } = useApi(
+    `/tatoe/${query_tId}/explanation_image?e=${explanationImage}`,
+    {
+      method: 'GET',
+    }
+  );
 
   useEffect(() => {
     // Reactがこのコンポーネントを破棄するときにimageUrl解放
@@ -80,43 +83,10 @@ export const RegisterImageForExplanationTatoe = ({
     const main = async () => {
       if (query_tId) {
         setImageUrl(imageUrl);
-
-        await getTatoeApi()
-          .then((res) => {
-            if (!res.ok) {
-              throw '画像取得エラー';
-            }
-            return res.blob();
-          })
-          .then((blob) => {
-            const blobUrl = URL.createObjectURL(blob);
-            console.log('blobUrl : ', blobUrl);
-            setImageUrl(blobUrl);
-          })
-          .catch((error) => {
-            return console.error(error);
-          });
-
-        // setImageUrl(blobUrl);
-
-        // const { data } = await getTatoeApi();
-        // const blob = new Blob(data, { type: 'image/png' });
-        // const blobUrl = URL.createObjectURL(blob);
-
-        // console.log('blobUrl : ', blobUrl);
-        // setImageUrl(blobUrl);
-
-        // const resImageUrl = await getTatoeApi();
-
-        // .then((res) => {
-        //   return res.blob({ type: 'image/png' });
-        // })
-        // .then((blob) => {
-        //   return URL.createObjectURL(blob);
-        // });
-        // console.log('resImageUrl', resImageUrl);
-
-        // setImageUrl(resImageUrl);
+        const blobUrl = await getTatoeApi();
+        if (blobUrl) {
+          setImageUrl(blobUrl);
+        }
       }
     };
     main();
@@ -131,11 +101,6 @@ export const RegisterImageForExplanationTatoe = ({
     }
     URL.revokeObjectURL(imageUrl);
     setImageUrl(null);
-
-    // TODO 例えが二重にできているのを解消することで解決しそう
-    console.log('query_tId ?? ', query_tId); //ない
-    console.log('query ::', query);
-    console.log('tId ** ', tId);
 
     // storageに対する処理
     await fetch(

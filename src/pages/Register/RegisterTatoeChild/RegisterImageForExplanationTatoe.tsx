@@ -80,8 +80,43 @@ export const RegisterImageForExplanationTatoe = ({
     const main = async () => {
       if (query_tId) {
         setImageUrl(imageUrl);
-        const { data } = await getTatoeApi();
-        console.log('HERE : GET RESPONSE DATA : ', data);
+
+        await getTatoeApi()
+          .then((res) => {
+            if (!res.ok) {
+              throw '画像取得エラー';
+            }
+            return res.blob();
+          })
+          .then((blob) => {
+            const blobUrl = URL.createObjectURL(blob);
+            console.log('blobUrl : ', blobUrl);
+            setImageUrl(blobUrl);
+          })
+          .catch((error) => {
+            return console.error(error);
+          });
+
+        // setImageUrl(blobUrl);
+
+        // const { data } = await getTatoeApi();
+        // const blob = new Blob(data, { type: 'image/png' });
+        // const blobUrl = URL.createObjectURL(blob);
+
+        // console.log('blobUrl : ', blobUrl);
+        // setImageUrl(blobUrl);
+
+        // const resImageUrl = await getTatoeApi();
+
+        // .then((res) => {
+        //   return res.blob({ type: 'image/png' });
+        // })
+        // .then((blob) => {
+        //   return URL.createObjectURL(blob);
+        // });
+        // console.log('resImageUrl', resImageUrl);
+
+        // setImageUrl(resImageUrl);
       }
     };
     main();
@@ -104,7 +139,7 @@ export const RegisterImageForExplanationTatoe = ({
 
     // storageに対する処理
     await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${query_tId}/explanation_image`,
       {
         method: 'DELETE',
         headers: {

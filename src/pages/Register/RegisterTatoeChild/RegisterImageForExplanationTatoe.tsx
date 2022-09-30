@@ -21,7 +21,6 @@ export type SubmitImageProps = {
 export const RegisterImageForExplanationTatoe = ({
   query,
   query_tId,
-  // onSubmit,
   persistAccessToken,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
@@ -43,17 +42,12 @@ export const RegisterImageForExplanationTatoe = ({
     if (!e.target.files) {
       return;
     }
-
     const file = e.target.files[0];
-
     // TODO キャンセル時の実装をしないとエラーになる
     if (file.size >= 1000000) {
       setIsFileSizeError(true);
       return;
     }
-
-    // onSubmit(file);
-
     // 既存のimageがあったらそれを解放
     if (imageUrl) {
       URL.revokeObjectURL(imageUrl);
@@ -61,8 +55,6 @@ export const RegisterImageForExplanationTatoe = ({
     setImageUrl(URL.createObjectURL(file));
   };
 
-  // TODO 更新のときはあらかじめ画像が表示されている必要がある
-  // GET してくる
   const { api: getTatoeApi } = useApi(
     `/tatoe/${query_tId}/explanation_image?e=${explanationImage}`,
     {
@@ -113,8 +105,6 @@ export const RegisterImageForExplanationTatoe = ({
       }
     );
   };
-
-  console.log('Image URL: ', imageUrl);
 
   return (
     <div

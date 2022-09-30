@@ -14,6 +14,7 @@ export type Tatoe = {
   tImageUrl?: string;
   query_tId?: string | string[];
   formData?: FormData;
+  formImage?: File;
 };
 
 export type Edit = {

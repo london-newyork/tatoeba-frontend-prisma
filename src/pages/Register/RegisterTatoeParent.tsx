@@ -80,6 +80,8 @@ export const RegisterTatoeParent = () => {
   const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
+    /* POST */
+
     // handleOnClickCreateTatoe の中身
     if (!query_tId) {
       // データのバリデーションを行う
@@ -95,57 +97,102 @@ export const RegisterTatoeParent = () => {
         return;
       }
       const formData = new FormData(e.currentTarget);
-      // formData.forEach((value, key) => {
-      //   console.log(`FormData[${key}] = ${value}`);
-      // });
-      // const res = await createTatoeApi(formData);
-      // console.log('RES: ', res); // ある
       await createTatoe({ title, shortParaphrase, description, formData });
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',
       });
     }
-    // handleOnClickCreateTatoe の中身　おわり
-  };
 
-  // TODO formDataをどう扱うか
-  // TODO 登録ページであらかじめ画像が表示されているようにGETしてこないといけない
-  const handleOnclickUpdateTatoe = async () => {
-    const { alertRegisterTatoe, noInputsData } = useAlert({
-      userId,
-      user,
-      title,
-      shortParaphrase,
-      description,
-    });
-    if (noInputsData) {
-      alertRegisterTatoe();
-      return;
-    }
+    /* PUT */
+
+    // 更新したはずの画像がストレージには来てない
+    //  (handleOnclickUpdateTatoe の中身)
 
     if (query_tId) {
-      tatoe.map(async (item: Tatoe) => {
-        if (item.tId === query_tId) {
-          const tId = item.tId;
-          await updateTatoe({
-            title,
-            shortParaphrase,
-            description,
-            tId,
-            userId,
-          });
-        }
+      const { alertRegisterTatoe, noInputsData } = useAlert({
+        userId,
+        user,
+        title,
+        shortParaphrase,
+        description,
       });
-    }
-    tatoe.map((item: Tatoe) => {
-      if (item.tId === query_tId) {
-        router.push({
-          pathname: '/DashBoard/UserTatoeList',
-        });
+      if (noInputsData) {
+        alertRegisterTatoe();
+        return;
       }
-    });
+      const formData = new FormData(e.currentTarget);
+      // console.log('=====@RegisterTatoeParent UPDATE formData', formData); // ない
+      formData.forEach((value, key) => {
+        console.log(`FormData[${key}] = ${value}`);
+      }); // ある
+
+      // // formDataがカラなので、ひとつひとつ定義
+      // const formTitle = formData.get('title') as string;
+      // const formDescription = formData.get('description') as string;
+      // const formShortParaphrase = formData.get('shortParaphrase') as string;
+      // const formImage = formData.get('image') as File;
+      // console.log('=====@RegisterTatoeParent formImage', formImage); // ある
+
+      // tatoe.map(async (item: Tatoe) => {
+      //   if (item.tId === query_tId) {
+      //     const tId = item.tId;
+      await updateTatoe({
+        // title: formTitle,
+        // shortParaphrase: formShortParaphrase,
+        // description: formDescription,
+        tId: query_tId,
+        // userId,
+        // formImage,
+        formData,
+      });
+      //   }
+      // });
+      // tatoe.map((item: Tatoe) => {
+      //   if (item.tId === query_tId) {
+      router.push({
+        pathname: '/DashBoard/UserTatoeList',
+      });
+      //   }
+      // });
+    }
   };
+
+  // const handleOnclickUpdateTatoe = async () => {
+  //   const { alertRegisterTatoe, noInputsData } = useAlert({
+  //     userId,
+  //     user,
+  //     title,
+  //     shortParaphrase,
+  //     description,
+  //   });
+  //   if (noInputsData) {
+  //     alertRegisterTatoe();
+  //     return;
+  //   }
+
+  //   if (query_tId) {
+  //     tatoe.map(async (item: Tatoe) => {
+  //       if (item.tId === query_tId) {
+  //         const tId = item.tId;
+  //         await updateTatoe({
+  //           title,
+  //           shortParaphrase,
+  //           description,
+  //           tId,
+  //           userId,
+  //         });
+  //       }
+  //     });
+  //   }
+  //   tatoe.map((item: Tatoe) => {
+  //     if (item.tId === query_tId) {
+  //       router.push({
+  //         pathname: '/DashBoard/UserTatoeList',
+  //       });
+  //     }
+  //   });
+  // };
 
   // TODO 削除 後で削除
   const handleClickDeleteImage = async () => {

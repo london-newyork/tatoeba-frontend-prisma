@@ -7,8 +7,7 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   const { tId, userId, query_tId } = props;
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
-  // const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
-  const { api: createTatoeApi } = useApi('/tatoe', { method: 'POST' });
+  const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
   const { api: getTatoeApi } = useApi(`/users/${userId}/tatoe`, {
     method: 'GET',
   });
@@ -52,12 +51,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   const createTatoe = async (
     value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>
   ) => {
-    console.log(value);
+    const { data } = await postTatoeApi(value.formData);
 
-    // あとで消す
-    // const { data } = await postTatoeApi(value);
-    const { data } = await createTatoeApi(value.formData);
-    console.log('RES DATA: ', data); // ある
     const formattedData: Tatoe = {
       tId: data.id,
       userId: data.userId,
@@ -75,11 +70,19 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   const updateTatoe = async (
     value: Pick<
       Tatoe,
-      'title' | 'shortParaphrase' | 'description' | 'tId' | 'userId'
+      | 'title'
+      | 'shortParaphrase'
+      | 'description'
+      | 'tId'
+      | 'userId'
+      | 'formImage'
+      | 'formData'
     >
   ) => {
-    const { data } = await putTatoeApi(value);
+    console.log('+++++@useTatoe value.formDataありますか', value.formData); // ない　POSTではこれでうまくいった
+    console.log('+++++@useTatoe value.formImageありますか', value.formImage); // ある
 
+    const { data } = await putTatoeApi(value.formData);
     const updatedTatoe = tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
         return {
@@ -92,9 +95,10 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
           shortParaphrase: data.shortParaphrase,
         };
       }
+
       return item;
     });
-
+    console.log('@userTatoe return updatedTatoe', updatedTatoe);
     setTatoe(updatedTatoe);
   };
 

@@ -52,7 +52,7 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>
   ) => {
     const { data } = await postTatoeApi(value.formData);
-
+    console.log('@useTatoe create data', data);
     const formattedData: Tatoe = {
       tId: data.id,
       userId: data.userId,
@@ -67,22 +67,15 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     setTatoe(newTatoe);
   };
 
+  // valueでuserIdがないとAPIでエラー
   const updateTatoe = async (
-    value: Pick<
-      Tatoe,
-      | 'title'
-      | 'shortParaphrase'
-      | 'description'
-      | 'tId'
-      | 'userId'
-      | 'formImage'
-      | 'formData'
-    >
+    value: Pick<Tatoe, 'tId' | 'userId' | 'formData'>
   ) => {
-    console.log('+++++@useTatoe value.formDataありますか', value.formData); // ない　POSTではこれでうまくいった
-    console.log('+++++@useTatoe value.formImageありますか', value.formImage); // ある
+    console.log(`${'\n'}value.userId${'\n'}`, value.userId);
 
     const { data } = await putTatoeApi(value.formData);
+    console.log('@useTatoe update data', data);
+
     const updatedTatoe = tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
         return {
@@ -98,7 +91,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
 
       return item;
     });
-    console.log('@userTatoe return updatedTatoe', updatedTatoe);
+    console.log(`${'\n'}updatedTatoe${'\n'}`, updatedTatoe);
+
     setTatoe(updatedTatoe);
   };
 

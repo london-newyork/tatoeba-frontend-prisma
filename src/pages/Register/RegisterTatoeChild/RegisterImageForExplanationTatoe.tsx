@@ -28,6 +28,7 @@ export const RegisterImageForExplanationTatoe = ({
   const explanationImage = useSetRecoilState(ExplanationImageAtom);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const tId = query.tId;
+  // TODO defaultUrl: string | nullとimageUrl(サーバーで作成したもの)をPropsでこのコンポーネントへ渡す
 
   // 登録・編集
   const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -91,10 +92,8 @@ export const RegisterImageForExplanationTatoe = ({
     if (!imageUrl) {
       return;
     }
-    URL.revokeObjectURL(imageUrl);
-    setImageUrl(null);
-
     // storageに対する処理
+    // TODO hooks化
     await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${query_tId}/explanation_image`,
       {
@@ -104,6 +103,9 @@ export const RegisterImageForExplanationTatoe = ({
         },
       }
     );
+
+    URL.revokeObjectURL(imageUrl);
+    setImageUrl(null);
   };
 
   return (

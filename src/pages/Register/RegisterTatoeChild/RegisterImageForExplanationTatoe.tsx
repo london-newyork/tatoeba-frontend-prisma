@@ -88,14 +88,12 @@ export const RegisterImageForExplanationTatoe = ({
     };
   }, [defaultImageUrl]);
 
-  // TODO: かならずしもimageUrlに入ってるURLの画像が 例えA の画像とは限らない 例えBかもしれない
-  // imageUrlに入ってるURLでアクセスすれば フロントでGETしなくても勝手に画像表示される
+  // 更新
   useEffect(() => {
     const main = async () => {
       if (query_tId) {
         // defaultImageUrl = プレビューのURLをsetDefaultImageUrlにセット
-        setDefaultImageUrl(defaultImageUrl);
-        console.log('defaultImageUrl', defaultImageUrl);
+        // setDefaultImageUrl(defaultImageUrl);
 
         // 更新時にAPIから届いたimageUrlをセット
         setImageUrl(imageUrl);
@@ -110,7 +108,10 @@ export const RegisterImageForExplanationTatoe = ({
     main();
   }, [query_tId]);
 
-  // TODO あとで名前を修正する可能性がある
+  console.log('defaultImageUrl', defaultImageUrl);
+  console.log('imageUrl', imageUrl);
+
+  // TODO: あとで名前を修正する可能性がある
   const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     // プレビュー画面の処理
@@ -121,7 +122,7 @@ export const RegisterImageForExplanationTatoe = ({
     //   return;
     // }
     // storageに対する処理
-    // TODO hooks化
+    // TODO: hooks化
     await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${query_tId}/explanation_image`,
       {
@@ -174,9 +175,8 @@ export const RegisterImageForExplanationTatoe = ({
             alt='例えの説明画像'
           />
         ) : (
-          <div className='absolute text-on-explanation-img'>画像を追加</div>
-        )}
-        {imageUrl ? (
+            <div className='absolute text-on-explanation-img'>画像を追加</div>
+          ) && imageUrl ? (
           <img
             src={imageUrl}
             className='explanation-img'

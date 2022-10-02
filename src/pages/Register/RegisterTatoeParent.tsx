@@ -39,12 +39,8 @@ export const RegisterTatoeParent = () => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  console.log('@RTP imageUrl 上 ===', imageUrl); //ok
 
   useEffect(() => {
-    // FIXME:
-    // console.log('@RTP useEffect imageUrl', imageUrl); //undefined
-
     tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
         setImageUrl(item.imageUrl);
@@ -114,6 +110,10 @@ export const RegisterTatoeParent = () => {
       }
 
       const formData = new FormData(e.currentTarget);
+      formData.forEach((value, key) => {
+        console.log(`formData ${key} : ${value}`);
+      });
+
       await updateTatoe({
         tId: query_tId as string,
         userId,
@@ -125,9 +125,6 @@ export const RegisterTatoeParent = () => {
       });
     }
   };
-
-  // FIXME:
-  console.log('@RTP setImageUrl(tatoe.imageUrl)', imageUrl); // ある
 
   // TODO 削除 後で削除
   const handleClickDeleteImage = async () => {

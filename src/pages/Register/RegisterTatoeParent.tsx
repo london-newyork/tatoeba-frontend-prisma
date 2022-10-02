@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -32,13 +32,25 @@ export const RegisterTatoeParent = () => {
   const [createdAt, setCreatedAt] = useState<string | null>('');
   const [updatedAt, setUpdatedAt] = useState<string | null>('');
 
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
+
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-  // const setExplanationImage = useSetRecoilState(ExplanationImageAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  // const { api: createTatoeApi } = useApi('/tatoe', { method: 'POST' });
+  console.log('@RTP imageUrl 上 ===', imageUrl); //ok
 
+  useEffect(() => {
+    // FIXME:
+    // console.log('@RTP useEffect imageUrl', imageUrl); //undefined
+
+    tatoe.map((item: Tatoe) => {
+      if (item.tId === query_tId) {
+        setImageUrl(item.imageUrl);
+      }
+    });
+  }, [query_tId]);
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
     router,
@@ -73,7 +85,13 @@ export const RegisterTatoeParent = () => {
         return;
       }
       const formData = new FormData(e.currentTarget);
-      await createTatoe({ title, shortParaphrase, description, formData });
+
+      await createTatoe({
+        title,
+        shortParaphrase,
+        description,
+        formData,
+      });
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',
@@ -94,6 +112,7 @@ export const RegisterTatoeParent = () => {
         alertRegisterTatoe();
         return;
       }
+
       const formData = new FormData(e.currentTarget);
       await updateTatoe({
         tId: query_tId as string,
@@ -106,6 +125,9 @@ export const RegisterTatoeParent = () => {
       });
     }
   };
+
+  // FIXME:
+  console.log('@RTP setImageUrl(tatoe.imageUrl)', imageUrl); // ある
 
   // TODO 削除 後で削除
   const handleClickDeleteImage = async () => {
@@ -139,6 +161,10 @@ export const RegisterTatoeParent = () => {
         query_tId={query.tId}
         userId={userId}
         persistAccessToken={persistAccessToken}
+        setImageUrl={setImageUrl}
+        imageUrl={imageUrl}
+        defaultImageUrl={defaultImageUrl}
+        setDefaultImageUrl={setDefaultImageUrl}
         // 後で消す
         // onSubmit={handleOnSubmit}
       />
@@ -152,7 +178,6 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-          // onClick={handleOnClickCreateTatoe}
         />
         <UpdateTatoeBtn
           tatoe={tatoe}
@@ -162,7 +187,6 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-          // onClick={handleOnclickUpdateTatoe}
         />
       </div>
     </form>

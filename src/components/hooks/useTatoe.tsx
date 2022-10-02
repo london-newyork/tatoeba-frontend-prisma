@@ -18,7 +18,6 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
 
   const getTatoe = async () => {
     const { data } = await getTatoeApi();
-
     const newData = data.map((item: any) => {
       return {
         tId: item.id,
@@ -28,9 +27,10 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
         title: item.title,
         description: item.description,
         shortParaphrase: item.shortParaphrase,
+        imageUrl: item.imageUrl,
+        imageId: item.imageId,
       };
     });
-
     const sortedData = newData.sort((a: Tatoe, b: Tatoe) => {
       if (a.createdAt < b.createdAt) {
         return 1;
@@ -52,7 +52,6 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>
   ) => {
     const { data } = await postTatoeApi(value.formData);
-    console.log('@useTatoe create data', data);
     const formattedData: Tatoe = {
       tId: data.id,
       userId: data.userId,
@@ -61,13 +60,13 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
       title: data.title,
       description: data.description,
       shortParaphrase: data.shortParaphrase,
+      imageUrl: data.imageUrl,
+      imageId: data.imageId,
     };
     const newTatoe = [formattedData, ...tatoe];
-
     setTatoe(newTatoe);
   };
 
-  // valueでuserIdがないとAPIでエラー
   const updateTatoe = async (
     value: Pick<Tatoe, 'tId' | 'userId' | 'formData'>
   ) => {

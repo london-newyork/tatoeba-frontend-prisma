@@ -6,6 +6,8 @@ export const useHandleMoveToEdit = ({
   title,
   shortParaphrase,
   description,
+  imageId,
+  imageUrl,
 }: Tatoe) => {
   const router = useRouter();
   const handleMoveToEdit = () => {
@@ -16,6 +18,8 @@ export const useHandleMoveToEdit = ({
         title,
         shortParaphrase,
         description,
+        imageId,
+        imageUrl,
       },
     });
   };

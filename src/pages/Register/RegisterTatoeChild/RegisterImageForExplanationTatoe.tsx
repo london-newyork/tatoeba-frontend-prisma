@@ -9,26 +9,32 @@ import React, {
 import { useSetRecoilState } from 'recoil';
 import { useApi } from '../../../components/hooks/useApi';
 import { ExplanationImageAtom } from '../../../components/utils/atoms/ExplanationImageAtom';
+import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 
 export type SubmitImageProps = {
-  // onSubmit: (file: File) => void;
   userId?: string;
   query_tId?: string | string[];
   query?: ParsedUrlQuery;
   persistAccessToken?: string;
+  imageUrl?: string;
+  setImageUrl: React.Dispatch<React.SetStateAction<string>>;
+  defaultImageUrl?: string;
+  setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const RegisterImageForExplanationTatoe = ({
   query,
   query_tId,
   persistAccessToken,
+  imageUrl,
+  setImageUrl,
+  defaultImageUrl,
+  setDefaultImageUrl,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
   const explanationImage = useSetRecoilState(ExplanationImageAtom);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const tId = query.tId;
-  // TODO defaultUrl: string | nullとimageUrl(サーバーで作成したもの)をPropsでこのコンポーネントへ渡す
 
   // 登録・編集
   const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -44,42 +50,61 @@ export const RegisterImageForExplanationTatoe = ({
       return;
     }
     const file = e.target.files[0];
-    // TODO キャンセル時の実装をしないとエラーになる
+    // TODO: キャンセル時の実装をしないとエラーになる
     if (file.size >= 1000000) {
       setIsFileSizeError(true);
       return;
     }
-    // 既存のimageがあったらそれを解放
-    if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
+    // 既存のimageがあったらそれを解放 => これはdefaultUrlのしごと
+    if (defaultImageUrl) {
+      URL.revokeObjectURL(defaultImageUrl);
     }
-    setImageUrl(URL.createObjectURL(file));
-  };
+    setDefaultImageUrl(URL.createObjectURL(file));
 
-  const { api: getTatoeApi } = useApi(
-    `/tatoe/${query_tId}/explanation_image?e=${explanationImage}`,
-    {
-      method: 'GET',
-    }
-  );
+    // if (imageUrl) {
+    //   URL.revokeObjectURL(imageUrl);
+    // }
+    // setImageUrl(URL.createObjectURL(file));
+  };
+  // FIXME:
+  // 直接imageUrlでGETするのでいらないかも
+  // const { api: getTatoeApi } = useApi(
+  //   `/tatoe/${query_tId}/explanation_image?e=${explanationImage}`,
+  //   {
+  //     method: 'GET',
+  //   }
+  // );
 
   useEffect(() => {
-    // Reactがこのコンポーネントを破棄するときにimageUrl解放
+    // Reactがこのコンポーネントを破棄するときにimageUrl解放　=> これはdefaultImageUrlのしごと
     return () => {
-      if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
+      // マウント時にすでにdefaultImageUrlがあったら削除 (イメージ画像を1回1回破棄)
+      if (defaultImageUrl) {
+        URL.revokeObjectURL(defaultImageUrl);
       }
+      // if (imageUrl) {
+      //   URL.revokeObjectURL(imageUrl);
+      // }
     };
-  }, [imageUrl]);
+  }, [defaultImageUrl]);
 
+  // TODO: かならずしもimageUrlに入ってるURLの画像が 例えA の画像とは限らない 例えBかもしれない
+  // imageUrlに入ってるURLでアクセスすれば フロントでGETしなくても勝手に画像表示される
   useEffect(() => {
     const main = async () => {
       if (query_tId) {
+        // defaultImageUrl = プレビューのURLをsetDefaultImageUrlにセット
+        setDefaultImageUrl(defaultImageUrl);
+        console.log('defaultImageUrl', defaultImageUrl);
+
+        // 更新時にAPIから届いたimageUrlをセット
         setImageUrl(imageUrl);
-        const blobUrl = await getTatoeApi();
-        if (blobUrl) {
-          setImageUrl(blobUrl);
-        }
+
+        // FIXME: 一旦コメントアウト
+        // const blobUrl = await getTatoeApi();
+        // if (blobUrl) {
+        //   setImageUrl(blobUrl);
+        // }
       }
     };
     main();
@@ -89,9 +114,12 @@ export const RegisterImageForExplanationTatoe = ({
   const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     // プレビュー画面の処理
-    if (!imageUrl) {
+    if (!defaultImageUrl) {
       return;
     }
+    // if (!imageUrl) {
+    //   return;
+    // }
     // storageに対する処理
     // TODO hooks化
     await fetch(
@@ -104,8 +132,12 @@ export const RegisterImageForExplanationTatoe = ({
       }
     );
 
-    URL.revokeObjectURL(imageUrl);
-    setImageUrl(null);
+    // FIXME: fetchしたらプレビュー画面のURLを削除
+    URL.revokeObjectURL(defaultImageUrl);
+    setDefaultImageUrl(null);
+
+    // URL.revokeObjectURL(imageUrl);
+    // setImageUrl(null);
   };
 
   return (
@@ -135,6 +167,15 @@ export const RegisterImageForExplanationTatoe = ({
         ) : null}
       </label>
       <div className='explanation-img-wrapper position relative'>
+        {defaultImageUrl ? (
+          <img
+            src={defaultImageUrl}
+            className='explanation-img'
+            alt='例えの説明画像'
+          />
+        ) : (
+          <div className='absolute text-on-explanation-img'>画像を追加</div>
+        )}
         {imageUrl ? (
           <img
             src={imageUrl}

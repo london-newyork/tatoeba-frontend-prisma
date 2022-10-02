@@ -11,10 +11,10 @@ export type Tatoe = {
   description?: string;
   createdAt?: string;
   updatedAt?: string;
-  tImageUrl?: string;
+  imageUrl?: string;
+  imageId?: string;
   query_tId?: string | string[];
   formData?: FormData;
-  formImage?: File;
 };
 
 export type Edit = {

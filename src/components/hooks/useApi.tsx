@@ -26,17 +26,8 @@ export const useApi = (url: string, { method }: UseApiOptions) => {
           : JSON.stringify(sendData),
     });
 
-    // 画像のとき
-    // const contentType = res.headers.get('Content-Type');
-    // if (method === 'GET' && contentType.match(/image/)) {
-    //   const imageData = await res.blob();
-    //   const blobUrl = URL.createObjectURL(imageData);
-    //   return blobUrl;
-    // } else {
-    // 画像以外
     const data = await res.json();
     return data;
-    // }
   };
 
   return { api };

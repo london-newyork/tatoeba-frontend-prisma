@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useApi } from '../../../components/hooks/useApi';
 
 export type SubmitImageProps = {
   userId?: string;
@@ -18,6 +17,7 @@ export type SubmitImageProps = {
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
   defaultImageUrl?: string;
   setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
+  deleteExplanationImage: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const RegisterImageForExplanationTatoe = ({
@@ -26,6 +26,7 @@ export const RegisterImageForExplanationTatoe = ({
   setImageUrl,
   defaultImageUrl,
   setDefaultImageUrl,
+  deleteExplanationImage,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
@@ -44,12 +45,14 @@ export const RegisterImageForExplanationTatoe = ({
       return;
     }
     const file = e.target.files[0];
-    // TODO: キャンセル時の実装をしないとエラーになる
+    if (!file) {
+      return;
+    }
     if (file.size >= 1000000) {
       setIsFileSizeError(true);
       return;
     }
-    // 既存のimageがあったらそれを解放 => これはdefaultUrlのしごと
+    // 既存のimageがあったらそれを解放
     if (defaultImageUrl) {
       URL.revokeObjectURL(defaultImageUrl);
     }
@@ -70,30 +73,11 @@ export const RegisterImageForExplanationTatoe = ({
   useEffect(() => {
     const main = async () => {
       if (query_tId) {
-        // 更新時にAPIから届いたimageUrlをセット
         setImageUrl(imageUrl);
       }
     };
     main();
   }, [query_tId]);
-
-  const { api: deleteTatoeImageApi } = useApi(
-    `/tatoe/${query_tId}/explanation_image`,
-    { method: 'DELETE' }
-  );
-
-  /* DELETE */
-  const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
-    e.preventDefault();
-    if (!defaultImageUrl && !imageUrl) {
-      return;
-    }
-    await deleteTatoeImageApi();
-
-    setImageUrl(null);
-    URL.revokeObjectURL(defaultImageUrl);
-    setDefaultImageUrl(null);
-  };
 
   return (
     <div
@@ -164,7 +148,7 @@ export const RegisterImageForExplanationTatoe = ({
               </span>
             </button>
           </div>
-          <button className='w-8 h-10' onClick={deleteImage}>
+          <button className='w-8 h-10' onClick={deleteExplanationImage}>
             <span
               className='material-symbols-outlined text-2xl mt-[3px]
               submit-image-icon'

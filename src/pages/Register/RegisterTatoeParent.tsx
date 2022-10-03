@@ -1,4 +1,9 @@
-import React, { FormEventHandler, useEffect, useState } from 'react';
+import React, {
+  FormEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -16,6 +21,7 @@ import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
+import { useApi } from '../../components/hooks/useApi';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();
@@ -39,8 +45,10 @@ export const RegisterTatoeParent = () => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
-  console.log(`${'\n\n'} ==== @RTP query ==== ${'\n\n'}`, query);
-
+  const { api: deleteTatoeImageApi } = useApi(
+    `/tatoe/${query_tId}/explanation_image`,
+    { method: 'DELETE' }
+  );
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
@@ -111,10 +119,6 @@ export const RegisterTatoeParent = () => {
       }
 
       const formData = new FormData(e.currentTarget);
-      formData.forEach((value, key) => {
-        console.log(`formData ${key} : ${value}`);
-      });
-
       await updateTatoe({
         tId: query_tId as string,
         userId,
@@ -125,6 +129,21 @@ export const RegisterTatoeParent = () => {
         pathname: '/DashBoard/UserTatoeList',
       });
     }
+  };
+
+  /* DELETE */
+  const handleDeleteExplanationImage: MouseEventHandler<
+    HTMLButtonElement
+  > = async (e) => {
+    e.preventDefault();
+    if (!defaultImageUrl && !imageUrl) {
+      return;
+    }
+    await deleteTatoeImageApi();
+
+    setImageUrl(null);
+    URL.revokeObjectURL(defaultImageUrl);
+    setDefaultImageUrl(null);
   };
 
   return (
@@ -141,7 +160,6 @@ export const RegisterTatoeParent = () => {
         setDescription={setDescription}
       />
       <RegisterImageForExplanationTatoe
-        // query={query}
         query_tId={query.tId}
         userId={userId}
         persistAccessToken={persistAccessToken}
@@ -150,8 +168,7 @@ export const RegisterTatoeParent = () => {
         defaultImageUrl={defaultImageUrl}
         setDefaultImageUrl={setDefaultImageUrl}
         imageId={imageId}
-        // 後で消す
-        // onSubmit={handleOnSubmit}
+        deleteExplanationImage={handleDeleteExplanationImage}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />

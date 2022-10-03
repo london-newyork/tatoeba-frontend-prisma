@@ -31,6 +31,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
         imageId: item.imageId,
       };
     });
+    console.log('@useTatoe GET return newData *****', newData);
+
     const sortedData = newData.sort((a: Tatoe, b: Tatoe) => {
       if (a.createdAt < b.createdAt) {
         return 1;
@@ -73,7 +75,7 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     console.log(`${'\n'}value.userId${'\n'}`, value.userId);
 
     const { data } = await putTatoeApi(value.formData);
-    console.log('@useTatoe update data', data);
+    console.log(`@useTatoe update return raw data ${'\n\n'}`, data);
 
     const updatedTatoe = tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
@@ -85,18 +87,21 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
           title: data.title,
           description: data.description,
           shortParaphrase: data.shortParaphrase,
+          imageId: data.imageId,
+          imageUrl: data.imageUrl,
         };
       }
 
       return item;
     });
-    console.log(`${'\n'}updatedTatoe${'\n'}`, updatedTatoe);
+    console.log(`${'\n\n'}updatedTatoe formatted data${'\n\n'}`, updatedTatoe);
 
     setTatoe(updatedTatoe);
   };
 
   const deleteTatoe = async (value: Pick<Tatoe, 'tId'>) => {
     const { data } = await deleteTatoeApi(value);
+    // TODO: 一覧から画像も削除されるように実装
 
     const deleteData = tatoe.filter((item: Tatoe) => {
       return item.tId !== data.id;

@@ -6,10 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { useApi } from '../../../components/hooks/useApi';
-import { ExplanationImageAtom } from '../../../components/utils/atoms/ExplanationImageAtom';
-import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 
 export type SubmitImageProps = {
   userId?: string;
@@ -17,24 +14,25 @@ export type SubmitImageProps = {
   query?: ParsedUrlQuery;
   persistAccessToken?: string;
   imageUrl?: string;
+  imageId?: string;
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
   defaultImageUrl?: string;
   setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const RegisterImageForExplanationTatoe = ({
-  query,
   query_tId,
-  persistAccessToken,
   imageUrl,
+  imageId,
   setImageUrl,
   defaultImageUrl,
   setDefaultImageUrl,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
-  const explanationImage = useSetRecoilState(ExplanationImageAtom);
-  const tId = query.tId;
+
+  console.log(`@RIFET imageId ${'\n\n'}`, imageId);
+  console.log(`@RIFET imageUrl ${'\n\n'}`, imageUrl);
 
   // 登録・編集
   const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -60,20 +58,7 @@ export const RegisterImageForExplanationTatoe = ({
       URL.revokeObjectURL(defaultImageUrl);
     }
     setDefaultImageUrl(URL.createObjectURL(file));
-
-    // if (imageUrl) {
-    //   URL.revokeObjectURL(imageUrl);
-    // }
-    // setImageUrl(URL.createObjectURL(file));
   };
-  // FIXME:
-  // 直接imageUrlでGETするのでいらないかも
-  // const { api: getTatoeApi } = useApi(
-  //   `/tatoe/${query_tId}/explanation_image?e=${explanationImage}`,
-  //   {
-  //     method: 'GET',
-  //   }
-  // );
 
   useEffect(() => {
     // Reactがこのコンポーネントを破棄するときにimageUrl解放　=> これはdefaultImageUrlのしごと
@@ -82,9 +67,6 @@ export const RegisterImageForExplanationTatoe = ({
       if (defaultImageUrl) {
         URL.revokeObjectURL(defaultImageUrl);
       }
-      // if (imageUrl) {
-      //   URL.revokeObjectURL(imageUrl);
-      // }
     };
   }, [defaultImageUrl]);
 
@@ -92,54 +74,38 @@ export const RegisterImageForExplanationTatoe = ({
   useEffect(() => {
     const main = async () => {
       if (query_tId) {
-        // defaultImageUrl = プレビューのURLをsetDefaultImageUrlにセット
-        // setDefaultImageUrl(defaultImageUrl);
-
         // 更新時にAPIから届いたimageUrlをセット
         setImageUrl(imageUrl);
-
-        // FIXME: 一旦コメントアウト
-        // const blobUrl = await getTatoeApi();
-        // if (blobUrl) {
-        //   setImageUrl(blobUrl);
-        // }
       }
     };
     main();
   }, [query_tId]);
 
-  console.log('defaultImageUrl', defaultImageUrl);
-  console.log('imageUrl', imageUrl);
+  console.log('@RIFET defaultImageUrl', defaultImageUrl);
+  console.log(`@RIFET imageUrl outside of deleteImage${'\n\n'}`, imageUrl);
+  console.log(`@RIFET  query_tId => ${'\n\n'}`, query_tId);
 
-  // TODO: あとで名前を修正する可能性がある
+  const { api: deleteTatoeImageApi } = useApi(
+    `/tatoe/${query_tId}/explanation_image`,
+    { method: 'DELETE' }
+  );
+
+  /* DELETE */
   const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    // プレビュー画面の処理
-    if (!defaultImageUrl) {
+    // プレビュー画面のURLがない& APIの画像URLがないときはなにもしない
+    if (!defaultImageUrl && !imageUrl) {
       return;
     }
-    // if (!imageUrl) {
-    //   return;
-    // }
-    // storageに対する処理
-    // TODO: hooks化
-    await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${query_tId}/explanation_image`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${persistAccessToken}`,
-        },
-      }
-    );
+    console.log(`@RIFET imageUrl in deleteImage *****${'\n\n'}`, imageUrl);
 
-    // FIXME: fetchしたらプレビュー画面のURLを削除
+    await deleteTatoeImageApi();
+
+    setImageUrl(null);
     URL.revokeObjectURL(defaultImageUrl);
     setDefaultImageUrl(null);
-
-    // URL.revokeObjectURL(imageUrl);
-    // setImageUrl(null);
   };
+  console.log(`@RIFET imageUrl after deleteImage ====${'\n\n'}`, imageUrl);
 
   return (
     <div

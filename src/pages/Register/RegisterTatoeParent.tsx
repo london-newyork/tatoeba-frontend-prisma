@@ -6,7 +6,7 @@ import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDesc
 
 import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
 import { useRouter } from 'next/router';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
 import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
 import { UpdateTatoeBtn } from '../../components/btn/UpdateTatoeBtn';
@@ -25,6 +25,7 @@ export const RegisterTatoeParent = () => {
   const query_tId = query.tId;
   // stringしか来ないので強引にasで型をつける
   const tId = query.tId as string;
+  const imageId = query.imageId as string;
 
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
@@ -39,6 +40,8 @@ export const RegisterTatoeParent = () => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
+
+  console.log(`${'\n\n'} ==== @RTP query ==== ${'\n\n'}`, query);
 
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
@@ -126,20 +129,6 @@ export const RegisterTatoeParent = () => {
     }
   };
 
-  // TODO 削除 後で削除
-  const handleClickDeleteImage = async () => {
-    //
-    // await fetch(
-    //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/tatoe/${tId}/explanation_image`,
-    //   {
-    //     method: 'DELETE',
-    //     headers: {
-    //       Authorization: `Bearer ${persistAccessToken}`,
-    //     },
-    //   }
-    // );
-  };
-
   return (
     <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
       <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
@@ -154,7 +143,7 @@ export const RegisterTatoeParent = () => {
         setDescription={setDescription}
       />
       <RegisterImageForExplanationTatoe
-        query={query}
+        // query={query}
         query_tId={query.tId}
         userId={userId}
         persistAccessToken={persistAccessToken}
@@ -162,6 +151,7 @@ export const RegisterTatoeParent = () => {
         imageUrl={imageUrl}
         defaultImageUrl={defaultImageUrl}
         setDefaultImageUrl={setDefaultImageUrl}
+        imageId={imageId}
         // 後で消す
         // onSubmit={handleOnSubmit}
       />

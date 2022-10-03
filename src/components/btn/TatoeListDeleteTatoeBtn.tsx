@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { useApi } from '../hooks/useApi';
 import { useAuth } from '../hooks/useAuth';
 import { useTatoe } from '../hooks/useTatoe';
 import { useUserInfo } from '../hooks/useUserInfo';
@@ -24,8 +25,12 @@ export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
     setTatoe,
     persistAccessToken,
   });
-
+  const { api: deleteTatoeImageApi } = useApi(
+    `/tatoe/${tId}/explanation_image`,
+    { method: 'DELETE' }
+  );
   const handleOnClickDeleteTatoeBtn = async () => {
+    await deleteTatoeImageApi();
     await deleteTatoe({ tId });
   };
 

@@ -11,8 +11,10 @@ export type Tatoe = {
   description?: string;
   createdAt?: string;
   updatedAt?: string;
-  tImageUrl?: string;
+  imageUrl?: string;
+  imageId?: string;
   query_tId?: string | string[];
+  formData?: FormData;
 };
 
 export type Edit = {
@@ -56,7 +58,7 @@ export type WithoutPropsChildrenLayouts = {
 };
 
 export type TatoeBtnProps = {
-  onClick: () => void;
+  // onClick: () => void;
   tatoe?: Tatoe[];
 } & Tatoe;
 
@@ -78,4 +80,11 @@ export type TatoeBtnHooksProps = {
 
 export type OnClick = {
   onClick: () => void;
+};
+
+export type SubmitImageProps = {
+  onSubmit: (file: File) => void;
+  userId?: string;
+  tId?: string;
+  query?: ParsedUrlQuery;
 };

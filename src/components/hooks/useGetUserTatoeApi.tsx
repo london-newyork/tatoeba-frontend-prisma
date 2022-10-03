@@ -28,6 +28,7 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
     setAllUserTatoe(formattedTatoe);
   };
 
+  // Search Resultで使用
   const getEachTatoe = async () => {
     if (!filteredTatoe) return;
     const { api: getEachTatoeApi } = useApi(
@@ -47,6 +48,8 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
         title: item.title,
         description: item.description,
         shortParaphrase: item.shortParaphrase,
+        imageId: item.imageId,
+        imageUrl: item.imageUrl,
       };
       return formattedData;
     });

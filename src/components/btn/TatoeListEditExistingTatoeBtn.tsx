@@ -7,12 +7,16 @@ export const TatoeListEditExistingTatoeBtn = ({
   title,
   shortParaphrase,
   description,
+  imageId,
+  imageUrl,
 }: Tatoe) => {
   const { handleMoveToEdit } = useHandleMoveToEdit({
     tId,
     title,
     shortParaphrase,
     description,
+    imageId,
+    imageUrl,
   });
 
   return (

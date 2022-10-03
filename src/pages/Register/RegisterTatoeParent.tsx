@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React, {
+  FormEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -15,6 +20,8 @@ import { useUserInfo } from '../../components/hooks/useUserInfo';
 import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
+import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
+import { useApi } from '../../components/hooks/useApi';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();
@@ -22,6 +29,7 @@ export const RegisterTatoeParent = () => {
   const query_tId = query.tId;
   // stringしか来ないので強引にasで型をつける
   const tId = query.tId as string;
+  const imageId = query.imageId as string;
 
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
@@ -29,12 +37,25 @@ export const RegisterTatoeParent = () => {
   const [createdAt, setCreatedAt] = useState<string | null>('');
   const [updatedAt, setUpdatedAt] = useState<string | null>('');
 
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
+
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
-
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
+  const { api: deleteTatoeImageApi } = useApi(
+    `/tatoe/${query_tId}/explanation_image`,
+    { method: 'DELETE' }
+  );
+  useEffect(() => {
+    tatoe.map((item: Tatoe) => {
+      if (item.tId === query_tId) {
+        setImageUrl(item.imageUrl);
+      }
+    });
+  }, [query_tId]);
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
     router,
@@ -51,9 +72,12 @@ export const RegisterTatoeParent = () => {
     updatedAt,
   });
 
-  const handleOnClickCreateTatoe = async () => {
+  const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    /* POST */
+
     if (!query_tId) {
-      // データのバリデーションを行う
       const { alertRegisterTatoe, noInputsData } = useAlert({
         userId,
         user,
@@ -65,7 +89,41 @@ export const RegisterTatoeParent = () => {
         alertRegisterTatoe();
         return;
       }
-      await createTatoe({ title, shortParaphrase, description });
+      const formData = new FormData(e.currentTarget);
+
+      await createTatoe({
+        title,
+        shortParaphrase,
+        description,
+        formData,
+      });
+
+      router.push({
+        pathname: '/DashBoard/UserTatoeList',
+      });
+    }
+
+    /* PUT */
+
+    if (query_tId) {
+      const { alertRegisterTatoe, noInputsData } = useAlert({
+        userId,
+        user,
+        title,
+        shortParaphrase,
+        description,
+      });
+      if (noInputsData) {
+        alertRegisterTatoe();
+        return;
+      }
+
+      const formData = new FormData(e.currentTarget);
+      await updateTatoe({
+        tId: query_tId as string,
+        userId,
+        formData,
+      });
 
       router.push({
         pathname: '/DashBoard/UserTatoeList',
@@ -73,44 +131,23 @@ export const RegisterTatoeParent = () => {
     }
   };
 
-  const handleOnclickUpdateTatoe = async () => {
-    const { alertRegisterTatoe, noInputsData } = useAlert({
-      userId,
-      user,
-      title,
-      shortParaphrase,
-      description,
-    });
-    if (noInputsData) {
-      alertRegisterTatoe();
+  /* DELETE */
+  const handleDeleteExplanationImage: MouseEventHandler<
+    HTMLButtonElement
+  > = async (e) => {
+    e.preventDefault();
+    if (!defaultImageUrl && !imageUrl) {
       return;
     }
+    await deleteTatoeImageApi();
 
-    if (query_tId) {
-      tatoe.map(async (item: Tatoe) => {
-        if (item.tId === query_tId) {
-          const tId = item.tId;
-          await updateTatoe({
-            title,
-            shortParaphrase,
-            description,
-            tId,
-            userId,
-          });
-        }
-      });
-    }
-    tatoe.map((item: Tatoe) => {
-      if (item.tId === query_tId) {
-        router.push({
-          pathname: '/DashBoard/UserTatoeList',
-        });
-      }
-    });
+    setImageUrl(null);
+    URL.revokeObjectURL(defaultImageUrl);
+    setDefaultImageUrl(null);
   };
 
   return (
-    <div className='flex flex-col gap-6'>
+    <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
       <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
       <RegisterTatoeShortParaphrase
         query={query}
@@ -122,6 +159,17 @@ export const RegisterTatoeParent = () => {
         description={description}
         setDescription={setDescription}
       />
+      <RegisterImageForExplanationTatoe
+        query_tId={query.tId}
+        userId={userId}
+        persistAccessToken={persistAccessToken}
+        setImageUrl={setImageUrl}
+        imageUrl={imageUrl}
+        defaultImageUrl={defaultImageUrl}
+        setDefaultImageUrl={setDefaultImageUrl}
+        imageId={imageId}
+        deleteExplanationImage={handleDeleteExplanationImage}
+      />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn query_tId={query.tId} />
         <CreateTatoeBtn
@@ -132,7 +180,6 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-          onClick={handleOnClickCreateTatoe}
         />
         <UpdateTatoeBtn
           tatoe={tatoe}
@@ -142,9 +189,8 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-          onClick={handleOnclickUpdateTatoe}
         />
       </div>
-    </div>
+    </form>
   );
 };

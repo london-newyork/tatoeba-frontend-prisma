@@ -10,15 +10,22 @@ export const useApi = (url: string, { method }: UseApiOptions) => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
 
   const api = async (sendData?: any): Promise<any> => {
+    const isFormData = sendData instanceof FormData;
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${url}`, {
       method,
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${persistAccessToken}`,
+        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       },
 
-      body: method === 'GET' ? null : JSON.stringify(sendData),
+      body:
+        method === 'GET'
+          ? null
+          : isFormData
+          ? sendData
+          : JSON.stringify(sendData),
     });
+
     const data = await res.json();
     return data;
   };

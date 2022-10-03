@@ -38,7 +38,7 @@ export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
       <input
         value={shortParaphrase}
         onChange={(e) => setShortParaphrase(e.target.value)}
-        name='short_paraphrase'
+        name='shortParaphrase'
         placeholder='土地'
         type='text'
         className='input-area'

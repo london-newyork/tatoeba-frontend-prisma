@@ -17,12 +17,10 @@ export const TatoeList = (): JSX.Element => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const router = useRouter();
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
-  console.log('@TatoeList tatoe + : ', tatoe);
-
+  console.log('@TatoeList tatoe ++', tatoe);
   if (!userId) {
     return null;
   }
-
   const { getTatoe } = useTatoe({
     userId,
     tatoe,
@@ -120,6 +118,8 @@ export const TatoeList = (): JSX.Element => {
                             title={item.title}
                             shortParaphrase={item.shortParaphrase}
                             description={item.description}
+                            imageId={item.imageId}
+                            imageUrl={item.imageUrl}
                           />
                           <TatoeListDeleteTatoeBtn tId={item.tId} />
                           <TatoeListCountFollowerBtn />

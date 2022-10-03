@@ -18,7 +18,6 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
 
   const getTatoe = async () => {
     const { data } = await getTatoeApi();
-
     const newData = data.map((item: any) => {
       return {
         tId: item.id,
@@ -28,6 +27,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
         title: item.title,
         description: item.description,
         shortParaphrase: item.shortParaphrase,
+        imageUrl: item.imageUrl,
+        imageId: item.imageId,
       };
     });
 
@@ -49,10 +50,9 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
   };
 
   const createTatoe = async (
-    value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description'>
+    value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>
   ) => {
-    const { data } = await postTatoeApi(value);
-
+    const { data } = await postTatoeApi(value.formData);
     const formattedData: Tatoe = {
       tId: data.id,
       userId: data.userId,
@@ -61,19 +61,17 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
       title: data.title,
       description: data.description,
       shortParaphrase: data.shortParaphrase,
+      imageUrl: data.imageUrl,
+      imageId: data.imageId,
     };
     const newTatoe = [formattedData, ...tatoe];
-
     setTatoe(newTatoe);
   };
 
   const updateTatoe = async (
-    value: Pick<
-      Tatoe,
-      'title' | 'shortParaphrase' | 'description' | 'tId' | 'userId'
-    >
+    value: Pick<Tatoe, 'tId' | 'userId' | 'formData'>
   ) => {
-    const { data } = await putTatoeApi(value);
+    const { data } = await putTatoeApi(value.formData);
 
     const updatedTatoe = tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
@@ -85,8 +83,11 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
           title: data.title,
           description: data.description,
           shortParaphrase: data.shortParaphrase,
+          imageId: data.imageId,
+          imageUrl: data.imageUrl,
         };
       }
+
       return item;
     });
 
@@ -95,7 +96,6 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
 
   const deleteTatoe = async (value: Pick<Tatoe, 'tId'>) => {
     const { data } = await deleteTatoeApi(value);
-
     const deleteData = tatoe.filter((item: Tatoe) => {
       return item.tId !== data.id;
     });

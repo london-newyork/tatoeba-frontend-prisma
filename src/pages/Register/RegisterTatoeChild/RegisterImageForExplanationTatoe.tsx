@@ -23,16 +23,12 @@ export type SubmitImageProps = {
 export const RegisterImageForExplanationTatoe = ({
   query_tId,
   imageUrl,
-  imageId,
   setImageUrl,
   defaultImageUrl,
   setDefaultImageUrl,
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
-
-  console.log(`@RIFET imageId ${'\n\n'}`, imageId);
-  console.log(`@RIFET imageUrl ${'\n\n'}`, imageUrl);
 
   // 登録・編集
   const handleClickChangeImage: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -61,7 +57,7 @@ export const RegisterImageForExplanationTatoe = ({
   };
 
   useEffect(() => {
-    // Reactがこのコンポーネントを破棄するときにimageUrl解放　=> これはdefaultImageUrlのしごと
+    // Reactがこのコンポーネントを破棄するときにimageUrl解放
     return () => {
       // マウント時にすでにdefaultImageUrlがあったら削除 (イメージ画像を1回1回破棄)
       if (defaultImageUrl) {
@@ -81,10 +77,6 @@ export const RegisterImageForExplanationTatoe = ({
     main();
   }, [query_tId]);
 
-  console.log('@RIFET defaultImageUrl', defaultImageUrl);
-  console.log(`@RIFET imageUrl outside of deleteImage${'\n\n'}`, imageUrl);
-  console.log(`@RIFET  query_tId => ${'\n\n'}`, query_tId);
-
   const { api: deleteTatoeImageApi } = useApi(
     `/tatoe/${query_tId}/explanation_image`,
     { method: 'DELETE' }
@@ -93,19 +85,15 @@ export const RegisterImageForExplanationTatoe = ({
   /* DELETE */
   const deleteImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    // プレビュー画面のURLがない& APIの画像URLがないときはなにもしない
     if (!defaultImageUrl && !imageUrl) {
       return;
     }
-    console.log(`@RIFET imageUrl in deleteImage *****${'\n\n'}`, imageUrl);
-
     await deleteTatoeImageApi();
 
     setImageUrl(null);
     URL.revokeObjectURL(defaultImageUrl);
     setDefaultImageUrl(null);
   };
-  console.log(`@RIFET imageUrl after deleteImage ====${'\n\n'}`, imageUrl);
 
   return (
     <div

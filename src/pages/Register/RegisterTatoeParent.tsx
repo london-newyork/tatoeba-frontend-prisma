@@ -16,8 +16,6 @@ import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
-import { ExplanationImageAtom } from '../../components/utils/atoms/ExplanationImageAtom';
-import { useApi } from '../../components/hooks/useApi';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();

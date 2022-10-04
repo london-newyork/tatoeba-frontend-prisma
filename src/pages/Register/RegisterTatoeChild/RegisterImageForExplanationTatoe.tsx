@@ -8,12 +8,8 @@ import React, {
 } from 'react';
 
 export type SubmitImageProps = {
-  userId?: string;
   query_tId?: string | string[];
-  query?: ParsedUrlQuery;
-  persistAccessToken?: string;
   imageUrl?: string;
-  imageId?: string;
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
   defaultImageUrl?: string;
   setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;

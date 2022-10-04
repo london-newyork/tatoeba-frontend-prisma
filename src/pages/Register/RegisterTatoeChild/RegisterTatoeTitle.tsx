@@ -1,20 +1,28 @@
-import { ParsedUrlQuery } from 'querystring';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Tatoe } from '../../../components/types/types';
 
 type TitleProps = {
-  query: ParsedUrlQuery;
+  tatoe?: Tatoe[];
+  apiTitle?: string;
+  // tatoe?: Tatoe[];
+  query_tId?: string;
   title: string | null;
   setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
 export const RegisterTatoeTitle = (props: TitleProps) => {
-  const { title, setTitle, query } = props;
+  const { title, setTitle /*  query_tId, apiTitle, tatoe  */ } = props;
+  // const [apiTitle, setApiTitle] = useState('');
 
-  useEffect(() => {
-    if (query.tId) {
-      setTitle(query.title);
-    }
-  }, [query.tId]);
+  // if (query_tId) {
+  // tatoe.map((item: Tatoe) => {
+  //   if (item.tId === query_tId) {
+  //     setTitle(item.title);
+  //   }
+  // });
+  // }
+
+  console.log('@RTT title', title);
 
   return (
     <div

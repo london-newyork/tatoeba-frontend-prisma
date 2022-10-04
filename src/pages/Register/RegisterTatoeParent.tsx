@@ -24,9 +24,16 @@ import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterI
 import { useApi } from '../../components/hooks/useApi';
 
 export const RegisterTatoeParent = () => {
+  /*
+   * queryの代わりにAPIからデータ取ってきて表示するには、どうするのか？
+   * tIdで取ってくる
+   *
+   *
+   */
+
   const router = useRouter();
   const query = router.query;
-  const query_tId = query.tId;
+  const query_tId = query.tId as string;
   // stringしか来ないので強引にasで型をつける
   const tId = query.tId as string;
   const imageId = query.imageId as string;
@@ -40,22 +47,66 @@ export const RegisterTatoeParent = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
+  const [apiTitle, setApiTitle] = useState<string | null>('');
+
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
+  console.log('tatoe', tatoe);
+
   const { api: deleteTatoeImageApi } = useApi(
     `/tatoe/${query_tId}/explanation_image`,
     { method: 'DELETE' }
   );
+  const { getTatoe } = useTatoe({
+    userId,
+    tatoe,
+    router,
+    user,
+    setTatoe,
+    persistAccessToken,
+  });
+
   useEffect(() => {
-    tatoe.map((item: Tatoe) => {
-      if (item.tId === query_tId) {
-        setImageUrl(item.imageUrl);
-      }
-    });
+    const getUserTatoeList = async () => {
+      await getTatoe();
+      console.log('tatoeはどこ？ :', tatoe);
+      // if (!tatoe) return;
+      // tatoe.map((item) => {
+      //   if (item.tId === query_tId) {
+      //     console.log('map の中のtitle', item.title);
+      //     setImageUrl(item.imageUrl);
+      //     setTitle(item.title);
+      //     // setDescription(item.description);
+      //     // setShortParaphrase(item.shortParaphrase);
+      //   }
+      // });
+    };
+    getUserTatoeList();
   }, [query_tId]);
+
+  // useEffect(() => {
+  //   tatoe.map((item: Tatoe) => {
+  //     if (item.tId === query_tId) {
+  //       setImageUrl(item.imageUrl);
+  //     }
+  //   });
+  // }, [query_tId]);
+
+  // useEffect(() => {
+  //   tatoe.map((item) => {
+  //     if (item.tId === query_tId) {
+  //       console.log('map の中のtitle', item.title);
+  //       // setImageUrl(item.imageUrl);
+  //       setTitle(item.title);
+  //       // setDescription(item.description);
+  //       // setShortParaphrase(item.shortParaphrase);
+  //     }
+  //   });
+  // }, []);
+
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
     router,
@@ -146,28 +197,84 @@ export const RegisterTatoeParent = () => {
     setDefaultImageUrl(null);
   };
 
+  console.log('下のtitle', title); // ない
+  console.log('imageUrl', imageUrl); // null
+
   return (
     <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
+      {tatoe && query_tId
+        ? tatoe.map((item) => {
+            return (
+              <>
+                <RegisterTatoeTitle
+                  query_tId={query_tId}
+                  title={title}
+                  setTitle={setTitle}
+                />
+                <RegisterTatoeShortParaphrase
+                  query_tId={query_tId}
+                  shortParaphrase={shortParaphrase}
+                  setShortParaphrase={setShortParaphrase}
+                />
+                <RegisterTatoeDescription
+                  query_tId={query_tId}
+                  description={description}
+                  setDescription={setDescription}
+                />
+                <RegisterImageForExplanationTatoe
+                  query_tId={query_tId}
+                  setImageUrl={setImageUrl}
+                  imageUrl={imageUrl}
+                  defaultImageUrl={defaultImageUrl}
+                  setDefaultImageUrl={setDefaultImageUrl}
+                  deleteExplanationImage={handleDeleteExplanationImage}
+                />
+                <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
+                  <CancelTatoeBtn query_tId={query.tId} />
+                  <CreateTatoeBtn
+                    tatoe={tatoe}
+                    query_tId={query.tId}
+                    createdAt={createdAt}
+                    updatedAt={updatedAt}
+                    title={title}
+                    shortParaphrase={shortParaphrase}
+                    description={description}
+                  />
+                  <UpdateTatoeBtn
+                    tatoe={tatoe}
+                    query_tId={query.tId}
+                    createdAt={createdAt}
+                    updatedAt={updatedAt}
+                    title={title}
+                    shortParaphrase={shortParaphrase}
+                    description={description}
+                  />
+                </div>
+              </>
+            );
+          })
+        : null}
+      {/* <RegisterTatoeTitle
+        query_tId={query_tId}
+        title={title}
+        setTitle={setTitle}
+      />
       <RegisterTatoeShortParaphrase
-        query={query}
+        query_tId={query_tId}
         shortParaphrase={shortParaphrase}
         setShortParaphrase={setShortParaphrase}
       />
       <RegisterTatoeDescription
-        query={query}
+        query_tId={query_tId}
         description={description}
         setDescription={setDescription}
       />
       <RegisterImageForExplanationTatoe
-        query_tId={query.tId}
-        userId={userId}
-        persistAccessToken={persistAccessToken}
+        query_tId={query_tId}
         setImageUrl={setImageUrl}
         imageUrl={imageUrl}
         defaultImageUrl={defaultImageUrl}
         setDefaultImageUrl={setDefaultImageUrl}
-        imageId={imageId}
         deleteExplanationImage={handleDeleteExplanationImage}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
@@ -189,8 +296,7 @@ export const RegisterTatoeParent = () => {
           title={title}
           shortParaphrase={shortParaphrase}
           description={description}
-        />
-      </div>
+        /> </div>*/}
     </form>
   );
 };

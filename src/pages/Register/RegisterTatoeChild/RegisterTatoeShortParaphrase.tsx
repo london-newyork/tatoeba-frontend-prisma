@@ -1,8 +1,7 @@
-import { ParsedUrlQuery } from 'querystring';
 import React, { useEffect } from 'react';
 
 type ShortParaphraseProps = {
-  query: ParsedUrlQuery;
+  query_tId?: string | string[];
   shortParaphrase: string | null;
   setShortParaphrase: React.Dispatch<
     React.SetStateAction<string | string[] | null>
@@ -10,13 +9,13 @@ type ShortParaphraseProps = {
 };
 
 export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
-  const { shortParaphrase, setShortParaphrase, query } = props;
+  const { shortParaphrase, setShortParaphrase, query_tId } = props;
 
   useEffect(() => {
-    if (query.tId) {
-      setShortParaphrase(query.shortParaphrase);
+    if (query_tId) {
+      setShortParaphrase(shortParaphrase); // props
     }
-  }, [query.tId]);
+  }, [query_tId]);
 
   return (
     <div

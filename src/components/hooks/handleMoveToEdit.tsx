@@ -15,11 +15,11 @@ export const useHandleMoveToEdit = ({
       pathname: '/Register/',
       query: {
         tId,
-        title,
-        shortParaphrase,
-        description,
-        imageId,
-        imageUrl,
+        //   // title,
+        //   // shortParaphrase,
+        //   // description,
+        //   // imageId,
+        //   // imageUrl,
       },
     });
   };

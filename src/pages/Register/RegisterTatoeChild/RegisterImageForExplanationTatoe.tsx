@@ -52,7 +52,7 @@ export const RegisterImageForExplanationTatoe = ({
       setIsFileSizeError(true);
       return;
     }
-    // 既存のimageがあったらそれを解放
+
     if (defaultImageUrl) {
       URL.revokeObjectURL(defaultImageUrl);
     }
@@ -60,9 +60,7 @@ export const RegisterImageForExplanationTatoe = ({
   };
 
   useEffect(() => {
-    // Reactがこのコンポーネントを破棄するときにimageUrl解放
     return () => {
-      // マウント時にすでにdefaultImageUrlがあったら削除 (イメージ画像を1回1回破棄)
       if (defaultImageUrl) {
         URL.revokeObjectURL(defaultImageUrl);
       }

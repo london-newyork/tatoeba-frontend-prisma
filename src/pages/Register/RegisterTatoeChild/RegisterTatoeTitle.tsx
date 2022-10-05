@@ -5,7 +5,6 @@ import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 
 type TitleProps = {
   tatoe?: Tatoe[];
-  apiTitle?: string;
   query_tId?: string;
   title: string | null;
   setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;

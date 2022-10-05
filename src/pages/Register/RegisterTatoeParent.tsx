@@ -56,8 +56,6 @@ export const RegisterTatoeParent = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
-  const [apiTitle, setApiTitle] = useState<string | null>('');
-
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
@@ -88,27 +86,14 @@ export const RegisterTatoeParent = () => {
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
+        console.log('item.imageUrl', item.imageUrl);
+        console.log('item.title', item.title);
+
         setImageUrl(item.imageUrl);
         setTitle(item.title);
       }
     });
   }, [query_tId]);
-
-  // ページ遷移
-  // const pageChangeHandler = () => {
-  //   const answer = window.confirm(
-  //     'コメント内容がリセットされます、本当にページ遷移しますか？'
-  //   );
-  //   if (!answer) {
-  //     throw 'Abort route';
-  //   }
-  // };
-  // useEffect(() => {
-  //   router.events.on('routeChangeStart', pageChangeHandler);
-  //   return () => {
-  //     router.events.off('routeChangeStart', pageChangeHandler);
-  //   };
-  // }, []);
 
   // const reload = () => {
   //   const showAlert = true;

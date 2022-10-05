@@ -17,6 +17,21 @@ export type Tatoe = {
   formData?: FormData;
 };
 
+export type AllUserTatoe = {
+  tId?: string;
+  userId?: string;
+  title?: string;
+  shortParaphrase?: string;
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  imageUrl?: string;
+  imageId?: string;
+  query_tId?: string | string[];
+  formData?: FormData;
+  userName: string;
+};
+
 export type Edit = {
   handleMoveToEdit: (
     tId: string,

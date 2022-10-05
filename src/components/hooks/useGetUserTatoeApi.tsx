@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { Tatoe } from '../types/types';
+import { AllUserTatoe, Tatoe } from '../types/types';
 import { AllUserTatoeAtom } from '../utils/atoms/AllUserTatoeAtom';
 import { useApi } from './useApi';
 
@@ -22,6 +22,7 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
         title: item.title,
         description: item.description,
         shortParaphrase: item.shortParaphrase,
+        userName: item.user.userName,
       };
       return formattedData;
     });
@@ -39,7 +40,7 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
     );
     const { tatoe } = await getEachTatoeApi();
 
-    const formattedTatoe: Tatoe[] = tatoe.map((item: any) => {
+    const formattedTatoe: AllUserTatoe[] = tatoe.map((item: any) => {
       const formattedData = {
         tId: item.id,
         userId: item.userId,
@@ -50,10 +51,12 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
         shortParaphrase: item.shortParaphrase,
         imageId: item.imageId,
         imageUrl: item.imageUrl,
+        userName: item.user.userName,
       };
       return formattedData;
     });
     setAllUserTatoe(formattedTatoe);
   };
+
   return { getAllUserTatoe, getEachTatoe, allUserTatoe };
 };

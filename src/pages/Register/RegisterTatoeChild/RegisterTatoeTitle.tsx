@@ -1,33 +1,25 @@
-import { ParsedUrlQuery } from 'querystring';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 type TitleProps = {
-  query: ParsedUrlQuery;
   title: string | null;
   setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
 export const RegisterTatoeTitle = (props: TitleProps) => {
-  const { title, setTitle, query } = props;
-
-  useEffect(() => {
-    if (query.tId) {
-      setTitle(query.title);
-    }
-  }, [query.tId]);
+  const { title, setTitle } = props;
 
   return (
     <div
       className='
-        flex
-        justify-between
-        flex-col
-        lg:flex-row'
+      flex
+      justify-between
+      flex-col
+      lg:flex-row'
     >
       <label
         className='
-        headline-s
-        '
+      headline-s
+      '
       >
         わかりにくい専門用語・文章
         <br />

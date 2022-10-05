@@ -1,8 +1,6 @@
-import { ParsedUrlQuery } from 'querystring';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 type DescriptionProps = {
-  query: ParsedUrlQuery;
   description: string | null;
   setDescription: React.Dispatch<
     React.SetStateAction<string | string[] | null>
@@ -10,13 +8,7 @@ type DescriptionProps = {
 };
 
 export const RegisterTatoeDescription = (props: DescriptionProps) => {
-  const { description, setDescription, query } = props;
-
-  useEffect(() => {
-    if (query.tId) {
-      setDescription(query.description);
-    }
-  }, [query.tId]);
+  const { description, setDescription } = props;
 
   return (
     <div

@@ -1,4 +1,3 @@
-import { ParsedUrlQuery } from 'querystring';
 import React, {
   ChangeEventHandler,
   MouseEventHandler,
@@ -8,12 +7,8 @@ import React, {
 } from 'react';
 
 export type SubmitImageProps = {
-  userId?: string;
   query_tId?: string | string[];
-  query?: ParsedUrlQuery;
-  persistAccessToken?: string;
   imageUrl?: string;
-  imageId?: string;
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
   defaultImageUrl?: string;
   setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
@@ -21,9 +16,7 @@ export type SubmitImageProps = {
 };
 
 export const RegisterImageForExplanationTatoe = ({
-  query_tId,
   imageUrl,
-  setImageUrl,
   defaultImageUrl,
   setDefaultImageUrl,
   deleteExplanationImage,
@@ -52,7 +45,7 @@ export const RegisterImageForExplanationTatoe = ({
       setIsFileSizeError(true);
       return;
     }
-    // 既存のimageがあったらそれを解放
+
     if (defaultImageUrl) {
       URL.revokeObjectURL(defaultImageUrl);
     }
@@ -60,24 +53,12 @@ export const RegisterImageForExplanationTatoe = ({
   };
 
   useEffect(() => {
-    // Reactがこのコンポーネントを破棄するときにimageUrl解放
     return () => {
-      // マウント時にすでにdefaultImageUrlがあったら削除 (イメージ画像を1回1回破棄)
       if (defaultImageUrl) {
         URL.revokeObjectURL(defaultImageUrl);
       }
     };
   }, [defaultImageUrl]);
-
-  // 更新
-  useEffect(() => {
-    const main = async () => {
-      if (query_tId) {
-        setImageUrl(imageUrl);
-      }
-    };
-    main();
-  }, [query_tId]);
 
   return (
     <div

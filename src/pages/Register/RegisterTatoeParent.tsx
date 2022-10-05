@@ -26,10 +26,9 @@ import { useApi } from '../../components/hooks/useApi';
 export const RegisterTatoeParent = () => {
   const router = useRouter();
   const query = router.query;
-  const query_tId = query.tId;
+  const query_tId = query.tId as string;
   // stringしか来ないので強引にasで型をつける
   const tId = query.tId as string;
-  const imageId = query.imageId as string;
 
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
@@ -49,13 +48,33 @@ export const RegisterTatoeParent = () => {
     `/tatoe/${query_tId}/explanation_image`,
     { method: 'DELETE' }
   );
+  const { getTatoe } = useTatoe({
+    userId,
+    tatoe,
+    router,
+    user,
+    setTatoe,
+    persistAccessToken,
+  });
+
+  useEffect(() => {
+    const getUserTatoeList = async () => {
+      await getTatoe();
+    };
+    getUserTatoeList();
+  }, [query_tId]);
+
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
         setImageUrl(item.imageUrl);
+        setTitle(item.title);
+        setDescription(item.description);
+        setShortParaphrase(item.shortParaphrase);
       }
     });
-  }, [query_tId]);
+  }, [tatoe]);
+
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
     router,
@@ -148,33 +167,28 @@ export const RegisterTatoeParent = () => {
 
   return (
     <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      <RegisterTatoeTitle query={query} title={title} setTitle={setTitle} />
+      <RegisterTatoeTitle title={title} setTitle={setTitle} />
       <RegisterTatoeShortParaphrase
-        query={query}
         shortParaphrase={shortParaphrase}
         setShortParaphrase={setShortParaphrase}
       />
       <RegisterTatoeDescription
-        query={query}
         description={description}
         setDescription={setDescription}
       />
       <RegisterImageForExplanationTatoe
-        query_tId={query.tId}
-        userId={userId}
-        persistAccessToken={persistAccessToken}
+        query_tId={query_tId}
         setImageUrl={setImageUrl}
         imageUrl={imageUrl}
         defaultImageUrl={defaultImageUrl}
         setDefaultImageUrl={setDefaultImageUrl}
-        imageId={imageId}
         deleteExplanationImage={handleDeleteExplanationImage}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-        <CancelTatoeBtn query_tId={query.tId} />
+        <CancelTatoeBtn query_tId={query_tId} />
         <CreateTatoeBtn
           tatoe={tatoe}
-          query_tId={query.tId}
+          query_tId={query_tId}
           createdAt={createdAt}
           updatedAt={updatedAt}
           title={title}
@@ -183,7 +197,7 @@ export const RegisterTatoeParent = () => {
         />
         <UpdateTatoeBtn
           tatoe={tatoe}
-          query_tId={query.tId}
+          query_tId={query_tId}
           createdAt={createdAt}
           updatedAt={updatedAt}
           title={title}

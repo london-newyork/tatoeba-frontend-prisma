@@ -91,27 +91,11 @@ export const RegisterTatoeParent = () => {
 
         setImageUrl(item.imageUrl);
         setTitle(item.title);
+        setDescription(item.description);
+        setShortParaphrase(item.shortParaphrase);
       }
     });
-  }, [query_tId]);
-
-  // const reload = () => {
-  //   const showAlert = true;
-  //   const message = '入力した内容がキャンセルされますがよろしいでしょうか？';
-  //   useBeforeUnload(showAlert, message);
-  //   useEffect(() => {
-  //     const confirm = () => {
-  //       alert('更新します');
-  //     };
-  //     router.events.on('routeChangeStart', confirm);
-
-  //     return () => {
-  //       router.events.off('routeChangeStart', confirm);
-  //     };
-  //   }, []);
-  // };
-
-  // reload();
+  }, [tatoe]);
 
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
@@ -208,52 +192,50 @@ export const RegisterTatoeParent = () => {
 
   return (
     <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      <>
-        <RegisterTatoeTitle
+      <RegisterTatoeTitle
+        query_tId={query_tId}
+        title={title}
+        setTitle={setTitle}
+      />
+      <RegisterTatoeShortParaphrase
+        query_tId={query_tId}
+        shortParaphrase={shortParaphrase}
+        setShortParaphrase={setShortParaphrase}
+      />
+      <RegisterTatoeDescription
+        query_tId={query_tId}
+        description={description}
+        setDescription={setDescription}
+      />
+      <RegisterImageForExplanationTatoe
+        query_tId={query_tId}
+        setImageUrl={setImageUrl}
+        imageUrl={imageUrl}
+        defaultImageUrl={defaultImageUrl}
+        setDefaultImageUrl={setDefaultImageUrl}
+        deleteExplanationImage={handleDeleteExplanationImage}
+      />
+      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
+        <CancelTatoeBtn query_tId={query_tId} />
+        <CreateTatoeBtn
+          tatoe={tatoe}
           query_tId={query_tId}
+          createdAt={createdAt}
+          updatedAt={updatedAt}
           title={title}
-          setTitle={setTitle}
-        />
-        <RegisterTatoeShortParaphrase
-          query_tId={query_tId}
           shortParaphrase={shortParaphrase}
-          setShortParaphrase={setShortParaphrase}
-        />
-        <RegisterTatoeDescription
-          query_tId={query_tId}
           description={description}
-          setDescription={setDescription}
         />
-        <RegisterImageForExplanationTatoe
+        <UpdateTatoeBtn
+          tatoe={tatoe}
           query_tId={query_tId}
-          setImageUrl={setImageUrl}
-          imageUrl={imageUrl}
-          defaultImageUrl={defaultImageUrl}
-          setDefaultImageUrl={setDefaultImageUrl}
-          deleteExplanationImage={handleDeleteExplanationImage}
+          createdAt={createdAt}
+          updatedAt={updatedAt}
+          title={title}
+          shortParaphrase={shortParaphrase}
+          description={description}
         />
-        <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-          <CancelTatoeBtn query_tId={query_tId} />
-          <CreateTatoeBtn
-            tatoe={tatoe}
-            query_tId={query_tId}
-            createdAt={createdAt}
-            updatedAt={updatedAt}
-            title={title}
-            shortParaphrase={shortParaphrase}
-            description={description}
-          />
-          <UpdateTatoeBtn
-            tatoe={tatoe}
-            query_tId={query_tId}
-            createdAt={createdAt}
-            updatedAt={updatedAt}
-            title={title}
-            shortParaphrase={shortParaphrase}
-            description={description}
-          />
-        </div>
-      </>
+      </div>
     </form>
   );
 };

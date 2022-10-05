@@ -21,8 +21,6 @@ export const RegisterTatoeTitle = (props: TitleProps) => {
   //   });
   // }
 
-  console.log('@RTT title', title);
-
   return (
     <div
       className='

@@ -11,11 +11,11 @@ type ShortParaphraseProps = {
 export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
   const { shortParaphrase, setShortParaphrase, query_tId } = props;
 
-  useEffect(() => {
-    if (query_tId) {
-      setShortParaphrase(shortParaphrase); // props
-    }
-  }, [query_tId]);
+  // useEffect(() => {
+  //   if (query_tId) {
+  //     setShortParaphrase(shortParaphrase); // props
+  //   }
+  // }, [query_tId]);
 
   return (
     <div

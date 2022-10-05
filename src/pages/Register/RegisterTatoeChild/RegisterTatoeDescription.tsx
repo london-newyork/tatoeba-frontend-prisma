@@ -11,11 +11,11 @@ type DescriptionProps = {
 export const RegisterTatoeDescription = (props: DescriptionProps) => {
   const { description, setDescription, query_tId } = props;
 
-  useEffect(() => {
-    if (query_tId) {
-      setDescription(description); // props
-    }
-  }, [query_tId]);
+  // useEffect(() => {
+  //   if (query_tId) {
+  //     setDescription(description); // props
+  //   }
+  // }, [query_tId]);
 
   return (
     <div

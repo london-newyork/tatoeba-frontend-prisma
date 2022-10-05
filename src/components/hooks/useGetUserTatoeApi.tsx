@@ -12,7 +12,6 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
 
   const getAllUserTatoe = async () => {
     const { tatoe } = await getAllUserTatoesApi();
-    console.log('getAllUserTatoesApi tatoe', tatoe);
 
     const formattedTatoe = tatoe.map((item: any) => {
       const formattedData = {
@@ -58,7 +57,6 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
     });
     setAllUserTatoe(formattedTatoe);
   };
-  console.log('allUserTatoe', allUserTatoe);
 
   return { getAllUserTatoe, getEachTatoe, allUserTatoe };
 };

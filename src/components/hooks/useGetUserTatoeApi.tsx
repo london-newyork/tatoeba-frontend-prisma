@@ -11,9 +11,9 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
   const [allUserTatoe, setAllUserTatoe] = useRecoilState(AllUserTatoeAtom);
 
   const getAllUserTatoe = async () => {
-    const { tatoe } = await getAllUserTatoesApi();
+    const { data } = await getAllUserTatoesApi();
 
-    const formattedTatoe = tatoe.map((item: any) => {
+    const formattedTatoe = data.map((item: any) => {
       const formattedData = {
         tId: item.id,
         userId: item.userId,
@@ -23,6 +23,7 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
         description: item.description,
         shortParaphrase: item.shortParaphrase,
         userName: item.user.userName,
+        imageUrl: item.imageUrl,
       };
       return formattedData;
     });

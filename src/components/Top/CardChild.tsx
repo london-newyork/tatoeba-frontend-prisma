@@ -1,7 +1,7 @@
-import React, { useEffect, useState, VFC } from 'react';
+import React, { useEffect, VFC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
-import { AllUserTatoe, Tatoe } from '../types/types';
+import { AllUserTatoe } from '../types/types';
 import Image from 'next/image';
 
 import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
@@ -30,6 +30,7 @@ export const CardChild: VFC = () => {
     };
     main();
   }, []);
+  console.log(allUserTatoe);
 
   return (
     <>
@@ -119,7 +120,7 @@ export const CardChild: VFC = () => {
                             pt-6
                             '
                 >
-                  <Image
+                  {/* <Image
                     src='/images/illust1.png'
                     alt='illust of Tatoeba app'
                     width={240}
@@ -127,7 +128,8 @@ export const CardChild: VFC = () => {
                     objectFit='contain'
                     quality={50}
                     priority={true}
-                  />
+                  /> */}
+                  <img src={item.imageUrl} alt='例えの説明画像' />
                 </li>
               </ul>
             </li>

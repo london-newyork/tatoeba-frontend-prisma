@@ -80,7 +80,7 @@ const SearchResult = () => {
                 {item.description}
               </p>
               <div className='max-w-[600px] h-96 bg-gray-300 mx-auto'>
-                <img />
+                <img src={item.imageUrl} alt='例えの説明画像' />
               </div>
             </div>
           ) : null;

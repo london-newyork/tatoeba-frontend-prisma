@@ -1,25 +1,12 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { Tatoe } from '../../../components/types/types';
-import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 
 type TitleProps = {
-  tatoe?: Tatoe[];
-  query_tId?: string;
   title: string | null;
   setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
 export const RegisterTatoeTitle = (props: TitleProps) => {
-  const { title, setTitle, query_tId } = props;
-  // const tatoe = useRecoilValue(TatoeAtom);
-  // if (query_tId) {
-  //   tatoe.map((item: Tatoe) => {
-  //     if (item.tId === query_tId) {
-  //       setTitle(item.title);
-  //     }
-  //   });
-  // }
+  const { title, setTitle } = props;
 
   return (
     <div

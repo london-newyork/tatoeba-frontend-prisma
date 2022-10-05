@@ -22,30 +22,13 @@ import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { useApi } from '../../components/hooks/useApi';
-import { useBeforeUnload } from 'react-use';
 
 export const RegisterTatoeParent = () => {
-  /* TODO:
-   * tatoeがAPIから取得され、それをどう展開するのか　tatoeは常に取得される。
-   * でも 今の例えも入力したい。
-   * tatoe.map(item => {
-   * return (
-   *  <title title={item.title? item.title : title}></title> => ×
-   *  これだと item.title が tatoe に登録されているかぎり item.title が表示され入力ができな*  い
-   * )
-   * })
-   *
-   *
-   *
-   *
-   */
-
   const router = useRouter();
   const query = router.query;
   const query_tId = query.tId as string;
   // stringしか来ないので強引にasで型をつける
   const tId = query.tId as string;
-  // const imageId = query.imageId as string;
 
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
@@ -60,8 +43,6 @@ export const RegisterTatoeParent = () => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-
-  console.log('一番上のtatoe', tatoe);
 
   const { api: deleteTatoeImageApi } = useApi(
     `/tatoe/${query_tId}/explanation_image`,
@@ -86,9 +67,6 @@ export const RegisterTatoeParent = () => {
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
       if (item.tId === query_tId) {
-        console.log('item.imageUrl', item.imageUrl);
-        console.log('item.title', item.title);
-
         setImageUrl(item.imageUrl);
         setTitle(item.title);
         setDescription(item.description);
@@ -187,23 +165,14 @@ export const RegisterTatoeParent = () => {
     setDefaultImageUrl(null);
   };
 
-  console.log('下のtitle', title); // ない
-  console.log('imageUrl', imageUrl); // null
-
   return (
     <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      <RegisterTatoeTitle
-        query_tId={query_tId}
-        title={title}
-        setTitle={setTitle}
-      />
+      <RegisterTatoeTitle title={title} setTitle={setTitle} />
       <RegisterTatoeShortParaphrase
-        query_tId={query_tId}
         shortParaphrase={shortParaphrase}
         setShortParaphrase={setShortParaphrase}
       />
       <RegisterTatoeDescription
-        query_tId={query_tId}
         description={description}
         setDescription={setDescription}
       />

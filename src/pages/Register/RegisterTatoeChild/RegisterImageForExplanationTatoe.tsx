@@ -1,4 +1,3 @@
-import { ParsedUrlQuery } from 'querystring';
 import React, {
   ChangeEventHandler,
   MouseEventHandler,
@@ -17,9 +16,7 @@ export type SubmitImageProps = {
 };
 
 export const RegisterImageForExplanationTatoe = ({
-  query_tId,
   imageUrl,
-  setImageUrl,
   defaultImageUrl,
   setDefaultImageUrl,
   deleteExplanationImage,
@@ -62,16 +59,6 @@ export const RegisterImageForExplanationTatoe = ({
       }
     };
   }, [defaultImageUrl]);
-
-  // 更新
-  useEffect(() => {
-    const main = async () => {
-      if (query_tId) {
-        setImageUrl(imageUrl);
-      }
-    };
-    main();
-  }, [query_tId]);
 
   return (
     <div

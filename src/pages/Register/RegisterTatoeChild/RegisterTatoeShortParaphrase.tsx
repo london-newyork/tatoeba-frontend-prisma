@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 type ShortParaphraseProps = {
   query_tId?: string | string[];
@@ -9,13 +9,7 @@ type ShortParaphraseProps = {
 };
 
 export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
-  const { shortParaphrase, setShortParaphrase, query_tId } = props;
-
-  // useEffect(() => {
-  //   if (query_tId) {
-  //     setShortParaphrase(shortParaphrase); // props
-  //   }
-  // }, [query_tId]);
+  const { shortParaphrase, setShortParaphrase } = props;
 
   return (
     <div

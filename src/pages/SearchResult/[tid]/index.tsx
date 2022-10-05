@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
@@ -7,27 +7,23 @@ import { SearchMainLayouts } from '../../../components/Layouts/SearchMainLayouts
 import { useRecoilValue } from 'recoil';
 
 import { ProfileImageAtom } from '../../../components/utils/atoms/ProfileImageAtom';
-import { useApi } from '../../../components/hooks/useApi';
+import { useGetUserTatoeApi } from '../../../components/hooks/useGetUserTatoeApi';
+import { AllUserTatoe } from '../../../components/types/types';
 
 const SearchResult = () => {
   const router = useRouter();
   const profileImage = useRecoilValue(ProfileImageAtom);
-  const { title, shortParaphrase, description, userId } = router.query;
+  const { tId } = router.query;
 
-  const [tatoe, setTatoe] = useState();
-  const { api: getTatoeApi } = useApi(`/tatoe/${router.query.tId}`, {
-    method: 'GET',
-  });
+  const { getAllUserTatoe, allUserTatoe } = useGetUserTatoeApi();
 
-  // TODO サーバー側で用意したデフォルト画像が、リロード時に少し出る
   useEffect(() => {
-    if (!router.query.tId) return;
+    if (!tId) return;
     const main = async () => {
-      const { data: tatoe } = await getTatoeApi();
-      setTatoe(tatoe);
+      await getAllUserTatoe();
     };
     main();
-  }, [router.query.tId]);
+  }, [tId]);
 
   return (
     <>
@@ -37,52 +33,58 @@ const SearchResult = () => {
       </Head>
       <Header />
       <SearchMainLayouts>
-        <div>
-          <div className='flex flex-col'>
-            <div className='flex items-center gap-x-2'>
-              <img
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
-                alt='ユーザーの画像'
-                className='
+        {allUserTatoe.map((item: AllUserTatoe) => {
+          return item.tId === tId ? (
+            <div key={item.tId}>
+              <div className='flex flex-col'>
+                <div className='flex items-center gap-x-2'>
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${item.userId}/profile_image?t=${profileImage}`}
+                    alt='ユーザーの画像'
+                    className='
                 w-6
                 h-6
                 rounded-full
                 object-cover'
-              />
-              {/* <small className='text-gray-400'>{user.userName}が投稿</small> */}
-            </div>
-            <div
-              className='
+                  />
+                  <small className='text-gray-400'>{item.userName}が投稿</small>
+                </div>
+                <div
+                  className='
                flex
                relative
                '
-            >
-              <h1
-                className='
+                >
+                  <h1
+                    className='
                   text-4xl
                   text-gray-700
                   pt-6
                   '
-              >
-                {title}
-                をわかりやすく例えると...
-              </h1>
-            </div>
-          </div>
-          <h2 className='pt-16 text-2xl text-gray-600'>{shortParaphrase}</h2>
-          <p
-            className='
+                  >
+                    {item.title}
+                    をわかりやすく例えると...
+                  </h1>
+                </div>
+              </div>
+              <h2 className='pt-16 text-2xl text-gray-600'>
+                {item.shortParaphrase}
+              </h2>
+              <p
+                className='
             pt-10
             text-md
             leading-loose
             text-gray-600'
-          >
-            {description}
-          </p>
-          <div className='max-w-[600px] h-96 bg-gray-300 mx-auto'>
-            <img />
-          </div>
-        </div>
+              >
+                {item.description}
+              </p>
+              <div className='max-w-[600px] h-96 bg-gray-300 mx-auto'>
+                <img />
+              </div>
+            </div>
+          ) : null;
+        })}
       </SearchMainLayouts>
     </>
   );

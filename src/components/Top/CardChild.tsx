@@ -1,7 +1,7 @@
 import React, { useEffect, useState, VFC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
-import { Tatoe } from '../types/types';
+import { AllUserTatoe, Tatoe } from '../types/types';
 import Image from 'next/image';
 
 import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
@@ -18,18 +18,11 @@ export const CardChild: VFC = () => {
 
   const colors = RandomColors[Math.floor(Math.random() * RandomColors.length)];
   const shadowColor = colors.toString();
-  // const [allUserTatoe, setAllUserTatoe] = useState<Tatoe[]>();
 
   const { getAllUserTatoe, allUserTatoe } = useGetUserTatoeApi();
   const { handleMoveToResult } = useHandleMoveToResult(allUserTatoe);
 
   const profileImage = useRecoilValue(ProfileImageAtom);
-
-  // const { api: getUserTatoeApi } = useApi(`/tatoe`, {
-  //   method: 'GET',
-  // });
-
-  // TODO Prisma Tatoeモデル にuserNameを登録しないといけない
 
   useEffect(() => {
     const main = async () => {
@@ -37,31 +30,12 @@ export const CardChild: VFC = () => {
     };
     main();
   }, []);
-
-  // useEffect(() => {
-  //   const main = async () => {
-  //     const { tatoe } = await getUserTatoeApi();
-  //     const formattedTatoe = tatoe.map((item: any) => {
-  //       const formattedData = {
-  //         tId: item.id,
-  //         userId: item.userId,
-  //         createdAt: item.createdAt,
-  //         updatedAt: item.updatedAt,
-  //         title: item.title,
-  //         description: item.description,
-  //         shortParaphrase: item.shortParaphrase,
-  //       };
-  //       return formattedData;
-  //     });
-  //     setAllUserTatoe(formattedTatoe);
-  //   };
-  //   main();
-  // }, []);
+  console.log('@CardChild allUserTatoe', allUserTatoe);
 
   return (
     <>
       {allUserTatoe
-        ? allUserTatoe.map((item: Tatoe) => (
+        ? allUserTatoe.map((item: AllUserTatoe) => (
             <li
               key={item.tId}
               className={`

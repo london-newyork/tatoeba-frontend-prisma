@@ -22,11 +22,20 @@ import { useAlert } from '../../components/hooks/useAlert';
 import { Tatoe } from '../../components/types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { useApi } from '../../components/hooks/useApi';
+import { useBeforeUnload } from 'react-use';
 
 export const RegisterTatoeParent = () => {
-  /*
-   * queryの代わりにAPIからデータ取ってきて表示するには、どうするのか？
-   * tIdで取ってくる
+  /* TODO:
+   * tatoeがAPIから取得され、それをどう展開するのか　tatoeは常に取得される。
+   * でも 今の例えも入力したい。
+   * tatoe.map(item => {
+   * return (
+   *  <title title={item.title? item.title : title}></title> => ×
+   *  これだと item.title が tatoe に登録されているかぎり item.title が表示され入力ができな*  い
+   * )
+   * })
+   *
+   *
    *
    *
    */
@@ -36,7 +45,7 @@ export const RegisterTatoeParent = () => {
   const query_tId = query.tId as string;
   // stringしか来ないので強引にasで型をつける
   const tId = query.tId as string;
-  const imageId = query.imageId as string;
+  // const imageId = query.imageId as string;
 
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
@@ -54,7 +63,7 @@ export const RegisterTatoeParent = () => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
-  console.log('tatoe', tatoe);
+  console.log('一番上のtatoe', tatoe);
 
   const { api: deleteTatoeImageApi } = useApi(
     `/tatoe/${query_tId}/explanation_image`,
@@ -72,40 +81,52 @@ export const RegisterTatoeParent = () => {
   useEffect(() => {
     const getUserTatoeList = async () => {
       await getTatoe();
-      console.log('tatoeはどこ？ :', tatoe);
-      // if (!tatoe) return;
-      // tatoe.map((item) => {
-      //   if (item.tId === query_tId) {
-      //     console.log('map の中のtitle', item.title);
-      //     setImageUrl(item.imageUrl);
-      //     setTitle(item.title);
-      //     // setDescription(item.description);
-      //     // setShortParaphrase(item.shortParaphrase);
-      //   }
-      // });
     };
     getUserTatoeList();
   }, [query_tId]);
 
-  // useEffect(() => {
-  //   tatoe.map((item: Tatoe) => {
-  //     if (item.tId === query_tId) {
-  //       setImageUrl(item.imageUrl);
-  //     }
-  //   });
-  // }, [query_tId]);
+  useEffect(() => {
+    tatoe.map((item: Tatoe) => {
+      if (item.tId === query_tId) {
+        setImageUrl(item.imageUrl);
+        setTitle(item.title);
+      }
+    });
+  }, [query_tId]);
 
+  // ページ遷移
+  // const pageChangeHandler = () => {
+  //   const answer = window.confirm(
+  //     'コメント内容がリセットされます、本当にページ遷移しますか？'
+  //   );
+  //   if (!answer) {
+  //     throw 'Abort route';
+  //   }
+  // };
   // useEffect(() => {
-  //   tatoe.map((item) => {
-  //     if (item.tId === query_tId) {
-  //       console.log('map の中のtitle', item.title);
-  //       // setImageUrl(item.imageUrl);
-  //       setTitle(item.title);
-  //       // setDescription(item.description);
-  //       // setShortParaphrase(item.shortParaphrase);
-  //     }
-  //   });
+  //   router.events.on('routeChangeStart', pageChangeHandler);
+  //   return () => {
+  //     router.events.off('routeChangeStart', pageChangeHandler);
+  //   };
   // }, []);
+
+  // const reload = () => {
+  //   const showAlert = true;
+  //   const message = '入力した内容がキャンセルされますがよろしいでしょうか？';
+  //   useBeforeUnload(showAlert, message);
+  //   useEffect(() => {
+  //     const confirm = () => {
+  //       alert('更新します');
+  //     };
+  //     router.events.on('routeChangeStart', confirm);
+
+  //     return () => {
+  //       router.events.off('routeChangeStart', confirm);
+  //     };
+  //   }, []);
+  // };
+
+  // reload();
 
   const { updateTatoe, createTatoe } = useTatoe({
     tId,
@@ -202,101 +223,52 @@ export const RegisterTatoeParent = () => {
 
   return (
     <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      {tatoe && query_tId
-        ? tatoe.map((item) => {
-            return (
-              <>
-                <RegisterTatoeTitle
-                  query_tId={query_tId}
-                  title={title}
-                  setTitle={setTitle}
-                />
-                <RegisterTatoeShortParaphrase
-                  query_tId={query_tId}
-                  shortParaphrase={shortParaphrase}
-                  setShortParaphrase={setShortParaphrase}
-                />
-                <RegisterTatoeDescription
-                  query_tId={query_tId}
-                  description={description}
-                  setDescription={setDescription}
-                />
-                <RegisterImageForExplanationTatoe
-                  query_tId={query_tId}
-                  setImageUrl={setImageUrl}
-                  imageUrl={imageUrl}
-                  defaultImageUrl={defaultImageUrl}
-                  setDefaultImageUrl={setDefaultImageUrl}
-                  deleteExplanationImage={handleDeleteExplanationImage}
-                />
-                <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-                  <CancelTatoeBtn query_tId={query.tId} />
-                  <CreateTatoeBtn
-                    tatoe={tatoe}
-                    query_tId={query.tId}
-                    createdAt={createdAt}
-                    updatedAt={updatedAt}
-                    title={title}
-                    shortParaphrase={shortParaphrase}
-                    description={description}
-                  />
-                  <UpdateTatoeBtn
-                    tatoe={tatoe}
-                    query_tId={query.tId}
-                    createdAt={createdAt}
-                    updatedAt={updatedAt}
-                    title={title}
-                    shortParaphrase={shortParaphrase}
-                    description={description}
-                  />
-                </div>
-              </>
-            );
-          })
-        : null}
-      {/* <RegisterTatoeTitle
-        query_tId={query_tId}
-        title={title}
-        setTitle={setTitle}
-      />
-      <RegisterTatoeShortParaphrase
-        query_tId={query_tId}
-        shortParaphrase={shortParaphrase}
-        setShortParaphrase={setShortParaphrase}
-      />
-      <RegisterTatoeDescription
-        query_tId={query_tId}
-        description={description}
-        setDescription={setDescription}
-      />
-      <RegisterImageForExplanationTatoe
-        query_tId={query_tId}
-        setImageUrl={setImageUrl}
-        imageUrl={imageUrl}
-        defaultImageUrl={defaultImageUrl}
-        setDefaultImageUrl={setDefaultImageUrl}
-        deleteExplanationImage={handleDeleteExplanationImage}
-      />
-      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-        <CancelTatoeBtn query_tId={query.tId} />
-        <CreateTatoeBtn
-          tatoe={tatoe}
-          query_tId={query.tId}
-          createdAt={createdAt}
-          updatedAt={updatedAt}
+      <>
+        <RegisterTatoeTitle
+          query_tId={query_tId}
           title={title}
-          shortParaphrase={shortParaphrase}
-          description={description}
+          setTitle={setTitle}
         />
-        <UpdateTatoeBtn
-          tatoe={tatoe}
-          query_tId={query.tId}
-          createdAt={createdAt}
-          updatedAt={updatedAt}
-          title={title}
+        <RegisterTatoeShortParaphrase
+          query_tId={query_tId}
           shortParaphrase={shortParaphrase}
+          setShortParaphrase={setShortParaphrase}
+        />
+        <RegisterTatoeDescription
+          query_tId={query_tId}
           description={description}
-        /> </div>*/}
+          setDescription={setDescription}
+        />
+        <RegisterImageForExplanationTatoe
+          query_tId={query_tId}
+          setImageUrl={setImageUrl}
+          imageUrl={imageUrl}
+          defaultImageUrl={defaultImageUrl}
+          setDefaultImageUrl={setDefaultImageUrl}
+          deleteExplanationImage={handleDeleteExplanationImage}
+        />
+        <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
+          <CancelTatoeBtn query_tId={query_tId} />
+          <CreateTatoeBtn
+            tatoe={tatoe}
+            query_tId={query_tId}
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            title={title}
+            shortParaphrase={shortParaphrase}
+            description={description}
+          />
+          <UpdateTatoeBtn
+            tatoe={tatoe}
+            query_tId={query_tId}
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            title={title}
+            shortParaphrase={shortParaphrase}
+            description={description}
+          />
+        </div>
+      </>
     </form>
   );
 };

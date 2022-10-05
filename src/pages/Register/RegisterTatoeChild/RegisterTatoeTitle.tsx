@@ -1,25 +1,25 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import { Tatoe } from '../../../components/types/types';
+import { TatoeAtom } from '../../../components/utils/atoms/TatoeAtom';
 
 type TitleProps = {
   tatoe?: Tatoe[];
   apiTitle?: string;
-  // tatoe?: Tatoe[];
   query_tId?: string;
   title: string | null;
   setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
 export const RegisterTatoeTitle = (props: TitleProps) => {
-  const { title, setTitle /*  query_tId, apiTitle, tatoe  */ } = props;
-  // const [apiTitle, setApiTitle] = useState('');
-
+  const { title, setTitle, query_tId } = props;
+  // const tatoe = useRecoilValue(TatoeAtom);
   // if (query_tId) {
-  // tatoe.map((item: Tatoe) => {
-  //   if (item.tId === query_tId) {
-  //     setTitle(item.title);
-  //   }
-  // });
+  //   tatoe.map((item: Tatoe) => {
+  //     if (item.tId === query_tId) {
+  //       setTitle(item.title);
+  //     }
+  //   });
   // }
 
   console.log('@RTT title', title);
@@ -27,15 +27,15 @@ export const RegisterTatoeTitle = (props: TitleProps) => {
   return (
     <div
       className='
-        flex
-        justify-between
-        flex-col
-        lg:flex-row'
+      flex
+      justify-between
+      flex-col
+      lg:flex-row'
     >
       <label
         className='
-        headline-s
-        '
+      headline-s
+      '
       >
         わかりにくい専門用語・文章
         <br />

@@ -5,8 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
-import { UpdateTatoeBtn } from '../../components/btn/UpdateTatoeBtn';
+import { TatoeForm } from '../../components/DashBoard/Tatoe/TatoeForm';
 import { useAlert } from '../../components/hooks/useAlert';
 import { useApi } from '../../components/hooks/useApi';
 import { useAuth } from '../../components/hooks/useAuth';
@@ -15,10 +14,6 @@ import { useUserInfo } from '../../components/hooks/useUserInfo';
 import { Tatoe } from '../../components/types/types';
 import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
-import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
-import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
-import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
-import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 
 export type UpdateTatoePage = {
   tId: string | string[];
@@ -119,35 +114,23 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
   };
 
   return (
-    <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      <RegisterTatoeTitle title={title} setTitle={setTitle} />
-      <RegisterTatoeShortParaphrase
-        shortParaphrase={shortParaphrase}
-        setShortParaphrase={setShortParaphrase}
-      />
-      <RegisterTatoeDescription
-        description={description}
-        setDescription={setDescription}
-      />
-      <RegisterImageForExplanationTatoe
-        setImageUrl={setImageUrl}
-        imageUrl={imageUrl}
-        defaultImageUrl={defaultImageUrl}
-        setDefaultImageUrl={setDefaultImageUrl}
-        deleteExplanationImage={handleDeleteExplanationImage}
-      />
-      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-        <CancelTatoeBtn tId={tId} />
-        <UpdateTatoeBtn
-          tatoe={tatoe}
-          tId={tId}
-          createdAt={createdAt}
-          updatedAt={updatedAt}
-          title={title}
-          shortParaphrase={shortParaphrase}
-          description={description}
-        />
-      </div>
-    </form>
+    <TatoeForm
+      onSubmit={handleOnSubmit}
+      title={title}
+      setTitle={setTitle}
+      shortParaphrase={shortParaphrase}
+      setShortParaphrase={setShortParaphrase}
+      description={description}
+      setDescription={setDescription}
+      imageUrl={imageUrl}
+      setImageUrl={setImageUrl}
+      defaultImageUrl={defaultImageUrl}
+      setDefaultImageUrl={setDefaultImageUrl}
+      deleteExplanationImage={handleDeleteExplanationImage}
+      tId={tId}
+      tatoe={tatoe}
+      createdAt={createdAt}
+      updatedAt={updatedAt}
+    />
   );
 };

@@ -1,10 +1,5 @@
 import React, { FormEventHandler, useState } from 'react';
-import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
-import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
-import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
-import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
 
-import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
@@ -13,7 +8,8 @@ import { useAuth } from '../../components/hooks/useAuth';
 import { useUserInfo } from '../../components/hooks/useUserInfo';
 import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
-import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
+
+import { TatoeForm } from '../../components/DashBoard/Tatoe/TatoeForm';
 
 export const CreateTatoePage = () => {
   const router = useRouter();
@@ -73,26 +69,18 @@ export const CreateTatoePage = () => {
   };
 
   return (
-    <form className='flex flex-col gap-6' onSubmit={handleOnSubmit}>
-      <RegisterTatoeTitle title={title} setTitle={setTitle} />
-      <RegisterTatoeShortParaphrase
-        shortParaphrase={shortParaphrase}
-        setShortParaphrase={setShortParaphrase}
-      />
-      <RegisterTatoeDescription
-        description={description}
-        setDescription={setDescription}
-      />
-      <RegisterImageForExplanationTatoe
-        setImageUrl={setImageUrl}
-        imageUrl={imageUrl}
-        defaultImageUrl={defaultImageUrl}
-        setDefaultImageUrl={setDefaultImageUrl}
-      />
-      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-        <CancelTatoeBtn />
-        <CreateTatoeBtn />
-      </div>
-    </form>
+    <TatoeForm
+      onSubmit={handleOnSubmit}
+      title={title}
+      setTitle={setTitle}
+      shortParaphrase={shortParaphrase}
+      setShortParaphrase={setShortParaphrase}
+      description={description}
+      setDescription={setDescription}
+      imageUrl={imageUrl}
+      setImageUrl={setImageUrl}
+      defaultImageUrl={defaultImageUrl}
+      setDefaultImageUrl={setDefaultImageUrl}
+    />
   );
 };

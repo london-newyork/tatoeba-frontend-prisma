@@ -3,12 +3,15 @@ import React, {
   FormEventHandler,
   MouseEventHandler,
   SetStateAction,
+  useEffect,
+  useState,
 } from 'react';
 import { RegisterImageForExplanationTatoe } from '../../../pages/Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { RegisterTatoeDescription } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeTitle } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeTitle';
 import { CancelTatoeBtn } from '../../btn/CancelTatoeBtn';
+import { CreateTatoeBtn } from '../../btn/CreateTatoeBtn';
 import { UpdateTatoeBtn } from '../../btn/UpdateTatoeBtn';
 import { Tatoe } from '../../types/types';
 
@@ -20,8 +23,8 @@ type TatoeFormProps = {
   setImageUrl: Dispatch<SetStateAction<string | null>>;
   defaultImageUrl: string | null;
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
-  deleteExplanationImage: MouseEventHandler<HTMLButtonElement>;
-  tatoe: Tatoe[];
+  deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
+  tatoe?: Tatoe[];
 } & Tatoe;
 
 export const TatoeForm = ({
@@ -42,6 +45,14 @@ export const TatoeForm = ({
   createdAt,
   updatedAt,
 }: TatoeFormProps) => {
+  const [isUpdate, setIsUpdate] = useState<boolean>(false);
+  console.log(tId);
+  useEffect(() => {
+    if (tId) {
+      setIsUpdate(true);
+    }
+  }, [tId]);
+
   return (
     <form className='flex flex-col gap-6' onSubmit={onSubmit}>
       <RegisterTatoeTitle title={title} setTitle={setTitle} />
@@ -62,15 +73,19 @@ export const TatoeForm = ({
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <CancelTatoeBtn tId={tId} />
-        <UpdateTatoeBtn
-          tatoe={tatoe}
-          tId={tId}
-          createdAt={createdAt}
-          updatedAt={updatedAt}
-          title={title}
-          shortParaphrase={shortParaphrase}
-          description={description}
-        />
+        {!isUpdate ? (
+          <CreateTatoeBtn />
+        ) : (
+          <UpdateTatoeBtn
+            tatoe={tatoe}
+            tId={tId}
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            title={title}
+            shortParaphrase={shortParaphrase}
+            description={description}
+          />
+        )}
       </div>
     </form>
   );

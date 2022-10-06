@@ -5,15 +5,15 @@ import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import { Tatoe } from '../types/types';
 
 export const CancelTatoeBtn = (props: Tatoe) => {
-  const { query_tId } = props;
+  const { tId } = props;
   const router = useRouter();
 
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   const handleClickCancel = () => {
-    if (query_tId) {
+    if (tId) {
       const newTatoe = tatoe.map((item) => {
-        if (item.tId === query_tId) {
+        if (item.tId === tId) {
           return {
             tId: item.tId,
             title: item.title,
@@ -29,7 +29,7 @@ export const CancelTatoeBtn = (props: Tatoe) => {
       setTatoe(newTatoe);
 
       tatoe.map((item) => {
-        if (item.tId === query_tId) {
+        if (item.tId === tId) {
           router.push({
             pathname: '/DashBoard/UserTatoeList',
           });

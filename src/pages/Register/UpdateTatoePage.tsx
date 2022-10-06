@@ -4,32 +4,28 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
-import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
-import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
-import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
-
-import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
-import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
-import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
+import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
 import { UpdateTatoeBtn } from '../../components/btn/UpdateTatoeBtn';
-import { useAuth } from '../../components/hooks/useAuth';
-import { useUserInfo } from '../../components/hooks/useUserInfo';
-import { useTatoe } from '../../components/hooks/useTatoe';
 import { useAlert } from '../../components/hooks/useAlert';
-import { Tatoe } from '../../components/types/types';
-import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { useApi } from '../../components/hooks/useApi';
+import { useAuth } from '../../components/hooks/useAuth';
+import { useTatoe } from '../../components/hooks/useTatoe';
+import { useUserInfo } from '../../components/hooks/useUserInfo';
+import { Tatoe } from '../../components/types/types';
+import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
+import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
+import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
+import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
+import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
+import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 
-export const RegisterTatoeParent = () => {
-  const router = useRouter();
-  const query = router.query;
-  const query_tId = query.tId as string;
-  // stringしか来ないので強引にasで型をつける
-  const tId = query.tId as string;
+export type UpdateTatoePage = {
+  tId: string | string[];
+  onCreateTatoe: () => unknown;
+};
 
+export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
@@ -45,39 +41,12 @@ export const RegisterTatoeParent = () => {
   const { user } = useUserInfo(userId);
 
   const { api: deleteTatoeImageApi } = useApi(
-    `/tatoe/${query_tId}/explanation_image`,
+    `/tatoe/${tId}/explanation_image`,
     { method: 'DELETE' }
   );
-  const { getTatoe } = useTatoe({
-    userId,
-    tatoe,
-    router,
-    user,
-    setTatoe,
-    persistAccessToken,
-  });
 
-  useEffect(() => {
-    const getUserTatoeList = async () => {
-      await getTatoe();
-    };
-    getUserTatoeList();
-  }, [query_tId]);
-
-  useEffect(() => {
-    tatoe.map((item: Tatoe) => {
-      if (item.tId === query_tId) {
-        setImageUrl(item.imageUrl);
-        setTitle(item.title);
-        setDescription(item.description);
-        setShortParaphrase(item.shortParaphrase);
-      }
-    });
-  }, [tatoe]);
-
-  const { updateTatoe, createTatoe } = useTatoe({
+  const { updateTatoe, getTatoe } = useTatoe({
     tId,
-    router,
     tatoe,
     user,
     setTatoe,
@@ -86,68 +55,52 @@ export const RegisterTatoeParent = () => {
     title,
     shortParaphrase,
     description,
-    query_tId,
     createdAt,
     updatedAt,
+    router: null,
   });
+
+  useEffect(() => {
+    const getUserTatoeList = async () => {
+      await getTatoe();
+    };
+    getUserTatoeList();
+  }, [tId]);
+
+  useEffect(() => {
+    tatoe.map((item: Tatoe) => {
+      if (item.tId === tId) {
+        setImageUrl(item.imageUrl);
+        setTitle(item.title);
+        setDescription(item.description);
+        setShortParaphrase(item.shortParaphrase);
+      }
+    });
+  }, [tatoe]);
 
   const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    /* POST */
-
-    if (!query_tId) {
-      const { alertRegisterTatoe, noInputsData } = useAlert({
-        userId,
-        user,
-        title,
-        shortParaphrase,
-        description,
-      });
-      if (noInputsData) {
-        alertRegisterTatoe();
-        return;
-      }
-      const formData = new FormData(e.currentTarget);
-
-      await createTatoe({
-        title,
-        shortParaphrase,
-        description,
-        formData,
-      });
-
-      router.push({
-        pathname: '/DashBoard/UserTatoeList',
-      });
+    const { alertRegisterTatoe, noInputsData } = useAlert({
+      userId,
+      user,
+      title,
+      shortParaphrase,
+      description,
+    });
+    if (noInputsData) {
+      alertRegisterTatoe();
+      return;
     }
 
-    /* PUT */
+    const formData = new FormData(e.currentTarget);
+    await updateTatoe({
+      tId,
+      userId,
+      formData,
+    });
 
-    if (query_tId) {
-      const { alertRegisterTatoe, noInputsData } = useAlert({
-        userId,
-        user,
-        title,
-        shortParaphrase,
-        description,
-      });
-      if (noInputsData) {
-        alertRegisterTatoe();
-        return;
-      }
-
-      const formData = new FormData(e.currentTarget);
-      await updateTatoe({
-        tId: query_tId as string,
-        userId,
-        formData,
-      });
-
-      router.push({
-        pathname: '/DashBoard/UserTatoeList',
-      });
-    }
+    await onCreateTatoe();
   };
 
   /* DELETE */
@@ -177,7 +130,6 @@ export const RegisterTatoeParent = () => {
         setDescription={setDescription}
       />
       <RegisterImageForExplanationTatoe
-        query_tId={query_tId}
         setImageUrl={setImageUrl}
         imageUrl={imageUrl}
         defaultImageUrl={defaultImageUrl}
@@ -185,19 +137,10 @@ export const RegisterTatoeParent = () => {
         deleteExplanationImage={handleDeleteExplanationImage}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-        <CancelTatoeBtn query_tId={query_tId} />
-        <CreateTatoeBtn
-          tatoe={tatoe}
-          query_tId={query_tId}
-          createdAt={createdAt}
-          updatedAt={updatedAt}
-          title={title}
-          shortParaphrase={shortParaphrase}
-          description={description}
-        />
+        <CancelTatoeBtn tId={tId} />
         <UpdateTatoeBtn
           tatoe={tatoe}
-          query_tId={query_tId}
+          tId={tId}
           createdAt={createdAt}
           updatedAt={updatedAt}
           title={title}

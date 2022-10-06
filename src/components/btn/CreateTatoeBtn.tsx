@@ -1,20 +1,5 @@
-import { useEffect, useState } from 'react';
-import { TatoeBtnProps } from '../types/types';
-
-export const CreateTatoeBtn = (props: TatoeBtnProps) => {
-  const { query_tId } = props;
-  const [isUpdate, setIsUpdate] = useState(false);
-
-  useEffect(() => {
-    const btnStyle = () => {
-      if (query_tId) {
-        setIsUpdate(true);
-      }
-    };
-    btnStyle();
-  }, [query_tId]);
-
-  return isUpdate ? null : (
+export const CreateTatoeBtn = () => {
+  return (
     <div className='flex justify-end group'>
       <button
         type='submit'

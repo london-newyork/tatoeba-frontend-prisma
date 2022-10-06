@@ -18,7 +18,6 @@ export const TatoeList = (): JSX.Element => {
   const router = useRouter();
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
-  console.log('@TatoeList tatoe ++', tatoe);
   if (!userId) {
     return null;
   }
@@ -54,7 +53,7 @@ export const TatoeList = (): JSX.Element => {
                     sm:justify-between
                     group
                     '
-                key={item.tId}
+                key={item.tId as string}
               >
                 <li className='flex-grow'>
                   <ul

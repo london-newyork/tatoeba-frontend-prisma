@@ -3,8 +3,7 @@ import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../components/Header/Header';
 import { RegisterTatoeHeadline } from './RegisterTatoeHeadline';
-import { RegisterTatoeParent } from './RegisterTatoeParent';
-import { useRouter } from 'next/router';
+import { CreateTatoePage } from './CreateTatoePage';
 
 export default function Register() {
   return (
@@ -32,7 +31,7 @@ export default function Register() {
               '
         >
           <RegisterTatoeHeadline />
-          <RegisterTatoeParent />
+          <CreateTatoePage />
         </div>
       </section>
     </>

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, {
   Dispatch,
   FormEventHandler,
@@ -10,10 +11,10 @@ import { RegisterImageForExplanationTatoe } from '../../../pages/Register/Regist
 import { RegisterTatoeDescription } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeTitle } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeTitle';
-import { CancelTatoeBtn } from '../../btn/CancelTatoeBtn';
-import { CreateTatoeBtn } from '../../btn/CreateTatoeBtn';
+// import { CancelTatoeBtn } from '../../btn/CancelTatoeBtn';
+// import { CreateTatoeBtn } from '../../btn/CreateTatoeBtn';
 import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';
-import { UpdateTatoeBtn } from '../../btn/UpdateTatoeBtn';
+// import { UpdateTatoeBtn } from '../../btn/UpdateTatoeBtn';
 import { Tatoe } from '../../types/types';
 
 type TatoeFormProps = {
@@ -109,9 +110,40 @@ export const TatoeForm = ({
         deleteExplanationImage={deleteExplanationImage}
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
-        <RegisterTatoeBtn cancel />
-        <CancelTatoeBtn tId={tId} />
-        {!isUpdate ? (
+        <RegisterTatoeBtn
+          role='cancel'
+          btnName='キャンセル'
+          btnColor='white'
+          btnType='button'
+          tId={tId}
+          tatoe={tatoe}
+          onClickCancel={handleClickCancel}
+        />
+        {isUpdate ? (
+          <RegisterTatoeBtn
+            role='create'
+            btnColor='black'
+            btnName='投稿する'
+            btnType='submit'
+          />
+        ) : (
+          <RegisterTatoeBtn
+            role='update'
+            btnColor='black'
+            btnName='更新する'
+            btnType='submit'
+            tId={tId}
+            tatoe={tatoe}
+            createdAt={createdAt}
+            updatedAt={updatedAt}
+            title={title}
+            shortParaphrase={shortParaphrase}
+            description={description}
+          />
+        )}
+
+        {/* <CancelTatoeBtn tId={tId} /> */}
+        {/* {!isUpdate ? (
           <CreateTatoeBtn />
         ) : (
           <UpdateTatoeBtn
@@ -123,7 +155,7 @@ export const TatoeForm = ({
             shortParaphrase={shortParaphrase}
             description={description}
           />
-        )}
+        )} */}
       </div>
     </form>
   );

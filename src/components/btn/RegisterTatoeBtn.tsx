@@ -15,58 +15,41 @@ const btnType = {
 
 type BtnCommonProps = {
   btnName: Required<string>;
-  type: Required<BtnType>;
-  btnColor: BtnColor;
+  btnType: Required<BtnType>;
+  btnColor: Required<BtnColor>;
 };
 
 type BtnType = keyof typeof btnType;
 
-type UpdateTatoeBtnProps = {
-  // btnName: Required<string>;
-  // type: Required<BtnType>;
-  // btnColor: BtnColor;
-  tId?: string;
-  tatoe?: Tatoe[];
-  createdAt?: string;
-  updatedAt?: string;
-  title?: string;
-  shortParaphrase?: string;
-  description?: string;
-};
-
-type CancelTatoeBtnProps = {
-  // btnName: Required<string>;
-  // type: Required<BtnType>;
-  // btnColor: BtnColor;
-  tId?: string;
-  tatoe?: Tatoe[];
-  onClickCancel?: () => void;
-};
-
 type Props =
-  | { common?: BtnCommonProps; create?: null; update?: never; cancel?: never }
+  | { role: 'create'; onClickCancel?: never }
   | {
-      common?: BtnCommonProps;
-      create?: never;
-      update?: BtnCommonProps & UpdateTatoeBtnProps;
-      cancel?: never;
+      role: 'update';
+      tId: string[] | string;
+      tatoe: Tatoe[];
+      createdAt: string;
+      updatedAt: string;
+      title: string | null;
+      shortParaphrase: string | null;
+      description: string | null;
+      onClickCancel?: never;
     }
   | {
-      common?: BtnCommonProps;
-      create?: never;
-      update?: never;
-      cancel?: BtnCommonProps & CancelTatoeBtnProps;
+      role: 'cancel';
+      tId: string | string[];
+      tatoe: Tatoe[];
+      onClickCancel: () => void;
     };
 
-export const RegisterTatoeBtn = ({ cancel, common, create, update }: Props) => {
+export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
   return (
     <div className='flex justify-end group'>
       <button
         type='submit'
-        className={`btn-m-color ${common ? common.btnColor : null}`}
-        onClick={cancel ? cancel.onClickCancel : null}
+        className={`btn-m-color ${props.btnColor}`}
+        onClick={props.onClickCancel ? props?.onClickCancel : null}
       >
-        {common ? common.btnName : null}
+        {props.btnName}
       </button>
       <div
         className='

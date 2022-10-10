@@ -2,11 +2,16 @@ import React from 'react';
 import { Tatoe } from '../types/types';
 
 const btnColor = {
-  black: 'bg-black text-white',
-  white: 'bg-white text-black',
+  create: 'bg-black text-white',
+  update: 'bg-black text-white',
+  cancel: 'bg-white text-black border-gray-800 border',
 } as const;
 
-type BtnColor = keyof typeof btnColor;
+const btnIcon = {
+  create: 'text-white',
+  update: 'text-white',
+  cancel: 'text-black',
+} as const;
 
 const btnType = {
   submit: 'submit',
@@ -16,15 +21,14 @@ const btnType = {
 type BtnCommonProps = {
   btnName: Required<string>;
   btnType: Required<BtnType>;
-  btnColor: Required<BtnColor>;
 };
 
 type BtnType = keyof typeof btnType;
 
 type Props =
-  | { role: 'create'; onClickCancel?: never }
+  | { variant: 'create'; onClickCancel?: never }
   | {
-      role: 'update';
+      variant: 'update';
       tId: string[] | string;
       tatoe: Tatoe[];
       createdAt: string;
@@ -35,7 +39,7 @@ type Props =
       onClickCancel?: never;
     }
   | {
-      role: 'cancel';
+      variant: 'cancel';
       tId: string | string[];
       tatoe: Tatoe[];
       onClickCancel: () => void;
@@ -46,7 +50,7 @@ export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
     <div className='flex justify-end group'>
       <button
         type='submit'
-        className={`btn-m-color ${props.btnColor}`}
+        className={`btn-m-color ${btnColor[props.variant]}`}
         onClick={props.onClickCancel ? props?.onClickCancel : null}
       >
         {props.btnName}
@@ -58,11 +62,9 @@ export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
   '
       >
         <span
-          className='
-      absolute
-      material-symbols-outlined
-      btn-m-icon-white
-      '
+          className={`absolute
+          material-symbols-outlined
+          btn-m-icon-base ${btnIcon[props.variant]}`}
         >
           chevron_right
         </span>

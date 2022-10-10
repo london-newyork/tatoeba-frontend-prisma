@@ -48,7 +48,7 @@ export const TatoeForm = ({
   updatedAt,
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
-  console.log(tId);
+
   useEffect(() => {
     if (tId) {
       setIsUpdate(true);
@@ -111,25 +111,22 @@ export const TatoeForm = ({
       />
       <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
         <RegisterTatoeBtn
-          role='cancel'
+          variant='cancel'
           btnName='キャンセル'
-          btnColor='white'
           btnType='button'
           tId={tId}
           tatoe={tatoe}
           onClickCancel={handleClickCancel}
         />
-        {isUpdate ? (
+        {!isUpdate ? (
           <RegisterTatoeBtn
-            role='create'
-            btnColor='black'
+            variant='create'
             btnName='投稿する'
             btnType='submit'
           />
         ) : (
           <RegisterTatoeBtn
-            role='update'
-            btnColor='black'
+            variant='update'
             btnName='更新する'
             btnType='submit'
             tId={tId}
@@ -141,21 +138,6 @@ export const TatoeForm = ({
             description={description}
           />
         )}
-
-        {/* <CancelTatoeBtn tId={tId} /> */}
-        {/* {!isUpdate ? (
-          <CreateTatoeBtn />
-        ) : (
-          <UpdateTatoeBtn
-            tatoe={tatoe}
-            tId={tId}
-            createdAt={createdAt}
-            updatedAt={updatedAt}
-            title={title}
-            shortParaphrase={shortParaphrase}
-            description={description}
-          />
-        )} */}
       </div>
     </form>
   );

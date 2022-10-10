@@ -60,7 +60,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .btn-m-color {
-  @apply p-4 w-[200px] rounded-full text-white text-xs transition-all bg-black group-hover:bg-opacity-80;
+  @apply p-4 w-[200px] rounded-full text-xs transition-all  group-hover:bg-opacity-80;
 }
 
 .btn-m-icon-base {
@@ -68,7 +68,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .btn-m-icon-white {
-  @apply btn-m-icon-base text-white;
+  @apply btn-m-icon-base;
 }
 
 .btn-m-icon-black {

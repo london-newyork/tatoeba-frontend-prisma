@@ -7,6 +7,9 @@ module.exports = {
     })
     return config
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 }
 // const withImages= require('next-images')
 // module.exports= {

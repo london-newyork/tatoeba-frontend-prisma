@@ -11,7 +11,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm build
+RUN npm run build
 
 FROM nikolaik/python-nodejs:python3.7-nodejs18-slim AS runner
 
@@ -26,4 +26,4 @@ COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 
-CMD [ "node", "dist/index.js"]
+CMD [ "npm", "run", "start"]

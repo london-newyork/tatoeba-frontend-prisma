@@ -4,24 +4,24 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { CreateTatoeBtn } from '../../components/btn/CreateTatoeBtn';
+import { CreateTatoeBtn } from '../btn/CreateTatoeBtn';
 import { RegisterTatoeTitle } from './RegisterTatoeChild/RegisterTatoeTitle';
 import { RegisterTatoeShortParaphrase } from './RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeDescription } from './RegisterTatoeChild/RegisterTatoeDescription';
 
-import { CancelTatoeBtn } from '../../components/btn/CancelTatoeBtn';
+import { CancelTatoeBtn } from '../btn/CancelTatoeBtn';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
-import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
-import { UpdateTatoeBtn } from '../../components/btn/UpdateTatoeBtn';
-import { useAuth } from '../../components/hooks/useAuth';
-import { useUserInfo } from '../../components/hooks/useUserInfo';
-import { useTatoe } from '../../components/hooks/useTatoe';
-import { useAlert } from '../../components/hooks/useAlert';
-import { Tatoe } from '../../components/types/types';
+import { TatoeAtom } from '../utils/atoms/TatoeAtom';
+import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+import { UpdateTatoeBtn } from '../btn/UpdateTatoeBtn';
+import { useAuth } from '../hooks/useAuth';
+import { useUserInfo } from '../hooks/useUserInfo';
+import { useTatoe } from '../hooks/useTatoe';
+import { useAlert } from '../hooks/useAlert';
+import { Tatoe } from '../types/types';
 import { RegisterImageForExplanationTatoe } from './RegisterTatoeChild/RegisterImageForExplanationTatoe';
-import { useApi } from '../../components/hooks/useApi';
+import { useApi } from '../hooks/useApi';
 
 export const RegisterTatoeParent = () => {
   const router = useRouter();

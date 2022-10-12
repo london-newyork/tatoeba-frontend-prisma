@@ -129,6 +129,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
       deleteExplanationImage={handleDeleteExplanationImage}
       tId={tId}
       tatoe={tatoe}
+      setTatoe={setTatoe}
       createdAt={createdAt}
       updatedAt={updatedAt}
     />

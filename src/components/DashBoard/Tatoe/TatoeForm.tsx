@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import React, {
   Dispatch,
   FormEventHandler,
@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { SetterOrUpdater } from 'recoil';
 import { RegisterImageForExplanationTatoe } from '../../../pages/Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { RegisterTatoeDescription } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -14,6 +15,7 @@ import { RegisterTatoeTitle } from '../../../pages/Register/RegisterTatoeChild/R
 // import { CancelTatoeBtn } from '../../btn/CancelTatoeBtn';
 // import { CreateTatoeBtn } from '../../btn/CreateTatoeBtn';
 import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';
+import { useTatoeCancel } from '../../hooks/useTatoeCancel';
 // import { UpdateTatoeBtn } from '../../btn/UpdateTatoeBtn';
 import { Tatoe } from '../../types/types';
 
@@ -27,6 +29,7 @@ type TatoeFormProps = {
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
   deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
   tatoe?: Tatoe[];
+  setTatoe?: SetterOrUpdater<Tatoe[]>;
 } & Tatoe;
 
 export const TatoeForm = ({
@@ -44,6 +47,7 @@ export const TatoeForm = ({
   deleteExplanationImage,
   tId,
   tatoe,
+  setTatoe,
   createdAt,
   updatedAt,
 }: TatoeFormProps) => {
@@ -55,41 +59,43 @@ export const TatoeForm = ({
     }
   }, [tId]);
 
-  // cancel btn あとでけす
-  const router = useRouter();
+  const { handleClickCancel } = useTatoeCancel({ tId, tatoe, setTatoe });
 
-  // const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
+  // // cancel btn あとでけす
+  // const router = useRouter();
 
-  const handleClickCancel = () => {
-    if (tId) {
-      const newTatoe = tatoe.map((item) => {
-        if (item.tId === tId) {
-          return {
-            tId: item.tId,
-            title: item.title,
-            shortParaphrase: item.shortParaphrase,
-            description: item.description,
-            createdAt: item.createdAt,
-            updatedAt: item.updatedAt,
-          };
-        } else {
-          return item;
-        }
-      });
-      setTatoe(newTatoe);
+  // // const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
-      tatoe.map((item) => {
-        if (item.tId === tId) {
-          router.push({
-            pathname: '/DashBoard/UserTatoeList',
-          });
-        }
-      });
-    }
-    router.push({
-      pathname: '/DashBoard/UserTatoeList',
-    });
-  };
+  // const handleClickCancel = () => {
+  //   if (tId) {
+  //     const newTatoe = tatoe.map((item) => {
+  //       if (item.tId === tId) {
+  //         return {
+  //           tId: item.tId,
+  //           title: item.title,
+  //           shortParaphrase: item.shortParaphrase,
+  //           description: item.description,
+  //           createdAt: item.createdAt,
+  //           updatedAt: item.updatedAt,
+  //         };
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //     setTatoe(newTatoe);
+
+  //     tatoe.map((item) => {
+  //       if (item.tId === tId) {
+  //         router.push({
+  //           pathname: '/DashBoard/UserTatoeList',
+  //         });
+  //       }
+  //     });
+  //   }
+  //   router.push({
+  //     pathname: '/DashBoard/UserTatoeList',
+  //   });
+  // };
 
   return (
     <form className='flex flex-col gap-6' onSubmit={onSubmit}>

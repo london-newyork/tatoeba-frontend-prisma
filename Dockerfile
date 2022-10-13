@@ -1,9 +1,5 @@
 FROM nikolaik/python-nodejs:python3.7-nodejs18-slim AS builder
 
-ARG NEXT_PUBLIC_BACKEND_URL
-
-ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
-
 WORKDIR /app
 
 COPY package-lock.json package.json ./

@@ -34,7 +34,7 @@ Prismaを使ったマイグレーション、型安全を実現する
 
 ### 言語とツール等(フロントエンド側)
 
-Next.js/React/TypeScript/TailwindCSS
+Next.js/React/TypeScript/TailwindCSS/Docker
 
 ### ライブラリ等
 

@@ -7,12 +7,11 @@ import React, {
 } from 'react';
 
 export type SubmitImageProps = {
-  query_tId?: string | string[];
   imageUrl?: string;
   setImageUrl: React.Dispatch<React.SetStateAction<string>>;
   defaultImageUrl?: string;
   setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
-  deleteExplanationImage: MouseEventHandler<HTMLButtonElement>;
+  deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export const RegisterImageForExplanationTatoe = ({

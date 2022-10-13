@@ -1,7 +1,6 @@
 import React from 'react';
 
 type ShortParaphraseProps = {
-  query_tId?: string | string[];
   shortParaphrase: string | null;
   setShortParaphrase: React.Dispatch<
     React.SetStateAction<string | string[] | null>

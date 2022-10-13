@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
-  tId?: string;
+  tId?: string | string[];
   userId?: string;
   title?: string;
   shortParaphrase?: string;
@@ -13,7 +13,6 @@ export type Tatoe = {
   updatedAt?: string;
   imageUrl?: string;
   imageId?: string;
-  query_tId?: string | string[];
   formData?: FormData;
 };
 
@@ -27,7 +26,6 @@ export type AllUserTatoe = {
   updatedAt?: string;
   imageUrl?: string;
   imageId?: string;
-  query_tId?: string | string[];
   formData?: FormData;
   userName: string;
 };
@@ -73,7 +71,6 @@ export type WithoutPropsChildrenLayouts = {
 };
 
 export type TatoeBtnProps = {
-  // onClick: () => void;
   tatoe?: Tatoe[];
 } & Tatoe;
 

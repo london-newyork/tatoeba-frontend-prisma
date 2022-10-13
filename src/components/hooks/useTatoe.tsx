@@ -4,7 +4,7 @@ import { TatoeAtom } from '../utils/atoms/TatoeAtom';
 import { useApi } from './useApi';
 
 export const useTatoe = (props: TatoeBtnHooksProps) => {
-  const { tId, userId, query_tId } = props;
+  const { tId, userId } = props;
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });
@@ -74,7 +74,7 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     const { data } = await putTatoeApi(value.formData);
 
     const updatedTatoe = tatoe.map((item: Tatoe) => {
-      if (item.tId === query_tId) {
+      if (item.tId === tId) {
         return {
           tId: item.tId,
           userId: data.userId,

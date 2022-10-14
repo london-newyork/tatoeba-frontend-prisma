@@ -8,10 +8,10 @@ import React, {
   useState,
 } from 'react';
 import { SetterOrUpdater } from 'recoil';
-import { RegisterImageForExplanationTatoe } from '../../../pages/Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
-import { RegisterTatoeDescription } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeDescription';
-import { RegisterTatoeShortParaphrase } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
-import { RegisterTatoeTitle } from '../../../pages/Register/RegisterTatoeChild/RegisterTatoeTitle';
+import { RegisterImageForExplanationTatoe } from '../../Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
+import { RegisterTatoeDescription } from '../../Register/RegisterTatoeChild/RegisterTatoeDescription';
+import { RegisterTatoeShortParaphrase } from '../../Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
+import { RegisterTatoeTitle } from '../../Register/RegisterTatoeChild/RegisterTatoeTitle';
 // import { CancelTatoeBtn } from '../../btn/CancelTatoeBtn';
 // import { CreateTatoeBtn } from '../../btn/CreateTatoeBtn';
 import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';

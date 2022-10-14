@@ -41,7 +41,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
   );
 
   const { updateTatoe, getTatoe } = useTatoe({
-    tId,
+    tId: tId as string, // stringしか来ない
     tatoe,
     user,
     setTatoe,
@@ -90,7 +90,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
 
     const formData = new FormData(e.currentTarget);
     await updateTatoe({
-      tId,
+      tId: tId as string,
       userId,
       formData,
     });
@@ -127,7 +127,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
       defaultImageUrl={defaultImageUrl}
       setDefaultImageUrl={setDefaultImageUrl}
       deleteExplanationImage={handleDeleteExplanationImage}
-      tId={tId}
+      tId={tId as string}
       tatoe={tatoe}
       setTatoe={setTatoe}
       createdAt={createdAt}

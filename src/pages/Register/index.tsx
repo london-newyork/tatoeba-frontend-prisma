@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import { Header } from '../../components/Header/Header';
 
 import { RegisterTatoeHeadline } from '../../components/Register/RegisterTatoeHeadline';
-import { CreateTatoePage } from './CreateTatoePage';
+import CreateTatoePage from './CreateTatoePage';
 
 export default function Register() {
   return (

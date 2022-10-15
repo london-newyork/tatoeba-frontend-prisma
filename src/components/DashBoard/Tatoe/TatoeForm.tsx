@@ -1,4 +1,3 @@
-// import { useRouter } from 'next/router';
 import React, {
   Dispatch,
   FormEventHandler,
@@ -12,11 +11,8 @@ import { RegisterImageForExplanationTatoe } from '../../Register/RegisterTatoeCh
 import { RegisterTatoeDescription } from '../../Register/RegisterTatoeChild/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
 import { RegisterTatoeTitle } from '../../Register/RegisterTatoeChild/RegisterTatoeTitle';
-// import { CancelTatoeBtn } from '../../btn/CancelTatoeBtn';
-// import { CreateTatoeBtn } from '../../btn/CreateTatoeBtn';
 import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';
 import { useTatoeCancel } from '../../hooks/useTatoeCancel';
-// import { UpdateTatoeBtn } from '../../btn/UpdateTatoeBtn';
 import { Tatoe } from '../../types/types';
 
 type TatoeFormProps = {
@@ -60,42 +56,6 @@ export const TatoeForm = ({
   }, [tId]);
 
   const { handleClickCancel } = useTatoeCancel({ tId, tatoe, setTatoe });
-
-  // // cancel btn あとでけす
-  // const router = useRouter();
-
-  // // const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
-
-  // const handleClickCancel = () => {
-  //   if (tId) {
-  //     const newTatoe = tatoe.map((item) => {
-  //       if (item.tId === tId) {
-  //         return {
-  //           tId: item.tId,
-  //           title: item.title,
-  //           shortParaphrase: item.shortParaphrase,
-  //           description: item.description,
-  //           createdAt: item.createdAt,
-  //           updatedAt: item.updatedAt,
-  //         };
-  //       } else {
-  //         return item;
-  //       }
-  //     });
-  //     setTatoe(newTatoe);
-
-  //     tatoe.map((item) => {
-  //       if (item.tId === tId) {
-  //         router.push({
-  //           pathname: '/DashBoard/UserTatoeList',
-  //         });
-  //       }
-  //     });
-  //   }
-  //   router.push({
-  //     pathname: '/DashBoard/UserTatoeList',
-  //   });
-  // };
 
   return (
     <form className='flex flex-col gap-6' onSubmit={onSubmit}>

@@ -11,7 +11,7 @@ import { useAlert } from '../../components/hooks/useAlert';
 
 import { TatoeForm } from '../../components/DashBoard/Tatoe/TatoeForm';
 
-export const CreateTatoePage = () => {
+export default function CreateTatoePage() {
   const router = useRouter();
 
   const [title, setTitle] = useState<string | null>('');
@@ -83,4 +83,4 @@ export const CreateTatoePage = () => {
       setDefaultImageUrl={setDefaultImageUrl}
     />
   );
-};
+}

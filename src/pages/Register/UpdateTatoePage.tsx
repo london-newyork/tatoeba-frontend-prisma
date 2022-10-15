@@ -60,7 +60,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
       await getTatoe();
     };
     getUserTatoeList();
-  }, [tId]);
+  }, [tId as string]);
 
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
@@ -135,3 +135,5 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
     />
   );
 };
+
+export default UpdateTatoePage;

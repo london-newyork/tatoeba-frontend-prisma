@@ -27,7 +27,6 @@ export const AccountDefaultIconBtn = ({
         flex
         justify-center
         items-center
-        text-xs
         text-gray-500
         cursor-pointer
         '
@@ -50,8 +49,8 @@ export const AccountDefaultIconBtn = ({
             className='
             material-symbols-outlined
             absolute
-            top-[1px]
-            text-2xl
+            top-[3px]
+            text-3xl
             header-icon'
           >
             person

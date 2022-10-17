@@ -1,13 +1,13 @@
-import React, { VFC } from 'react'
-import { Layouts } from '../types/types'
+import React, { VFC } from 'react';
+import { Layouts } from '../types/types';
 
-export const CardLayouts:VFC<Layouts> = (props) => {
+export const CardLayouts: VFC<Layouts> = (props) => {
   return (
     <div>
-    <section className='dark'>
-            <div
-            id="tatoeba-card"
-            className='
+      <section className='dark'>
+        <div
+          id='tatoeba-card'
+          className='
             flex
             justify-center
             bg-gray-200
@@ -20,9 +20,10 @@ export const CardLayouts:VFC<Layouts> = (props) => {
             sm:py-8
             md:py-10
             lg:py-10
-            '>
-                <ul
-                className='
+            '
+        >
+          <ul
+            className='
                 lg:w-[940px]
                 flex
                 sm:flex-row
@@ -32,12 +33,12 @@ export const CardLayouts:VFC<Layouts> = (props) => {
                 flex-wrap
                 gap-x-8
                 gap-y-8
-                mt-4'>
-               {props.children}
-            </ul>
-            </div>
-        </section>
-
+                mt-4'
+          >
+            {props.children}
+          </ul>
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};

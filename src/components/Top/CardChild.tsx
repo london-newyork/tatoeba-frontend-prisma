@@ -96,14 +96,14 @@ export const CardChild: VFC = () => {
                   <h3
                     className='
                                 text-left
-                                text-dark_green
-                                text-lg
+                                text-black
+                                text-sm
                                 '
                   >
                     {item.title}
-                    <br />
                     <span className='text-gray-500'>を例えると...</span>
-                    {item.shortParaphrase}
+                    <br />
+                    <span className='text-lg'>{item.shortParaphrase}</span>
                   </h3>
                 </li>
               </ul>
@@ -120,16 +120,17 @@ export const CardChild: VFC = () => {
                             pt-6
                             '
                 >
-                  {/* <Image
-                    src='/images/illust1.png'
-                    alt='illust of Tatoeba app'
-                    width={240}
-                    height={120}
-                    objectFit='contain'
-                    quality={50}
-                    priority={true}
-                  /> */}
-                  <img src={item.imageUrl} alt='例えの説明画像' />
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt='例えの説明画像'
+                      className='rounded-md'
+                    />
+                  ) : (
+                    <div className='rounded-md bg-gray-200 w-full min-h-[164px] flex items-center justify-center text-gray-400'>
+                      No Image
+                    </div>
+                  )}
                 </li>
               </ul>
             </li>

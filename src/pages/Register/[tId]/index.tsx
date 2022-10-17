@@ -2,14 +2,15 @@ import React from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../../components/Header/Header';
-import { RegisterTatoeHeadline } from '../RegisterTatoeHeadline';
+import { RegisterTatoeHeadline } from '../../../components/Register/RegisterTatoeHeadline';
 import { UpdateTatoePage } from '../UpdateTatoePage';
 import { useRouter } from 'next/router';
 
 export default function Register() {
   const router = useRouter();
 
-  const tId: string | string[] = router.query.tId;
+  const { tId } = router.query;
+  console.log(tId);
 
   const handleCreateTatoe = async () => {
     router.push({
@@ -19,7 +20,7 @@ export default function Register() {
   return (
     <>
       <Head>
-        <title>Tatoeba 例え話 登録ページ</title>
+        <title>Tatoeba 例え話 更新ページ</title>
         <link rel='favicon.ico' />
       </Head>
       <Header />

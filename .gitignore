@@ -33,13 +33,10 @@ yarn-error.log*
 # env
 .env
 /.env
+/.env.development
+/.env.production
+.env.development
+.env.production
 
 # vercel
 .vercel
-
-#firebase
-.fireabaseerc
-firebase.json
-firebase.indexes.json
-firebase.rules
-.firebase

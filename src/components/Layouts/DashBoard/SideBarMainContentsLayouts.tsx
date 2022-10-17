@@ -10,7 +10,7 @@ export const SideBarMainContentsLayouts: VFC = (props) => {
             fixed
             md:left-0
             md:top-1/3
-            right-[18px]
+            right-[22px]
             top-[58px]
             '
     >

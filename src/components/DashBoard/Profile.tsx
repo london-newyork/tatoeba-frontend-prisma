@@ -61,8 +61,6 @@ export const Profile = () => {
 
       setIsFocus(false);
       await updateUser({ userName });
-      console.log('===== @profile userName ===== ', userName);
-      console.log('===== @profile user =====', user);
     }
   };
 
@@ -112,7 +110,7 @@ export const Profile = () => {
             sm:flex-row
             sm:justify-between
             justify-center
-            gap-y-2
+            gap-y-4
             sm:gap-y-0
             position
             relative
@@ -147,6 +145,7 @@ export const Profile = () => {
                 className={`${isFocus ? focusCSS : unFocusCSS}
                 rounded-md
                 px-2
+                max-w-[14rem]
                 `}
               ></input>
             </h1>
@@ -159,7 +158,7 @@ export const Profile = () => {
         mt-6
         flex
         flex-col
-        gap-y-2
+        gap-y-4
         text-sm'
       >
         <li>
@@ -175,8 +174,7 @@ export const Profile = () => {
           >
             <li
               className='
-                pl-3
-                sm:pl-0
+                pl-0
                 sm:w-[128px]
                 text-sm
                 text-gray-400'
@@ -185,24 +183,24 @@ export const Profile = () => {
             </li>
             <li
               className='
-                h-7
-                flex
-                flex-1
-                sm:min-w-[14rem]
-                sm:w-[20rem]
-                w-[18rem]
-                p-4
-                m-2
+                sm:w-[128px]
+                py-1
+                pl-0
+                my-2
+                ml-0
+                sm:p-0
+                sm:m-0
                 '
-            ></li>
+            >
+              {user?.email}
+            </li>
           </ul>
         </li>
         <li
           className='
             min-w-[16rem]
             w-full
-            pl-3
-            sm:pl-0
+            pl-0
             flex
             flex-col
             sm:flex-row
@@ -228,38 +226,42 @@ export const Profile = () => {
             </li>
             <li
               className='
-                sm:pl-4
-                pl-2
-                m-2
-                text-gray-400
-                tracking-widest
-                '
+              py-1
+              pl-0
+              my-2
+              ml-0
+              sm:p-0
+              sm:m-0
+              text-gray-400
+              tracking-widest
+              '
             >
               ******
-            </li>
-          </ul>
-          <Link href='/ResetPassword'>
-            <button
-              className='
+              <Link href='/ResetPassword'>
+                <button
+                  className='
+                  pl-2
                 text-gray-400
                 '
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-4 w-4'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-                strokeWidth='2'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
-                />
-              </svg>
-            </button>
-          </Link>
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='h-4 w-4'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
+                    />
+                  </svg>
+                </button>
+              </Link>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

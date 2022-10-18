@@ -23,6 +23,7 @@
     box-sizing: border-box;
   }
 }
+
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
 }
@@ -60,11 +61,11 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .btn-m-color {
-  @apply p-4 w-[200px] rounded-full text-xs transition-all  group-hover:bg-opacity-80;
+  @apply p-5 w-[240px] rounded-full text-xs transition-all  group-hover:bg-opacity-80;
 }
 
 .btn-m-icon-base {
-  @apply top-[18px] right-1 text-base transition-all group-hover:opacity-80;
+  @apply top-[20px] right-1 text-base transition-all group-hover:opacity-80 text-lg;
 }
 
 .btn-m-icon-white {
@@ -91,7 +92,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .explanation-img-wrapper {
-  @apply w-full aspect-[4/3] bg-gray-100 rounded-md;
+  @apply w-full aspect-[4/3] bg-gray-100 rounded-md md:max-w-[650px];
 }
 
 .explanation-img {
@@ -100,4 +101,21 @@ text-xs transition-all group-hover:opacity-60;
 
 .text-on-explanation-img {
   @apply top-1/2 z-30 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl text-gray-400;
+}
+
+.login-headline {
+  @apply relative text-2xl text-gray-900 select-none font-normal;
+}
+
+.login-input {
+  @apply outline-none focus:ring-2 h-8 py-2 px-3
+ w-[280px] border border-gray-200 rounded-full;
+}
+
+.login-headline-s {
+  @apply pr-2 text-gray-600 w-[128px] text-sm pb-2;
+}
+
+.login-btn {
+  @apply mx-auto p-3 w-full rounded-full bg-dark_green text-gray-800 text-lg hover:bg-opacity-90;
 }

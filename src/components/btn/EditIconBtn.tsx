@@ -21,7 +21,7 @@ export const EditIconBtn = ({ onClick }: OnClick) => {
           flex-col
           absolute
           -top-[3px]
-          left-1
+          left-0
           hover:text-white
           '
       >

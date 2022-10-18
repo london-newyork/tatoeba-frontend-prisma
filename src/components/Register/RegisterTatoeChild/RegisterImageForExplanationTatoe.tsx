@@ -103,7 +103,7 @@ export const RegisterImageForExplanationTatoe = ({
         ) : (
           <div className='absolute text-on-explanation-img'>画像を追加</div>
         )}
-        <div className='z-20 absolute top-1 right-2'>
+        <div className='z-10 absolute top-1 right-2'>
           <div className='position relative'>
             <input
               type='file'
@@ -130,7 +130,7 @@ export const RegisterImageForExplanationTatoe = ({
           </div>
           <button className='w-8 h-10' onClick={deleteExplanationImage}>
             <span
-              className='material-symbols-outlined text-2xl mt-[3px]
+              className='material-symbols-outlined text-3xl mt-[4px]
               submit-image-icon'
             >
               delete

@@ -54,7 +54,6 @@ const SearchResultList = () => {
       <SearchMainLayouts>
         <div className='h-screen flex flex-col gap-y-2'>
           <small className='text-gray-500'>検索結果一覧</small>
-          {console.log('result 2', result)}
           <div className='pt-12 flex flex-col gap-6'>
             {router.query
               ? result.map((item) => {

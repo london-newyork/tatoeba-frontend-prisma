@@ -41,8 +41,6 @@ const CompleteRegisterMemberForm = () => {
 
   //Backend側へパスワードとトークンを送る
   const handleSendPassword = async () => {
-    console.log(router.query);
-
     await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/set_password', {
       method: 'POST',
       headers: {

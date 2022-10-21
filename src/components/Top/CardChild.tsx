@@ -30,7 +30,6 @@ export const CardChild: VFC = () => {
     };
     main();
   }, []);
-  console.log(allUserTatoe);
 
   return (
     <>

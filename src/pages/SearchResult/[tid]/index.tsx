@@ -42,10 +42,10 @@ const SearchResult = () => {
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${item.userId}/profile_image?t=${profileImage}`}
                     alt='ユーザーの画像'
                     className='
-                w-6
-                h-6
-                rounded-full
-                object-cover'
+                    w-6
+                    h-6
+                    rounded-full
+                    object-cover'
                   />
                   <small className='text-gray-400'>{item.userName}が投稿</small>
                 </div>
@@ -57,10 +57,10 @@ const SearchResult = () => {
                 >
                   <h1
                     className='
-                  text-4xl
-                  text-gray-700
-                  pt-6
-                  '
+                    text-4xl
+                    text-gray-700
+                    pt-6
+                    '
                   >
                     {item.title}
                     をわかりやすく例えると...
@@ -72,15 +72,21 @@ const SearchResult = () => {
               </h2>
               <p
                 className='
-            pt-10
-            text-md
-            leading-loose
-            text-gray-600'
+                  pt-10
+                  text-md
+                  leading-loose
+                  text-gray-600'
               >
                 {item.description}
               </p>
-              <div className='max-w-[600px] h-96 bg-gray-300 mx-auto'>
-                <img src={item.imageUrl} alt='例えの説明画像' />
+              <div className='mt-12 mx-auto'>
+                {item.imageUrl ? (
+                  <img
+                    src={item.imageUrl}
+                    alt='例えの説明画像'
+                    className='mx-auto'
+                  />
+                ) : null}
               </div>
             </div>
           ) : null;

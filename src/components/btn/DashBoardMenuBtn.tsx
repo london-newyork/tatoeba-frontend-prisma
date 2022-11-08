@@ -44,37 +44,26 @@ export const DashBoardMenuBtn = () => {
                 z-40
                 left-0
                 top-12
-                h-32
                 w-48
                 bg-white
                 text-gray-700
                 flex-col
-                gap-y-3
                 rounded-xl
                 border
                 border-gray-700
-                
                 ${isHover ? 'hidden' : 'flex'}
                 `}
         >
           <li
             className='
                     text-sm
-                    pt-6
-                    text-gray-300
-                    mx-auto'
-          >
-            Menu
-          </li>
-          <li
-            className='
-                    text-sm
                     mx-auto
                     cursor-pointer
-                    py-4
+                    py-6
                     text-center
                     hover:bg-gray-100
                     hover:w-full
+                    hover:rounded-xl
                     '
             onClick={handleMoveToRemoveMember}
           >

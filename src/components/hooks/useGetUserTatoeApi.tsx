@@ -8,6 +8,7 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
     method: 'GET',
   });
 
+  // TODO: これもRecoil使ってるので調査中
   const [allUserTatoe, setAllUserTatoe] = useRecoilState(AllUserTatoeAtom);
 
   const getAllUserTatoe = async () => {

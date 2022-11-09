@@ -23,6 +23,7 @@ export default function CreateTatoePage() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
+  // TODO: Recoil使ってるので調査中
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const { userId } = useAuth();

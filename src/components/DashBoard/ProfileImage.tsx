@@ -9,6 +9,8 @@ type ProfileImageProps = {
 
 export const ProfileImage = ({ onSubmit, userId }: ProfileImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
+
+  // ユーザーごとのエンドポイントを生成するためにRecoil使って保持している
   const profileImage = useRecoilValue(ProfileImageAtom);
   const handleClickImageButton: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();

@@ -1,11 +1,13 @@
-import { atom } from 'recoil';
-import { recoilPersist } from 'recoil-persist';
+// 使っていない
 
-const { persistAtom } = recoilPersist();
+// import { atom } from 'recoil';
+// import { recoilPersist } from 'recoil-persist';
 
-export const FollowerAtom = atom({
-  key: 'follower',
-  default: [],
+// const { persistAtom } = recoilPersist();
 
-  effects_UNSTABLE: [persistAtom],
-});
+// export const FollowerAtom = atom({
+//   key: 'follower',
+//   default: [],
+
+//   effects_UNSTABLE: [persistAtom],
+// });

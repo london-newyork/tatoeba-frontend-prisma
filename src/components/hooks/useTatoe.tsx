@@ -5,6 +5,7 @@ import { useApi } from './useApi';
 
 export const useTatoe = (props: TatoeBtnHooksProps) => {
   const { tId, userId } = props;
+  // TODO: Recoil調査中
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   const { api: postTatoeApi } = useApi('/tatoe', { method: 'POST' });

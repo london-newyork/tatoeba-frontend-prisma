@@ -16,6 +16,8 @@ export const TatoeList = (): JSX.Element => {
   const { user } = useUserInfo(userId);
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const router = useRouter();
+
+  // Recoil使っているようだが調査中(APIで全て管理していたと思っていた)
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
   if (!userId) {

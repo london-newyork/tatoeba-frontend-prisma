@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
+import { WithdrawalBtn } from './WithdrawalBtn';
 
 export const DashBoardMenuBtn = () => {
   const router = useRouter();
@@ -15,18 +16,7 @@ export const DashBoardMenuBtn = () => {
 
   return (
     <div>
-      <nav
-        className='
-        fixed
-        text-2xl
-        text-white
-        sm:left-5
-        left-5
-        top-[60px]
-        rounded-lg
-        flex
-        '
-      >
+      <nav className='sidebar-menu-btn-wrapper top-[60px]'>
         <button
           className='
             position
@@ -38,38 +28,7 @@ export const DashBoardMenuBtn = () => {
             menu
           </span>
         </button>
-        <ul
-          className={`
-                absolute
-                z-40
-                left-0
-                top-12
-                w-48
-                bg-white
-                text-gray-700
-                flex-col
-                rounded-xl
-                border
-                border-gray-700
-                ${isHover ? 'hidden' : 'flex'}
-                `}
-        >
-          <li
-            className='
-                    text-sm
-                    mx-auto
-                    cursor-pointer
-                    py-6
-                    text-center
-                    hover:bg-gray-100
-                    hover:w-full
-                    hover:rounded-xl
-                    '
-            onClick={handleMoveToRemoveMember}
-          >
-            退会する
-          </li>
-        </ul>
+        <WithdrawalBtn isHover={isHover} onClick={handleMoveToRemoveMember} />
       </nav>
     </div>
   );

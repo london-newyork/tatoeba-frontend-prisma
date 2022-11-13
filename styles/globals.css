@@ -176,3 +176,24 @@ text-xs transition-all group-hover:opacity-60;
 .tatoe-list-btn-group {
   @apply flex flex-row gap-2 items-center opacity-0 group-hover:opacity-100;
 }
+
+.top-upper-wrapper {
+  @apply px-6 sm:px-6 md:px-11 lg:px-24 flex flex-col md:flex-row gap-9 md:gap-0 justify-around border-b-2 border-gray-800 w-full;
+}
+
+.top-catch-copy {
+  @apply text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-700 leading-normal sm:leading-normal md:leading-relaxed lg:leading-relaxed
+ text-center md:text-left tracking-normal;
+}
+
+.top-sub-catch-copy {
+  @apply pt-2 text-gray-500 lg:leading-relaxed text-center md:text-left;
+}
+
+.top-upper-image-wrapper {
+  @apply pl-0 pt-5 m-auto md:m-0 order-1 sm:order-1 md:order-2 lg:order-2;
+}
+
+.sidebar-menu-btn-wrapper {
+  @apply fixed text-2xl text-white sm:left-5 left-5 rounded-lg  flex;
+}

@@ -4,7 +4,7 @@ import { Layouts } from '../types/types';
 export const CardLayouts: VFC<Layouts> = (props) => {
   return (
     <div>
-      <section className='dark'>
+      <section>
         <div
           id='tatoeba-card'
           className='

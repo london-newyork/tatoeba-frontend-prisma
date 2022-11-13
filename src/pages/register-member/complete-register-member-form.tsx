@@ -42,7 +42,7 @@ const CompleteRegisterMemberForm = () => {
       },
       body: JSON.stringify({ password, token: router.query.token }),
     });
-    await router.push(`/RegisterMember/InformCompletedRegistrationMember`);
+    await router.push(`/register-member/inform-completed-registration-member`);
   };
 
   return (
@@ -54,10 +54,10 @@ const CompleteRegisterMemberForm = () => {
       <Header />
       <LoginLayouts>
         <h1 className='login-headline'>新規会員登録完了手続き</h1>
-        <p className='pt-10 text-gray-400'>パスワードを入力してください</p>
+        {/* <p className='pt-10 text-gray-400'>パスワードを入力してください</p> */}
         <div className='pt-14 flex flex-col gap-6'>
           <div className='flex flex-col'>
-            <p className='login-headline-s'>パスワード</p>
+            <p className='login-headline-s'>新規パスワード</p>
             <input
               value={password}
               className='login-input login-input-cstm'

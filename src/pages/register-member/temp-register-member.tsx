@@ -19,7 +19,7 @@ const TempRegisterMember = () => {
     });
     //仮登録完了しました。指定したメールアドレスにメールが届きますのでご確認ください。というページへ飛ぶ
     await router.push({
-      pathname: '/RegisterMember/InformCompletedTempRegistrationMember',
+      pathname: '/register-member/inform-completed-temp-registration-member',
     });
   };
 

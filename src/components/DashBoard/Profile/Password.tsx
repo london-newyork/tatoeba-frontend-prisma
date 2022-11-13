@@ -26,7 +26,7 @@ export const Password = () => {
         '
         >
           ******
-          <Link href='/ResetPassword'>
+          <Link href='/reset-password'>
             <button
               className='
             pl-2

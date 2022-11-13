@@ -39,7 +39,7 @@ export default function Login() {
       </Head>
       <Header />
       <LoginLayouts>
-        <h1 className='pt-12 login-headline'>ログイン</h1>
+        <h1 className='login-headline'>ログイン</h1>
         <div className='pt-14 flex flex-col gap-6'>
           <div className='flex flex-col'>
             <p className='login-headline-s'>メールアドレス</p>
@@ -69,7 +69,7 @@ export default function Login() {
             ログイン
           </button>
         </div>
-        <Link href='/RegisterMember/TempRegisterMember'>
+        <Link href='/register-member/temp-register-member'>
           <p
             className='
                   mx-auto

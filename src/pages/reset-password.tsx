@@ -59,7 +59,7 @@ const ResetPassword = () => {
     await res.json();
 
     //パスワード再設定完了ページへ飛ぶ
-    await router.push('/complete_reset_password');
+    await router.push('/complete-reset-password');
   };
 
   return (

@@ -84,7 +84,7 @@ export const Header = () => {
                     <a>ログイン</a>
                   </Link>
                 ) : (
-                  <Link href='/Login'>
+                  <Link href='/login'>
                     <a>ログイン</a>
                   </Link>
                 )}

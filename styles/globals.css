@@ -101,7 +101,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .login-headline {
-  @apply relative text-2xl text-gray-900 select-none font-normal;
+  @apply pt-12 relative text-2xl text-gray-900 select-none font-normal;
 }
 
 .login-input {

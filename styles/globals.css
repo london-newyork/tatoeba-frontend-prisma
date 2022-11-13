@@ -48,9 +48,6 @@
   @apply lg:px-12 px-7 pt-10 pb-10 rounded-3xl bg-white border border-black;
 }
 
-.frame-middle-shadow {
-}
-
 .input-area {
   @apply p-3 block w-full text-sm md:text-sm text-gray-700 rounded-md border-black border lg:max-w-[650px] max-w-full outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 focus:placeholder-gray-300;
 }
@@ -118,4 +115,31 @@ text-xs transition-all group-hover:opacity-60;
 
 .login-btn {
   @apply mx-auto p-3 w-full rounded-full bg-dark_green text-gray-800 text-lg hover:bg-opacity-90;
+}
+
+.profile-main-contents-wrapper {
+  @apply flex flex-row items-center sm:justify-between justify-center;
+}
+
+.profile-main-contents {
+  @apply flex items-center flex-col sm:flex-row sm:justify-between justify-center gap-y-4 sm:gap-y-0 relative;
+}
+
+.profile-sub-contents-wrapper {
+  @apply text-gray-600 mt-6 flex flex-col gap-y-4 text-sm;
+}
+.profile-mail-address-wrapper {
+  @apply flex items-start sm:items-center flex-col sm:flex-row justify-start;
+}
+
+.profile-pw-wrapper {
+  @apply w-full pl-0 flex flex-col sm:flex-row justify-between;
+}
+
+.profile-pw-label-wrapper {
+  @apply flex items-start sm:items-center flex-col sm:flex-row justify-start;
+}
+
+.profile-pw-text {
+  @apply py-1 pl-0 my-2 ml-0 sm:p-0 sm:m-0 text-gray-400 tracking-widest;
 }

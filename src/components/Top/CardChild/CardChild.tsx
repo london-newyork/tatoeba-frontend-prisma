@@ -1,10 +1,10 @@
 import React, { useEffect, VFC } from 'react';
 import { useRecoilValue } from 'recoil';
-import { useHandleMoveToResult } from '../hooks/handleMoveToResult';
-import { AllUserTatoe } from '../types/types';
-import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
-import { useGetUserTatoeApi } from '../hooks/useGetUserTatoeApi';
-import { CardChildContents } from './CardChild/CardChildContents';
+import { useHandleMoveToResult } from '../../hooks/handleMoveToResult';
+import { AllUserTatoe } from '../../types/types';
+import { ProfileImageAtom } from '../../utils/atoms/ProfileImageAtom';
+import { useGetUserTatoeApi } from '../../hooks/useGetUserTatoeApi';
+import { CardChildContents } from './CardChildContents';
 
 export const CardChild: VFC = () => {
   const RandomColors = [

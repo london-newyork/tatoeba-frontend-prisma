@@ -30,7 +30,6 @@ export const MailAddress = ({ email }: Pick<User, 'email'> | undefined) => {
                 sm:m-0
                 '
           >
-            {/* {user?.email} */}
             {email}
           </li>
         </ul>

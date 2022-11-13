@@ -8,7 +8,7 @@ import React, {
 
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
-import { MailAddress } from './Profile/MailAdress';
+import { MailAddress } from './Profile/MailAddress';
 import { Password } from './Profile/Password';
 import { ProfileUserName } from './Profile/ProfileUserName';
 import { ProfileImage } from './ProfileImage';

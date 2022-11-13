@@ -1,12 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import {
-  useState,
-  useEffect,
-  InputHTMLAttributes,
-  ChangeEventHandler,
-  DetailedHTMLProps,
-} from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '../../components/Header/Header';
 import { LoginLayouts } from '../../components/Layouts/LoginLayouts';
 

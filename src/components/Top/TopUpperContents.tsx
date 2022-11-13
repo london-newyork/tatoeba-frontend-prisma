@@ -38,8 +38,7 @@ export const TopUpperContents: VFC = () => {
           objectFit='contain'
           quality={50}
           priority={true}
-          className='
-                        pt-12'
+          className='pt-12'
         />
       </div>
     </section>

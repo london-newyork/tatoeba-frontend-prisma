@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
-import { WithdrawalBtn } from './WithdrawalBtn';
+import { InduceWithdrawalBtn } from './InduceWithdrawalBtn';
 
 export const DashBoardMenuBtn = () => {
   const router = useRouter();
@@ -28,7 +28,10 @@ export const DashBoardMenuBtn = () => {
             menu
           </span>
         </button>
-        <WithdrawalBtn isHover={isHover} onClick={handleMoveToRemoveMember} />
+        <InduceWithdrawalBtn
+          isHover={isHover}
+          onClick={handleMoveToRemoveMember}
+        />
       </nav>
     </div>
   );

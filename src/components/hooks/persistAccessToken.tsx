@@ -1,5 +1,5 @@
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { RecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { getStorage } from '../../lib/storage';
 import { useEffect } from 'react';
 

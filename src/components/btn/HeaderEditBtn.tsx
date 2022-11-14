@@ -10,11 +10,11 @@ export const HeaderEditBtn = () => {
   const handleOnClickDistributeLink = () => {
     if (isLoggedIn) {
       router.push({
-        pathname: '/Register',
+        pathname: '/register',
       });
     }
     router.push({
-      pathname: '/DashBoard',
+      pathname: '/dashboard',
     });
   };
 

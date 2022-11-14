@@ -6,7 +6,7 @@ export const DashBoardMenuBtn = () => {
   const router = useRouter();
   const handleMoveToRemoveMember = () => {
     router.push({
-      pathname: '/DashBoard/RemoveMember',
+      pathname: '/dashboard/remove-member',
     });
   };
   const [isHover, setIsHover] = useState(true);

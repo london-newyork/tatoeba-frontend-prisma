@@ -64,7 +64,7 @@ export default function CreateTatoePage() {
     });
 
     router.push({
-      pathname: '/DashBoard/UserTatoeList',
+      pathname: '/dashboard/user-tatoe-list',
     });
   };
 

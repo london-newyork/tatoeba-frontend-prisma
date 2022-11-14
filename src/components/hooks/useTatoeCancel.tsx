@@ -32,13 +32,13 @@ export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
       tatoe.map((item) => {
         if (item.tId === tId) {
           router.push({
-            pathname: '/DashBoard/UserTatoeList',
+            pathname: '/dashboard/user-tatoe-list',
           });
         }
       });
     }
     router.push({
-      pathname: '/DashBoard/UserTatoeList',
+      pathname: '/dashboard/user-tatoe-list',
     });
   };
   return { handleClickCancel };

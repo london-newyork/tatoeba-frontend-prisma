@@ -7,8 +7,8 @@ export const TatoeListCreatedAt = ({ createdAt }: Pick<Tatoe, 'createdAt'>) => {
       {' '}
       <li
         className='
-    tatoe-list-created-at
-    w-[124px]'
+        tatoe-list-created-at
+        w-[124px]'
       >
         {createdAt}
       </li>

@@ -5,16 +5,16 @@ export const DetailTatoeTitle = ({ title }: Pick<Tatoe, 'title'>) => {
   return (
     <div
       className='
- flex
- relative
- '
+      flex
+      relative
+      '
     >
       <h1
         className='
-      text-4xl
-      text-gray-700
-      pt-6
-      '
+        text-4xl
+        text-gray-700
+        pt-6
+        '
       >
         {title}
         をわかりやすく例えると...

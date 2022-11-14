@@ -17,10 +17,10 @@ export const PostedUser = ({
         src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
         alt='ユーザーの画像'
         className='
-    w-6
-    h-6
-    rounded-full
-    object-cover'
+        w-6
+        h-6
+        rounded-full
+        object-cover'
       />
       <small className='text-gray-400'>{userName}が投稿</small>
     </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { OnClick } from '../types/types';
 import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
 
 type AccountDefaultIconBtn = {
   userId: string;
-} & OnClick;
+  onClick: () => void;
+};
 
 export const AccountDefaultIconBtn = ({
   onClick,

@@ -4,7 +4,7 @@ import { Auth } from '../hooks/useAuth';
 
 export const HeaderLogin = ({ isLoggedIn }: Pick<Auth, 'isLoggedIn'>) => {
   return (
-    <li className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
+    <div className='py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full'>
       {isLoggedIn ? (
         <Link href='/dashboard'>
           <a>ログイン</a>
@@ -14,6 +14,6 @@ export const HeaderLogin = ({ isLoggedIn }: Pick<Auth, 'isLoggedIn'>) => {
           <a>ログイン</a>
         </Link>
       )}
-    </li>
+    </div>
   );
 };

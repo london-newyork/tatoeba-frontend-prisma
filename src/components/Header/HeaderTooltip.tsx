@@ -16,26 +16,36 @@ export const HeaderTooltip = () => {
   };
 
   const [isHover, setIsHover] = useState(true);
+  const [isShow, setIsShow] = useState(true);
 
   const handleToolTip = useCallback(() => {
     setIsHover(!isHover);
   }, [isHover]);
+
   return (
     <div className='flex flex-col items-end'>
       <AccountDefaultIconBtn userId={userId} onClick={handleToolTip} />
-      <ul
+      <div
         className={`
         tool-tip-wrapper
         h-[120px]
         w-[120px]
         border-[1px]
-        top-[48px]
-        ${isHover ? 'hidden' : 'flex-col'}
-        `}
+        top-[36px]
+        sm:top-[40px]
+        sm:right-1/2
+        right-1/4`}
+        onMouseEnter={() => setIsShow(true)}
+        onMouseLeave={() => setIsShow(false)}
       >
-        <HeaderLogin isLoggedIn={isLoggedIn} />
-        <HeaderLogout onClick={handleLogout} />
-      </ul>
+        {/* ${isHover ? 'hidden' : 'flex-col'} */}
+        {isShow && (
+          <>
+            <HeaderLogin isLoggedIn={isLoggedIn} />
+            <HeaderLogout onClick={handleLogout} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

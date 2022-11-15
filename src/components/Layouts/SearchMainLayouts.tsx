@@ -13,7 +13,7 @@ export const SearchMainLayouts: VFC<Layouts> = (props) => {
       md:px-24
       mx-auto
       pb-40
-      pt-9'
+      pt-20'
       >
         {props.children}
       </main>

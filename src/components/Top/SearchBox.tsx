@@ -1,32 +1,33 @@
 import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react';
 import { SearchBoxLayouts } from '../Layouts/SearchBoxLayouts';
 
 export const SearchBox = () => {
-    const [ keyWord, setKeyWord ] = useState('')
-    const router = useRouter()
-    const handleChange = useCallback((e) => {
-        setKeyWord(e.target.value)
-    }, [keyWord]);
+  const [keyWord, setKeyWord] = useState('');
+  const router = useRouter();
+  const handleChange = useCallback(
+    (e) => {
+      setKeyWord(e.target.value);
+    },
+    [keyWord]
+  );
 
-    const handleClickSearch = useCallback(() => {
-
-        router.push({
-
-          pathname:"/SearchResult/SearchResultList/",
-          query: {
-           keyWord
-          }
-        })
-      },[keyWord])
+  const handleClickSearch = useCallback(() => {
+    router.push({
+      pathname: '/search-result/search-result-list/',
+      query: {
+        keyWord,
+      },
+    });
+  }, [keyWord]);
 
   return (
     <div>
-        <SearchBoxLayouts>
-            <input
-                value={keyWord}
-                onChange={handleChange}
-                className="
+      <SearchBoxLayouts>
+        <input
+          value={keyWord}
+          onChange={handleChange}
+          className='
                 placeholder-darkGray_green
                 h-[44px]
                 items-center
@@ -41,10 +42,11 @@ export const SearchBox = () => {
                 bg-dark_green
                 lg:max-w-[180px]
                 lg:w-[inherit]
-                "
-                placeholder='サーバーを例えると...' />
-                <button
-                    className="
+                '
+          placeholder='サーバーを例えると...'
+        />
+        <button
+          className='
                     absolute
                     right-3
                     -top-[14px]
@@ -62,19 +64,19 @@ export const SearchBox = () => {
                     tracking-wide
                     text-sm
                     text-gray-800
-                    "
-                    onClick={handleClickSearch}
-                >
-                    <span
-                    className='
+                    '
+          onClick={handleClickSearch}
+        >
+          <span
+            className='
                     h-8
                     w-[1px]
                     bg-gray-800
-                    mr-3'>
-                    </span>
-                    検索
-                </button>
-            </SearchBoxLayouts>
+                    mr-3'
+          ></span>
+          検索
+        </button>
+      </SearchBoxLayouts>
     </div>
-  )
-}
+  );
+};

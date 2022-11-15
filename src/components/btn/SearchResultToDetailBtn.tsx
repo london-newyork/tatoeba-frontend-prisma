@@ -21,7 +21,7 @@ export const SearchResultToDetailBtn = ({
   const router = useRouter();
   const handleMoveToDetail = () => {
     router.push({
-      pathname: `/SearchResult/${tId}`,
+      pathname: `/search-result/${tId}`,
       query: {
         userId,
         tId,

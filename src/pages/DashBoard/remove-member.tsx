@@ -22,7 +22,6 @@ const RemoveMember = () => {
                     rounded-md
                     text-white
                     mt-10'
-            // onClick={}
           >
             退会する
           </button>

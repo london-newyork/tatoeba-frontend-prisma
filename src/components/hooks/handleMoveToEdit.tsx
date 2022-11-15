@@ -4,7 +4,7 @@ import { Tatoe } from '../types/types';
 export const useHandleMoveToEdit = ({ tId }: Tatoe) => {
   const router = useRouter();
   const handleMoveToEdit = () => {
-    router.push(`/Register/${tId}/`);
+    router.push(`/register/${tId}/`);
   };
   return { handleMoveToEdit };
 };

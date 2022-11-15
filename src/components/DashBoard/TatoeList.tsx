@@ -10,6 +10,8 @@ import { TatoeListCountFollowerBtn } from '../btn/TatoeListCountFollowerBtn';
 import { useTatoe } from '../hooks/useTatoe';
 import { useRouter } from 'next/router';
 import { useUserInfo } from '../hooks/useUserInfo';
+import { TatoeListCreatedAt } from './Tatoe/TatoeListCreatedAt';
+import { TatoeListTitle } from './Tatoe/TatoeListTitle';
 
 export const TatoeList = (): JSX.Element => {
   const { userId } = useAuth();
@@ -44,75 +46,31 @@ export const TatoeList = (): JSX.Element => {
             return (
               <ul
                 className='
-                    flex
-                    pt-4
-                    items-center
-                    gap-y-2
-                    sm:gap-y-0
-                    flex-row
-                    sm:justify-between
-                    group
-                    '
+                group
+                tatoe-list-wrapper
+                '
                 key={item.tId as string}
               >
                 <li className='flex-grow'>
                   <ul
-                    className={`
-                            lg:flex
-                            block
-                            lg:flex-row
-                            md:flex-col
-                            sm:flex-col
-                            flex-row
-                            lg:gap-3
-                            md:gap-1
-                            items-center
-                            flex-start
-                            `}
+                    className='
+                    lg:gap-3
+                    md:gap-1
+                    tatoe-list-items-wrapper
+                    '
                   >
-                    <li
-                      className='
-                                flex
-                                text-gray-400
-                                text-xxs
-                                w-[124px]'
-                    >
-                      {item.createdAt}
-                    </li>
+                    <TatoeListCreatedAt createdAt={item.createdAt} />
                     <li className='flex-grow'>
                       <ul
                         className='
-                                    w-full
-                                    sm:max-w-none
-                                    flex
-                                    flex-row
-                                    justify-between
-                                    '
+                        tatoe-list-item
+                        '
                       >
-                        <li
-                          className='
-                                        pr-4
-                                        text-gray-700
-                                        sm:min-w-[300px]
-                                        sm:w-full
-                                        sm:max-w-none
-                                        '
-                        >
-                          {item.title}
-                          <span className='text-gray-400'>を例えると</span>
-                          {item.shortParaphrase}
-                        </li>
-
-                        <li
-                          className={`
-                                    flex
-                                    flex-row
-                                    gap-2
-                                    items-center
-                                    opacity-0
-                                    group-hover:opacity-100
-                                    `}
-                        >
+                        <TatoeListTitle
+                          title={item.title}
+                          shortParaphrase={item.shortParaphrase}
+                        />
+                        <li className='tatoe-list-btn-group'>
                           <TatoeListEditExistingTatoeBtn
                             tId={item.tId}
                             title={item.title}

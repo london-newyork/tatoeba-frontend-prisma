@@ -3,28 +3,8 @@ import { OnClick } from '../types/types';
 
 export const EditIconBtn = ({ onClick }: OnClick) => {
   return (
-    <button
-      className='
-        h-7
-        w-7
-        position
-        relative
-        bg-white
-        transition-all
-        rounded-full
-        '
-      onClick={onClick}
-    >
-      <ul
-        className='
-          flex
-          flex-col
-          absolute
-          -top-[3px]
-          left-1
-          hover:text-white
-          '
-      >
+    <button className='edit-icon-btn-wrapper' onClick={onClick}>
+      <ul className='edit-icon-btn-contents -top-[3px]'>
         <li>
           <span
             className='

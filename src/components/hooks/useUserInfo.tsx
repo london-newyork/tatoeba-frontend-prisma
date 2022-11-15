@@ -9,7 +9,6 @@ export const useUserInfo = (userId: string | null) => {
   const persistAccessToken = useRecoilValue(LoginUserAtom);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  // console.log('useUserInfo after ### useState ### user', user);
   const setProfileImage = useSetRecoilState(ProfileImageAtom);
 
   useEffect(() => {
@@ -59,9 +58,6 @@ export const useUserInfo = (userId: string | null) => {
 
     const { updatedData } = await res.json();
     setUser(updatedData);
-    console.log('updatedData', updatedData); // 値とれてる
-    console.log('!!!! user', user); // 1週遅れ
-    console.log('user userName', user?.userName); // 1週遅れ
   };
 
   const updateUserProfileImage = async (file: File) => {
@@ -78,8 +74,6 @@ export const useUserInfo = (userId: string | null) => {
       }
     );
     setProfileImage(new Date().getTime());
-    // const data = await res.blob();
-    // console.log('updated data : ', data);
   };
   return {
     user,

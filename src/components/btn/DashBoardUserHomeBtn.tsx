@@ -5,7 +5,7 @@ export const DashBoardUserHomeBtn: VFC = (props) => {
   const router = useRouter();
   const handleMoveToDashBoardHome = () => {
     router.push({
-      pathname: '/DashBoard',
+      pathname: '/dashboard',
     });
   };
   return (

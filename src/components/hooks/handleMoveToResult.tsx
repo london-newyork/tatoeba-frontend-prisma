@@ -10,7 +10,7 @@ export const useHandleMoveToResult = (allUserTatoe: Tatoe[]) => {
     allUserTatoe.forEach((item: Tatoe) => {
       if (item.tId === tId) {
         router.push({
-          pathname: '/SearchResult/[tId]',
+          pathname: '/search-result/[tId]',
           query: {
             tId,
             title,

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, {
   ChangeEvent,
   DetailedHTMLProps,
@@ -9,6 +8,9 @@ import React, {
 
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
+import { MailAddress } from './Profile/MailAddress';
+import { Password } from './Profile/Password';
+import { ProfileUserName } from './Profile/ProfileUserName';
 import { ProfileImage } from './ProfileImage';
 
 export const Profile = () => {
@@ -61,8 +63,6 @@ export const Profile = () => {
 
       setIsFocus(false);
       await updateUser({ userName });
-      console.log('===== @profile userName ===== ', userName);
-      console.log('===== @profile user =====', user);
     }
   };
 
@@ -96,171 +96,36 @@ export const Profile = () => {
     <div className='group'>
       <div
         className='
-        flex
-        flex-row
-        items-center
+        profile-main-contents-wrapper
         md:min-w-[400px]
-        sm:justify-between
-        justify-center
         '
       >
         <div
           className='
-            flex
-            items-center
-            flex-col
-            sm:flex-row
-            sm:justify-between
-            justify-center
-            gap-y-2
-            sm:gap-y-0
-            position
-            relative
-            '
+          profile-main-contents
+          '
         >
           <ProfileImage onSubmit={handleOnSubmit} userId={userId} />
-          <div
-            className='
-            flex
-            flex-col
-            pb-2
-            border-b
-            border-gray-200
-            sm:ml-8
-            '
-          >
-            <h1
-              className='
-                text-2xl
-                text-gray-700
-                '
-            >
-              <input
-                defaultValue={user as unknown as string | undefined}
-                value={userName}
-                onChange={handleChangeUserName}
-                onFocus={handleOnFocus}
-                onKeyDown={handleOnKeyDown}
-                onCompositionStart={handleCompositionStart}
-                onCompositionEnd={handleCompositionEnd}
-                placeholder='Nola Stradford'
-                className={`${isFocus ? focusCSS : unFocusCSS}
-                rounded-md
-                px-2
-                `}
-              ></input>
-            </h1>
-          </div>
+          <ProfileUserName
+            user={user}
+            userName={userName}
+            onChange={handleChangeUserName}
+            onFocus={handleOnFocus}
+            onKeyDown={handleOnKeyDown}
+            onCompositionStart={handleCompositionStart}
+            onCompositionEnd={handleCompositionEnd}
+            isFocus={isFocus}
+            focusCSS={focusCSS}
+            unFocusCSS={unFocusCSS}
+          />
         </div>
       </div>
       <ul
         className='
-        text-gray-600
-        mt-6
-        flex
-        flex-col
-        gap-y-2
-        text-sm'
+        profile-sub-contents-wrapper'
       >
-        <li>
-          <ul
-            className='
-            flex
-            items-start
-            sm:items-center
-            flex-col
-            sm:flex-row
-            justify-start
-            '
-          >
-            <li
-              className='
-                pl-3
-                sm:pl-0
-                sm:w-[128px]
-                text-sm
-                text-gray-400'
-            >
-              メールアドレス
-            </li>
-            <li
-              className='
-                h-7
-                flex
-                flex-1
-                sm:min-w-[14rem]
-                sm:w-[20rem]
-                w-[18rem]
-                p-4
-                m-2
-                '
-            ></li>
-          </ul>
-        </li>
-        <li
-          className='
-            min-w-[16rem]
-            w-full
-            pl-3
-            sm:pl-0
-            flex
-            flex-col
-            sm:flex-row
-            justify-between'
-        >
-          <ul
-            className='
-            flex
-            items-start
-            sm:items-center
-            flex-col
-            sm:flex-row
-            justify-start'
-          >
-            <li
-              className='
-                sm:w-[128px]
-                text-sm
-                text-gray-400
-                '
-            >
-              パスワード
-            </li>
-            <li
-              className='
-                sm:pl-4
-                pl-2
-                m-2
-                text-gray-400
-                tracking-widest
-                '
-            >
-              ******
-            </li>
-          </ul>
-          <Link href='/ResetPassword'>
-            <button
-              className='
-                text-gray-400
-                '
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-4 w-4'
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-                strokeWidth='2'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
-                />
-              </svg>
-            </button>
-          </Link>
-        </li>
+        <MailAddress email={user?.email} />
+        <Password />
       </ul>
     </div>
   );

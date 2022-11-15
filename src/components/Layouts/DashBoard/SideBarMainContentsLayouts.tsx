@@ -8,9 +8,9 @@ export const SideBarMainContentsLayouts: VFC = (props) => {
       className='
             max-w-[64px]
             fixed
-            md:left-0
+            md:left-1
             md:top-1/3
-            right-[18px]
+            right-[22px]
             top-[58px]
             '
     >
@@ -20,7 +20,7 @@ export const SideBarMainContentsLayouts: VFC = (props) => {
                 md:flex-col
                 flex-row
                 sm:gap-y-8
-                gap-x-6
+                gap-x-5
                 '
       >
         <DashBoardUserHomeBtn />

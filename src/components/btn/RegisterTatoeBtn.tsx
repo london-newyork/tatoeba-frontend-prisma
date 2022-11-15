@@ -57,9 +57,9 @@ export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
       </button>
       <div
         className='
-  position
-  relative
-  '
+        position
+        relative
+        '
       >
         <span
           className={`absolute

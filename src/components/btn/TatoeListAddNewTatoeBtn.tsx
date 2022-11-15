@@ -13,7 +13,7 @@ export const TatoeListAddNewTatoeBtn = () => {
       md:-right-2
       '
     >
-      <Link href='/Register'>
+      <Link href='/register'>
         <button
           type='button'
           className='

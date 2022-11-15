@@ -2,7 +2,7 @@ import React from 'react';
 
 import { HeaderEditBtn } from '../btn/HeaderEditBtn';
 import { Logo } from './Logo';
-import { HeaderTooltip } from './HeaderTooltip';
+import { HeaderDropDownMenu } from './HeaderDropDownMenu';
 
 export const Header = () => {
   return (
@@ -16,7 +16,7 @@ export const Header = () => {
           top-[8px]
           '
         >
-          <HeaderTooltip />
+          <HeaderDropDownMenu />
           <HeaderEditBtn />
         </div>
       </div>

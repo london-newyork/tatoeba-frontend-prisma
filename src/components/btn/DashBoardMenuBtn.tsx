@@ -24,11 +24,10 @@ export const DashBoardMenuBtn = () => {
             relative
             '
           onClick={handleToolTip}
-        >
-          <span className='material-symbols-outlined sidebar-icon-menu absolute -top-[2px] md:static md:top-0'>
-            menu
-          </span>
-        </input>
+        />
+        <span className='material-symbols-outlined sidebar-icon-menu absolute -top-[2px] md:static md:top-0'>
+          menu
+        </span>
         <InduceWithdrawalBtn
           isHover={isHover}
           onClick={handleMoveToRemoveMember}

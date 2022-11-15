@@ -5,6 +5,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../components/utils/atoms/LoginUserAtom';
+import { HeadLine } from '../components/HeadLine';
+import { LoginInputs } from '../components/Login/LoginInputs';
+import { LoginBtn } from '../components/btn/LoginBtn';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -70,50 +73,29 @@ const ResetPassword = () => {
       </Head>
       <Header />
       <LoginLayouts>
-        <h1
-          className='
-              pt-8
-              login-headline
-              '
-        >
-          パスワード再設定
-        </h1>
+        <HeadLine
+          text='パスワード再設定'
+          style='pt-8
+              login-headline'
+        />
         <div className='pt-10 flex flex-col gap-6'>
-          <div className='flex flex-col'>
-            <p className='login-headline-s'>現在のパスワード</p>
-            <input
-              value={currentPassword}
-              className='login-input login-input-cstm'
-              onChange={handleChangeCurrentPassword}
-            />
-          </div>
-          <div className='flex flex-col'>
-            <p className='login-headline-s'>新パスワード</p>
-            <input
-              value={newPassword}
-              className='
-              login-input login-input-cstm'
-              onChange={handleChangeNewPassword}
-            />
-          </div>
-          <div className='flex flex-col'>
-            <p className='login-headline-s'>新パスワード確認</p>
-            <input
-              value={confirmPassword}
-              className='login-input login-input-cstm'
-              onChange={handleChangeConfirmPassword}
-            />
-          </div>
-          <button
-            className='
-                        mt-4
-                        mb-4
-                        login-btn
-                        '
-            onClick={handleResetPassword}
-          >
-            パスワード再設定
-          </button>
+          <LoginInputs
+            inputsTitle='現在のパスワード'
+            value={currentPassword}
+            onChange={handleChangeCurrentPassword}
+          />
+          <LoginInputs
+            inputsTitle='新パスワード'
+            value={newPassword}
+            onChange={handleChangeNewPassword}
+          />
+          <LoginInputs
+            inputsTitle='新パスワード確認'
+            value={confirmPassword}
+            onChange={handleChangeConfirmPassword}
+          />
+          {/* TODO:ログインボタン？？適切な名前に変更したい。 */}
+          <LoginBtn onClick={handleResetPassword} text='パスワード再設定' />
         </div>
       </LoginLayouts>
     </div>

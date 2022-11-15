@@ -1,10 +1,13 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Header } from '../components/Header/Header';
 import { LoginLayouts } from '../components/Layouts/LoginLayouts';
 import { useAuth } from '../components/hooks/useAuth';
+import { LoginInputs } from '../components/Login/LoginInputs';
+import { LoginBtn } from '../components/btn/LoginBtn';
+import { LoginInfoRegisterBtn } from '../components/btn/LoginInfoRegisterBtn';
+import { HeadLine } from '../components/HeadLine';
 
 export default function Login() {
   const { login } = useAuth();
@@ -39,48 +42,31 @@ export default function Login() {
       </Head>
       <Header />
       <LoginLayouts>
-        <h1 className='login-headline'>ログイン</h1>
+        <HeadLine text='ログイン' style='login-headline' />
         <div className='pt-14 flex flex-col gap-6'>
-          <div className='flex flex-col'>
-            <p className='login-headline-s'>メールアドレス</p>
-            <input
-              value={email}
-              className='login-input login-input-cstm
-                      '
-              onChange={handleChangeEmail}
-            />
-          </div>
-          <div className='flex flex-col'>
-            <p className='login-headline-s'>パスワード</p>
-            <input
-              value={password}
-              className='login-input login-input-cstm'
-              onChange={handleChangePassword}
-            />
-          </div>
-          <button
-            className='
-                    mt-4
-                    mb-4
-                    login-btn
-                    '
-            onClick={handleLogin}
-          >
-            ログイン
-          </button>
+          <LoginInputs
+            inputsTitle='メールアドレス'
+            value={email}
+            onChange={handleChangeEmail}
+          />
+          <LoginInputs
+            inputsTitle='パスワード'
+            value={password}
+            onChange={handleChangePassword}
+          />
+          {/* TODO:ログインボタン？？適切な名前に変更したい。他でも使ってるので */}
+          <LoginBtn onClick={handleLogin} text='ログイン' />
         </div>
-        <Link href='/register-member/temp-register-member'>
-          <p
-            className='
-                  mx-auto
-                  text-sm
-                  text-gray-600
-                  cursor-pointer
-                  '
-          >
-            新規会員登録
-          </p>
-        </Link>
+        <div className='flex gap-x-4'>
+          <LoginInfoRegisterBtn
+            href='/register-member/temp-register-member'
+            title='新規会員登録'
+          />
+          <LoginInfoRegisterBtn
+            href='/reset-password'
+            title='パスワード再設定'
+          />
+        </div>
       </LoginLayouts>
     </>
   );

@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth';
 import { useRouter } from 'next/router';
 import { HeaderLogin } from './HeaderLogin';
 import { HeaderLogout } from './HeaderLogout';
+import { useDropDownMenu } from '../hooks/useDropDownMenu';
 
 export const HeaderDropDownMenu = () => {
   const router = useRouter();
@@ -14,22 +15,13 @@ export const HeaderDropDownMenu = () => {
     await router.push('/');
   };
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [isShow, setIsShow] = useState(false);
-
-  const handleDropDownMenu = useCallback(() => {
-    setIsClicked(!isClicked);
-  }, [isClicked]);
-
-  const handleMouseEnter = useCallback(() => {
-    setIsClicked(true);
-    setIsShow(true);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setIsClicked(false);
-    setIsShow(false);
-  }, []);
+  const {
+    isClicked,
+    isShow,
+    handleDropDownMenu,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = useDropDownMenu();
 
   return (
     <div className='flex flex-col items-end'>

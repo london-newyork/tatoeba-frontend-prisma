@@ -15,7 +15,7 @@ export const HeaderDropDownMenu = () => {
   };
 
   const [isClicked, setIsClicked] = useState(false);
-  const [isShow, setIsShow] = useState(true);
+  const [isShow, setIsShow] = useState(false);
 
   const handleDropDownMenu = useCallback(() => {
     setIsClicked(!isClicked);

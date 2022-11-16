@@ -1,11 +1,14 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { SendAuthInfoBtn } from '../../components/btn/SendAuthInfoBtn';
 import { Header } from '../../components/Header/Header';
+import { HeadLine } from '../../components/HeadLine';
 import { LoginLayouts } from '../../components/Layouts/LoginLayouts';
+import { LoginInputs } from '../../components/Login/LoginInputs';
 
 const TempRegisterMember = () => {
-  const [postData, setPostData] = useState<string | undefined>();
+  const [postData, setPostData] = useState<string | undefined>('');
   const router = useRouter();
 
   //backend側にリクエストする
@@ -37,19 +40,18 @@ const TempRegisterMember = () => {
       </Head>
       <Header />
       <LoginLayouts>
-        <h1 className='login-headline'>新規会員登録</h1>
+        {/* TODO: Login参考にリファクタをする */}
+        <HeadLine style='login-headline' text='新規会員登録' />
         <div className='pt-14 flex flex-col gap-6'>
-          <div className='flex flex-col'>
-            <p className='login-headline-s'>メールアドレス</p>
-            <input
-              value={postData}
-              className='login-input login-input-cstm'
-              onChange={handleChangePost}
-            />
-          </div>
-          <button className='login-btn' onClick={handleTempRegisterMember}>
-            新規会員登録
-          </button>
+          <LoginInputs
+            inputsTitle='メールアドレス'
+            value={postData}
+            onChange={handleChangePost}
+          />
+          <SendAuthInfoBtn
+            onClick={handleTempRegisterMember}
+            text='新規会員登録'
+          />
         </div>
       </LoginLayouts>
     </>

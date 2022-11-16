@@ -110,7 +110,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .login-headline-s {
-  @apply pr-2 text-gray-600 w-[128px] text-sm pb-2;
+  @apply pl-2 text-gray-600 w-[128px] text-xs pb-1;
 }
 
 .login-btn {

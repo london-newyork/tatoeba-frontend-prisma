@@ -6,7 +6,7 @@ type LoginInfoRegisterBtnProps = {
   title: string;
 };
 
-export const LoginInfoRegisterBtn = ({
+export const RegisterAuthInfoBtn = ({
   href,
   title,
 }: LoginInfoRegisterBtnProps) => {
@@ -14,10 +14,10 @@ export const LoginInfoRegisterBtn = ({
     <Link href={href}>
       <a
         className='
-      mx-auto
-      text-sm
-      text-gray-600
-      cursor-pointer'
+        mx-auto
+        text-sm
+        text-gray-600
+        cursor-pointer'
       >
         {title}
       </a>

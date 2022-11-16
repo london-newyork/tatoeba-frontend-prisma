@@ -5,7 +5,7 @@ type LoginBtnProps = {
   text: string;
 };
 
-export const LoginBtn = ({ onClick, text }: LoginBtnProps) => {
+export const SendAuthInfoBtn = ({ onClick, text }: LoginBtnProps) => {
   return (
     <button
       className='

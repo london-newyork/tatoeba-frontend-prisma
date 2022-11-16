@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { LoginBtn } from '../../components/btn/LoginBtn';
+import { SendAuthInfoBtn } from '../../components/btn/SendAuthInfoBtn';
 import { Header } from '../../components/Header/Header';
 import { HeadLine } from '../../components/HeadLine';
 import { LoginLayouts } from '../../components/Layouts/LoginLayouts';
@@ -63,8 +63,7 @@ const CompleteRegisterMemberForm = () => {
             value={password}
             onChange={handleChangePassword}
           />
-          {/* TODO:ログインボタン？？適切な名前に変更したい。 */}
-          <LoginBtn onClick={handleSendPassword} text='登録を完了する' />
+          <SendAuthInfoBtn onClick={handleSendPassword} text='登録を完了する' />
         </div>
       </LoginLayouts>
     </div>

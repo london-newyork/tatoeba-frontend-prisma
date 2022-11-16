@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../components/utils/atoms/LoginUserAtom';
 import { HeadLine } from '../components/HeadLine';
 import { LoginInputs } from '../components/Login/LoginInputs';
-import { LoginBtn } from '../components/btn/LoginBtn';
+import { SendAuthInfoBtn } from '../components/btn/SendAuthInfoBtn';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -94,8 +94,10 @@ const ResetPassword = () => {
             value={confirmPassword}
             onChange={handleChangeConfirmPassword}
           />
-          {/* TODO:ログインボタン？？適切な名前に変更したい。 */}
-          <LoginBtn onClick={handleResetPassword} text='パスワード再設定' />
+          <SendAuthInfoBtn
+            onClick={handleResetPassword}
+            text='パスワード再設定'
+          />
         </div>
       </LoginLayouts>
     </div>

@@ -5,8 +5,8 @@ import { Header } from '../components/Header/Header';
 import { LoginLayouts } from '../components/Layouts/LoginLayouts';
 import { useAuth } from '../components/hooks/useAuth';
 import { LoginInputs } from '../components/Login/LoginInputs';
-import { LoginBtn } from '../components/btn/LoginBtn';
-import { LoginInfoRegisterBtn } from '../components/btn/LoginInfoRegisterBtn';
+import { SendAuthInfoBtn } from '../components/btn/SendAuthInfoBtn';
+import { RegisterAuthInfoBtn } from '../components/btn/RegisterAuthInfoBtn';
 import { HeadLine } from '../components/HeadLine';
 
 export default function Login() {
@@ -54,15 +54,14 @@ export default function Login() {
             value={password}
             onChange={handleChangePassword}
           />
-          {/* TODO:ログインボタン？？適切な名前に変更したい。他でも使ってるので */}
-          <LoginBtn onClick={handleLogin} text='ログイン' />
+          <SendAuthInfoBtn onClick={handleLogin} text='ログイン' />
         </div>
         <div className='flex gap-x-4'>
-          <LoginInfoRegisterBtn
+          <RegisterAuthInfoBtn
             href='/register-member/temp-register-member'
             title='新規会員登録'
           />
-          <LoginInfoRegisterBtn
+          <RegisterAuthInfoBtn
             href='/reset-password'
             title='パスワード再設定'
           />

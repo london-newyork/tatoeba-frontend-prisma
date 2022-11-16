@@ -210,12 +210,11 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .induce-withdrawal-btn-wrapper {
-  @apply absolute z-40 left-0 top-12 w-48 bg-white text-gray-700
- flex-col rounded-xl border border-gray-700;
+  @apply absolute z-40 left-0 top-12 w-48 bg-white text-gray-700 flex-col border border-gray-700;
 }
 
 .induce-withdrawal-btn-content {
-  @apply text-sm mx-auto cursor-pointer py-6 text-center hover:bg-gray-100 hover:w-full hover:rounded-xl;
+  @apply text-gray-800 text-sm mx-auto cursor-pointer py-2 text-center hover:bg-gray-100 hover:w-full;
 }
 
 .profile-image {

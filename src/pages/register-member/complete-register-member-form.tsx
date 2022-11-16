@@ -5,7 +5,7 @@ import { SendAuthInfoBtn } from '../../components/btn/SendAuthInfoBtn';
 import { Header } from '../../components/Header/Header';
 import { HeadLine } from '../../components/HeadLine';
 import { LoginLayouts } from '../../components/Layouts/LoginLayouts';
-import { LoginInputs } from '../../components/Login/LoginInputs';
+import { AuthInputs } from '../../components/Auth/AuthInputs';
 
 const CompleteRegisterMemberForm = () => {
   const [confirmRegistrations, setConfirmRegistrations] = useState([]);
@@ -58,7 +58,7 @@ const CompleteRegisterMemberForm = () => {
       <LoginLayouts>
         <HeadLine style='login-headline' text='新規会員登録完了手続き' />
         <div className='pt-14 flex flex-col gap-6'>
-          <LoginInputs
+          <AuthInputs
             inputsTitle='新規パスワード'
             value={password}
             onChange={handleChangePassword}

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Header } from '../components/Header/Header';
 import { LoginLayouts } from '../components/Layouts/LoginLayouts';
 import { useAuth } from '../components/hooks/useAuth';
-import { LoginInputs } from '../components/Login/LoginInputs';
+import { AuthInputs } from '../components/Auth/AuthInputs';
 import { SendAuthInfoBtn } from '../components/btn/SendAuthInfoBtn';
 import { RegisterAuthInfoBtn } from '../components/btn/RegisterAuthInfoBtn';
 import { HeadLine } from '../components/HeadLine';
@@ -44,12 +44,12 @@ export default function Login() {
       <LoginLayouts>
         <HeadLine text='ログイン' style='login-headline' />
         <div className='pt-14 flex flex-col gap-6'>
-          <LoginInputs
+          <AuthInputs
             inputsTitle='メールアドレス'
             value={email}
             onChange={handleChangeEmail}
           />
-          <LoginInputs
+          <AuthInputs
             inputsTitle='パスワード'
             value={password}
             onChange={handleChangePassword}

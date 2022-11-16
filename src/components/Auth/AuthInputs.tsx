@@ -1,15 +1,15 @@
 import React from 'react';
 
-type LoginInputsProps = {
+type AuthInputsProps = {
   inputsTitle: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => void;
 };
-export const LoginInputs = ({
+export const AuthInputs = ({
   inputsTitle,
   value,
   onChange,
-}: LoginInputsProps) => {
+}: AuthInputsProps) => {
   console.log(value);
 
   return (

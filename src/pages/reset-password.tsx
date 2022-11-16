@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../components/utils/atoms/LoginUserAtom';
 import { HeadLine } from '../components/HeadLine';
-import { LoginInputs } from '../components/Login/LoginInputs';
+import { AuthInputs } from '../components/Auth/AuthInputs';
 import { SendAuthInfoBtn } from '../components/btn/SendAuthInfoBtn';
 
 const ResetPassword = () => {
@@ -79,17 +79,17 @@ const ResetPassword = () => {
               login-headline'
         />
         <div className='pt-10 flex flex-col gap-6'>
-          <LoginInputs
+          <AuthInputs
             inputsTitle='現在のパスワード'
             value={currentPassword}
             onChange={handleChangeCurrentPassword}
           />
-          <LoginInputs
+          <AuthInputs
             inputsTitle='新パスワード'
             value={newPassword}
             onChange={handleChangeNewPassword}
           />
-          <LoginInputs
+          <AuthInputs
             inputsTitle='新パスワード確認'
             value={confirmPassword}
             onChange={handleChangeConfirmPassword}

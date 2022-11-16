@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Header } from '../components/Header/Header';
-import { LoginLayouts } from '../components/Layouts/LoginLayouts';
+import { AuthLayouts } from '../components/Layouts/AuthLayouts';
 import { useAuth } from '../components/hooks/useAuth';
 import { AuthInputs } from '../components/Auth/AuthInputs';
 import { SendAuthInfoBtn } from '../components/btn/SendAuthInfoBtn';
@@ -41,7 +41,7 @@ export default function Login() {
         <link rel='favicon.ico' />
       </Head>
       <Header />
-      <LoginLayouts>
+      <AuthLayouts>
         <HeadLine text='ログイン' style='login-headline' />
         <div className='pt-14 flex flex-col gap-6'>
           <AuthInputs
@@ -66,7 +66,7 @@ export default function Login() {
             title='パスワード再設定'
           />
         </div>
-      </LoginLayouts>
+      </AuthLayouts>
     </>
   );
 }

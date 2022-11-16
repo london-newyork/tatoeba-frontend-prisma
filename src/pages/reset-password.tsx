@@ -1,5 +1,5 @@
 import { Header } from '../components/Header/Header';
-import { LoginLayouts } from '../components/Layouts/LoginLayouts';
+import { AuthLayouts } from '../components/Layouts/AuthLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -72,7 +72,7 @@ const ResetPassword = () => {
         <link rel='favicon.ico' />
       </Head>
       <Header />
-      <LoginLayouts>
+      <AuthLayouts>
         <HeadLine
           text='パスワード再設定'
           style='pt-8
@@ -99,7 +99,7 @@ const ResetPassword = () => {
             text='パスワード再設定'
           />
         </div>
-      </LoginLayouts>
+      </AuthLayouts>
     </div>
   );
 };

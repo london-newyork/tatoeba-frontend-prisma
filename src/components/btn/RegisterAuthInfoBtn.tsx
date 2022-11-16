@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-type LoginInfoRegisterBtnProps = {
+type RegisterAuthInfoBtnProps = {
   href: string;
   title: string;
 };
@@ -9,7 +9,7 @@ type LoginInfoRegisterBtnProps = {
 export const RegisterAuthInfoBtn = ({
   href,
   title,
-}: LoginInfoRegisterBtnProps) => {
+}: RegisterAuthInfoBtnProps) => {
   return (
     <Link href={href}>
       <a

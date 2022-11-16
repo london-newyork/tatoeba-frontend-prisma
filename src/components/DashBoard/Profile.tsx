@@ -8,7 +8,7 @@ import React, {
 
 import { useAuth } from '../hooks/useAuth';
 import { useUserInfo } from '../hooks/useUserInfo';
-import { MailAddress } from './Profile/MailAddress';
+import { DisplayMailAddress } from './Profile/DisplayMailAddress';
 import { Password } from './Profile/Password';
 import { ProfileUserName } from './Profile/ProfileUserName';
 import { ProfileImage } from './ProfileImage';
@@ -124,7 +124,7 @@ export const Profile = () => {
         className='
         profile-sub-contents-wrapper'
       >
-        <MailAddress email={user?.email} />
+        <DisplayMailAddress email={user?.email} />
         <Password />
       </ul>
     </div>

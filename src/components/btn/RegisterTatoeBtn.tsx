@@ -1,5 +1,4 @@
 import React from 'react';
-import { Tatoe } from '../types/types';
 
 const btnColor = {
   create: 'bg-black text-white',
@@ -27,23 +26,8 @@ type BtnType = keyof typeof btnType;
 
 type Props =
   | { variant: 'create'; onClickCancel?: never }
-  | {
-      variant: 'update';
-      tId: string[] | string;
-      tatoe: Tatoe[];
-      createdAt: string;
-      updatedAt: string;
-      title: string | null;
-      shortParaphrase: string | null;
-      description: string | null;
-      onClickCancel?: never;
-    }
-  | {
-      variant: 'cancel';
-      tId: string | string[];
-      tatoe: Tatoe[];
-      onClickCancel: () => void;
-    };
+  | { variant: 'update'; onClickCancel?: never }
+  | { variant: 'cancel'; onClickCancel: () => void };
 
 export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
   return (

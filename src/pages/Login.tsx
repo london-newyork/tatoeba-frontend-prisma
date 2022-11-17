@@ -56,7 +56,7 @@ export default function Login() {
           />
           <SendAuthInfoBtn onClick={handleLogin} text='ログイン' />
         </div>
-        <div className='flex gap-x-4'>
+        <div className='flex gap-x-5'>
           <RegisterAuthInfoBtn
             href='/register-member/temp-register-member'
             title='新規会員登録'

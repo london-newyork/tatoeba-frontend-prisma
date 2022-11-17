@@ -40,7 +40,6 @@ const TempRegisterMember = () => {
       </Head>
       <Header />
       <AuthLayouts>
-        {/* TODO: Login参考にリファクタをする */}
         <HeadLine style='login-headline' text='新規会員登録' />
         <div className='pt-14 flex flex-col gap-6'>
           <AuthInputs

@@ -51,7 +51,7 @@ export const ProfileUserName = ({
             sm:ml-8
             '
     >
-      <h1
+      <p
         className='
                 text-2xl
                 text-gray-700
@@ -71,8 +71,8 @@ export const ProfileUserName = ({
                 px-2
                 max-w-[14rem]
                 `}
-        ></input>
-      </h1>
+        />
+      </p>
     </div>
   );
 };

@@ -15,7 +15,7 @@ export const RegisterAuthInfoBtn = ({
       <a
         className='
         mx-auto
-        text-sm
+        text-xs
         text-gray-600
         cursor-pointer'
       >

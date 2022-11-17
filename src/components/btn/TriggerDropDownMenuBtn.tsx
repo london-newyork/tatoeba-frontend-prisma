@@ -10,7 +10,7 @@ export const TriggerDropDownMenuBtn = ({
   style,
 }: TriggerDropDownMenuBtnProps) => {
   return (
-    <button className={style} onClick={onClick} type='button'>
+    <button type='button' className={style} onClick={onClick}>
       {children}
     </button>
   );

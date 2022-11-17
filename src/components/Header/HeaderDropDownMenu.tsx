@@ -6,7 +6,6 @@ import { HeaderLogin } from './HeaderLogin';
 import { HeaderLogout } from './HeaderLogout';
 import { useDropDownMenu } from '../hooks/useDropDownMenu';
 import { DropDownMenu } from '../DropDownMenu';
-import { TriggerDropDownMenuBtn } from '../btn/TriggerDropDownMenuBtn';
 
 export const HeaderDropDownMenu = () => {
   const router = useRouter();

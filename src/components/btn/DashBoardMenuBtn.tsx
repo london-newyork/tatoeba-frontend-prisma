@@ -29,7 +29,7 @@ export const DashBoardMenuBtn = () => {
           </span>
         </TriggerDropDownMenuBtn>
         <DropDownMenu
-          style='tool-tip-wrapper
+          className='tool-tip-wrapper
               w-[120px]
               border-[1px]
               top-[30px]

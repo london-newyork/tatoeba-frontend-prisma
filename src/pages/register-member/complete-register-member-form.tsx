@@ -56,7 +56,7 @@ const CompleteRegisterMemberForm = () => {
       </Head>
       <Header />
       <AuthLayouts>
-        <HeadLine style='login-headline' text='新規会員登録完了手続き' />
+        <HeadLine className='login-headline' text='新規会員登録完了手続き' />
         <div className='pt-14 flex flex-col gap-6'>
           <AuthInputs
             inputsTitle='新規パスワード'

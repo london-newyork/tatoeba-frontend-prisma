@@ -29,10 +29,10 @@ export const HeaderDropDownMenu = () => {
       <HeaderProfileIcon
         userId={userId}
         onClick={handleDropDownMenu}
-        wrapperStyle='account-default-icon-btn-wrapper'
+        className='account-default-icon-btn-wrapper'
       />
       <DropDownMenu
-        style='tool-tip-wrapper
+        className='tool-tip-wrapper
               h-[120px]
               w-[120px]
               border-[1px]

@@ -1,9 +1,9 @@
 import React from 'react';
 
 type HeadLineProps = {
-  style: string;
+  className: string;
   text: string;
 };
-export const HeadLine = ({ style, text }: HeadLineProps) => {
-  return <h1 className={style}>{text}</h1>;
+export const HeadLine = ({ className, text }: HeadLineProps) => {
+  return <h1 className={className}>{text}</h1>;
 };

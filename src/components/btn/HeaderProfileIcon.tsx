@@ -5,19 +5,19 @@ import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 
 type HeaderProfileIconProps = {
   userId: string;
-  wrapperStyle: string;
+  className: string;
   onClick: () => void;
 };
 
 export const HeaderProfileIcon = ({
   userId,
-  wrapperStyle,
+  className,
   onClick,
 }: HeaderProfileIconProps) => {
   const profileImage = useRecoilValue(ProfileImageAtom);
 
   return (
-    <TriggerDropDownMenuBtn onClick={onClick} style={wrapperStyle}>
+    <TriggerDropDownMenuBtn onClick={onClick} className={className}>
       {userId ? (
         <img
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}

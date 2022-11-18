@@ -75,7 +75,7 @@ const ResetPassword = () => {
       <AuthLayouts>
         <HeadLine
           text='パスワード再設定'
-          style='pt-8
+          className='pt-8
               login-headline'
         />
         <div className='pt-10 flex flex-col gap-6'>

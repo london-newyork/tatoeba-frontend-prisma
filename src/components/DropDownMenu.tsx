@@ -5,7 +5,7 @@ type DropDownMenuProps = {
   isShow: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  style: string;
+  className: string;
   children: React.ReactNode;
 };
 
@@ -14,14 +14,14 @@ export const DropDownMenu = ({
   isShow,
   onMouseEnter,
   onMouseLeave,
-  style,
+  className,
   children,
 }: DropDownMenuProps) => {
   return (
     <>
       {(isClicked || isShow) && (
         <div
-          className={style}
+          className={className}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >

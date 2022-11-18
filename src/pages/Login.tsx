@@ -42,7 +42,7 @@ export default function Login() {
       </Head>
       <Header />
       <AuthLayouts>
-        <HeadLine text='ログイン' style='login-headline' />
+        <HeadLine text='ログイン' className='login-headline' />
         <div className='pt-14 flex flex-col gap-6'>
           <AuthInputs
             inputsTitle='メールアドレス'

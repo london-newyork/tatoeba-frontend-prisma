@@ -62,7 +62,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .btn-m-icon-base {
-  @apply top-[20px] right-1 text-base transition-all group-hover:opacity-80 text-lg;
+  @apply top-[25px] right-2 text-base transition-all group-hover:opacity-80 text-lg;
 }
 
 .btn-m-icon-white {
@@ -238,4 +238,28 @@ text-xs transition-all group-hover:opacity-60;
 }
 .sidebar-icon-btn {
   @apply cursor-pointer text-white smd:text-black md:text-white;
+}
+
+.explanation-img-icon-size {
+  @apply h-5 w-5;
+}
+
+.tatoe-list-icon {
+  @apply h-4 w-4 text-black
+}
+
+.search-box-icon {
+  @apply h-5 w-5
+}
+
+.password-icon {
+  @apply h-5 w-5
+}
+
+.arrow-icon-m {
+  @apply h-3 w-3 text-white group-hover:text-white
+}
+
+.arrow-icon-s {
+  @apply h-3 w-3
 }

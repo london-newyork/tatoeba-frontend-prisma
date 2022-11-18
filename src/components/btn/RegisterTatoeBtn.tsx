@@ -1,20 +1,21 @@
-import React from "react";
+import React from 'react';
+import { SVGIcons } from '../SVGIcons';
 
 const btnColor = {
-  create: "bg-black text-white",
-  update: "bg-black text-white",
-  cancel: "bg-white text-black border-gray-800 border",
+  create: 'bg-black text-white',
+  update: 'bg-black text-white',
+  cancel: 'bg-white text-black border-gray-800 border'
 } as const;
 
 const btnIcon = {
-  create: "text-white",
-  update: "text-white",
-  cancel: "text-black",
+  create: 'text-white',
+  update: 'text-white',
+  cancel: 'text-black'
 } as const;
 
 const btnType = {
-  submit: "submit",
-  button: "button",
+  submit: 'submit',
+  button: 'button'
 };
 
 type BtnCommonProps = {
@@ -25,9 +26,9 @@ type BtnCommonProps = {
 type BtnType = keyof typeof btnType;
 
 type Props =
-  | { variant: "create"; onClickCancel?: never }
-  | { variant: "update"; onClickCancel?: never }
-  | { variant: "cancel"; onClickCancel: () => void };
+  | { variant: 'create'; onClickCancel?: never }
+  | { variant: 'update'; onClickCancel?: never }
+  | { variant: 'cancel'; onClickCancel: () => void };
 
 export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
   return (
@@ -45,13 +46,12 @@ export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
         relative
         "
       >
-        <span
-          className={`absolute
-          material-symbols-outlined
-          btn-m-icon-base ${btnIcon[props.variant]}`}
-        >
-          chevron_right
-        </span>
+        <SVGIcons
+          d="M9 5l7 7-7 7"
+          strokeWidth={1}
+          className={`absolute btn-m-icon-base arrow-icon-s ${btnIcon[props.variant]}`}
+          name="arrow"
+        />
       </div>
     </div>
   );

@@ -98,6 +98,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
     await onCreateTatoe();
   };
 
+  // TODO: UpdateなのにDELETEが入ってる
   /* DELETE */
   const handleDeleteExplanationImage: MouseEventHandler<
     HTMLButtonElement

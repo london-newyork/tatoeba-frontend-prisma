@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { SetterOrUpdater } from 'recoil';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { RegisterImageForExplanationTatoe } from '../../Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { RegisterTatoeDescription } from '../../Register/RegisterTatoeChild/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -14,6 +14,7 @@ import { RegisterTatoeTitle } from '../../Register/RegisterTatoeChild/RegisterTa
 import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';
 import { useTatoeCancel } from '../../hooks/useTatoeCancel';
 import { Tatoe } from '../../types/types';
+import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
 
 /*
 * TODO: 煩雑なフォームのstateを管理の効率化のために
@@ -52,6 +53,17 @@ export const TatoeForm = ({
   setTatoe,
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
+
+  // const [title, setTitle] = useState<string | null>('');
+  // const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
+  // const [description, setDescription] = useState<string | null>('');
+  // const [createdAt, setCreatedAt] = useState<string | null>('');
+  // const [updatedAt, setUpdatedAt] = useState<string | null>('');
+
+  // const [imageUrl, setImageUrl] = useState<string | null>(null);
+  // const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
+
+  // const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   useEffect(() => {
     if (tId) {

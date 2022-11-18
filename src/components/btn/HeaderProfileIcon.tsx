@@ -27,7 +27,7 @@ export const HeaderProfileIcon = ({ userId, className, onClick }: HeaderProfileI
           viewBox="0 0 24 24"
           strokeWidth={0.9}
           stroke="currentColor"
-          className="header-icon-btn"
+          className="header-icon-size"
         >
           <path
             strokeLinecap="round"

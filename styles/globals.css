@@ -205,9 +205,10 @@ text-xs transition-all group-hover:opacity-60;
 .edit-icon-btn-wrapper {
   @apply bg-white transition-all;
 }
-.header-icon-btn {
+.header-icon-size {
   @apply h-5 w-5;
 }
+
 .induce-withdrawal-btn-wrapper {
   @apply absolute z-40 left-0 top-12 w-48 bg-white text-gray-700 flex-col border border-gray-700;
 }
@@ -230,4 +231,11 @@ text-xs transition-all group-hover:opacity-60;
 
 .header-controller {
   @apply flex my-auto gap-x-3 md:inset-auto md:static items-center;
+}
+
+.sidebar-icon-size {
+  @apply h-5 w-5;
+}
+.sidebar-icon-btn {
+  @apply cursor-pointer text-white smd:text-black md:text-white;
 }

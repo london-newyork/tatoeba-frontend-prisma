@@ -23,7 +23,10 @@ export const DashBoardMenuBtn = () => {
   return (
     <div>
       <nav className='sidebar-menu-btn-wrapper top-[60px]'>
-        <TriggerDropDownMenuBtn style='relative' onClick={handleDropDownMenu}>
+        <TriggerDropDownMenuBtn
+          className='relative'
+          onClick={handleDropDownMenu}
+        >
           <span className='material-symbols-outlined sidebar-icon-menu absolute -top-[2px] md:static md:top-0'>
             menu
           </span>

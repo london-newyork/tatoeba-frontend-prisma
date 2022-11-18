@@ -89,7 +89,7 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .explanation-img-wrapper {
-  @apply w-full aspect-[4/3] bg-gray-100 rounded-md md:max-w-[650px];
+  @apply w-full aspect-[4/3] bg-gray-100 rounded-md lg:max-w-[650px] max-w-full;
 }
 
 .explanation-img {

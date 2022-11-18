@@ -1,10 +1,10 @@
-import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import React, { VFC } from "react";
+import { Layouts } from "../types/types";
 
-export const EditMainLayouts:VFC<Layouts> = (props) => {
+export const EditMainLayouts: VFC<Layouts> = (props) => {
   return (
     <main
-    className="
+      className="
     md:pt-[100px]
     sm:pt-[80px]
     bg-gray-100
@@ -12,9 +12,10 @@ export const EditMainLayouts:VFC<Layouts> = (props) => {
     px-7
     md:px-18
     mx-auto
-    pt-9">
+    pt-9"
+    >
       <div
-      className='
+        className="
       lg:px-12
       px-7
       pt-12
@@ -23,10 +24,10 @@ export const EditMainLayouts:VFC<Layouts> = (props) => {
       bg-white
       mx-auto
       max-w-[1000px]
-      '
+      "
       >
-      {props.children}
+        {props.children}
       </div>
     </main>
-  )
+  );
 };

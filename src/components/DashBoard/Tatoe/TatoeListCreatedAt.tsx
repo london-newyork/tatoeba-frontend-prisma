@@ -1,13 +1,13 @@
-import React from 'react';
-import { Tatoe } from '../../types/types';
+import React from "react";
+import { Tatoe } from "../../types/types";
 
-export const TatoeListCreatedAt = ({ createdAt }: Pick<Tatoe, 'createdAt'>) => {
+export const TatoeListCreatedAt = ({ createdAt }: Pick<Tatoe, "createdAt">) => {
   return (
     <div>
       <li
-        className='
+        className="
         tatoe-list-created-at
-        w-[124px]'
+        w-[124px]"
       >
         {createdAt}
       </li>

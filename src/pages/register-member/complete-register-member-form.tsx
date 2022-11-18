@@ -1,11 +1,11 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { SendAuthInfoBtn } from '../../components/btn/SendAuthInfoBtn';
-import { Header } from '../../components/Header/Header';
-import { HeadLine } from '../../components/HeadLine';
-import { AuthLayouts } from '../../components/Layouts/AuthLayouts';
-import { AuthInputs } from '../../components/Auth/AuthInputs';
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { SendAuthInfoBtn } from "../../components/btn/SendAuthInfoBtn";
+import { Header } from "../../components/Header/Header";
+import { HeadLine } from "../../components/HeadLine";
+import { AuthLayouts } from "../../components/Layouts/AuthLayouts";
+import { AuthInputs } from "../../components/Auth/AuthInputs";
 
 const CompleteRegisterMemberForm = () => {
   const [confirmRegistrations, setConfirmRegistrations] = useState([]);
@@ -38,10 +38,10 @@ const CompleteRegisterMemberForm = () => {
 
   //Backend側へパスワードとトークンを送る
   const handleSendPassword = async () => {
-    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/auth/set_password', {
-      method: 'POST',
+    await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/auth/set_password", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ password, token: router.query.token }),
     });
@@ -52,18 +52,18 @@ const CompleteRegisterMemberForm = () => {
     <div>
       <Head>
         <title>新規会員登録</title>
-        <link rel='favicon.ico' />
+        <link rel="favicon.ico" />
       </Head>
       <Header />
       <AuthLayouts>
-        <HeadLine className='login-headline' text='新規会員登録完了手続き' />
-        <div className='pt-14 flex flex-col gap-6'>
+        <HeadLine className="login-headline" text="新規会員登録完了手続き" />
+        <div className="pt-14 flex flex-col gap-6">
           <AuthInputs
-            inputsTitle='新規パスワード'
+            inputsTitle="新規パスワード"
             value={password}
             onChange={handleChangePassword}
           />
-          <SendAuthInfoBtn onClick={handleSendPassword} text='登録を完了する' />
+          <SendAuthInfoBtn onClick={handleSendPassword} text="登録を完了する" />
         </div>
       </AuthLayouts>
     </div>

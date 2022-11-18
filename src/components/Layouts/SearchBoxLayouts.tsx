@@ -1,17 +1,18 @@
-import React, { VFC } from 'react'
-import type { Layouts } from '../types/types'
+import React, { VFC } from "react";
+import type { Layouts } from "../types/types";
 
-export const SearchBoxLayouts:VFC<Layouts> = (props:any) => {
+export const SearchBoxLayouts: VFC<Layouts> = (props: any) => {
   return (
     <div>
-         <div
-            className="
+      <div
+        className="
             flex
             flex-col
             pt-10
-            pb-20">
-            <div
-                className='
+            pb-20"
+      >
+        <div
+          className="
                 border-2
                 border-gray-800
                 w-[18rem]
@@ -24,10 +25,10 @@ export const SearchBoxLayouts:VFC<Layouts> = (props:any) => {
                 rounded-full
                 filter
                 drop-shadow-sm
-                '
-                >
-                    <div
-                        className="
+                "
+        >
+          <div
+            className="
                         absolute
                         left-0
                         -top-[16px]
@@ -41,12 +42,25 @@ export const SearchBoxLayouts:VFC<Layouts> = (props:any) => {
                         bg-dark_green
                         pointer-events-none
                         "
-                    >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    </div>
-                    {props.children}
-            </div>
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+          {props.children}
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};

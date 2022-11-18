@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type AuthInputsProps = {
   inputsTitle: string;
@@ -13,11 +13,11 @@ export const AuthInputs = ({
   console.log(value);
 
   return (
-    <div className='flex flex-col'>
-      <p className='login-headline-s'>{inputsTitle}</p>
+    <div className="flex flex-col">
+      <p className="login-headline-s">{inputsTitle}</p>
       <input
         value={value}
-        className='login-input login-input-cstm'
+        className="login-input login-input-cstm"
         onChange={onChange}
       />
     </div>

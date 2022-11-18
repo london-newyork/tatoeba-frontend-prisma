@@ -3,17 +3,17 @@ import React, {
   MouseEventHandler,
   useEffect,
   useState,
-} from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeForm } from '../../components/DashBoard/Tatoe/TatoeForm';
-import { useAlert } from '../../components/hooks/useAlert';
-import { useApi } from '../../components/hooks/useApi';
-import { useAuth } from '../../components/hooks/useAuth';
-import { useTatoe } from '../../components/hooks/useTatoe';
-import { useUserInfo } from '../../components/hooks/useUserInfo';
-import { Tatoe } from '../../components/types/types';
-import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
-import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
+} from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { TatoeForm } from "../../components/DashBoard/Tatoe/TatoeForm";
+import { useAlert } from "../../components/hooks/useAlert";
+import { useApi } from "../../components/hooks/useApi";
+import { useAuth } from "../../components/hooks/useAuth";
+import { useTatoe } from "../../components/hooks/useTatoe";
+import { useUserInfo } from "../../components/hooks/useUserInfo";
+import { Tatoe } from "../../components/types/types";
+import { LoginUserAtom } from "../../components/utils/atoms/LoginUserAtom";
+import { TatoeAtom } from "../../components/utils/atoms/TatoeAtom";
 
 export type UpdateTatoePage = {
   tId: string | string[];
@@ -21,11 +21,11 @@ export type UpdateTatoePage = {
 };
 
 export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
-  const [title, setTitle] = useState<string | null>('');
-  const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
-  const [description, setDescription] = useState<string | null>('');
-  const [createdAt, setCreatedAt] = useState<string | null>('');
-  const [updatedAt, setUpdatedAt] = useState<string | null>('');
+  const [title, setTitle] = useState<string | null>("");
+  const [shortParaphrase, setShortParaphrase] = useState<string | null>("");
+  const [description, setDescription] = useState<string | null>("");
+  const [createdAt, setCreatedAt] = useState<string | null>("");
+  const [updatedAt, setUpdatedAt] = useState<string | null>("");
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
@@ -37,7 +37,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
 
   const { api: deleteTatoeImageApi } = useApi(
     `/tatoe/${tId}/explanation_image`,
-    { method: 'DELETE' }
+    { method: "DELETE" }
   );
 
   const { updateTatoe, getTatoe } = useTatoe({

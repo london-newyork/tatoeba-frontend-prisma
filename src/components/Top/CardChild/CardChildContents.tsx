@@ -1,7 +1,7 @@
-import React from 'react';
-import { ExplanationImage } from './ExplanationImage';
-import { ExplanationTexts } from './ExplanationTexts';
-import { UserImage } from './UserImage';
+import React from "react";
+import { ExplanationImage } from "./ExplanationImage";
+import { ExplanationTexts } from "./ExplanationTexts";
+import { UserImage } from "./UserImage";
 
 type CardChildContentsProps = {
   userName: string;
@@ -23,10 +23,10 @@ export const CardChildContents = ({
   return (
     <div>
       <ul
-        className='
+        className="
             h-[72px]
             pl-1
-            '
+            "
       >
         <li>
           <UserImage

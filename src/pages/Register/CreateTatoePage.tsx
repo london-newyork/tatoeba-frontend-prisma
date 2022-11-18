@@ -1,24 +1,24 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { FormEventHandler, useState } from "react";
 
-import { useRouter } from 'next/router';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeAtom } from '../../components/utils/atoms/TatoeAtom';
-import { LoginUserAtom } from '../../components/utils/atoms/LoginUserAtom';
-import { useAuth } from '../../components/hooks/useAuth';
-import { useUserInfo } from '../../components/hooks/useUserInfo';
-import { useTatoe } from '../../components/hooks/useTatoe';
-import { useAlert } from '../../components/hooks/useAlert';
+import { useRouter } from "next/router";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { TatoeAtom } from "../../components/utils/atoms/TatoeAtom";
+import { LoginUserAtom } from "../../components/utils/atoms/LoginUserAtom";
+import { useAuth } from "../../components/hooks/useAuth";
+import { useUserInfo } from "../../components/hooks/useUserInfo";
+import { useTatoe } from "../../components/hooks/useTatoe";
+import { useAlert } from "../../components/hooks/useAlert";
 
-import { TatoeForm } from '../../components/DashBoard/Tatoe/TatoeForm';
+import { TatoeForm } from "../../components/DashBoard/Tatoe/TatoeForm";
 
 export default function CreateTatoePage() {
   const router = useRouter();
 
-  const [title, setTitle] = useState<string | null>('');
-  const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
-  const [description, setDescription] = useState<string | null>('');
-  const [createdAt, setCreatedAt] = useState<string | null>('');
-  const [updatedAt, setUpdatedAt] = useState<string | null>('');
+  const [title, setTitle] = useState<string | null>("");
+  const [shortParaphrase, setShortParaphrase] = useState<string | null>("");
+  const [description, setDescription] = useState<string | null>("");
+  const [createdAt, setCreatedAt] = useState<string | null>("");
+  const [updatedAt, setUpdatedAt] = useState<string | null>("");
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export default function CreateTatoePage() {
     });
 
     router.push({
-      pathname: '/dashboard/user-tatoe-list',
+      pathname: "/dashboard/user-tatoe-list",
     });
   };
 

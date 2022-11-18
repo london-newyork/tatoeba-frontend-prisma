@@ -1,10 +1,10 @@
-import React from 'react';
-import Head from 'next/head';
-import 'tailwindcss/tailwind.css';
-import { Header } from '../../../components/Header/Header';
-import { RegisterTatoeHeadline } from '../../../components/Register/RegisterTatoeHeadline';
-import { UpdateTatoePage } from '../UpdateTatoePage';
-import { useRouter } from 'next/router';
+import React from "react";
+import Head from "next/head";
+import "tailwindcss/tailwind.css";
+import { Header } from "../../../components/Header/Header";
+import { RegisterTatoeHeadline } from "../../../components/Register/RegisterTatoeHeadline";
+import { UpdateTatoePage } from "../UpdateTatoePage";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const router = useRouter();
@@ -14,32 +14,32 @@ export default function Register() {
 
   const handleCreateTatoe = async () => {
     router.push({
-      pathname: '/dashboard/user-tatoe-list',
+      pathname: "/dashboard/user-tatoe-list",
     });
   };
   return (
     <>
       <Head>
         <title>Tatoeba 例え話 更新ページ</title>
-        <link rel='favicon.ico' />
+        <link rel="favicon.ico" />
       </Head>
       <Header />
       <section
-        className='
+        className="
           md:pt-[100px]
           pt-[80px]
           px-7
           md:px-18
           mx-auto
           mb-12
-          '
+          "
       >
         <div
-          className='
+          className="
               frame-large
               mx-auto
               max-w-[1000px]
-              '
+              "
         >
           <RegisterTatoeHeadline />
 

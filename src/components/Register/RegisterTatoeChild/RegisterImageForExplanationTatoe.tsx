@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from 'react';
+} from "react";
 
 export type SubmitImageProps = {
   imageUrl?: string;
@@ -61,75 +61,75 @@ export const RegisterImageForExplanationTatoe = ({
 
   return (
     <div
-      className='
+      className="
       flex
       justify-between
       flex-col
-      lg:flex-row'
+      lg:flex-row"
     >
       <label
-        className='
+        className="
       headline-s
-      '
+      "
       >
         説明画像
         <br />
-        <span className='caption-s'>
+        <span className="caption-s">
           例えに必要な説明画像の登録<br></br>
           ※登録できるのは画像ファイルの1MBまでです。
         </span>
         {isFileSizeError ? (
-          <span className='error-message-s'>
+          <span className="error-message-s">
             <br />
             <p>画像は1MBまで登録できます。</p>
           </span>
         ) : null}
       </label>
-      <div className='explanation-img-wrapper position relative'>
+      <div className="explanation-img-wrapper position relative">
         {defaultImageUrl ? (
           <img
             src={defaultImageUrl}
-            className='explanation-img'
-            alt='例えの説明画像'
+            className="explanation-img"
+            alt="例えの説明画像"
           />
         ) : (
-            <div className='absolute text-on-explanation-img'>画像を追加</div>
+            <div className="absolute text-on-explanation-img">画像を追加</div>
           ) && imageUrl ? (
           <img
             src={imageUrl}
-            className='explanation-img'
-            alt='例えの説明画像'
+            className="explanation-img"
+            alt="例えの説明画像"
           />
         ) : (
-          <div className='absolute text-on-explanation-img'>画像を追加</div>
+          <div className="absolute text-on-explanation-img">画像を追加</div>
         )}
-        <div className='z-10 flex absolute top-1 right-2'>
+        <div className="z-10 flex absolute top-1 right-2">
           <input
-            type='file'
-            accept='image/*'
+            type="file"
+            accept="image/*"
             onChange={handleChangeFile}
             hidden
-            name='image'
+            name="image"
             ref={ref}
           />
           <button
-            type='button'
-            className='w-8 h-10'
+            type="button"
+            className="w-8 h-10"
             onClick={handleClickChangeImage}
           >
             <span
-              className='
+              className="
               material-symbols-outlined
               text-xl
-              submit-image-icon'
+              submit-image-icon"
             >
               edit_square
             </span>
           </button>
-          <button className='w-8 h-10' onClick={deleteExplanationImage}>
+          <button className="w-8 h-10" onClick={deleteExplanationImage}>
             <span
-              className='material-symbols-outlined text-xl
-              submit-image-icon'
+              className="material-symbols-outlined text-xl
+              submit-image-icon"
             >
               delete
             </span>

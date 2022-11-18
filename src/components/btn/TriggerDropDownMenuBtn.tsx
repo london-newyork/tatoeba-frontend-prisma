@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 type TriggerDropDownMenuBtnProps = {
   onClick: () => void;
   children: React.ReactNode;
@@ -10,7 +10,7 @@ export const TriggerDropDownMenuBtn = ({
   className,
 }: TriggerDropDownMenuBtnProps) => {
   return (
-    <button type='button' className={className} onClick={onClick}>
+    <button type="button" className={className} onClick={onClick}>
       {children}
     </button>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type TitleProps = {
   title: string | null;
@@ -10,29 +10,29 @@ export const RegisterTatoeTitle = (props: TitleProps) => {
 
   return (
     <div
-      className='
+      className="
       flex
       justify-between
       flex-col
-      lg:flex-row'
+      lg:flex-row"
     >
       <label
-        className='
+        className="
       headline-s
-      '
+      "
       >
         わかりにくい専門用語・文章
         <br />
-        <span className='caption-s'>50文字以内</span>
+        <span className="caption-s">50文字以内</span>
       </label>
       <textarea
         value={title}
-        name='title'
+        name="title"
         onChange={(e) => setTitle(e.target.value)}
         rows={2}
-        placeholder='サーバー'
+        placeholder="サーバー"
         maxLength={50}
-        className='input-area'
+        className="input-area"
       ></textarea>
     </div>
   );

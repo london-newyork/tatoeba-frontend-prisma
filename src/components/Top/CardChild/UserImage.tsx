@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type UserImagProps = {
   profileImage: number;
@@ -13,27 +13,27 @@ export const UserImage = ({
   return (
     <div>
       <ul
-        className='
+        className="
                     flex
                     items-center
                     gap-x-2
                     pb-2
-                    '
+                    "
       >
         <img
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
-          alt='ユーザーの画像'
-          className='
+          alt="ユーザーの画像"
+          className="
                       w-6
                       h-6
                       rounded-full
-                      object-cover'
+                      object-cover"
         />
         <p
-          className='
+          className="
                     text-xs
                     text-gray-400
-                    '
+                    "
         >
           {userName}が投稿
         </p>

@@ -1,4 +1,4 @@
-const PREFIX = 'tatoeba:';
+const PREFIX = "tatoeba:";
 
 export type StorageValue = {
   jwt: string;

@@ -1,29 +1,29 @@
-import React, { VFC } from 'react';
-import { Layouts } from '../../types/types';
-import { SideBarLayouts } from './SideBarLayouts';
+import React, { VFC } from "react";
+import { Layouts } from "../../types/types";
+import { SideBarLayouts } from "./SideBarLayouts";
 
 export const DashBoardLayouts: VFC<Layouts> = (props) => {
   return (
     <main
-      className='
+      className="
       min-h-screen
       h-full
       md:px-18
-      '
+      "
     >
       <div
-        className='
+        className="
         h-screen
         flex
         md:flex-row
         flex-col
         position
         relative
-        '
+        "
       >
         <SideBarLayouts />
         <div
-          className='
+          className="
           absolute
           top-16
           sm:top-14
@@ -33,10 +33,10 @@ export const DashBoardLayouts: VFC<Layouts> = (props) => {
           sm:right-[10%]
           md:static
           md:mx-auto
-          '
+          "
         >
           <div
-            className='
+            className="
             position
             relative
             pt-0
@@ -51,7 +51,7 @@ export const DashBoardLayouts: VFC<Layouts> = (props) => {
             gap-y-8
             sm:gap-x-8
             lg:gap-x-8
-            '
+            "
           >
             {props.children}
           </div>

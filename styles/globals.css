@@ -221,8 +221,8 @@ text-xs transition-all group-hover:opacity-60;
   @apply w-5 h-5 absolute rounded-full object-cover;
 }
 
-.tool-tip-wrapper {
-  @apply absolute rounded-xl bg-white border-gray-800 py-6 flex flex-col text-center gap-y-1 -z-10 lg:right-24 md:right-10;
+.drop-down-menu-wrapper {
+  @apply absolute rounded-xl bg-white border-gray-800 py-6 flex flex-col text-center gap-y-1 z-10 lg:right-24 right-0;
 }
 
 .header-wrapper {

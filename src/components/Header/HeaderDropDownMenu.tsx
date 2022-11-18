@@ -33,14 +33,12 @@ export const HeaderDropDownMenu = () => {
       />
       <div className='flex flex-col items-end'>
         <DropDownMenu
-          className='tool-tip-wrapper
+          className='drop-down-menu-wrapper
               h-[120px]
               w-[120px]
               border-[1px]
               top-[36px]
-              sm:top-[40px]
-              sm:right-1/2
-              right-1/4'
+              '
           isClicked={isClicked}
           isShow={isShow}
           onMouseEnter={handleMouseEnter}

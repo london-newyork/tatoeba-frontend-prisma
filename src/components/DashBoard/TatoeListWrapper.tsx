@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { VFC } from 'react';
 import { TatoeListAddNewTatoeBtn } from '../btn/TatoeListAddNewTatoeBtn';
 import { Layouts } from '../types/types';

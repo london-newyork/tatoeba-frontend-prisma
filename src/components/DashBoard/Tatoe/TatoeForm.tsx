@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { SetterOrUpdater } from 'recoil';
+import { SetterOrUpdater, useRecoilState } from 'recoil';
 import { RegisterImageForExplanationTatoe } from '../../Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
 import { RegisterTatoeDescription } from '../../Register/RegisterTatoeChild/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
@@ -14,12 +14,19 @@ import { RegisterTatoeTitle } from '../../Register/RegisterTatoeChild/RegisterTa
 import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';
 import { useTatoeCancel } from '../../hooks/useTatoeCancel';
 import { Tatoe } from '../../types/types';
+import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
 
+/*
+* TODO: 煩雑なフォームのstateを管理の効率化のために
+React Hook Formを検討する。
+* このTatoeFormに親からuseState部分をpropsで渡さないことも検討
+*
+*/
 type TatoeFormProps = {
   onSubmit: FormEventHandler<HTMLFormElement>;
-  setTitle: Dispatch<SetStateAction<string | null>>;
-  setShortParaphrase: Dispatch<SetStateAction<string | null>>;
-  setDescription: Dispatch<SetStateAction<string | null>>;
+  setTitle: Dispatch<string>;
+  setShortParaphrase: Dispatch<string>;
+  setDescription: Dispatch<string>;
   setImageUrl: Dispatch<SetStateAction<string | null>>;
   defaultImageUrl: string | null;
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
@@ -44,10 +51,19 @@ export const TatoeForm = ({
   tId,
   tatoe,
   setTatoe,
-  createdAt,
-  updatedAt,
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
+
+  // const [title, setTitle] = useState<string | null>('');
+  // const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
+  // const [description, setDescription] = useState<string | null>('');
+  // const [createdAt, setCreatedAt] = useState<string | null>('');
+  // const [updatedAt, setUpdatedAt] = useState<string | null>('');
+
+  // const [imageUrl, setImageUrl] = useState<string | null>(null);
+  // const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
+
+  // const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   useEffect(() => {
     if (tId) {
@@ -80,8 +96,6 @@ export const TatoeForm = ({
           variant='cancel'
           btnName='キャンセル'
           btnType='button'
-          tId={tId}
-          tatoe={tatoe}
           onClickCancel={handleClickCancel}
         />
         {!isUpdate ? (
@@ -95,13 +109,6 @@ export const TatoeForm = ({
             variant='update'
             btnName='更新する'
             btnType='submit'
-            tId={tId}
-            tatoe={tatoe}
-            createdAt={createdAt}
-            updatedAt={updatedAt}
-            title={title}
-            shortParaphrase={shortParaphrase}
-            description={description}
           />
         )}
       </div>

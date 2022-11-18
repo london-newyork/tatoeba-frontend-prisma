@@ -1,7 +1,7 @@
 import React, { VFC } from 'react';
 import { Layouts } from '../types/types';
 
-export const LoginLayouts: VFC<Layouts> = (props) => {
+export const AuthLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className='

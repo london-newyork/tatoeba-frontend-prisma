@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
+import { DropDownMenu } from '../DropDownMenu';
+import { useDropDownMenu } from '../hooks/useDropDownMenu';
 import { InduceWithdrawalBtn } from './InduceWithdrawalBtn';
+import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 
 export const DashBoardMenuBtn = () => {
   const router = useRouter();
@@ -9,30 +12,40 @@ export const DashBoardMenuBtn = () => {
       pathname: '/dashboard/remove-member',
     });
   };
-  const [isHover, setIsHover] = useState(true);
-  const handleToolTip = useCallback(() => {
-    setIsHover(!isHover);
-  }, [isHover]);
+  const {
+    isClicked,
+    isShow,
+    handleDropDownMenu,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = useDropDownMenu();
 
   return (
     <div>
       <nav className='sidebar-menu-btn-wrapper top-[60px]'>
-        <input
-          type='button'
-          className='
-            position
-            relative
-            '
-          onClick={handleToolTip}
+        <TriggerDropDownMenuBtn
+          className='relative'
+          onClick={handleDropDownMenu}
         >
           <span className='material-symbols-outlined sidebar-icon-menu absolute -top-[2px] md:static md:top-0'>
             menu
           </span>
-        </input>
-        <InduceWithdrawalBtn
-          isHover={isHover}
-          onClick={handleMoveToRemoveMember}
-        />
+        </TriggerDropDownMenuBtn>
+        <DropDownMenu
+          className='drop-down-menu-wrapper
+              w-[120px]
+              border-[1px]
+              top-[30px]
+              sm:top-[30px]
+              sm:right-0
+              left-0'
+          isClicked={isClicked}
+          isShow={isShow}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <InduceWithdrawalBtn onClick={handleMoveToRemoveMember} />
+        </DropDownMenu>
       </nav>
     </div>
   );

@@ -103,34 +103,32 @@ export const RegisterImageForExplanationTatoe = ({
         ) : (
           <div className='absolute text-on-explanation-img'>画像を追加</div>
         )}
-        <div className='z-10 absolute top-1 right-2'>
-          <div className='position relative'>
-            <input
-              type='file'
-              accept='image/*'
-              onChange={handleChangeFile}
-              hidden
-              name='image'
-              ref={ref}
-            />
-            <button
-              type='button'
-              className='w-8 h-10 right-8 absolute'
-              onClick={handleClickChangeImage}
-            >
-              <span
-                className='
+        <div className='z-10 flex absolute top-1 right-2'>
+          <input
+            type='file'
+            accept='image/*'
+            onChange={handleChangeFile}
+            hidden
+            name='image'
+            ref={ref}
+          />
+          <button
+            type='button'
+            className='w-8 h-10'
+            onClick={handleClickChangeImage}
+          >
+            <span
+              className='
               material-symbols-outlined
               text-xl
               submit-image-icon'
-              >
-                edit_square
-              </span>
-            </button>
-          </div>
+            >
+              edit_square
+            </span>
+          </button>
           <button className='w-8 h-10' onClick={deleteExplanationImage}>
             <span
-              className='material-symbols-outlined text-3xl mt-[4px]
+              className='material-symbols-outlined text-xl
               submit-image-icon'
             >
               delete

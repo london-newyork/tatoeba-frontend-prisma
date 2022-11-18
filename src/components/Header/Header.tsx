@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { HeaderEditBtn } from "../btn/HeaderEditBtn";
-import { Logo } from "./Logo";
-import { HeaderDropDownMenu } from "./HeaderDropDownMenu";
+import { HeaderEditBtn } from '../btn/HeaderEditBtn';
+import { Logo } from './Logo';
+import { HeaderDropDownMenu } from './HeaderDropDownMenu';
 
 export const Header = () => {
   return (
@@ -12,8 +12,6 @@ export const Header = () => {
         <div
           className="
           header-controller
-          right-[14.5px]
-          top-[8px]
           "
         >
           <HeaderDropDownMenu />

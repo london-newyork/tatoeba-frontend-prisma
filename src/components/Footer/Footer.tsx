@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 export const Footer = () => {
   return (
     <footer>
-        <div
-        className='
+      <div
+        className="
         pl-6
         pr-0
         sm:pl-6
@@ -16,27 +16,27 @@ export const Footer = () => {
         h-[200px]
         border-t-2
         border-gray-800
-        '
-        >
-            <div
-            className='
+        "
+      >
+        <div
+          className="
              border-b
              h-[64px]
              border-gray-200
-            '
-            >
-            <p
-            className='
+            "
+        >
+          <p
+            className="
             pt-8
             pl-0
             w-full
             text-gray-500
-            '
-            >
-                Tatoeba
-            </p>
-            </div>
+            "
+          >
+            Tatoeba
+          </p>
         </div>
+      </div>
     </footer>
-  )
-}
+  );
+};

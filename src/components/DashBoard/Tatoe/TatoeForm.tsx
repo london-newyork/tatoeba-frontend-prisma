@@ -5,16 +5,16 @@ import React, {
   SetStateAction,
   useEffect,
   useState,
-} from 'react';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { RegisterImageForExplanationTatoe } from '../../Register/RegisterTatoeChild/RegisterImageForExplanationTatoe';
-import { RegisterTatoeDescription } from '../../Register/RegisterTatoeChild/RegisterTatoeDescription';
-import { RegisterTatoeShortParaphrase } from '../../Register/RegisterTatoeChild/RegisterTatoeShortParaphrase';
-import { RegisterTatoeTitle } from '../../Register/RegisterTatoeChild/RegisterTatoeTitle';
-import { RegisterTatoeBtn } from '../../btn/RegisterTatoeBtn';
-import { useTatoeCancel } from '../../hooks/useTatoeCancel';
-import { Tatoe } from '../../types/types';
-import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
+} from "react";
+import { SetterOrUpdater, useRecoilState } from "recoil";
+import { RegisterImageForExplanationTatoe } from "../../Register/RegisterTatoeChild/RegisterImageForExplanationTatoe";
+import { RegisterTatoeDescription } from "../../Register/RegisterTatoeChild/RegisterTatoeDescription";
+import { RegisterTatoeShortParaphrase } from "../../Register/RegisterTatoeChild/RegisterTatoeShortParaphrase";
+import { RegisterTatoeTitle } from "../../Register/RegisterTatoeChild/RegisterTatoeTitle";
+import { RegisterTatoeBtn } from "../../btn/RegisterTatoeBtn";
+import { useTatoeCancel } from "../../hooks/useTatoeCancel";
+import { Tatoe } from "../../types/types";
+import { TatoeAtom } from "../../utils/atoms/TatoeAtom";
 
 /*
 * TODO: 煩雑なフォームのstateを管理の効率化のために
@@ -74,7 +74,7 @@ export const TatoeForm = ({
   const { handleClickCancel } = useTatoeCancel({ tId, tatoe, setTatoe });
 
   return (
-    <form className='flex flex-col gap-6' onSubmit={onSubmit}>
+    <form className="flex flex-col gap-6" onSubmit={onSubmit}>
       <RegisterTatoeTitle title={title} setTitle={setTitle} />
       <RegisterTatoeShortParaphrase
         shortParaphrase={shortParaphrase}
@@ -91,24 +91,24 @@ export const TatoeForm = ({
         setDefaultImageUrl={setDefaultImageUrl}
         deleteExplanationImage={deleteExplanationImage}
       />
-      <div className='mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6'>
+      <div className="mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6">
         <RegisterTatoeBtn
-          variant='cancel'
-          btnName='キャンセル'
-          btnType='button'
+          variant="cancel"
+          btnName="キャンセル"
+          btnType="button"
           onClickCancel={handleClickCancel}
         />
         {!isUpdate ? (
           <RegisterTatoeBtn
-            variant='create'
-            btnName='投稿する'
-            btnType='submit'
+            variant="create"
+            btnName="投稿する"
+            btnType="submit"
           />
         ) : (
           <RegisterTatoeBtn
-            variant='update'
-            btnName='更新する'
-            btnType='submit'
+            variant="update"
+            btnName="更新する"
+            btnType="submit"
           />
         )}
       </div>

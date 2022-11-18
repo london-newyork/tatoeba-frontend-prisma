@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const ExplanationImageAtom = atom({
-  key: 'explanationImage',
+  key: "explanationImage",
   default: new Date().getTime(),
 });

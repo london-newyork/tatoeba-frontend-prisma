@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { Tatoe } from '../types/types';
+import { useRouter } from "next/router";
+import { Tatoe } from "../types/types";
 
 export const useHandleMoveToResult = (allUserTatoe: Tatoe[]) => {
   const router = useRouter();
@@ -10,7 +10,7 @@ export const useHandleMoveToResult = (allUserTatoe: Tatoe[]) => {
     allUserTatoe.forEach((item: Tatoe) => {
       if (item.tId === tId) {
         router.push({
-          pathname: '/search-result/[tId]',
+          pathname: "/search-result/[tId]",
           query: {
             tId,
             title,

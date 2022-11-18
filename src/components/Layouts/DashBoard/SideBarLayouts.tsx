@@ -1,18 +1,18 @@
-import { DashBoardMenuBtn } from '../../btn/DashBoardMenuBtn';
-import React, { VFC } from 'react';
-import { WithoutPropsChildrenLayouts } from '../../types/types';
-import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
+import { DashBoardMenuBtn } from "../../btn/DashBoardMenuBtn";
+import React, { VFC } from "react";
+import { WithoutPropsChildrenLayouts } from "../../types/types";
+import { SideBarMainContentsLayouts } from "./SideBarMainContentsLayouts";
 
 export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
   return (
     <aside
-      className='
+      className="
       position
       relative
-      '
+      "
     >
       <nav
-        className='
+        className="
         fixed
         top-12
         sm:top-12
@@ -28,13 +28,13 @@ export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
         flex
         md:flex-col
         flex-row
-        '
+        "
       >
         <div
-          className='
+          className="
           flex
           md:flex-col
-          flex-row'
+          flex-row"
         >
           <DashBoardMenuBtn />
           <SideBarMainContentsLayouts />

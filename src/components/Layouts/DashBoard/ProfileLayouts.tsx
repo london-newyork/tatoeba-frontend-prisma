@@ -1,10 +1,10 @@
-import React, { VFC } from 'react';
-import { Layouts } from '../../types/types';
+import React, { VFC } from "react";
+import { Layouts } from "../../types/types";
 
 export const ProfileLayouts: VFC<Layouts> = (props) => {
   return (
     <div
-      className='
+      className="
     bg-white
     lg:px-12
     px-7
@@ -19,7 +19,7 @@ export const ProfileLayouts: VFC<Layouts> = (props) => {
     h-auto
     w-full
     sm:w-full
-    '
+    "
     >
       {props.children}
     </div>

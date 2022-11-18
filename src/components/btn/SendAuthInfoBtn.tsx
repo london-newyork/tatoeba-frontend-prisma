@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type SendAuthInfoBtnProps = {
   onClick: () => Promise<void>;
@@ -8,11 +8,11 @@ type SendAuthInfoBtnProps = {
 export const SendAuthInfoBtn = ({ onClick, text }: SendAuthInfoBtnProps) => {
   return (
     <button
-      className='
+      className="
             mt-4
             mb-4
             login-btn
-            '
+            "
       onClick={onClick}
     >
       {text}

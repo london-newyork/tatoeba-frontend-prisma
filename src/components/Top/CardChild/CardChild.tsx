@@ -1,17 +1,17 @@
-import React, { useEffect, VFC } from 'react';
-import { useRecoilValue } from 'recoil';
-import { useHandleMoveToResult } from '../../hooks/handleMoveToResult';
-import { AllUserTatoe } from '../../types/types';
-import { ProfileImageAtom } from '../../utils/atoms/ProfileImageAtom';
-import { useGetUserTatoeApi } from '../../hooks/useGetUserTatoeApi';
-import { CardChildContents } from './CardChildContents';
+import React, { useEffect, VFC } from "react";
+import { useRecoilValue } from "recoil";
+import { useHandleMoveToResult } from "../../hooks/handleMoveToResult";
+import { AllUserTatoe } from "../../types/types";
+import { ProfileImageAtom } from "../../utils/atoms/ProfileImageAtom";
+import { useGetUserTatoeApi } from "../../hooks/useGetUserTatoeApi";
+import { CardChildContents } from "./CardChildContents";
 
 export const CardChild: VFC = () => {
   const RandomColors = [
-    'hover:shadow-plane_2xl_card_prime',
-    'hover:shadow-plane_2xl_card_second',
-    'hover:shadow-plane_2xl_card_third',
-    'hover:shadow-plane_2xl_card',
+    "hover:shadow-plane_2xl_card_prime",
+    "hover:shadow-plane_2xl_card_second",
+    "hover:shadow-plane_2xl_card_third",
+    "hover:shadow-plane_2xl_card",
   ];
 
   const colors = RandomColors[Math.floor(Math.random() * RandomColors.length)];

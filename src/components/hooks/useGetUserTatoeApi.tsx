@@ -1,11 +1,11 @@
-import { useRecoilState } from 'recoil';
-import { AllUserTatoe, Tatoe } from '../types/types';
-import { AllUserTatoeAtom } from '../utils/atoms/AllUserTatoeAtom';
-import { useApi } from './useApi';
+import { useRecoilState } from "recoil";
+import { AllUserTatoe, Tatoe } from "../types/types";
+import { AllUserTatoeAtom } from "../utils/atoms/AllUserTatoeAtom";
+import { useApi } from "./useApi";
 
 export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
   const { api: getAllUserTatoesApi } = useApi(`/tatoe`, {
-    method: 'GET',
+    method: "GET",
   });
 
   const [allUserTatoe, setAllUserTatoe] = useRecoilState(AllUserTatoeAtom);
@@ -34,9 +34,9 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
   const getEachTatoe = async () => {
     if (!filteredTatoe) return;
     const { api: getEachTatoeApi } = useApi(
-      `/tatoe/${filteredTatoe[0]['tId']}`,
+      `/tatoe/${filteredTatoe[0]["tId"]}`,
       {
-        method: 'GET',
+        method: "GET",
       }
     );
     const { tatoe } = await getEachTatoeApi();

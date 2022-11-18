@@ -1,19 +1,19 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 export const Logo = () => {
   return (
-    <div className='my-auto'>
-      <Link href='/'>
+    <div className="my-auto">
+      <Link href="/">
         <a
-          className='
+          className="
               text-2xl
               text-gray-700
               tracking-wider
               hover:opacity-50
-              duration-300'
+              duration-300"
         >
-          <span className='text-dark_green'>T</span>
+          <span className="text-dark_green">T</span>
           atoeba
         </a>
       </Link>

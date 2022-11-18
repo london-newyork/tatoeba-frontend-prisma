@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router';
-import React, { useCallback, useState } from 'react';
-import { SearchBoxLayouts } from '../Layouts/SearchBoxLayouts';
+import { useRouter } from "next/router";
+import React, { useCallback, useState } from "react";
+import { SearchBoxLayouts } from "../Layouts/SearchBoxLayouts";
 
 export const SearchBox = () => {
-  const [keyWord, setKeyWord] = useState('');
+  const [keyWord, setKeyWord] = useState("");
   const router = useRouter();
   const handleChange = useCallback(
     (e) => {
@@ -14,7 +14,7 @@ export const SearchBox = () => {
 
   const handleClickSearch = useCallback(() => {
     router.push({
-      pathname: '/search-result/search-result-list/',
+      pathname: "/search-result/search-result-list/",
       query: {
         keyWord,
       },
@@ -27,7 +27,7 @@ export const SearchBox = () => {
         <input
           value={keyWord}
           onChange={handleChange}
-          className='
+          className="
                 placeholder-darkGray_green
                 h-[44px]
                 items-center
@@ -42,11 +42,11 @@ export const SearchBox = () => {
                 bg-dark_green
                 lg:max-w-[180px]
                 lg:w-[inherit]
-                '
-          placeholder='サーバーを例えると...'
+                "
+          placeholder="サーバーを例えると..."
         />
         <button
-          className='
+          className="
                     absolute
                     right-3
                     -top-[14px]
@@ -64,15 +64,15 @@ export const SearchBox = () => {
                     tracking-wide
                     text-sm
                     text-gray-800
-                    '
+                    "
           onClick={handleClickSearch}
         >
           <span
-            className='
+            className="
                     h-8
                     w-[1px]
                     bg-gray-800
-                    mr-3'
+                    mr-3"
           ></span>
           検索
         </button>

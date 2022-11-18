@@ -1,10 +1,10 @@
-import React, { VFC } from 'react';
-import { Layouts } from '../../types/types';
+import React, { VFC } from "react";
+import { Layouts } from "../../types/types";
 
 export const TatoeListLayouts: VFC<Layouts> = (props) => {
   return (
     <div
-      className='
+      className="
       lg:px-9
       px-4
       md:px-7
@@ -22,7 +22,7 @@ export const TatoeListLayouts: VFC<Layouts> = (props) => {
       sm:w-full
       lg:min-w-[800px]
       bg-white
-      '
+      "
     >
       {props.children}
     </div>

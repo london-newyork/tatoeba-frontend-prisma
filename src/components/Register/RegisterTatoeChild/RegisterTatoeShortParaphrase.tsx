@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type ShortParaphraseProps = {
   shortParaphrase: string | null;
@@ -12,28 +12,28 @@ export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
 
   return (
     <div
-      className='
+      className="
         flex
         justify-between
         flex-col
         lg:flex-row
-        '
+        "
     >
       <label
-        className='
-        headline-s'
+        className="
+        headline-s"
       >
         短く例えると
         <br />
-        <span className='caption-s'>50文字以内</span>
+        <span className="caption-s">50文字以内</span>
       </label>
       <input
         value={shortParaphrase}
         onChange={(e) => setShortParaphrase(e.target.value)}
-        name='shortParaphrase'
-        placeholder='土地'
-        type='text'
-        className='input-area'
+        name="shortParaphrase"
+        placeholder="土地"
+        type="text"
+        className="input-area"
       ></input>
     </div>
   );

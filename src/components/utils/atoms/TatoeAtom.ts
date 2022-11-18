@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const TatoeAtom = atom({
-  key: 'tatoe',
+  key: "tatoe",
   default: [],
 });

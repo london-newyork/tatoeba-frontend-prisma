@@ -1,6 +1,6 @@
-import { useRecoilState } from 'recoil';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { useMemo } from 'react';
+import { useRecoilState } from "recoil";
+import { LoginUserAtom } from "../utils/atoms/LoginUserAtom";
+import { useMemo } from "react";
 
 export type Auth = {
   login: (email: string, password: string) => Promise<void>;
@@ -16,7 +16,7 @@ export const useAuth = (): Auth => {
   // userIdをmemo化して何度も利用
   const userId = useMemo(() => {
     if (!persistAccessToken) return null;
-    const decoded = JSON.parse(window.atob(persistAccessToken.split('.')[1]));
+    const decoded = JSON.parse(window.atob(persistAccessToken.split(".")[1]));
 
     if (!decoded) return null;
     const id = decoded.id;
@@ -27,9 +27,9 @@ export const useAuth = (): Auth => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ password, email }),
       }

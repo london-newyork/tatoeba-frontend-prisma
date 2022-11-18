@@ -4,18 +4,18 @@ import React, {
   InputHTMLAttributes,
   useEffect,
   useState,
-} from 'react';
+} from "react";
 
-import { useAuth } from '../hooks/useAuth';
-import { useUserInfo } from '../hooks/useUserInfo';
-import { DisplayMailAddress } from './Profile/DisplayMailAddress';
-import { Password } from './Profile/Password';
-import { ProfileUserName } from './Profile/ProfileUserName';
-import { ProfileImage } from './ProfileImage';
+import { useAuth } from "../hooks/useAuth";
+import { useUserInfo } from "../hooks/useUserInfo";
+import { DisplayMailAddress } from "./Profile/DisplayMailAddress";
+import { Password } from "./Profile/Password";
+import { ProfileUserName } from "./Profile/ProfileUserName";
+import { ProfileImage } from "./ProfileImage";
 
 export const Profile = () => {
   const { userId } = useAuth();
-  const [userName, setUserName] = useState<string | undefined>('');
+  const [userName, setUserName] = useState<string | undefined>("");
   const { user, updateUser, isLoading, error, updateUserProfileImage } =
     useUserInfo(userId);
 
@@ -43,8 +43,8 @@ export const Profile = () => {
   };
 
   const focusCSS =
-    'outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4';
-  const unFocusCSS = 'focus:outline-0 outline-0';
+    "outline-dark_green focus:outline-offset-2 focus:outline focus:outline-4";
+  const unFocusCSS = "focus:outline-0 outline-0";
 
   const handleOnKeyDown = async (
     event:
@@ -56,7 +56,7 @@ export const Profile = () => {
   ): Promise<any> => {
     // Promise型解決できないので一旦any
     // @ts-ignore shiftKeyの型が解決できないので一旦無視
-    if (event.key === 'Enter' && !isTyping && !event.shiftKey) {
+    if (event.key === "Enter" && !isTyping && !event.shiftKey) {
       setUserName((prev): string | undefined => {
         return prev;
       });
@@ -93,17 +93,17 @@ export const Profile = () => {
   }
 
   return (
-    <div className='group'>
+    <div className="group">
       <div
-        className='
+        className="
         profile-main-contents-wrapper
         md:min-w-[400px]
-        '
+        "
       >
         <div
-          className='
+          className="
           profile-main-contents
-          '
+          "
         >
           <ProfileImage onSubmit={handleOnSubmit} userId={userId} />
           <ProfileUserName
@@ -121,8 +121,8 @@ export const Profile = () => {
         </div>
       </div>
       <ul
-        className='
-        profile-sub-contents-wrapper'
+        className="
+        profile-sub-contents-wrapper"
       >
         <DisplayMailAddress email={user?.email} />
         <Password />

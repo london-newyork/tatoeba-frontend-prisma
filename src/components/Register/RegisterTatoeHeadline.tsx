@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 export const RegisterTatoeHeadline = () => {
   return (
-    <div className='pb-8 sm:pb-7'>
+    <div className="pb-8 sm:pb-7">
       <h1
-        className='
+        className="
         headline-m
-        '
+        "
       >
         例えの登録
       </h1>

@@ -1,20 +1,20 @@
-import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import React, { VFC } from "react";
+import { Layouts } from "../types/types";
 
 export const CardLayouts: VFC<Layouts> = (props) => {
   return (
     <div>
       <section>
         <div
-          id='tatoeba-card'
-          className='
+          id="tatoeba-card"
+          className="
           card-wrapper
-          '
+          "
         >
           <ul
-            className='
+            className="
                 lg:w-[940px]
-               card-contents'
+               card-contents"
           >
             {props.children}
           </ul>

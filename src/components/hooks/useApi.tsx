@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { LoginUserAtom } from "../utils/atoms/LoginUserAtom";
 
 type UseApiOptions = {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  method: "GET" | "POST" | "PUT" | "DELETE";
 };
 
 export const useApi = (url: string, { method }: UseApiOptions) => {
@@ -15,11 +15,11 @@ export const useApi = (url: string, { method }: UseApiOptions) => {
       method,
       headers: {
         Authorization: `Bearer ${persistAccessToken}`,
-        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
+        ...(isFormData ? {} : { "Content-Type": "application/json" }),
       },
 
       body:
-        method === 'GET'
+        method === "GET"
           ? null
           : isFormData
           ? sendData

@@ -1,5 +1,5 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react';
-import { User } from '../../types/types';
+import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import { User } from "../../types/types";
 
 type ProfileUserNameProps = {
   user: User;
@@ -42,20 +42,20 @@ export const ProfileUserName = ({
 }: ProfileUserNameProps) => {
   return (
     <div
-      className='
+      className="
             flex
             flex-col
             pb-2
             border-b
             border-gray-200
             sm:ml-8
-            '
+            "
     >
       <p
-        className='
+        className="
                 text-2xl
                 text-gray-700
-                '
+                "
       >
         <input
           defaultValue={user as unknown as string | undefined}
@@ -65,7 +65,7 @@ export const ProfileUserName = ({
           onKeyDown={onKeyDown}
           onCompositionStart={onCompositionStart}
           onCompositionEnd={onCompositionEnd}
-          placeholder='Nola Stradford'
+          placeholder="Nola Stradford"
           className={`${isFocus ? focusCSS : unFocusCSS}
                 rounded-md
                 px-2

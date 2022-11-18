@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 type RegisterAuthInfoBtnProps = {
   href: string;
@@ -13,11 +13,11 @@ export const RegisterAuthInfoBtn = ({
   return (
     <Link href={href}>
       <a
-        className='
+        className="
         mx-auto
         text-xs
         text-gray-600
-        cursor-pointer'
+        cursor-pointer"
       >
         {title}
       </a>

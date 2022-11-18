@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { EditIconBtn } from './EditIconBtn';
+import { useRouter } from "next/router";
+import React from "react";
+import { useAuth } from "../hooks/useAuth";
+import { EditIconBtn } from "./EditIconBtn";
 
 export const HeaderEditBtn = () => {
   const { isLoggedIn } = useAuth();
@@ -10,11 +10,11 @@ export const HeaderEditBtn = () => {
   const handleOnClickDistributeLink = () => {
     if (isLoggedIn) {
       router.push({
-        pathname: '/register',
+        pathname: "/register",
       });
     }
     router.push({
-      pathname: '/dashboard',
+      pathname: "/dashboard",
     });
   };
 

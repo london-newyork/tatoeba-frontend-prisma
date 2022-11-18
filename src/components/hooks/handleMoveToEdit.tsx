@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import { Tatoe } from '../types/types';
+import { useRouter } from "next/router";
+import { Tatoe } from "../types/types";
 
 export const useHandleMoveToEdit = ({ tId }: Tatoe) => {
   const router = useRouter();

@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import React from 'react';
-import { Header } from '../../components/Header/Header';
+import Head from "next/head";
+import React from "react";
+import { Header } from "../../components/Header/Header";
 
 //これは、registrationTokenを含んだURLを踏む=> ユーザーがパスワードとメールアドレスを送った後に表示されるページ
 const InformCompletedRegistrationMember = () => {
@@ -8,22 +8,22 @@ const InformCompletedRegistrationMember = () => {
     <>
       <Head>
         <title>本登録完了</title>
-        <link rel='favicon.ico' />
+        <link rel="favicon.ico" />
       </Head>
       <Header />
       <div
-        className='
+        className="
       w-full
       pt-40
       px-10
-      '
+      "
       >
         <p
-          className='
+          className="
         flex
         justify-center
         leading-relaxed
-        '
+        "
         >
           本登録が完了しました。
           <br />

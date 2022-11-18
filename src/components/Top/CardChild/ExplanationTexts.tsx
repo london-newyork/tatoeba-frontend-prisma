@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type ExplanationTextsProps = {
   title: string;
@@ -10,18 +10,18 @@ export const ExplanationTexts = ({
 }: ExplanationTextsProps) => {
   return (
     <div>
-      {' '}
+      {" "}
       <h3
-        className='
+        className="
                 text-left
                 text-black
                 text-sm
-                '
+                "
       >
         {title}
-        <span className='text-gray-500'>を例えると...</span>
+        <span className="text-gray-500">を例えると...</span>
         <br />
-        <span className='text-lg'>{shortParaphrase}</span>
+        <span className="text-lg">{shortParaphrase}</span>
       </h3>
     </div>
   );

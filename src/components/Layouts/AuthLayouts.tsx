@@ -1,29 +1,29 @@
-import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import React, { VFC } from "react";
+import { Layouts } from "../types/types";
 
 export const AuthLayouts: VFC<Layouts> = (props) => {
   return (
     <main
-      className='
+      className="
     pt-[100px]
     bg-gray-100
     h-screen
     px-7
     md:px-18
     mx-auto
-    '
+    "
     >
       <section
-        className='
+        className="
                 px-2
                 md:px-0
                 mx-auto
                 flex
                 justify-center
-                '
+                "
       >
         <div
-          className='
+          className="
                     bg-white
                     px-7
                     pb-7
@@ -36,7 +36,7 @@ export const AuthLayouts: VFC<Layouts> = (props) => {
                     flex
                     flex-col
                     items-center
-                    '
+                    "
         >
           {props.children}
         </div>

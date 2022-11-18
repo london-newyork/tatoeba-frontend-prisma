@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { User } from '../types/types';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { ProfileImageAtom } from '../utils/atoms/ProfileImageAtom';
+import { useEffect, useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { User } from "../types/types";
+import { LoginUserAtom } from "../utils/atoms/LoginUserAtom";
+import { ProfileImageAtom } from "../utils/atoms/ProfileImageAtom";
 
 export const useUserInfo = (userId: string | null) => {
   const [user, setUser] = useState<User | undefined>(undefined);
@@ -19,23 +19,23 @@ export const useUserInfo = (userId: string | null) => {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${persistAccessToken}`,
           },
         }
       );
       const { data } = await res.json();
       if (!data) {
-        throw Error('データがありません');
+        throw Error("データがありません");
       }
       setUser(data);
     };
 
     main()
       .catch(() => {
-        setError('データの取得に失敗しました。');
+        setError("データの取得に失敗しました。");
       })
       .finally(() => {
         setIsLoading(false);
@@ -47,9 +47,9 @@ export const useUserInfo = (userId: string | null) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}`,
       {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${persistAccessToken}`,
         },
         body: JSON.stringify({ userName }),
@@ -62,11 +62,11 @@ export const useUserInfo = (userId: string | null) => {
 
   const updateUserProfileImage = async (file: File) => {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append("image", file);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image`,
       {
-        method: 'PUT',
+        method: "PUT",
         headers: {
           Authorization: `Bearer ${persistAccessToken}`,
         },

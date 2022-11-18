@@ -1,10 +1,10 @@
-import React, { VFC } from 'react'
-import { Layouts } from '../../types/types'
+import React, { VFC } from "react";
+import { Layouts } from "../../types/types";
 
-export const RemoveMemberLayouts:VFC<Layouts> = (props) => {
+export const RemoveMemberLayouts: VFC<Layouts> = (props) => {
   return (
     <div
-    className='
+      className="
     bg-white
     lg:px-12
     px-7
@@ -18,9 +18,9 @@ export const RemoveMemberLayouts:VFC<Layouts> = (props) => {
     text-center
     justify-center
     items-center
-    '
+    "
     >
       {props.children}
     </div>
-  )
-}
+  );
+};

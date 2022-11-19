@@ -1,35 +1,30 @@
-import { useRouter } from "next/router";
-import React from "react";
-import { DropDownMenu } from "../DropDownMenu";
-import { useDropDownMenu } from "../hooks/useDropDownMenu";
-import { InduceWithdrawalBtn } from "./InduceWithdrawalBtn";
-import { TriggerDropDownMenuBtn } from "./TriggerDropDownMenuBtn";
+import { useRouter } from 'next/router';
+import React from 'react';
+import { DropDownMenu } from '../DropDownMenu';
+import { useDropDownMenu } from '../hooks/useDropDownMenu';
+import { SVGIcons } from '../SVGIcons';
+import { InduceWithdrawalBtn } from './InduceWithdrawalBtn';
+import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 
 export const DashBoardMenuBtn = () => {
   const router = useRouter();
   const handleMoveToRemoveMember = () => {
     router.push({
-      pathname: "/dashboard/remove-member",
+      pathname: '/dashboard/remove-member'
     });
   };
-  const {
-    isClicked,
-    isShow,
-    handleDropDownMenu,
-    handleMouseEnter,
-    handleMouseLeave,
-  } = useDropDownMenu();
+  const { isClicked, isShow, handleDropDownMenu, handleMouseEnter, handleMouseLeave } = useDropDownMenu();
 
   return (
     <div>
       <nav className="sidebar-menu-btn-wrapper top-[60px]">
-        <TriggerDropDownMenuBtn
-          className="relative"
-          onClick={handleDropDownMenu}
-        >
-          <span className="material-symbols-outlined sidebar-icon-menu absolute -top-[2px] md:static md:top-0">
-            menu
-          </span>
+        <TriggerDropDownMenuBtn className="relative" onClick={handleDropDownMenu}>
+          <SVGIcons
+            d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+            strokeWidth={0.9}
+            className="sidebar-menu-icon"
+            name="sidebar-edit"
+          />
         </TriggerDropDownMenuBtn>
         <DropDownMenu
           className="drop-down-menu-wrapper

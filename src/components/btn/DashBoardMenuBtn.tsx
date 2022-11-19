@@ -22,7 +22,7 @@ export const DashBoardMenuBtn = () => {
           <SVGIcons
             d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
             strokeWidth={0.9}
-            className="sidebar-icon"
+            className="sidebar-menu-icon"
             name="sidebar-edit"
           />
         </TriggerDropDownMenuBtn>

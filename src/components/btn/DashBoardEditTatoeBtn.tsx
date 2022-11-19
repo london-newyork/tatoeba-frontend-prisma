@@ -12,6 +12,7 @@ export const DashBoardEditTatoeBtn = () => {
     <button
       className="
       sidebar-icon-btn
+      text-white
     "
       onClick={handleMoveToUserTatoeList}
     >

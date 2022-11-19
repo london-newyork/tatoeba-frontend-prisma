@@ -13,6 +13,7 @@ export const SVGIcons = ({ d, strokeWidth, className, name }: SVGIconsProps) => 
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={strokeWidth}
+      stroke="currentColor"
       className={className}
     >
       <path strokeLinecap="round" strokeLinejoin="round" d={d} />

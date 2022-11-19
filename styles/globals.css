@@ -24,10 +24,6 @@
   }
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 48;
-}
-
 .headline-m {
   @apply text-2xl text-black font-medium select-none;
 }

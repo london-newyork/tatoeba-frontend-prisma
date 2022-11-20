@@ -27,7 +27,7 @@ export const Password = () => {
         "
         >
           ******
-          <Link href="/reset-password" legacyBehavior>
+          <Link href="/reset-password" prefetch={false} passHref={true} legacyBehavior={true}>
             <button
               className="
             pl-2

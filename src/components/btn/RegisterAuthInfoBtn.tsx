@@ -10,7 +10,9 @@ export const RegisterAuthInfoBtn = ({ href, title }: RegisterAuthInfoBtnProps) =
   return (
     <Link
       href={href}
-      passHref
+      prefetch={false}
+      passHref={true}
+      legacyBehavior={true}
       className="
       mx-auto
       text-xs

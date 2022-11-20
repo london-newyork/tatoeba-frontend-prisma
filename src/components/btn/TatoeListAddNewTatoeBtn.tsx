@@ -14,7 +14,7 @@ export const TatoeListAddNewTatoeBtn = () => {
       md:-right-2
       "
     >
-      <Link href="/register" legacyBehavior>
+      <Link href="/register" prefetch={false} passHref={true} legacyBehavior={true}>
         <button
           type="button"
           className="

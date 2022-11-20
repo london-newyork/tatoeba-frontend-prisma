@@ -7,11 +7,11 @@ export const HeaderLogin = ({ isLoggedIn }: Pick<Auth, "isLoggedIn">) => {
     <div className="py-2 text-sm text-gray-500 hover:bg-gray-100 hover:w-full">
       {isLoggedIn ? (
         <Link href="/dashboard">
-          <a>ログイン</a>
+          ログイン
         </Link>
       ) : (
         <Link href="/login">
-          <a>ログイン</a>
+          ログイン
         </Link>
       )}
     </div>

@@ -6,7 +6,6 @@ export const Logo = () => {
     <div className="my-auto">
       <Link
         href="/"
-        prefetch={false}
         passHref={true}
         legacyBehavior={true}
         className="

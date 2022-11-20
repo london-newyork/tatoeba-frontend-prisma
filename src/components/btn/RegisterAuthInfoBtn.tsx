@@ -10,7 +10,6 @@ export const RegisterAuthInfoBtn = ({ href, title }: RegisterAuthInfoBtnProps) =
   return (
     <Link
       href={href}
-      prefetch={false}
       passHref={true}
       legacyBehavior={true}
       className="

@@ -1,5 +1,5 @@
 import React, { VFC } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { SearchBox } from "./SearchBox";
 export const TopUpperContents: VFC = () => {
   return (

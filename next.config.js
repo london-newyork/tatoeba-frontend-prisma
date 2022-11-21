@@ -9,7 +9,12 @@ module.exports = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-  }
+  },
+  swcMinify: true,
+  // app dir が安定版になったときに以下を有効にする
+  // experimental: {
+  //   appDir: true,
+  // },
 }
 // const withImages= require('next-images')
 // module.exports= {

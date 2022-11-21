@@ -1,5 +1,5 @@
-import React, { VFC } from "react";
-import { Layouts } from "../types/types";
+import React, { VFC } from 'react';
+import { Layouts } from '../types/types';
 
 export const CardLayouts: VFC<Layouts> = (props) => {
   return (
@@ -11,13 +11,13 @@ export const CardLayouts: VFC<Layouts> = (props) => {
           card-wrapper
           "
         >
-          <ul
+          <div
             className="
                 lg:w-[940px]
                card-contents"
           >
             {props.children}
-          </ul>
+          </div>
         </div>
       </section>
     </div>

@@ -3,12 +3,6 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
 
   theme: {
-    fontFamily: {
-      'sans': ['Inter var', 'Graphik'],
-      'sans-serif': ['"Noto Sans Japanese"', 'Arial', 'sans-serif'],
-      'kakuGothic': ['"Zen Kaku Gothic New"'],
-
-    },
     screens: {
       xs: '376px',
       sm: '480px',
@@ -27,9 +21,6 @@ module.exports = {
         'faded_dark_green': '#40b53e',
         'q_dark_green': '#05bf00',
         'dark_gray': '#5e5e5e',
-      },
-      fontFamily: {
-        'kakuGothic': ['"Zen Kaku Gothic New"'],
       },
       fontSize: {
         'extreme-s': ['.5rem', null],

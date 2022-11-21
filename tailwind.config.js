@@ -7,7 +7,6 @@ module.exports = {
       'sans': ['Inter var', 'Graphik'],
       'sans-serif': ['"Noto Sans Japanese"', 'Arial', 'sans-serif'],
       'kakuGothic': ['"Zen Kaku Gothic New"'],
-
     },
     screens: {
       xs: '376px',

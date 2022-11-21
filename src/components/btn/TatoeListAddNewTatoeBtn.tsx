@@ -14,17 +14,15 @@ export const TatoeListAddNewTatoeBtn = () => {
       md:-right-2
       "
     >
-      <Link href="/register" passHref={true} legacyBehavior={true}>
-        <button
-          type="button"
-          className="
+      <Link
+        href="/register"
+        className="
           w-8
           h-8
           bg-dark_green
           rounded-full"
-        >
-          <SVGIcons d="M12 4v16m8-8H4" strokeWidth={2} className="h-4 w-4 text-gray-800 m-auto" name="tatoe-list-add" />
-        </button>
+      >
+        <SVGIcons d="M12 4v16m8-8H4" strokeWidth={2} className="h-4 w-4 text-gray-800 m-auto" name="tatoe-list-add" />
       </Link>
     </div>
   );

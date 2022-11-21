@@ -6,8 +6,6 @@ export const Logo = () => {
     <div className="my-auto">
       <Link
         href="/"
-        passHref={true}
-        legacyBehavior={true}
         className="
             text-2xl
             text-gray-700

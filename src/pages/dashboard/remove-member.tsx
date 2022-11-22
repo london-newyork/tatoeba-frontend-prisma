@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashBoardLayouts } from '../../layouts/dashBoard/DashBoardLayouts';
+import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
 import { Header } from '../../features/header/components/Header';
 import { RemoveMemberLayouts } from '../../layouts/dashBoard/RemoveMemberLayouts';
 
@@ -7,7 +7,7 @@ const RemoveMember = () => {
   return (
     <div>
       <Header />
-      <DashBoardLayouts>
+      <DashboardLayouts>
         <RemoveMemberLayouts>
           <h1 className="text-3xl tracking-widest text-gray-700">退会</h1>
           <p className="text-sm leading-loose mt-10 text-gray-700">
@@ -26,7 +26,7 @@ const RemoveMember = () => {
             退会する
           </button>
         </RemoveMemberLayouts>
-      </DashBoardLayouts>
+      </DashboardLayouts>
     </div>
   );
 };

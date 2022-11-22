@@ -3,7 +3,7 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useApi } from '../../hooks/useApi';
 import { useAuth } from '../auth/hooks/useAuth';
-import { useTatoe } from '../dashBoard/components/hooks/useTatoe';
+import { useTatoe } from '../dashboard/components/hooks/useTatoe';
 import { useUserInfo } from '../auth/hooks/useUserInfo';
 import { SVGIcons } from '../../commons/components/SVGIcons';
 import { Tatoe } from '../../types/types';

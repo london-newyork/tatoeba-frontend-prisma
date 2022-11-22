@@ -1,6 +1,6 @@
 import { VFC } from 'react';
-import { DashBoardEditTatoeBtn } from '../../features/btn/DashBoardEditTatoeBtn';
-import { DashBoardUserHomeBtn } from '../../features/btn/DashBoardUserHomeBtn';
+import { DashboardEditTatoeBtn } from '../../features/btn/DashBoardEditTatoeBtn';
+import { DashboardUserHomeBtn } from '../../features/btn/DashBoardUserHomeBtn';
 
 export const SideBarMainContentsLayouts: VFC = (props) => {
   return (
@@ -23,8 +23,8 @@ export const SideBarMainContentsLayouts: VFC = (props) => {
                 gap-x-5
                 "
       >
-        <DashBoardUserHomeBtn />
-        <DashBoardEditTatoeBtn />
+        <DashboardUserHomeBtn />
+        <DashboardEditTatoeBtn />
       </div>
     </div>
   );

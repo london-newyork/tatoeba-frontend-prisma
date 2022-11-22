@@ -1,25 +1,25 @@
 import React from 'react';
 import { Header } from '../../features/header/components/Header';
-import { DashBoardLayouts } from '../../layouts/dashBoard/DashBoardLayouts';
+import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
 import { ProfileLayouts } from '../../layouts/dashBoard/ProfileLayouts';
 
-import { Profile } from '../../features/dashBoard/components/profile/Profile';
+import { Profile } from '../../features/dashboard/components/profile/Profile';
 import Head from 'next/head';
 
-const DashBoard = () => {
+const Dashboard = () => {
   return (
     <div>
       <Head>//</Head>
       <div>
         <Header />
-        <DashBoardLayouts>
+        <DashboardLayouts>
           <ProfileLayouts>
             <Profile />
           </ProfileLayouts>
-        </DashBoardLayouts>
+        </DashboardLayouts>
       </div>
     </div>
   );
 };
 
-export default DashBoard;
+export default Dashboard;

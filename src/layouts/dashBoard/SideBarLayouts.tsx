@@ -1,5 +1,5 @@
-import { DashBoardMenuBtn } from '../../features/btn/DashBoardMenuBtn';
 import React, { VFC } from 'react';
+import { DashboardMenuBtn } from '../../features/btn/DashBoardMenuBtn';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
 import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 
@@ -36,7 +36,7 @@ export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
           md:flex-col
           flex-row"
         >
-          <DashBoardMenuBtn />
+          <DashboardMenuBtn />
           <SideBarMainContentsLayouts />
         </div>
       </nav>

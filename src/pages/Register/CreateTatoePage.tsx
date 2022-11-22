@@ -6,10 +6,10 @@ import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
 import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
 import { useAuth } from '../../features/auth/hooks/useAuth';
 import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
-import { useTatoe } from '../../features/dashBoard/components/hooks/useTatoe';
+import { useTatoe } from '../../features/dashboard/components/hooks/useTatoe';
 import { useAlert } from '../../commons/hooks/useAlert';
 
-import { TatoeForm } from '../../features/dashBoard/components/tatoe/TatoeForm';
+import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
 
 export default function CreateTatoePage() {
   const router = useRouter();

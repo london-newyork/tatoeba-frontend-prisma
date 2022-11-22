@@ -1,9 +1,9 @@
 import React from 'react';
 import { TatoeListLayouts } from '../../layouts/dashBoard/TatoeListLayouts';
-import { TatoeListWrapper } from '../../features/dashBoard/TatoeListWrapper';
-import { TatoeList } from '../../features/dashBoard/components/tatoe/TatoeList';
+import { TatoeListWrapper } from '../../features/dashboard/TatoeListWrapper';
+import { TatoeList } from '../../features/dashboard/components/tatoe/TatoeList';
 import Head from 'next/head';
-import { DashBoardLayouts } from '../../layouts/dashBoard/DashBoardLayouts';
+import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
 import { Header } from '../../features/header/components/Header';
 const UserTatoeList = () => {
   return (
@@ -13,13 +13,13 @@ const UserTatoeList = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header />
-      <DashBoardLayouts>
+      <DashboardLayouts>
         <TatoeListLayouts>
           {/* <TatoeListWrapper> */}
           <TatoeList />
           {/* </TatoeListWrapper> */}
         </TatoeListLayouts>
-      </DashBoardLayouts>
+      </DashboardLayouts>
     </div>
   );
 };

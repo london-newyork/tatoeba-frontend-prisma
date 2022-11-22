@@ -2,7 +2,7 @@ import React, { VFC } from 'react';
 import { Layouts } from '../../types/types';
 import { SideBarLayouts } from './SideBarLayouts';
 
-export const DashBoardLayouts: VFC<Layouts> = (props) => {
+export const DashboardLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="

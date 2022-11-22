@@ -1,6 +1,6 @@
 import React, { VFC } from 'react';
 import Image from 'next/legacy/image';
-import { SearchBox } from '../search/SearchBox';
+import { SearchBox } from '../../search/SearchBox';
 export const TopUpperContents: VFC = () => {
   return (
     <section className="top-upper-wrapper">

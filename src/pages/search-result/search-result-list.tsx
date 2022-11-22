@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 import { Tatoe } from '../../types/types';
 
-import { useGetUserTatoeApi } from '../../hooks/useGetUserTatoeApi';
+import { useGetUserTatoeApi } from '../../features/top/hooks/useGetUserTatoeApi';
 import { SearchResultToDetailBtn } from '../../features/btn/SearchResultToDetailBtn';
 import { ArrowIcon } from '../../features/search/ArrowIcon';
 import { SearchResultListItemText } from '../../features/search/SearchResultListItemText';

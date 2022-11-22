@@ -1,4 +1,4 @@
-import { TatoeBtnHooksProps } from '../types/types';
+import { TatoeBtnHooksProps } from '../../types/types';
 
 export const useAlert = (
   props: Pick<TatoeBtnHooksProps, 'userId' | 'user' | 'title' | 'shortParaphrase' | 'description'>

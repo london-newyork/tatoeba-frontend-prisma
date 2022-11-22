@@ -7,7 +7,7 @@ import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
 import { useAuth } from '../../features/auth/hooks/useAuth';
 import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
 import { useTatoe } from '../../features/dashBoard/components/hooks/useTatoe';
-import { useAlert } from '../../hooks/useAlert';
+import { useAlert } from '../../commons/hooks/useAlert';
 
 import { TatoeForm } from '../../features/dashBoard/components/tatoe/TatoeForm';
 

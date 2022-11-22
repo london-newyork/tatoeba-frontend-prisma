@@ -1,6 +1,6 @@
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
 import { useRecoilState } from 'recoil';
-import { getStorage } from '../lib/storage';
+import { getStorage } from '../../../lib/storage';
 import { useEffect } from 'react';
 
 export const usePersistAccessToken = () => {

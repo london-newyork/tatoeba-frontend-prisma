@@ -1,7 +1,7 @@
-import { Header } from "../components/Header/Header";
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import { Header } from '../features/header/components/Header';
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 // ログインした時のみこのページにアクセスできるようにする
 const CompleteResetPassword = () => {
@@ -9,7 +9,7 @@ const CompleteResetPassword = () => {
   const router = useRouter();
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/");
+      router.push('/');
     }, 5 * 1000);
 
     //クリーンアップ

@@ -1,8 +1,8 @@
-import { Header } from "../components/Header/Header";
-import { TopMainLayouts } from "../components/Layouts/TopMainLayouts";
-import { Top } from "../components/Top/Top";
-import { Footer } from "../components/Footer/Footer";
-import React from "react";
+import { Header } from '../features/header/components/Header';
+import { TopMainLayouts } from '../layouts/TopMainLayouts';
+import { Top } from '../features/top/Top';
+import { Footer } from '../features/footer/components/Footer';
+import React from 'react';
 
 export default function Home() {
   return (

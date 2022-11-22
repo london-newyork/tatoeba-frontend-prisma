@@ -1,7 +1,7 @@
-import React from "react";
-import { DashBoardLayouts } from "../../components/Layouts/DashBoard/DashBoardLayouts";
-import { Header } from "../../components/Header/Header";
-import { RemoveMemberLayouts } from "../../components/Layouts/DashBoard/RemoveMemberLayouts";
+import React from 'react';
+import { DashBoardLayouts } from '../../layouts/dashBoard/DashBoardLayouts';
+import { Header } from '../../features/header/components/Header';
+import { RemoveMemberLayouts } from '../../layouts/dashBoard/RemoveMemberLayouts';
 
 const RemoveMember = () => {
   return (

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import "tailwindcss/tailwind.css";
-import { Header } from "../../components/Header/Header";
-import { SearchMainLayouts } from "../../components/Layouts/SearchMainLayouts";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import 'tailwindcss/tailwind.css';
+import { Header } from '../../features/header/components/Header';
+import { SearchMainLayouts } from '../../layouts/SearchMainLayouts';
+import { useRouter } from 'next/router';
 
-import { Tatoe } from "../../components/types/types";
+import { Tatoe } from '../../types/types';
 
-import { useGetUserTatoeApi } from "../../components/hooks/useGetUserTatoeApi";
-import { SearchResultToDetailBtn } from "../../components/btn/SearchResultToDetailBtn";
-import { ArrowIcon } from "../../components/Search/ArrowIcon";
-import { SearchResultListItemText } from "../../components/Search/SearchResultListItemText";
+import { useGetUserTatoeApi } from '../../hooks/useGetUserTatoeApi';
+import { SearchResultToDetailBtn } from '../../features/btn/SearchResultToDetailBtn';
+import { ArrowIcon } from '../../features/search/ArrowIcon';
+import { SearchResultListItemText } from '../../features/search/SearchResultListItemText';
 
 const SearchResultList = () => {
   const [result, setResult] = useState([]);
@@ -79,17 +79,14 @@ const SearchResultList = () => {
                         "
                           >
                             <ArrowIcon />
-                            <SearchResultListItemText
-                              title={item.title}
-                              shortParaphrase={item.shortParaphrase}
-                            />
+                            <SearchResultListItemText title={item.title} shortParaphrase={item.shortParaphrase} />
                           </a>
                         </SearchResultToDetailBtn>
                       </li>
                     </ul>
                   );
                 })
-              : "検索結果は0件です"}
+              : '検索結果は0件です'}
           </div>
         </div>
       </SearchMainLayouts>

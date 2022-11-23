@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useApi } from '../../hooks/useApi';
+import { useApi } from '../../commons/hooks/useApi';
 import { useAuth } from '../auth/hooks/useAuth';
 import { useTatoe } from '../dashboard/components/hooks/useTatoe';
 import { useUserInfo } from '../auth/hooks/useUserInfo';

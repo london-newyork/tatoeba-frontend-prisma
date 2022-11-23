@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { AllUserTatoe, Tatoe } from '../../../types/types';
 import { AllUserTatoeAtom } from '../../../utils/atoms/AllUserTatoeAtom';
-import { useApi } from '../../../hooks/useApi';
+import { useApi } from '../../../commons/hooks/useApi';
 
 export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
   const { api: getAllUserTatoesApi } = useApi(`/tatoe`, {

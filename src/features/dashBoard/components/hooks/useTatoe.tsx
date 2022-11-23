@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { Tatoe, TatoeBtnHooksProps } from '../../../../types/types';
 import { TatoeAtom } from '../../../../utils/atoms/TatoeAtom';
-import { useApi } from '../../../../hooks/useApi';
+import { useApi } from '../../../../commons/hooks/useApi';
 
 export const useTatoe = (props: TatoeBtnHooksProps) => {
   const { tId, userId } = props;

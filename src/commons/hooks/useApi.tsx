@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
 
 type UseApiOptions = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';

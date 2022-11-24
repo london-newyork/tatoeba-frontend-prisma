@@ -1,35 +1,35 @@
-import React from "react";
+import React from 'react';
 
 export const Footer = () => {
   return (
     <footer>
       <div
         className="
+        h-[200px]
+        w-full
+        border-t-2
+        border-gray-800
+        bg-white
         pl-6
         pr-0
         sm:pl-6
         sm:pr-0
         md:px-11
         lg:px-24
-        w-full
-        bg-white
-        h-[200px]
-        border-t-2
-        border-gray-800
         "
       >
         <div
           className="
-             border-b
              h-[64px]
+             border-b
              border-gray-200
             "
         >
           <p
             className="
+            w-full
             pt-8
             pl-0
-            w-full
             text-gray-500
             "
           >

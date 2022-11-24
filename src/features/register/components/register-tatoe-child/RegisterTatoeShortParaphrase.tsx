@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type ShortParaphraseProps = {
   shortParaphrase: string | null;
@@ -14,8 +14,8 @@ export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
     <div
       className="
         flex
-        justify-between
         flex-col
+        justify-between
         lg:flex-row
         "
     >

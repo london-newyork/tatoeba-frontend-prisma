@@ -39,11 +39,11 @@ export const CardChild: VFC = () => {
             <ul key={item.tId}>
               <li
                 className={`
-                    px-4
-                    pt-4
                     h-[312px]
                     w-[280px]
                     rounded-2xl
+                    px-4
+                    pt-4
                     shadow-plane_2xl_card
                     ${shadowColor}
                     border-[1px]

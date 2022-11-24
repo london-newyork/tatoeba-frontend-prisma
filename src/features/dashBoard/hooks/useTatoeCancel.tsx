@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { SetterOrUpdater } from 'recoil';
-import { Tatoe } from '../../../../types/types';
+import { Tatoe } from '../../../types/types';
 
 type CancelProps = {
   tId?: string | string[];

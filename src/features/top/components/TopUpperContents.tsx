@@ -24,10 +24,10 @@ export const TopUpperContents: VFC = () => {
         className="
                 top-upper-image-wrapper
                 w-[25%]
-                lg:-ml-[96px]
-                lg:max-w-[250px]
-                lg:min-w-[240px]
                 sm:min-w-[144px]
+                lg:-ml-[96px]
+                lg:min-w-[240px]
+                lg:max-w-[250px]
                 "
       >
         <Image

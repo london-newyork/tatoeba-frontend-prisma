@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type UserImagProps = {
   profileImage: number;
@@ -24,8 +24,8 @@ export const UserImage = ({
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
           alt="ユーザーの画像"
           className="
-                      w-6
                       h-6
+                      w-6
                       rounded-full
                       object-cover"
         />

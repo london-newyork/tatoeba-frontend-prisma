@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type TitleProps = {
   title: string | null;
@@ -12,8 +12,8 @@ export const RegisterTatoeTitle = (props: TitleProps) => {
     <div
       className="
       flex
-      justify-between
       flex-col
+      justify-between
       lg:flex-row"
     >
       <label

@@ -8,8 +8,10 @@ module.exports = {
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
-        'plugin:jsx-ally/recommended',
-        'prettier'
+        'plugin:jsx-a11y/recommended',
+        'next/core-web-vitals',
+        'plugin:tailwindcss/recommended',
+        'prettier',
     ],
     'parserOptions': {
         'ecmaFeatures': {

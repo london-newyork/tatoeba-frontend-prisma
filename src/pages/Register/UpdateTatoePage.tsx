@@ -4,7 +4,7 @@ import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
 import { useAlert } from '../../commons/hooks/useAlert';
 import { useApi } from '../../commons/hooks/useApi';
 import { useAuth } from '../../features/auth/hooks/useAuth';
-import { useTatoe } from '../../features/dashboard/components/hooks/useTatoe';
+import { useTatoe } from '../../features/dashboard/hooks/useTatoe';
 import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
 import { Tatoe } from '../../types/types';
 import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';

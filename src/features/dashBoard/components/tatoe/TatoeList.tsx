@@ -7,7 +7,7 @@ import { TatoeListEditExistingTatoeBtn } from '../../../btn/TatoeListEditExistin
 import { useAuth } from '../../../auth/hooks/useAuth';
 import { LoginUserAtom } from '../../../../utils/atoms/LoginUserAtom';
 import { TatoeListCountFollowerBtn } from '../../../btn/TatoeListCountFollowerBtn';
-import { useTatoe } from '../hooks/useTatoe';
+import { useTatoe } from '../../hooks/useTatoe';
 import { useRouter } from 'next/router';
 import { useUserInfo } from '../../../auth/hooks/useUserInfo';
 import { TatoeListCreatedAt } from './TatoeListCreatedAt';
@@ -46,21 +46,21 @@ export const TatoeList = (): JSX.Element => {
             return (
               <ul
                 className="
-                group
                 tatoe-list-wrapper
+                group
                 "
                 key={item.tId as string}
               >
-                <li className="flex-grow">
+                <li className="grow">
                   <ul
                     className="
-                    lg:gap-3
-                    md:gap-1
                     tatoe-list-items-wrapper
+                    md:gap-1
+                    lg:gap-3
                     "
                   >
                     <TatoeListCreatedAt createdAt={item.createdAt} />
-                    <li className="flex-grow">
+                    <li className="grow">
                       <ul
                         className="
                         tatoe-list-item

@@ -1,7 +1,7 @@
-import React from "react";
-import { ExplanationImage } from "./ExplanationImage";
-import { ExplanationTexts } from "./ExplanationTexts";
-import { UserImage } from "./UserImage";
+import React from 'react';
+import { ExplanationImage } from './ExplanationImage';
+import { ExplanationTexts } from './ExplanationTexts';
+import { UserImage } from './UserImage';
 
 type CardChildContentsProps = {
   userName: string;

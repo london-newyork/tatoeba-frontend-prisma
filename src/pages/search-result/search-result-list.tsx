@@ -54,9 +54,9 @@ const SearchResultList = () => {
       </Head>
       <Header />
       <SearchMainLayouts>
-        <div className="h-screen flex flex-col gap-y-2">
+        <div className="flex h-screen flex-col gap-y-2">
           <small className="text-gray-500">検索結果一覧</small>
-          <div className="pt-12 flex flex-col gap-6">
+          <div className="flex flex-col gap-6 pt-12">
             {router.query
               ? result.map((item) => {
                   return (
@@ -71,11 +71,11 @@ const SearchResultList = () => {
                         >
                           <a
                             className="
+                        group
                         flex
                         flex-row
                         items-center
                         gap-2
-                        group
                         "
                           >
                             <ArrowIcon />

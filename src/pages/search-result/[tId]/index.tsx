@@ -45,14 +45,14 @@ const SearchResult = () => {
               <h2 className="pt-16 text-2xl text-gray-600">{item.shortParaphrase}</h2>
               <p
                 className="
-                  pt-10
                   text-md
+                  pt-10
                   leading-loose
                   text-gray-600"
               >
                 {item.description}
               </p>
-              <div className="mt-12 mx-auto">
+              <div className="mx-auto mt-12">
                 {item.imageUrl ? <img src={item.imageUrl} alt="例えの説明画像" className="mx-auto" /> : null}
               </div>
             </div>

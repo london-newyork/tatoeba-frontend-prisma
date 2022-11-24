@@ -5,7 +5,7 @@ import { RegisterTatoeDescription } from '../../../register/components/register-
 import { RegisterTatoeShortParaphrase } from '../../../register/components/register-tatoe-child/RegisterTatoeShortParaphrase';
 import { RegisterTatoeTitle } from '../../../register/components/register-tatoe-child/RegisterTatoeTitle';
 import { RegisterTatoeBtn } from '../../../btn/RegisterTatoeBtn';
-import { useTatoeCancel } from '../hooks/useTatoeCancel';
+import { useTatoeCancel } from '../../hooks/useTatoeCancel';
 import { Tatoe } from '../../../../types/types';
 import { TatoeAtom } from '../../../../utils/atoms/TatoeAtom';
 
@@ -78,7 +78,7 @@ export const TatoeForm = ({
         setDefaultImageUrl={setDefaultImageUrl}
         deleteExplanationImage={deleteExplanationImage}
       />
-      <div className="mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6">
+      <div className="mx-auto flex flex-col gap-6 pt-6 smd:flex-row md:mx-0 md:justify-end">
         <RegisterTatoeBtn variant="cancel" btnName="キャンセル" btnType="button" onClickCancel={handleClickCancel} />
         {!isUpdate ? (
           <RegisterTatoeBtn variant="create" btnName="投稿する" btnType="submit" />

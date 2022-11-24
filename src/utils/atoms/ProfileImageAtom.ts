@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const ProfileImageAtom = atom({
-  key: "profileImage",
+  key: 'profileImage',
   default: new Date().getTime(),
 });

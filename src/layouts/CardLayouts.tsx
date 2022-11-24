@@ -13,8 +13,8 @@ export const CardLayouts: VFC<Layouts> = (props) => {
         >
           <div
             className="
-                lg:w-[940px]
-               card-contents"
+                card-contents
+               lg:w-[940px]"
           >
             {props.children}
           </div>

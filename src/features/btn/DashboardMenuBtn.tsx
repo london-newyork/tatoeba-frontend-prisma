@@ -28,12 +28,12 @@ export const DashboardMenuBtn = () => {
         </TriggerDropDownMenuBtn>
         <DropDownMenu
           className="drop-down-menu-wrapper
+              top-[30px]
+              left-0
               w-[120px]
               border-[1px]
-              top-[30px]
               sm:top-[30px]
-              sm:right-0
-              left-0"
+              sm:right-0"
           isClicked={isClicked}
           isShow={isShow}
           onMouseEnter={handleMouseEnter}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HeaderEditBtn } from '../../btn/HeaderEditBtn';
+import { HeaderEditBtn } from '../btn/HeaderEditBtn';
 import { Logo } from './Logo';
 import { HeaderDropDownMenu } from './HeaderDropDownMenu';
 

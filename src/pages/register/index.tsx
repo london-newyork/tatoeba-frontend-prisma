@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../features/header/components/Header';
+import { Header } from '../../commons/components/header/Header';
 
 import { RegisterTatoeHeadline } from '../../features/register/components/RegisterTatoeHeadline';
 import CreateTatoePage from './CreateTatoePage';

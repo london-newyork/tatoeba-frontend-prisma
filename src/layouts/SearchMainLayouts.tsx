@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { Footer } from '../features/footer/components/Footer';
+import { Footer } from '../commons/components/footer/Footer';
 import { Layouts } from '../types/types';
 
 export const SearchMainLayouts: VFC<Layouts> = (props) => {

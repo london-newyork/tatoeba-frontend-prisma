@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../../features/header/components/Header';
+import { Header } from '../../../commons/components/header/Header';
 import { SearchMainLayouts } from '../../../layouts/SearchMainLayouts';
 import { useRecoilValue } from 'recoil';
 

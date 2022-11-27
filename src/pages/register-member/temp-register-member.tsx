@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { SendAuthInfoBtn } from '../../features/btn/SendAuthInfoBtn';
-import { Header } from '../../features/header/components/Header';
+import { SendAuthInfoBtn } from '../../commons/components/btn/SendAuthInfoBtn';
+import { Header } from '../../commons/components/header/Header';
 import { HeadLine } from '../../commons/components/HeadLine';
 import { AuthLayouts } from '../../layouts/AuthLayouts';
 import { AuthInputs } from '../../features/auth/components/AuthInputs';

@@ -4,7 +4,7 @@ import { RegisterImageForExplanationTatoe } from '../../../register/components/r
 import { RegisterTatoeDescription } from '../../../register/components/register-tatoe-child/RegisterTatoeDescription';
 import { RegisterTatoeShortParaphrase } from '../../../register/components/register-tatoe-child/RegisterTatoeShortParaphrase';
 import { RegisterTatoeTitle } from '../../../register/components/register-tatoe-child/RegisterTatoeTitle';
-import { RegisterTatoeBtn } from '../../../btn/RegisterTatoeBtn';
+import { RegisterTatoeBtn } from '../../../../commons/components/btn/RegisterTatoeBtn';
 import { useTatoeCancel } from '../hooks/useTatoeCancel';
 import { Tatoe } from '../../../../types/types';
 import { TatoeAtom } from '../../../../utils/atoms/TatoeAtom';

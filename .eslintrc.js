@@ -30,6 +30,18 @@ module.exports = {
         'react/prop-types': 'off',
         'react/jsx-props-no-spreading': 'off',
     },
+    'globals': {
+        React: true,
+        google: true,
+        mount: true,
+        mountWithRouter: true,
+        shallow: true,
+        shallowWithRouter: true,
+        context: true,
+        expect: true,
+        jsdom: true,
+        JSX: true,
+    },
     'settings': {
         'react': {
             'version': 'detect'

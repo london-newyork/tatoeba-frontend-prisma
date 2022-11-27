@@ -1,6 +1,6 @@
 import { VFC } from 'react';
-import { DashboardEditTatoeBtn } from '../../features/btn/DashBoardEditTatoeBtn';
-import { DashboardUserHomeBtn } from '../../features/btn/DashBoardUserHomeBtn';
+import { DashboardEditTatoeBtn } from '../../commons/components/btn/DashBoardEditTatoeBtn';
+import { DashboardUserHomeBtn } from '../../commons/components/btn/DashBoardUserHomeBtn';
 
 export const SideBarMainContentsLayouts: VFC = (props) => {
   return (

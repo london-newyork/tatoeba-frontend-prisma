@@ -1,6 +1,6 @@
 import React from 'react';
-import { SVGIcons } from '../../commons/components/SVGIcons';
-import { OnClick } from '../../types/types';
+import { SVGIcons } from '../SVGIcons';
+import { OnClick } from '../../../types/types';
 
 export const EditIconBtn = ({ onClick }: OnClick) => {
   return (

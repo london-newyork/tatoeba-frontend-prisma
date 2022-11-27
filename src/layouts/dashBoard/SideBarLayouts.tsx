@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { DashboardMenuBtn } from '../../features/btn/DashBoardMenuBtn';
+import { DashboardMenuBtn } from '../../commons/components/btn/DashBoardMenuBtn';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
 import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 

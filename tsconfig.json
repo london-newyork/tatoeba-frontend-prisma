@@ -24,6 +24,7 @@
   },
   "include": [
     "src/**/*",
+    "src/features/**/**",
     "src/pages/TestParent.tsx",
     "src/pages/Top",
     "src/pages/**/*",

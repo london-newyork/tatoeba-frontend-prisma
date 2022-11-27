@@ -1,4 +1,4 @@
-import { Header } from '../features/header/components/Header';
+import { Header } from '../commons/components/header/Header';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';

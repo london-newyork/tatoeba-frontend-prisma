@@ -1,4 +1,4 @@
-import { Header } from '../features/header/components/Header';
+import { Header } from '../commons/components/header/Header';
 import { AuthLayouts } from '../layouts/AuthLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { HeadLine } from '../commons/components/HeadLine';
 import { AuthInputs } from '../features/auth/components/AuthInputs';
-import { SendAuthInfoBtn } from '../features/btn/SendAuthInfoBtn';
+import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
 
 const ResetPassword = () => {
   const router = useRouter();

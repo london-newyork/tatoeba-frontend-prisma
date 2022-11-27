@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { DropDownMenu } from '../../commons/components/DropDownMenu';
-import { useDropDownMenu } from '../../commons/hooks/useDropDownMenu';
-import { SVGIcons } from '../../commons/components/SVGIcons';
+import { DropDownMenu } from '../DropDownMenu';
+import { useDropDownMenu } from '../../hooks/useDropDownMenu';
+import { SVGIcons } from '../SVGIcons';
 import { InduceWithdrawalBtn } from './InduceWithdrawalBtn';
 import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 

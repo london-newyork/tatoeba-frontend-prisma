@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../features/header/components/Header';
+import { Header } from '../../commons/components/header/Header';
 import { SearchMainLayouts } from '../../layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
 
 import { Tatoe } from '../../types/types';
 
 import { useGetUserTatoeApi } from '../../features/top/hooks/useGetUserTatoeApi';
-import { SearchResultToDetailBtn } from '../../features/btn/SearchResultToDetailBtn';
+import { SearchResultToDetailBtn } from '../../commons/components/btn/SearchResultToDetailBtn';
 import { ArrowIcon } from '../../features/search/ArrowIcon';
 import { SearchResultListItemText } from '../../features/search/SearchResultListItemText';
 

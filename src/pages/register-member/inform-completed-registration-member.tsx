@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { Header } from '../../features/header/components/Header';
+import { Header } from '../../commons/components/header/Header';
 
 //これは、registrationTokenを含んだURLを踏む=> ユーザーがパスワードとメールアドレスを送った後に表示されるページ
 const InformCompletedRegistrationMember = () => {

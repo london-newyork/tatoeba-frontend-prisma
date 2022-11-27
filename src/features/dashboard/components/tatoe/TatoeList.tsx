@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Tatoe } from '../../../../types/types';
 import { TatoeAtom } from '../../../../utils/atoms/TatoeAtom';
-import { TatoeListDeleteTatoeBtn } from '../../../btn/TatoeListDeleteTatoeBtn';
-import { TatoeListEditExistingTatoeBtn } from '../../../btn/TatoeListEditExistingTatoeBtn';
+import { TatoeListDeleteTatoeBtn } from '../../../../commons/components/btn/TatoeListDeleteTatoeBtn';
+import { TatoeListEditExistingTatoeBtn } from '../../../../commons/components/btn/TatoeListEditExistingTatoeBtn';
 import { useAuth } from '../../../auth/hooks/useAuth';
 import { LoginUserAtom } from '../../../../utils/atoms/LoginUserAtom';
-import { TatoeListCountFollowerBtn } from '../../../btn/TatoeListCountFollowerBtn';
-import { useTatoe } from '../../hooks/useTatoe';
+
+import { TatoeListCountFollowerBtn } from '../../../../commons/components/btn/TatoeListCountFollowerBtn';
+import { useTatoe } from '../hooks/useTatoe';
 import { useRouter } from 'next/router';
 import { useUserInfo } from '../../../auth/hooks/useUserInfo';
 import { TatoeListCreatedAt } from './TatoeListCreatedAt';
@@ -23,6 +24,8 @@ export const TatoeList = (): JSX.Element => {
   if (!userId) {
     return null;
   }
+  // TODO: 一旦無視
+  // eslint-disable-next-line
   const { getTatoe } = useTatoe({
     userId,
     tatoe,
@@ -32,6 +35,8 @@ export const TatoeList = (): JSX.Element => {
     persistAccessToken
   });
 
+  // TODO: 一旦無視
+  // eslint-disable-next-line
   useEffect(() => {
     const getUserTatoeList = async () => {
       await getTatoe();

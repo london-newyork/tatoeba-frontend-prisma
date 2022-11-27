@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Header } from '../features/header/components/Header';
+import { Header } from '../commons/components/header/Header';
 import { AuthLayouts } from '../layouts/AuthLayouts';
 import { useAuth } from '../features/auth/hooks/useAuth';
 import { AuthInputs } from '../features/auth/components/AuthInputs';
-import { SendAuthInfoBtn } from '../features/btn/SendAuthInfoBtn';
-import { RegisterAuthInfoBtn } from '../features/btn/RegisterAuthInfoBtn';
+import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
+import { RegisterAuthInfoBtn } from '../commons/components/btn/RegisterAuthInfoBtn';
 import { HeadLine } from '../commons/components/HeadLine';
 
 export default function Login() {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useHandleMoveToEdit } from '../dashboard/hooks/handleMoveToEdit';
-import { SVGIcons } from '../../commons/components/SVGIcons';
-import { Tatoe } from '../../types/types';
+import { useHandleMoveToEdit } from '../../../features/dashboard/components/hooks/handleMoveToEdit';
+import { SVGIcons } from '../SVGIcons';
+import { Tatoe } from '../../../types/types';
 
 export const TatoeListEditExistingTatoeBtn = ({
   tId,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../../features/header/components/Header';
+import { Header } from '../../commons/components/header/Header';
 import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
 import { ProfileLayouts } from '../../layouts/dashBoard/ProfileLayouts';
 

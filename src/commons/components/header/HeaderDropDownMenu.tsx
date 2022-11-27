@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HeaderProfileIcon } from '../../../features/btn/HeaderProfileIcon';
+import { HeaderProfileIcon } from '../btn/HeaderProfileIcon';
 import { useAuth } from '../../../features/auth/hooks/useAuth';
 import { useRouter } from 'next/router';
 import { HeaderLogin } from './HeaderLogin';

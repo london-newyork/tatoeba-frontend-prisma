@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Tatoe } from '../../../../types/types';
-import { TatoeAtom } from '../../../../utils/atoms/TatoeAtom';
-import { TatoeListDeleteTatoeBtn } from '../../../../commons/components/btn/TatoeListDeleteTatoeBtn';
-import { TatoeListEditExistingTatoeBtn } from '../../../../commons/components/btn/TatoeListEditExistingTatoeBtn';
-import { useAuth } from '../../../auth/hooks/useAuth';
-import { LoginUserAtom } from '../../../../utils/atoms/LoginUserAtom';
-import { TatoeListCountFollowerBtn } from '../../../../commons/components/btn/TatoeListCountFollowerBtn';
-import { useTatoe } from '../hooks/useTatoe';
+import { Tatoe } from '../../types/types';
+import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
+import { TatoeListDeleteTatoeBtn } from '../../commons/components/btn/TatoeListDeleteTatoeBtn';
+import { TatoeListEditExistingTatoeBtn } from '../../commons/components/btn/TatoeListEditExistingTatoeBtn';
+import { useAuth } from '../auth/hooks/useAuth';
+import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
+import { TatoeListCountFollowerBtn } from '../../commons/components/btn/TatoeListCountFollowerBtn';
+import { useTatoe } from '../dashboard/components/hooks/useTatoe';
 import { useRouter } from 'next/router';
-import { useUserInfo } from '../../../auth/hooks/useUserInfo';
+import { useUserInfo } from '../auth/hooks/useUserInfo';
 import { TatoeListCreatedAt } from './TatoeListCreatedAt';
 import { TatoeListTitle } from './TatoeListTitle';
 

@@ -1,13 +1,13 @@
 import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { RegisterImageForExplanationTatoe } from '../../../register/components/register-tatoe-child/RegisterImageForExplanationTatoe';
-import { RegisterTatoeDescription } from '../../../register/components/register-tatoe-child/RegisterTatoeDescription';
-import { RegisterTatoeShortParaphrase } from '../../../register/components/register-tatoe-child/RegisterTatoeShortParaphrase';
-import { RegisterTatoeTitle } from '../../../register/components/register-tatoe-child/RegisterTatoeTitle';
-import { RegisterTatoeBtn } from '../../../../commons/components/btn/RegisterTatoeBtn';
-import { useTatoeCancel } from '../hooks/useTatoeCancel';
-import { Tatoe } from '../../../../types/types';
-import { TatoeAtom } from '../../../../utils/atoms/TatoeAtom';
+import { RegisterImageForExplanationTatoe } from '../../register/components/register-tatoe-child/RegisterImageForExplanationTatoe';
+import { RegisterTatoeDescription } from '../../register/components/register-tatoe-child/RegisterTatoeDescription';
+import { RegisterTatoeShortParaphrase } from '../../register/components/register-tatoe-child/RegisterTatoeShortParaphrase';
+import { RegisterTatoeTitle } from '../../register/components/register-tatoe-child/RegisterTatoeTitle';
+import { RegisterTatoeBtn } from '../../../commons/components/btn/RegisterTatoeBtn';
+import { useTatoeCancel } from '../../dashboard/components/hooks/useTatoeCancel';
+import { Tatoe } from '../../../types/types';
+import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';
 
 /*
 * TODO: 煩雑なフォームのstateを管理の効率化のために

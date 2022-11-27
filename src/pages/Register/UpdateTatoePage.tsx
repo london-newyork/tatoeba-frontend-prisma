@@ -1,6 +1,6 @@
 import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
+import { TatoeForm } from '../../features/tatoe/components/TatoeForm';
 import { useAlert } from '../../commons/hooks/useAlert';
 import { useApi } from '../../commons/hooks/useApi';
 import { useAuth } from '../../features/auth/hooks/useAuth';

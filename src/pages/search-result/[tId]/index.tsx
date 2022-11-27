@@ -9,8 +9,9 @@ import { useRecoilValue } from 'recoil';
 import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
 import { useGetUserTatoeApi } from '../../../features/top/hooks/useGetUserTatoeApi';
 import { AllUserTatoe } from '../../../types/types';
-import { PostedUser } from '../../../features/detail/components/PostedUser';
-import { DetailTatoeTitle } from '../../../features/detail/components/DetailTatoeTitle';
+
+import { DetailTatoeTitle } from '../../../commons/components/detailpage/DetailTatoeTitle';
+import { PostedUser } from '../../../commons/components/detailpage/PostedUser';
 
 const SearchResult = () => {
   const router = useRouter();

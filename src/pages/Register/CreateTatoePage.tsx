@@ -9,7 +9,7 @@ import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
 import { useTatoe } from '../../features/dashboard/components/hooks/useTatoe';
 import { useAlert } from '../../commons/hooks/useAlert';
 
-import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
+import { TatoeForm } from '../../features/tatoe/components/TatoeForm';
 
 export default function CreateTatoePage() {
   const router = useRouter();

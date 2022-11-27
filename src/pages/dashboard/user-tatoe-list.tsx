@@ -1,7 +1,7 @@
 import React from 'react';
 import { TatoeListLayouts } from '../../layouts/dashBoard/TatoeListLayouts';
 import { TatoeListWrapper } from '../../features/dashboard/TatoeListWrapper';
-import { TatoeList } from '../../features/dashboard/components/tatoe/TatoeList';
+import { TatoeList } from '../../features/tatoe/TatoeList';
 import Head from 'next/head';
 import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
 import { Header } from '../../commons/components/header/Header';

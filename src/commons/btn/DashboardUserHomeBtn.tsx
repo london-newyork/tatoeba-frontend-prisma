@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { VFC } from 'react';
-import { SVGIcons } from '../../commons/components/SVGIcons';
+import { SVGIcons } from '../components/SVGIcons';
 
 export const DashboardUserHomeBtn: VFC = (props) => {
   const router = useRouter();

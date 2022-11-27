@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useApi } from '../../commons/hooks/useApi';
-import { useAuth } from '../auth/hooks/useAuth';
-import { useTatoe } from '../dashboard/components/hooks/useTatoe';
-import { useUserInfo } from '../auth/hooks/useUserInfo';
-import { SVGIcons } from '../../commons/components/SVGIcons';
+import { useApi } from '../hooks/useApi';
+import { useAuth } from '../../features/auth/hooks/useAuth';
+import { useTatoe } from '../../features/dashboard/components/hooks/useTatoe';
+import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
+import { SVGIcons } from '../components/SVGIcons';
 import { Tatoe } from '../../types/types';
 import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../../utils/atoms/TatoeAtom';

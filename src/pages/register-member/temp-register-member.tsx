@@ -39,7 +39,7 @@ const TempRegisterMember = () => {
       <Header />
       <AuthLayouts>
         <HeadLine className="login-headline" text="新規会員登録" />
-        <div className="pt-14 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 pt-14">
           <AuthInputs inputsTitle="メールアドレス" value={postData} onChange={handleChangePost} />
           <SendAuthInfoBtn onClick={handleTempRegisterMember} text="新規会員登録" />
         </div>

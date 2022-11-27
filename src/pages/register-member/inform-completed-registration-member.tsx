@@ -14,8 +14,8 @@ const InformCompletedRegistrationMember = () => {
       <div
         className="
       w-full
-      pt-40
       px-10
+      pt-40
       "
       >
         <p

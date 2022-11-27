@@ -5,8 +5,8 @@ export const Password = () => {
   return (
     <li
       className="
-      min-w-[16rem]
-      profile-pw-wrapper"
+      profile-pw-wrapper
+      min-w-[16rem]"
     >
       <ul
         className="
@@ -14,9 +14,9 @@ export const Password = () => {
       >
         <li
           className="
-          sm:w-[128px]
           text-sm
           text-gray-400
+          sm:w-[128px]
           "
         >
           パスワード

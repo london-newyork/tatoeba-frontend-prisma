@@ -66,10 +66,10 @@ const ResetPassword = () => {
       <AuthLayouts>
         <HeadLine
           text="パスワード再設定"
-          className="pt-8
-              login-headline"
+          className="login-headline
+              pt-8"
         />
-        <div className="pt-10 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 pt-10">
           <AuthInputs inputsTitle="現在のパスワード" value={currentPassword} onChange={handleChangeCurrentPassword} />
           <AuthInputs inputsTitle="新パスワード" value={newPassword} onChange={handleChangeNewPassword} />
           <AuthInputs inputsTitle="新パスワード確認" value={confirmPassword} onChange={handleChangeConfirmPassword} />

@@ -37,37 +37,39 @@ export const CardChild: VFC = () => {
       {allUserTatoe && isClient
         ? allUserTatoe.map((item: AllUserTatoe) => (
             <ul key={item.tId}>
-              <li
-                className={`
-                    px-4
-                    pt-4
+              <li>
+                <button
+                  className={`
                     h-[312px]
                     w-[280px]
                     rounded-2xl
+                    px-4
+                    pt-4
                     shadow-plane_2xl_card
                     ${shadowColor}
                     border-[1px]
                     border-gray-800
                     bg-white
                     `}
-                onClick={() =>
-                  handleMoveToResult({
-                    tId: item.tId,
-                    title: item.title,
-                    shortParaphrase: item.shortParaphrase,
-                    description: item.description,
-                    userId: item.userId
-                  })
-                }
-              >
-                <CardChildContents
-                  userName={item.userName}
-                  profileImage={profileImage}
-                  userId={item.userId}
-                  title={item.title}
-                  shortParaphrase={item.shortParaphrase}
-                  imageUrl={item.imageUrl}
-                />
+                  onClick={() =>
+                    handleMoveToResult({
+                      tId: item.tId,
+                      title: item.title,
+                      shortParaphrase: item.shortParaphrase,
+                      description: item.description,
+                      userId: item.userId
+                    })
+                  }
+                >
+                  <CardChildContents
+                    userName={item.userName}
+                    profileImage={profileImage}
+                    userId={item.userId}
+                    title={item.title}
+                    shortParaphrase={item.shortParaphrase}
+                    imageUrl={item.imageUrl}
+                  />
+                </button>
               </li>
             </ul>
           ))

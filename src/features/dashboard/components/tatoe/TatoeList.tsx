@@ -6,6 +6,7 @@ import { TatoeListDeleteTatoeBtn } from '../../../../commons/components/btn/Tato
 import { TatoeListEditExistingTatoeBtn } from '../../../../commons/components/btn/TatoeListEditExistingTatoeBtn';
 import { useAuth } from '../../../auth/hooks/useAuth';
 import { LoginUserAtom } from '../../../../utils/atoms/LoginUserAtom';
+
 import { TatoeListCountFollowerBtn } from '../../../../commons/components/btn/TatoeListCountFollowerBtn';
 import { useTatoe } from '../hooks/useTatoe';
 import { useRouter } from 'next/router';
@@ -23,6 +24,8 @@ export const TatoeList = (): JSX.Element => {
   if (!userId) {
     return null;
   }
+  // TODO: 一旦無視
+  // eslint-disable-next-line
   const { getTatoe } = useTatoe({
     userId,
     tatoe,
@@ -32,6 +35,8 @@ export const TatoeList = (): JSX.Element => {
     persistAccessToken
   });
 
+  // TODO: 一旦無視
+  // eslint-disable-next-line
   useEffect(() => {
     const getUserTatoeList = async () => {
       await getTatoe();
@@ -46,21 +51,21 @@ export const TatoeList = (): JSX.Element => {
             return (
               <ul
                 className="
-                group
                 tatoe-list-wrapper
+                group
                 "
                 key={item.tId as string}
               >
-                <li className="flex-grow">
+                <li className="grow">
                   <ul
                     className="
-                    lg:gap-3
-                    md:gap-1
                     tatoe-list-items-wrapper
+                    md:gap-1
+                    lg:gap-3
                     "
                   >
                     <TatoeListCreatedAt createdAt={item.createdAt} />
-                    <li className="flex-grow">
+                    <li className="grow">
                       <ul
                         className="
                         tatoe-list-item

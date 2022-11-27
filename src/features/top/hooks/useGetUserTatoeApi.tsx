@@ -4,7 +4,7 @@ import { AllUserTatoeAtom } from '../../../utils/atoms/AllUserTatoeAtom';
 import { useApi } from '../../../commons/hooks/useApi';
 
 export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
-  const { api: getAllUserTatoesApi } = useApi(`/tatoe`, {
+  const { api: getAllUserTatoesApi } = useApi('/tatoe', {
     method: 'GET'
   });
 

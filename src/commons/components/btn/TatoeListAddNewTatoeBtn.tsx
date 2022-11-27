@@ -8,8 +8,8 @@ export const TatoeListAddNewTatoeBtn = () => {
       className="
     absolute
     top-4
-    sm:-top-2
     right-0
+    sm:-top-2
     sm:right-0
     md:-right-2
     "
@@ -17,17 +17,17 @@ export const TatoeListAddNewTatoeBtn = () => {
       <Link href="/register">
         <div
           className="
-          w-8
-          h-8
-          bg-dark_green
-          rounded-full
           flex
+          h-8
+          w-8
+          rounded-full
+          bg-dark_green
           "
         >
           <SVGIcons
             d="M12 4v16m8-8H4"
             strokeWidth={2.2}
-            className="h-4 w-4 text-gray-800 m-auto"
+            className="m-auto h-4 w-4 text-gray-800"
             name="tatoe-list-add"
           />
         </div>

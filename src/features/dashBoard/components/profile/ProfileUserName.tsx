@@ -31,9 +31,9 @@ export const ProfileUserName = ({
       className="
             flex
             flex-col
-            pb-2
             border-b
             border-gray-200
+            pb-2
             sm:ml-8
             "
     >
@@ -53,9 +53,9 @@ export const ProfileUserName = ({
           onCompositionEnd={onCompositionEnd}
           placeholder="Nola Stradford"
           className={`${isFocus ? focusCSS : unFocusCSS}
+                max-w-[14rem]
                 rounded-md
                 px-2
-                max-w-[14rem]
                 `}
         />
       </p>

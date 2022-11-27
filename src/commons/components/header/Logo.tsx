@@ -8,10 +8,10 @@ export const Logo = () => {
         href="/"
         className="
             text-2xl
-            text-gray-700
             tracking-wider
-            hover:opacity-50
-            duration-300"
+            text-gray-700
+            duration-300
+            hover:opacity-50"
       >
         <span className="text-dark_green">T</span>atoeba
       </Link>

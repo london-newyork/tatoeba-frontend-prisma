@@ -27,7 +27,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     login(email, password);
-    await router.push(`/dashboard`);
+    await router.push('/dashboard');
   };
 
   return (
@@ -39,7 +39,7 @@ export default function Login() {
       <Header />
       <AuthLayouts>
         <HeadLine text="ログイン" className="login-headline" />
-        <div className="pt-14 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 pt-14">
           <AuthInputs inputsTitle="メールアドレス" value={email} onChange={handleChangeEmail} />
           <AuthInputs inputsTitle="パスワード" value={password} onChange={handleChangePassword} />
           <SendAuthInfoBtn onClick={handleLogin} text="ログイン" />

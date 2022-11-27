@@ -5,25 +5,25 @@ export const EditMainLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-    md:pt-[100px]
-    sm:pt-[80px]
-    bg-gray-100
-    h-screen
-    px-7
     md:px-18
     mx-auto
-    pt-9"
+    h-screen
+    bg-gray-100
+    px-7
+    pt-9
+    sm:pt-[80px]
+    md:pt-[100px]"
     >
       <div
         className="
-      lg:px-12
+      mx-auto
+      max-w-[1000px]
+      rounded-md
+      bg-white
       px-7
       pt-12
       pb-10
-      rounded-md
-      bg-white
-      mx-auto
-      max-w-[1000px]
+      lg:px-12
       "
       >
         {props.children}

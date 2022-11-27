@@ -10,8 +10,8 @@ export const ExplanationTexts = ({ title, shortParaphrase }: ExplanationTextsPro
       <h3
         className="
                 text-left
-                text-black
                 text-sm
+                text-black
                 "
       >
         {title}

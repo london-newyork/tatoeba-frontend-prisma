@@ -5,8 +5,8 @@ export const TopMainLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-        pt-[100px]
         bg-white
+        pt-[100px]
         "
     >
       {props.children}

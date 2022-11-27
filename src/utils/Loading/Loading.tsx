@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
 export const Loading = () => {
-  console.log("Loading中");
+  console.log('Loading中');
 
   return (
     <div>
       <div className="flex justify-center">
-        <div className="animate-ping h-4 w-4 bg-blue-600 rounded-full"></div>
+        <div className="h-4 w-4 animate-ping rounded-full bg-blue-600"></div>
       </div>
     </div>
   );

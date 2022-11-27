@@ -6,21 +6,21 @@ export const SideBarMainContentsLayouts: VFC = (props) => {
   return (
     <div
       className="
-            max-w-[64px]
             fixed
-            md:left-5
-            md:top-1/3
             right-[22px]
             top-[60px]
+            max-w-[64px]
+            md:left-5
+            md:top-1/3
             "
     >
       <div
         className="
                 flex
-                md:flex-col
                 flex-row
-                sm:gap-y-8
                 gap-x-5
+                sm:gap-y-8
+                md:flex-col
                 "
       >
         <DashboardUserHomeBtn />

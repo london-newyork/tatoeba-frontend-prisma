@@ -7,13 +7,13 @@ export const SearchMainLayouts: VFC<Layouts> = (props) => {
     <div>
       <main
         className="
-      md:pt-[100px]
-      sm:pt-[80px]
-      px-7
-      md:px-24
       mx-auto
+      px-7
       pb-40
-      pt-20"
+      pt-20
+      sm:pt-[80px]
+      md:px-24
+      md:pt-[100px]"
       >
         {props.children}
       </main>

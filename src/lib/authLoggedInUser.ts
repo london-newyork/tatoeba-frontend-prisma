@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { getStorage } from "./storage";
+import React, { useEffect } from 'react';
+import { getStorage } from './storage';
 
 export const AuthLoggedInUser = () => {
   useEffect(() => {
@@ -8,7 +8,7 @@ export const AuthLoggedInUser = () => {
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/users`,
         {
           headers: {
-            Authorization: `Bearer ${getStorage("jwt")}`,
+            Authorization: `Bearer ${getStorage('jwt')}`,
           },
         }
       );

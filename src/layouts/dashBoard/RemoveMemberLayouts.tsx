@@ -5,19 +5,19 @@ export const RemoveMemberLayouts: VFC<Layouts> = (props) => {
   return (
     <div
       className="
-    bg-white
-    lg:px-12
-    px-7
-    pt-12
-    pb-10
-    rounded-md
     mx-auto
     h-auto
     w-auto
     flex-col
-    text-center
-    justify-center
     items-center
+    justify-center
+    rounded-md
+    bg-white
+    px-7
+    pt-12
+    pb-10
+    text-center
+    lg:px-12
     "
     >
       {props.children}

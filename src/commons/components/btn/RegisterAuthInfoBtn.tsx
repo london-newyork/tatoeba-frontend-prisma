@@ -13,9 +13,9 @@ export const RegisterAuthInfoBtn = ({ href, title }: RegisterAuthInfoBtnProps) =
       passHref={true}
       className="
       mx-auto
+      cursor-pointer
       text-xs
-      text-gray-600
-      cursor-pointer"
+      text-gray-600"
     >
       {title}
     </Link>

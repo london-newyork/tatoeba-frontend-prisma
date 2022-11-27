@@ -1,7 +1,7 @@
-import { NextRouter } from "next/router";
-import { ParsedUrlQuery } from "querystring";
-import { ReactNode } from "react";
-import { SetterOrUpdater } from "recoil";
+import { NextRouter } from 'next/router';
+import { ParsedUrlQuery } from 'querystring';
+import { ReactNode } from 'react';
+import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
   tId?: string | string[];
@@ -57,9 +57,9 @@ export type Result = {
 };
 
 export type CardProps = {
-  tatoe: Edit["tatoe"];
+  tatoe: Edit['tatoe'];
   // handleMoveToEdit: Edit["handleMoveToEdit"]
-  handleMoveToResult: Edit["handleMoveToEdit"];
+  handleMoveToResult: Edit['handleMoveToEdit'];
 };
 
 export type Layouts = {

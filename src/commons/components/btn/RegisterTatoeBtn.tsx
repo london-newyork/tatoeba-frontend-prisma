@@ -1,5 +1,5 @@
 import React from 'react';
-import { SVGIcons } from '../components/SVGIcons';
+import { SVGIcons } from '../SVGIcons';
 
 const btnColor = {
   create: 'bg-black text-white',

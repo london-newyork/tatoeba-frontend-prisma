@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { SVGIcons } from '../components/SVGIcons';
+import { SVGIcons } from '../SVGIcons';
 
 export const TatoeListAddNewTatoeBtn = () => {
   return (

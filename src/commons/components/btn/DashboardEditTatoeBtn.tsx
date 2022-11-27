@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { SVGIcons } from '../components/SVGIcons';
+import { SVGIcons } from '../SVGIcons';
 
 export const DashboardEditTatoeBtn = () => {
   const router = useRouter();

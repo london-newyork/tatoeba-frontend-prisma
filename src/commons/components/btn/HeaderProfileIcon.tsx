@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { SVGIcons } from '../components/SVGIcons';
-import { ProfileImageAtom } from '../../utils/atoms/ProfileImageAtom';
+import { SVGIcons } from '../SVGIcons';
+import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
 import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 
 type HeaderProfileIconProps = {

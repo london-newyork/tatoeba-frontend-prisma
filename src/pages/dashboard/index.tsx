@@ -1,25 +1,25 @@
-import React from "react";
-import { Header } from "../../components/Header/Header";
-import { DashBoardLayouts } from "../../components/Layouts/DashBoard/DashBoardLayouts";
-import { ProfileLayouts } from "../../components/Layouts/DashBoard/ProfileLayouts";
+import React from 'react';
+import { Header } from '../../commons/components/header/Header';
+import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
+import { ProfileLayouts } from '../../layouts/dashBoard/ProfileLayouts';
 
-import { Profile } from "../../components/DashBoard/Profile";
-import Head from "next/head";
+import { Profile } from '../../features/dashboard/components/profile/Profile';
+import Head from 'next/head';
 
-const DashBoard = () => {
+const Dashboard = () => {
   return (
     <div>
       <Head>//</Head>
       <div>
         <Header />
-        <DashBoardLayouts>
+        <DashboardLayouts>
           <ProfileLayouts>
             <Profile />
           </ProfileLayouts>
-        </DashBoardLayouts>
+        </DashboardLayouts>
       </div>
     </div>
   );
 };
 
-export default DashBoard;
+export default Dashboard;

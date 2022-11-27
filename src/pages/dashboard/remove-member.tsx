@@ -1,13 +1,13 @@
-import React from "react";
-import { DashBoardLayouts } from "../../components/Layouts/DashBoard/DashBoardLayouts";
-import { Header } from "../../components/Header/Header";
-import { RemoveMemberLayouts } from "../../components/Layouts/DashBoard/RemoveMemberLayouts";
+import React from 'react';
+import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
+import { Header } from '../../commons/components/header/Header';
+import { RemoveMemberLayouts } from '../../layouts/dashBoard/RemoveMemberLayouts';
 
 const RemoveMember = () => {
   return (
     <div>
       <Header />
-      <DashBoardLayouts>
+      <DashboardLayouts>
         <RemoveMemberLayouts>
           <h1 className="text-3xl tracking-widest text-gray-700">退会</h1>
           <p className="text-sm leading-loose mt-10 text-gray-700">
@@ -26,7 +26,7 @@ const RemoveMember = () => {
             退会する
           </button>
         </RemoveMemberLayouts>
-      </DashBoardLayouts>
+      </DashboardLayouts>
     </div>
   );
 };

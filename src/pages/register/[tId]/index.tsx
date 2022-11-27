@@ -1,10 +1,10 @@
-import React from "react";
-import Head from "next/head";
-import "tailwindcss/tailwind.css";
-import { Header } from "../../../components/Header/Header";
-import { RegisterTatoeHeadline } from "../../../components/Register/RegisterTatoeHeadline";
-import { UpdateTatoePage } from "../UpdateTatoePage";
-import { useRouter } from "next/router";
+import React from 'react';
+import Head from 'next/head';
+import 'tailwindcss/tailwind.css';
+import { Header } from '../../../commons/components/header/Header';
+import { RegisterTatoeHeadline } from '../../../features/register/components/RegisterTatoeHeadline';
+import { UpdateTatoePage } from '../UpdateTatoePage';
+import { useRouter } from 'next/router';
 
 export default function Register() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Register() {
 
   const handleCreateTatoe = async () => {
     router.push({
-      pathname: "/dashboard/user-tatoe-list",
+      pathname: '/dashboard/user-tatoe-list'
     });
   };
   return (
@@ -43,9 +43,7 @@ export default function Register() {
         >
           <RegisterTatoeHeadline />
 
-          {tId && (
-            <UpdateTatoePage tId={tId} onCreateTatoe={handleCreateTatoe} />
-          )}
+          {tId && <UpdateTatoePage tId={tId} onCreateTatoe={handleCreateTatoe} />}
         </div>
       </section>
     </>

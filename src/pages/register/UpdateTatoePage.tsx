@@ -1,19 +1,14 @@
-import React, {
-  FormEventHandler,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { TatoeForm } from "../../components/DashBoard/Tatoe/TatoeForm";
-import { useAlert } from "../../components/hooks/useAlert";
-import { useApi } from "../../components/hooks/useApi";
-import { useAuth } from "../../components/hooks/useAuth";
-import { useTatoe } from "../../components/hooks/useTatoe";
-import { useUserInfo } from "../../components/hooks/useUserInfo";
-import { Tatoe } from "../../components/types/types";
-import { LoginUserAtom } from "../../components/utils/atoms/LoginUserAtom";
-import { TatoeAtom } from "../../components/utils/atoms/TatoeAtom";
+import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
+import { useAlert } from '../../commons/hooks/useAlert';
+import { useApi } from '../../commons/hooks/useApi';
+import { useAuth } from '../../features/auth/hooks/useAuth';
+import { useTatoe } from '../../features/dashboard/components/hooks/useTatoe';
+import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
+import { Tatoe } from '../../types/types';
+import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
+import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
 
 export type UpdateTatoePage = {
   tId: string | string[];
@@ -21,11 +16,11 @@ export type UpdateTatoePage = {
 };
 
 export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
-  const [title, setTitle] = useState<string | null>("");
-  const [shortParaphrase, setShortParaphrase] = useState<string | null>("");
-  const [description, setDescription] = useState<string | null>("");
-  const [createdAt, setCreatedAt] = useState<string | null>("");
-  const [updatedAt, setUpdatedAt] = useState<string | null>("");
+  const [title, setTitle] = useState<string | null>('');
+  const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
+  const [description, setDescription] = useState<string | null>('');
+  const [createdAt, setCreatedAt] = useState<string | null>('');
+  const [updatedAt, setUpdatedAt] = useState<string | null>('');
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
@@ -35,10 +30,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
-  const { api: deleteTatoeImageApi } = useApi(
-    `/tatoe/${tId}/explanation_image`,
-    { method: "DELETE" }
-  );
+  const { api: deleteTatoeImageApi } = useApi(`/tatoe/${tId}/explanation_image`, { method: 'DELETE' });
 
   const { updateTatoe, getTatoe } = useTatoe({
     tId: tId as string, // stringしか来ない
@@ -52,7 +44,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
     description,
     createdAt,
     updatedAt,
-    router: null,
+    router: null
   });
 
   useEffect(() => {
@@ -81,7 +73,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
       user,
       title,
       shortParaphrase,
-      description,
+      description
     });
     if (noInputsData) {
       alertRegisterTatoe();
@@ -92,7 +84,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
     await updateTatoe({
       tId: tId as string,
       userId,
-      formData,
+      formData
     });
 
     await onCreateTatoe();
@@ -100,9 +92,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
 
   // TODO: UpdateなのにDELETEが入ってる
   /* DELETE */
-  const handleDeleteExplanationImage: MouseEventHandler<
-    HTMLButtonElement
-  > = async (e) => {
+  const handleDeleteExplanationImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     if (!defaultImageUrl && !imageUrl) {
       return;

@@ -1,6 +1,6 @@
-import Head from "next/head";
-import React from "react";
-import { Header } from "../../components/Header/Header";
+import Head from 'next/head';
+import React from 'react';
+import { Header } from '../../commons/components/header/Header';
 
 const InformCompletedTempRegistrationMember = () => {
   return (

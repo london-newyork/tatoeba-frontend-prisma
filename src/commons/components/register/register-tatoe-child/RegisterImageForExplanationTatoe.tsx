@@ -55,6 +55,7 @@ export const RegisterImageForExplanationTatoe = ({
     };
   }, [defaultImageUrl]);
 
+  // TODO: JSX複雑になりすぎているのでリファクタ必要
   return (
     <div
       className="

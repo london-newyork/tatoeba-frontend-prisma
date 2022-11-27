@@ -1,7 +1,7 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useEffect, useState } from 'react';
 
-import { useAuth } from '../../../../commons/components/auth/hooks/useAuth';
-import { useUserInfo } from '../../../../commons/components/auth/hooks/useUserInfo';
+import { useAuth } from '../../../commons/components/auth/hooks/useAuth';
+import { useUserInfo } from '../../../commons/components/auth/hooks/useUserInfo';
 import { DisplayMailAddress } from './DisplayMailAddress';
 import { Password } from './Password';
 import { ProfileUserName } from './ProfileUserName';

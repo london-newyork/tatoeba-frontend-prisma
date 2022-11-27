@@ -3,7 +3,7 @@ import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
 import { Header } from '../../commons/components/header/Header';
 
-import { RegisterTatoeHeadline } from '../../features/register/components/RegisterTatoeHeadline';
+import { RegisterTatoeHeadline } from '../../commons/components/register/RegisterTatoeHeadline';
 import CreateTatoePage from './CreateTatoePage';
 
 export default function Register() {

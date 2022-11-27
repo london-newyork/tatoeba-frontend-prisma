@@ -3,9 +3,9 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useApi } from '../../hooks/useApi';
 import { useAuth } from '../../../features/auth/hooks/useAuth';
-import { useTatoe } from '../../../features/dashboard/components/hooks/useTatoe';
+import { useTatoe } from ../auth/hooks/useAuthnts/hooks/useTatoe';
 import { useUserInfo } from '../../../features/auth/hooks/useUserInfo';
-import { SVGIcons } from '../SVGIcons';
+import { SVGIcons } from '../../auth/hooks/useUserInfo
 import { Tatoe } from '../../../types/types';
 import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HeaderProfileIcon } from '../btn/HeaderProfileIcon';
-import { useAuth } from '../../../features/auth/hooks/useAuth';
+import { useAuth } from '../auth/hooks/useAuth';
 import { useRouter } from 'next/router';
 import { HeaderLogin } from './HeaderLogin';
 import { HeaderLogout } from './HeaderLogout';

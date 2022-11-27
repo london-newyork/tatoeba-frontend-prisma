@@ -7,7 +7,7 @@ import { SearchMainLayouts } from '../../../layouts/SearchMainLayouts';
 import { useRecoilValue } from 'recoil';
 
 import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
-import { useGetUserTatoeApi } from '../../../features/top/hooks/useGetUserTatoeApi';
+import { useGetUserTatoeApi } from '../../../commons/components/top/hooks/useGetUserTatoeApi';
 import { AllUserTatoe } from '../../../types/types';
 
 import { DetailTatoeTitle } from '../../../commons/components/detailpage/DetailTatoeTitle';

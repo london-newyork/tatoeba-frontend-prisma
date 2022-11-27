@@ -5,7 +5,7 @@ import { SendAuthInfoBtn } from '../../commons/components/btn/SendAuthInfoBtn';
 import { Header } from '../../commons/components/header/Header';
 import { HeadLine } from '../../commons/components/HeadLine';
 import { AuthLayouts } from '../../layouts/AuthLayouts';
-import { AuthInputs } from '../../features/auth/components/AuthInputs';
+import { AuthInputs } from '../../commons/components/auth/components/AuthInputs';
 
 const CompleteRegisterMemberForm = () => {
   const [confirmRegistrations, setConfirmRegistrations] = useState([]);

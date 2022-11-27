@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { HeadLine } from '../commons/components/HeadLine';
-import { AuthInputs } from '../features/auth/components/AuthInputs';
+import { AuthInputs } from '../commons/components/auth/components/AuthInputs';
 import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
 
 const ResetPassword = () => {

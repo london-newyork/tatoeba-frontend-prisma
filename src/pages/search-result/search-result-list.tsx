@@ -7,10 +7,10 @@ import { useRouter } from 'next/router';
 
 import { Tatoe } from '../../types/types';
 
-import { useGetUserTatoeApi } from '../../features/top/hooks/useGetUserTatoeApi';
+import { useGetUserTatoeApi } from '../../commons/components/top/hooks/useGetUserTatoeApi';
 import { SearchResultToDetailBtn } from '../../commons/components/btn/SearchResultToDetailBtn';
-import { ArrowIcon } from '../../features/search/ArrowIcon';
-import { SearchResultListItemText } from '../../features/search/SearchResultListItemText';
+import { ArrowIcon } from '../../commons/components/search/ArrowIcon';
+import { SearchResultListItemText } from '../../commons/components/search/SearchResultListItemText';
 
 const SearchResultList = () => {
   const [result, setResult] = useState([]);

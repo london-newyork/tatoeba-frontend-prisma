@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHandleMoveToEdit } from '../../../features/dashboard/components/hooks/handleMoveToEdit';
+import { useHandleMoveToEdit } from '../../../features/dashboard/hooks/handleMoveToEdit';
 import { SVGIcons } from '../SVGIcons';
 import { Tatoe } from '../../../types/types';
 

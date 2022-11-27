@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
 import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
-import { useAuth } from '../../features/auth/hooks/useAuth';
-import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
-import { useTatoe } from '../../features/dashboard/components/hooks/useTatoe';
+import { useAuth } from '../../commons/components/auth/hooks/useAuth';
+import { useUserInfo } from '../../commons/components/auth/hooks/useUserInfo';
+import { useTatoe } from '../../features/dashboard/hooks/useTatoe';
 import { useAlert } from '../../commons/hooks/useAlert';
 
 import { TatoeForm } from '../../features/tatoe/components/TatoeForm';

@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
-import { LoginUserAtom } from '../../../../utils/atoms/LoginUserAtom';
 import { useMemo } from 'react';
+import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
 
 export type Auth = {
   login: (email: string, password: string) => Promise<void>;

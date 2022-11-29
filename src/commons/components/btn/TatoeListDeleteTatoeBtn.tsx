@@ -3,12 +3,14 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useApi } from '../../hooks/useApi';
 import { useAuth } from '../../../features/auth/hooks/useAuth';
-import { useTatoe } from ../auth/hooks/useAuthnts/hooks/useTatoe';
-import { useUserInfo } from '../../../features/auth/hooks/useUserInfo';
-import { SVGIcons } from '../../auth/hooks/useUserInfo
+
+import { useUserInfo } from '../../../features/user/hooks/useUserInfo';
+
 import { Tatoe } from '../../../types/types';
 import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';
+import { useTatoe } from '../../../features/dashboard/hooks/useTatoe';
+import { SVGIcons } from '../SVGIcons';
 
 export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
   const { tId } = props;

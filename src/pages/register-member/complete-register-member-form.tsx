@@ -5,7 +5,7 @@ import { SendAuthInfoBtn } from '../../commons/components/btn/SendAuthInfoBtn';
 import { Header } from '../../commons/components/header/Header';
 import { HeadLine } from '../../commons/components/HeadLine';
 import { AuthLayouts } from '../../layouts/AuthLayouts';
-import { AuthInputs } from '../../commons/components/auth/components/AuthInputs';
+import { Inputs } from '../../commons/components/Inputs';
 
 const CompleteRegisterMemberForm = () => {
   const [confirmRegistrations, setConfirmRegistrations] = useState([]);
@@ -56,7 +56,12 @@ const CompleteRegisterMemberForm = () => {
       <AuthLayouts>
         <HeadLine className="login-headline" text="新規会員登録完了手続き" />
         <div className="pt-14 flex flex-col gap-6">
-          <AuthInputs inputsTitle="新規パスワード" value={password} onChange={handleChangePassword} />
+          <Inputs
+            inputsTitle="新規パスワード"
+            value={password}
+            onChange={handleChangePassword}
+            className="login-input login-input-cstm"
+          />
           <SendAuthInfoBtn onClick={handleSendPassword} text="登録を完了する" />
         </div>
       </AuthLayouts>

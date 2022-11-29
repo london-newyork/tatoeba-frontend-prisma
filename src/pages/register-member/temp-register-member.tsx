@@ -5,7 +5,7 @@ import { SendAuthInfoBtn } from '../../commons/components/btn/SendAuthInfoBtn';
 import { Header } from '../../commons/components/header/Header';
 import { HeadLine } from '../../commons/components/HeadLine';
 import { AuthLayouts } from '../../layouts/AuthLayouts';
-import { AuthInputs } from '../../commons/components/auth/components/AuthInputs';
+import { Inputs } from '../../commons/components/Inputs';
 
 const TempRegisterMember = () => {
   const [postData, setPostData] = useState<string | undefined>('');
@@ -40,7 +40,12 @@ const TempRegisterMember = () => {
       <AuthLayouts>
         <HeadLine className="login-headline" text="新規会員登録" />
         <div className="pt-14 flex flex-col gap-6">
-          <AuthInputs inputsTitle="メールアドレス" value={postData} onChange={handleChangePost} />
+          <Inputs
+            inputsTitle="メールアドレス"
+            value={postData}
+            onChange={handleChangePost}
+            className="login-input login-input-cstm"
+          />
           <SendAuthInfoBtn onClick={handleTempRegisterMember} text="新規会員登録" />
         </div>
       </AuthLayouts>

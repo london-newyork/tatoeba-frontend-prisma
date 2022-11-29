@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { HeadLine } from '../commons/components/HeadLine';
-import { AuthInputs } from '../commons/components/auth/components/AuthInputs';
+import { Inputs } from '../commons/components/Inputs';
 import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
 
 const ResetPassword = () => {
@@ -70,9 +70,24 @@ const ResetPassword = () => {
               login-headline"
         />
         <div className="pt-10 flex flex-col gap-6">
-          <AuthInputs inputsTitle="現在のパスワード" value={currentPassword} onChange={handleChangeCurrentPassword} />
-          <AuthInputs inputsTitle="新パスワード" value={newPassword} onChange={handleChangeNewPassword} />
-          <AuthInputs inputsTitle="新パスワード確認" value={confirmPassword} onChange={handleChangeConfirmPassword} />
+          <Inputs
+            inputsTitle="現在のパスワード"
+            value={currentPassword}
+            onChange={handleChangeCurrentPassword}
+            className="login-input login-input-cstm"
+          />
+          <Inputs
+            inputsTitle="新パスワード"
+            value={newPassword}
+            onChange={handleChangeNewPassword}
+            className="login-input login-input-cstm"
+          />
+          <Inputs
+            inputsTitle="新パスワード確認"
+            value={confirmPassword}
+            onChange={handleChangeConfirmPassword}
+            className="login-input login-input-cstm"
+          />
           <SendAuthInfoBtn onClick={handleResetPassword} text="パスワード再設定" />
         </div>
       </AuthLayouts>

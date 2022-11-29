@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Header } from '../commons/components/header/Header';
 import { AuthLayouts } from '../layouts/AuthLayouts';
-import { useAuth } from '../commons/components/auth/hooks/useAuth';
-import { AuthInputs } from '../commons/components/auth/components/AuthInputs';
+import { Inputs } from '../commons/components/Inputs';
 import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
 import { RegisterAuthInfoBtn } from '../commons/components/btn/RegisterAuthInfoBtn';
 import { HeadLine } from '../commons/components/HeadLine';
+import { useAuth } from '../features/auth/hooks/useAuth';
 
 export default function Login() {
   const { login } = useAuth();
@@ -40,8 +40,18 @@ export default function Login() {
       <AuthLayouts>
         <HeadLine text="ログイン" className="login-headline" />
         <div className="pt-14 flex flex-col gap-6">
-          <AuthInputs inputsTitle="メールアドレス" value={email} onChange={handleChangeEmail} />
-          <AuthInputs inputsTitle="パスワード" value={password} onChange={handleChangePassword} />
+          <Inputs
+            inputsTitle="メールアドレス"
+            value={email}
+            onChange={handleChangeEmail}
+            className="login-input login-input-cstm"
+          />
+          <Inputs
+            inputsTitle="パスワード"
+            value={password}
+            onChange={handleChangePassword}
+            className="login-input login-input-cstm"
+          />
           <SendAuthInfoBtn onClick={handleLogin} text="ログイン" />
         </div>
         <div className="flex gap-x-5">

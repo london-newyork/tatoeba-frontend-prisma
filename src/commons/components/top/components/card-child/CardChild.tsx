@@ -2,9 +2,10 @@ import React, { useEffect, useState, VFC } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useHandleMoveToResult } from '../../hooks/handleMoveToResult';
 import { AllUserTatoe } from '../../../../../types/types';
-import { ProfileImageAtom } from '../../../../../utils/atoms/ProfileImageAtom';
+// import { ProfileImageAtom } from '../../../../../utils/atoms/ProfileImageAtom';
 import { useGetUserTatoeApi } from '../../hooks/useGetUserTatoeApi';
 import { CardChildContents } from './CardChildContents';
+import { useProfileImage } from '@Features/auth/store';
 
 export const CardChild: VFC = () => {
   const RandomColors = [
@@ -22,7 +23,8 @@ export const CardChild: VFC = () => {
 
   const [isClient, setIsClient] = useState(false);
 
-  const profileImage = useRecoilValue(ProfileImageAtom);
+  // const profileImage = useRecoilValue(ProfileImageAtom);
+  const profileImage = useProfileImage();
 
   useEffect(() => {
     const main = async () => {

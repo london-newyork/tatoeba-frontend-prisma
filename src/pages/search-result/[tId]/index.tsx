@@ -2,20 +2,22 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../../commons/components/header/Header';
-import { SearchMainLayouts } from '../../../layouts/SearchMainLayouts';
+import { Header } from '@Commons/components/header/Header';
+import { SearchMainLayouts } from '@Layouts/SearchMainLayouts';
 import { useRecoilValue } from 'recoil';
 
-import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
+// import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
 import { useGetUserTatoeApi } from '../../../commons/components/top/hooks/useGetUserTatoeApi';
 import { AllUserTatoe } from '../../../types/types';
 
 import { DetailTatoeTitle } from '../../../commons/components/detailpage/DetailTatoeTitle';
 import { PostedUser } from '../../../commons/components/detailpage/PostedUser';
+import { useProfileImage } from '@Features/auth/store';
 
 const SearchResult = () => {
   const router = useRouter();
-  const profileImage = useRecoilValue(ProfileImageAtom);
+  // const profileImage = useRecoilValue(ProfileImageAtom);
+  const profileImage = useProfileImage();
   const { tId } = router.query;
 
   const { getAllUserTatoe, allUserTatoe } = useGetUserTatoeApi();

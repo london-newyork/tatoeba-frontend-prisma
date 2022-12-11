@@ -1,22 +1,24 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useAuth } from '../auth/hooks/useAuth';
-import { useUserInfo } from '../auth/hooks/useUserInfo';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
 import { useTatoe } from '../../../features/dashboard/hooks/useTatoe';
 import { Tatoe } from '../../../types/types';
-import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
+// import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
 import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';
 import { TatoeListCountFollowerBtn } from '../btn/TatoeListCountFollowerBtn';
 import { TatoeListDeleteTatoeBtn } from '../btn/TatoeListDeleteTatoeBtn';
 import { TatoeListEditExistingTatoeBtn } from '../btn/TatoeListEditExistingTatoeBtn';
 import { TatoeListCreatedAt } from './TatoeListCreatedAt';
 import { TatoeListTitle } from './TatoeListTitle';
+import { useAccessToken } from '@Features/auth/store';
 
 export const TatoeList = (): JSX.Element => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  // const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const accessToken = useAccessToken();
   const router = useRouter();
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
 
@@ -29,7 +31,8 @@ export const TatoeList = (): JSX.Element => {
     router,
     user,
     setTatoe,
-    persistAccessToken
+    /* persistAccessToken */
+    accessToken
   });
 
   useEffect(() => {

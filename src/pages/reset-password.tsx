@@ -3,11 +3,12 @@ import { AuthLayouts } from '../layouts/AuthLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
+// import { useRecoilValue } from 'recoil';
+// import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
 import { HeadLine } from '../commons/components/HeadLine';
 import { Inputs } from '../commons/components/Inputs';
 import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
+import { useAccessToken } from '@Features/auth/store';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -16,7 +17,8 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   // TODO usePersistAccessTokenの使い所確認
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  // const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const accessToken = useAccessToken();
 
   const handleChangeCurrentPassword = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     setCurrentPassword(e.target.value);
@@ -46,7 +48,8 @@ const ResetPassword = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${persistAccessToken}`
+        // Authorization: `Bearer ${persistAccessToken}`
+        Authorization: `Bearer ${accessToken}`
       },
       body: JSON.stringify({ currentPassword, newPassword })
     });

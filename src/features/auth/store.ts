@@ -5,7 +5,8 @@ const { persistAtom } = recoilPersist();
 // TODO: カプセル化
 // LoginUserAtomとProfileImageAtomファイルを後でけす
 const LoginUserAtom = atom<string | null>({
-  key: 'persistAccessToken',
+  // key: 'persistAccessToken',
+  key: 'accessToken',
   default: null,
   effects_UNSTABLE: [persistAtom]
 });
@@ -16,6 +17,11 @@ const ProfileImageAtom = atom({
 });
 
 // features/auth 内で使っていい hooks
+
+export const useProfileImage = () => {
+  return useRecoilValue(ProfileImageAtom);
+};
+
 export const useSetProfileImage = () => {
   const setProfileImage = useSetRecoilState(ProfileImageAtom);
 
@@ -30,3 +36,6 @@ export const useAccessToken = () => {
 export const useSetAccessToken = () => {
   return useSetRecoilState(LoginUserAtom);
 };
+
+// 3000 番で動いているプロセスを調べる
+// lsof -i:3000

@@ -1,14 +1,15 @@
 import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeForm } from '../../features/tatoe/components/TatoeForm';
-import { useAlert } from '../../commons/hooks/useAlert';
-import { useApi } from '../../commons/hooks/useApi';
-import { useAuth } from '../../commons/components/auth/hooks/useAuth';
-import { useTatoe } from '../../features/dashboard/hooks/useTatoe';
-import { useUserInfo } from '../../commons/components/auth/hooks/useUserInfo';
-import { Tatoe } from '../../types/types';
-import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
-import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
+import { TatoeForm } from '@Features/tatoe/components/TatoeForm';
+import { useAlert } from '@Commons/hooks/useAlert';
+import { useApi } from '@Commons/hooks/useApi';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+import { useTatoe } from '@Features/dashboard/hooks/useTatoe';
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
+import { Tatoe } from '@Types/types';
+// import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
+import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
+import { useAccessToken } from '@Features/auth/store';
 
 export type UpdateTatoePage = {
   tId: string | string[];
@@ -26,7 +27,8 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  // const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const accessToken = useAccessToken();
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
@@ -37,7 +39,8 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
     tatoe,
     user,
     setTatoe,
-    persistAccessToken,
+    /* persistAccessToken, */
+    accessToken,
     userId,
     title,
     shortParaphrase,

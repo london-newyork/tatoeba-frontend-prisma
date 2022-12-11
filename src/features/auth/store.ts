@@ -36,6 +36,3 @@ export const useAccessToken = () => {
 export const useSetAccessToken = () => {
   return useSetRecoilState(LoginUserAtom);
 };
-
-// 3000 番で動いているプロセスを調べる
-// lsof -i:3000

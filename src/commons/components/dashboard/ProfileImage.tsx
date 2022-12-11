@@ -1,6 +1,5 @@
+import { useProfileImage } from '@Features/auth/store';
 import React, { useRef, MouseEventHandler, ChangeEventHandler } from 'react';
-import { useRecoilValue } from 'recoil';
-import { ProfileImageAtom } from '../../../../utils/atoms/ProfileImageAtom';
 
 type ProfileImageProps = {
   onSubmit: (file: File) => void;
@@ -9,7 +8,8 @@ type ProfileImageProps = {
 
 export const ProfileImage = ({ onSubmit, userId }: ProfileImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
-  const profileImage = useRecoilValue(ProfileImageAtom);
+  const profileImage = useProfileImage();
+
   const handleClickImageButton: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     if (!ref.current) {
@@ -25,6 +25,8 @@ export const ProfileImage = ({ onSubmit, userId }: ProfileImageProps) => {
     const file = e.target.files[0];
     onSubmit(file);
   };
+  console.log('profileImage', profileImage);
+  console.log('userId', userId);
 
   // TODO モーダルをかませる可能性あり モーダル使用時はformを使うこと
   return (

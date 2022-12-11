@@ -1,18 +1,12 @@
 import { useAccessToken, useSetProfileImage } from '@Features/auth/store';
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { User } from '../../../types/types';
-
-// import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
-// import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
+import { User } from '@Types/types';
 
 export const useUserInfo = (userId: string | null) => {
   const [user, setUser] = useState<User | undefined>(undefined);
-  // const persistAccessToken = useRecoilValue(LoginUserAtom);
   const accessToken = useAccessToken();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  // const setProfileImage = useSetRecoilState(ProfileImageAtom);
   const setProfileImage = useSetProfileImage();
 
   useEffect(() => {
@@ -24,7 +18,6 @@ export const useUserInfo = (userId: string | null) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          // Authorization: `Bearer ${persistAccessToken}`
           Authorization: `Bearer ${accessToken}`
         }
       });
@@ -50,7 +43,6 @@ export const useUserInfo = (userId: string | null) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: `Bearer ${persistAccessToken}`
         Authorization: `Bearer ${accessToken}`
       },
       body: JSON.stringify({ userName })
@@ -66,12 +58,10 @@ export const useUserInfo = (userId: string | null) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image`, {
       method: 'PUT',
       headers: {
-        // Authorization: `Bearer ${persistAccessToken}`
         Authorization: `Bearer ${accessToken}`
       },
       body: formData
     });
-    // setProfileImage(new Date().getTime());
     setProfileImage();
   };
   return {

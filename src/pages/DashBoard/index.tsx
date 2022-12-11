@@ -1,9 +1,9 @@
 import React from 'react';
-import { Header } from '../../commons/components/header/Header';
-import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
-import { ProfileLayouts } from '../../layouts/dashBoard/ProfileLayouts';
+import { Header } from '@Components/header/Header';
+import { DashboardLayouts } from '@Layouts/dashBoard/DashBoardLayouts';
+import { ProfileLayouts } from '@Layouts/dashBoard/ProfileLayouts';
 
-import { Profile } from '../../features/dashboard/components/profile/Profile';
+import { Profile } from '@Components/dashboard/Profile';
 import Head from 'next/head';
 
 const Dashboard = () => {

@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Header } from '../commons/components/header/Header';
-import { AuthLayouts } from '../layouts/AuthLayouts';
-import { Inputs } from '../commons/components/Inputs';
-import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
-import { RegisterAuthInfoBtn } from '../commons/components/btn/RegisterAuthInfoBtn';
-import { HeadLine } from '../commons/components/HeadLine';
-import { useAuth } from '../features/auth/hooks/useAuth';
+import { Header } from '@Components/header/Header';
+import { AuthLayouts } from '@Layouts/AuthLayouts';
+import { Inputs } from '@Components/Inputs';
+import { SendAuthInfoBtn } from '@Components/btn/SendAuthInfoBtn';
+import { RegisterAuthInfoBtn } from '@Components/btn/RegisterAuthInfoBtn';
+import { HeadLine } from '@Components/HeadLine';
+import { useAuth } from '@Features/auth/hooks/useAuth';
 
 export default function Login() {
   const { login } = useAuth();

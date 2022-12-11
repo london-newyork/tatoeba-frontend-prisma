@@ -4,8 +4,8 @@ import { DisplayMailAddress } from './DisplayMailAddress';
 import { Password } from './Password';
 import { ProfileUserName } from './ProfileUserName';
 import { ProfileImage } from './ProfileImage';
-import { useAuth } from '../../../features/auth/hooks/useAuth';
-import { useUserInfo } from '../../../features/user/hooks/useUserInfo';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
 
 export const Profile = () => {
   const { userId } = useAuth();

@@ -31,12 +31,7 @@ export type AllUserTatoe = {
 };
 
 export type Edit = {
-  handleMoveToEdit: (
-    tId: string,
-    title: string,
-    shortParaphrase: string,
-    description: string
-  ) => void;
+  handleMoveToEdit: () => void;
   createdAt: string;
   tatoe: Tatoe[];
   setTatoe: SetterOrUpdater<Tatoe[]>;
@@ -44,12 +39,7 @@ export type Edit = {
 };
 
 export type Result = {
-  handleMoveToResult: (
-    tId: string,
-    title: string,
-    shortParaphrase: string,
-    description: string
-  ) => void;
+  handleMoveToResult: () => void;
   createdAt: string;
   tatoe: Tatoe[] | ParsedUrlQuery[];
   setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
@@ -58,7 +48,6 @@ export type Result = {
 
 export type CardProps = {
   tatoe: Edit['tatoe'];
-  // handleMoveToEdit: Edit["handleMoveToEdit"]
   handleMoveToResult: Edit['handleMoveToEdit'];
 };
 
@@ -87,7 +76,8 @@ export type TatoeBtnHooksProps = {
   router: NextRouter;
   user: User;
   setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
-  persistAccessToken: string | null;
+  /* persistAccessToken: string | null; */
+  accessToken: string | null;
 } & Tatoe;
 
 export type OnClick = {

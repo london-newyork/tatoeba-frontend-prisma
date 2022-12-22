@@ -1,10 +1,9 @@
 import React from 'react';
-import { TatoeListLayouts } from '../../layouts/dashBoard/TatoeListLayouts';
-import { TatoeListWrapper } from '../../features/dashboard/TatoeListWrapper';
-import { TatoeList } from '../../features/dashboard/components/tatoe/TatoeList';
+import { TatoeListLayouts } from '@Layouts/dashBoard/TatoeListLayouts';
+import { TatoeList } from '@Components/tatoe/TatoeList';
 import Head from 'next/head';
-import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
-import { Header } from '../../commons/components/header/Header';
+import { DashboardLayouts } from '@Layouts/dashBoard/DashBoardLayouts';
+import { Header } from '@Components/header/Header';
 const UserTatoeList = () => {
   return (
     <div>
@@ -15,9 +14,7 @@ const UserTatoeList = () => {
       <Header />
       <DashboardLayouts>
         <TatoeListLayouts>
-          {/* <TatoeListWrapper> */}
           <TatoeList />
-          {/* </TatoeListWrapper> */}
         </TatoeListLayouts>
       </DashboardLayouts>
     </div>

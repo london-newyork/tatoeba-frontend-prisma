@@ -1,19 +1,18 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../../types/types';
+import { Layouts } from '@Types/types';
 import { SideBarLayouts } from './SideBarLayouts';
 
 export const DashboardLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-      md:px-18
       h-full
       min-h-screen
+      md:px-16
       "
     >
       <div
         className="
-        position
         relative
         flex
         h-screen
@@ -35,7 +34,6 @@ export const DashboardLayouts: VFC<Layouts> = (props) => {
         >
           <div
             className="
-            position
             relative
             flex
             max-w-[1200px]

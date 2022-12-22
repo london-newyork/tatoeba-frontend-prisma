@@ -1,6 +1,6 @@
 import React, { VFC } from 'react';
-import { TatoeListAddNewTatoeBtn } from '../../commons/components/btn/TatoeListAddNewTatoeBtn';
-import { Layouts } from '../../types/types';
+import { TatoeListAddNewTatoeBtn } from '@Components/btn/TatoeListAddNewTatoeBtn';
+import { Layouts } from '@Types/types';
 
 export const TatoeListLayouts: VFC<Layouts> = (props) => {
   return (
@@ -42,8 +42,8 @@ export const TatoeListLayouts: VFC<Layouts> = (props) => {
         <div>
           <h2
             className="
-            text-md
             pb-2
+            text-base
             text-gray-600
             "
           >

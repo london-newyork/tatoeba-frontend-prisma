@@ -1,7 +1,7 @@
+import { useProfileImage } from '@Features/auth/store';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { SVGIcons } from '../SVGIcons';
-import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
 import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 
 type HeaderProfileIconProps = {
@@ -11,7 +11,7 @@ type HeaderProfileIconProps = {
 };
 
 export const HeaderProfileIcon = ({ userId, className, onClick }: HeaderProfileIconProps) => {
-  const profileImage = useRecoilValue(ProfileImageAtom);
+  const profileImage = useProfileImage();
 
   return (
     <TriggerDropDownMenuBtn onClick={onClick} className={className}>

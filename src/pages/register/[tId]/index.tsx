@@ -1,10 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../../commons/components/header/Header';
-import { RegisterTatoeHeadline } from '../../../features/register/components/RegisterTatoeHeadline';
-import { UpdateTatoePage } from '../UpdateTatoePage';
+import { Header } from '@Components/header/Header';
+import { RegisterTatoeHeadline } from '@Components/register/RegisterTatoeHeadline';
+
 import { useRouter } from 'next/router';
+import UpdateTatoePage from '../UpdateTatoePage';
 
 export default function Register() {
   const router = useRouter();
@@ -26,11 +27,11 @@ export default function Register() {
       <Header />
       <section
         className="
-          md:px-18
           mx-auto
           mb-12
           px-7
           pt-[80px]
+          md:px-16
           md:pt-[100px]
           "
       >

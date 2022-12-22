@@ -1,20 +1,24 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-
+import { useRecoilState } from 'recoil';
 import { useApi } from '../../hooks/useApi';
-import { useAuth } from '../../../features/auth/hooks/useAuth';
-import { useTatoe } from '../../../features/dashboard/components/hooks/useTatoe';
-import { useUserInfo } from '../../../features/auth/hooks/useUserInfo';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
+
+import { Tatoe } from '@Types/types';
+
+import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
+
 import { SVGIcons } from '../SVGIcons';
-import { Tatoe } from '../../../types/types';
-import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
-import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';
+import { useAccessToken } from '@Features/auth/store';
+import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
 
 export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
   const { tId } = props;
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  // const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const accessToken = useAccessToken();
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
   const router = useRouter();
@@ -25,7 +29,8 @@ export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
     router,
     user,
     setTatoe,
-    persistAccessToken
+    /* persistAccessToken */
+    accessToken
   });
   const { api: deleteTatoeImageApi } = useApi(`/tatoe/${tId}/explanation_image`, { method: 'DELETE' });
   const handleOnClickDeleteTatoeBtn = async () => {

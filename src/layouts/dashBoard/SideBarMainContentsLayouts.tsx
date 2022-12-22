@@ -1,8 +1,8 @@
+import { DashboardEditTatoeBtn } from '@Commons/components/btn/DashboardEditTatoeBtn';
+import { DashboardUserHomeBtn } from '@Commons/components/btn/DashboardUserHomeBtn';
 import { VFC } from 'react';
-import { DashboardEditTatoeBtn } from '../../commons/components/btn/DashBoardEditTatoeBtn';
-import { DashboardUserHomeBtn } from '../../commons/components/btn/DashBoardUserHomeBtn';
 
-export const SideBarMainContentsLayouts: VFC = (props) => {
+export const SideBarMainContentsLayouts: VFC = () => {
   return (
     <div
       className="

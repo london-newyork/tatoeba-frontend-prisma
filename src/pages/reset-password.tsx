@@ -1,13 +1,12 @@
-import { Header } from '../commons/components/header/Header';
-import { AuthLayouts } from '../layouts/AuthLayouts';
+import { Header } from '@Components/header/Header';
+import { AuthLayouts } from '@Layouts/AuthLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { HeadLine } from '../commons/components/HeadLine';
-import { AuthInputs } from '../features/auth/components/AuthInputs';
-import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
+import { HeadLine } from '@Components/HeadLine';
+import { Inputs } from '@Components/Inputs';
+import { SendAuthInfoBtn } from '@Components/btn/SendAuthInfoBtn';
+import { useAccessToken } from '@Features/auth/store';
 
 const ResetPassword = () => {
   const router = useRouter();
@@ -15,8 +14,7 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // TODO usePersistAccessTokenの使い所確認
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const accessToken = useAccessToken();
 
   const handleChangeCurrentPassword = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
     setCurrentPassword(e.target.value);
@@ -46,7 +44,7 @@ const ResetPassword = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${persistAccessToken}`
+        Authorization: `Bearer ${accessToken}`
       },
       body: JSON.stringify({ currentPassword, newPassword })
     });
@@ -69,10 +67,26 @@ const ResetPassword = () => {
           className="login-headline
               pt-8"
         />
+
         <div className="flex flex-col gap-6 pt-10">
-          <AuthInputs inputsTitle="現在のパスワード" value={currentPassword} onChange={handleChangeCurrentPassword} />
-          <AuthInputs inputsTitle="新パスワード" value={newPassword} onChange={handleChangeNewPassword} />
-          <AuthInputs inputsTitle="新パスワード確認" value={confirmPassword} onChange={handleChangeConfirmPassword} />
+          <Inputs
+            inputsTitle="現在のパスワード"
+            value={currentPassword}
+            onChange={handleChangeCurrentPassword}
+            className="login-input login-input-cstm"
+          />
+          <Inputs
+            inputsTitle="新パスワード"
+            value={newPassword}
+            onChange={handleChangeNewPassword}
+            className="login-input login-input-cstm"
+          />
+          <Inputs
+            inputsTitle="新パスワード確認"
+            value={confirmPassword}
+            onChange={handleChangeConfirmPassword}
+            className="login-input login-input-cstm"
+          />
           <SendAuthInfoBtn onClick={handleResetPassword} text="パスワード再設定" />
         </div>
       </AuthLayouts>

@@ -1,7 +1,7 @@
+import { DashboardLayouts } from '@Layouts/dashBoard/DashBoardLayouts';
 import React from 'react';
-import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
-import { Header } from '../../commons/components/header/Header';
-import { RemoveMemberLayouts } from '../../layouts/dashBoard/RemoveMemberLayouts';
+import { Header } from '@Components/header/Header';
+import { RemoveMemberLayouts } from '@Layouts/dashBoard/RemoveMemberLayouts';
 
 const RemoveMember = () => {
   return (

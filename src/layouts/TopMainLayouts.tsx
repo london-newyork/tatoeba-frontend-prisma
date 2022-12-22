@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import { Layouts } from '@Types/types';
 
 export const TopMainLayouts: VFC<Layouts> = (props) => {
   return (

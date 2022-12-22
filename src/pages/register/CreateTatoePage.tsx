@@ -1,15 +1,15 @@
 import React, { FormEventHandler, useState } from 'react';
 
 import { useRouter } from 'next/router';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
-import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
-import { useAuth } from '../../features/auth/hooks/useAuth';
-import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
-import { useTatoe } from '../../features/dashboard/hooks/useTatoe';
-import { useAlert } from '../../commons/hooks/useAlert';
+import { useRecoilState } from 'recoil';
+import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
 
-import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
+import { TatoeForm } from '@Features/tatoe/components/TatoeForm';
+import { useAccessToken } from '@Features/auth/store';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
+import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
+import { useAlert } from '@Commons/hooks/useAlert';
 
 export default function CreateTatoePage() {
   const router = useRouter();
@@ -17,14 +17,17 @@ export default function CreateTatoePage() {
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
+  // eslint-disable-next-line
   const [createdAt, setCreatedAt] = useState<string | null>('');
+  // eslint-disable-next-line
   const [updatedAt, setUpdatedAt] = useState<string | null>('');
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  /*   const persistAccessToken = useRecoilValue(LoginUserAtom); */
+  const accessToken = useAccessToken();
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
@@ -34,7 +37,7 @@ export default function CreateTatoePage() {
     tatoe,
     user,
     setTatoe,
-    persistAccessToken,
+    accessToken,
     userId,
     title,
     shortParaphrase,
@@ -46,6 +49,7 @@ export default function CreateTatoePage() {
   const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
+    // eslint-disable-next-line
     const { alertRegisterTatoe, noInputsData } = useAlert({
       userId,
       user,

@@ -5,13 +5,13 @@ export const EditMainLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-    md:px-18
     mx-auto
     h-screen
     bg-gray-100
     px-7
     pt-9
     sm:pt-[80px]
+    md:px-16
     md:pt-[100px]"
     >
       <div

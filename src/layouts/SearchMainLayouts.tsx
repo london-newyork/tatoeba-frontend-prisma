@@ -1,6 +1,6 @@
 import React, { VFC } from 'react';
-import { Footer } from '../commons/components/footer/Footer';
-import { Layouts } from '../types/types';
+import { Footer } from '@Components/footer/Footer';
+import { Layouts } from '@Types/types';
 
 export const SearchMainLayouts: VFC<Layouts> = (props) => {
   return (

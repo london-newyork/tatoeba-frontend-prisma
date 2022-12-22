@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../commons/components/header/Header';
-import { SearchMainLayouts } from '../../layouts/SearchMainLayouts';
+import { Header } from '@Components/header/Header';
+import { SearchMainLayouts } from '@Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
 
-import { Tatoe } from '../../types/types';
+import { Tatoe } from '@Types/types';
 
-import { useGetUserTatoeApi } from '../../features/top/hooks/useGetUserTatoeApi';
-import { SearchResultToDetailBtn } from '../../commons/components/btn/SearchResultToDetailBtn';
-import { ArrowIcon } from '../../features/search/ArrowIcon';
-import { SearchResultListItemText } from '../../features/search/SearchResultListItemText';
+import { useGetUserTatoeApi } from '@Components/top/hooks/useGetUserTatoeApi';
+import { SearchResultToDetailBtn } from '@Components/btn/SearchResultToDetailBtn';
+import { ArrowIcon } from '@Components/search/ArrowIcon';
+import { SearchResultListItemText } from '@Components/search/SearchResultListItemText';
 
 const SearchResultList = () => {
   const [result, setResult] = useState([]);
@@ -19,6 +19,7 @@ const SearchResultList = () => {
 
   const queryKeyWord: string = router.query.keyWord as string;
 
+  // eslint-disable-next-line
   const [keyWord, setKeyWord] = useState(queryKeyWord);
   const [filteredTatoe, setFilteredTatoe] = useState<Tatoe[] | undefined>();
 
@@ -69,18 +70,18 @@ const SearchResultList = () => {
                           shortParaphrase={item.shortParaphrase}
                           description={item.description}
                         >
-                          <a
+                          <div
                             className="
-                        group
-                        flex
-                        flex-row
-                        items-center
-                        gap-2
-                        "
+                            group
+                            flex
+                            flex-row
+                            items-center
+                            gap-2
+                            "
                           >
                             <ArrowIcon />
                             <SearchResultListItemText title={item.title} shortParaphrase={item.shortParaphrase} />
-                          </a>
+                          </div>
                         </SearchResultToDetailBtn>
                       </li>
                     </ul>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { HeaderProfileIcon } from '../btn/HeaderProfileIcon';
-import { useAuth } from '../../../features/auth/hooks/useAuth';
+import { useAuth } from '@Features/auth/hooks/useAuth';
 import { useRouter } from 'next/router';
 import { HeaderLogin } from './HeaderLogin';
 import { HeaderLogout } from './HeaderLogout';
-import { useDropDownMenu } from '../../../commons/hooks/useDropDownMenu';
-import { DropDownMenu } from '../../../commons/components/DropDownMenu';
+import { useDropDownMenu } from '@Commons/hooks/useDropDownMenu';
+import { DropDownMenu } from '@Components/DropDownMenu';
 
 export const HeaderDropDownMenu = () => {
   const [isClient, setIsClient] = useState(false);

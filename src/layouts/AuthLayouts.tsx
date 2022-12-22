@@ -1,16 +1,16 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import { Layouts } from '@Types/types';
 
 export const AuthLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-    md:px-18
     mx-auto
     h-screen
     bg-gray-100
     px-7
     pt-[100px]
+    md:px-16
     "
     >
       <section

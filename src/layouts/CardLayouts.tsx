@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import { Layouts } from '@Types/types';
 
 export const CardLayouts: VFC<Layouts> = (props) => {
   return (

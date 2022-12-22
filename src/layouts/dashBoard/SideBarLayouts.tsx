@@ -1,5 +1,5 @@
+import { DashboardMenuBtn } from '@Commons/components/btn/DashboardMenuBtn';
 import React, { VFC } from 'react';
-import { DashboardMenuBtn } from '../../commons/components/btn/DashBoardMenuBtn';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
 import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 
@@ -7,7 +7,6 @@ export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
   return (
     <aside
       className="
-      position
       relative
       "
     >

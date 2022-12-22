@@ -20,15 +20,37 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "incremental": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "./",
+    "paths": {
+      "@Commons/*": [
+        "./src/commons/*",
+      ],
+      "@Components/*": [
+        "./src/commons/components/*"
+      ],
+      "@Pages/*": [
+        "./src/pages/*"
+      ],
+      "@Features/*": [
+        "./src/features/*"
+      ],
+      "@Types/*": [
+        "./src/types/*"
+      ],
+      "@Lib/*": [
+        "./src/lib/*"
+      ],
+      "@Layouts/*": [
+        "./src/layouts/*"
+      ],
+      "@Utils/*": [
+        "./src/utils/*"
+      ]
+    }
   },
   "include": [
     "src/**/*",
-    "src/features/**/**",
-    "src/pages/TestParent.tsx",
-    "src/pages/Top",
-    "src/pages/**/*",
-    "src/components/**/*",
     "**/*.ts",
     "**/*.tsx"
   ],

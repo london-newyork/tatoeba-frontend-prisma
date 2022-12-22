@@ -1,32 +1,35 @@
+import { useAlert } from '@Commons/hooks/useAlert';
+import { useApi } from '@Commons/hooks/useApi';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+import { useAccessToken } from '@Features/auth/store';
+import { TatoeForm } from '@Features/tatoe/components/TatoeForm';
+import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
+import { Tatoe } from '@Types/types';
+import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
 import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { TatoeForm } from '../../features/dashboard/components/tatoe/TatoeForm';
-import { useAlert } from '../../commons/hooks/useAlert';
-import { useApi } from '../../commons/hooks/useApi';
-import { useAuth } from '../../features/auth/hooks/useAuth';
-import { useTatoe } from '../../features/dashboard/hooks/useTatoe';
-import { useUserInfo } from '../../features/auth/hooks/useUserInfo';
-import { Tatoe } from '../../types/types';
-import { LoginUserAtom } from '../../utils/atoms/LoginUserAtom';
-import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
+import { useRecoilState } from 'recoil';
 
-export type UpdateTatoePage = {
+export type UpdateTatoePageProps = {
   tId: string | string[];
   onCreateTatoe: () => unknown;
 };
 
-export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
+export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) => {
   const [title, setTitle] = useState<string | null>('');
   const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
   const [description, setDescription] = useState<string | null>('');
+
+  // eslint-disable-next-line
   const [createdAt, setCreatedAt] = useState<string | null>('');
+  // eslint-disable-next-line
   const [updatedAt, setUpdatedAt] = useState<string | null>('');
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
-  const persistAccessToken = useRecoilValue(LoginUserAtom);
+  const accessToken = useAccessToken();
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
 
@@ -37,7 +40,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
     tatoe,
     user,
     setTatoe,
-    persistAccessToken,
+    accessToken,
     userId,
     title,
     shortParaphrase,
@@ -67,7 +70,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePage) => {
 
   const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-
+    // eslint-disable-next-line
     const { alertRegisterTatoe, noInputsData } = useAlert({
       userId,
       user,

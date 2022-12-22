@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../../commons/components/header/Header';
-import { SearchMainLayouts } from '../../../layouts/SearchMainLayouts';
-import { useRecoilValue } from 'recoil';
+import { Header } from '@Commons/components/header/Header';
+import { SearchMainLayouts } from '@Layouts/SearchMainLayouts';
 
-import { ProfileImageAtom } from '../../../utils/atoms/ProfileImageAtom';
-import { useGetUserTatoeApi } from '../../../features/top/hooks/useGetUserTatoeApi';
-import { AllUserTatoe } from '../../../types/types';
-import { PostedUser } from '../../../features/detail/components/PostedUser';
-import { DetailTatoeTitle } from '../../../features/detail/components/DetailTatoeTitle';
+import { useGetUserTatoeApi } from '@Components/top/hooks/useGetUserTatoeApi';
+import { AllUserTatoe } from '@Types/types';
+
+import { DetailTatoeTitle } from '@Components/detailpage/DetailTatoeTitle';
+import { PostedUser } from '@Components/detailpage/PostedUser';
+import { useProfileImage } from '@Features/auth/store';
 
 const SearchResult = () => {
   const router = useRouter();
-  const profileImage = useRecoilValue(ProfileImageAtom);
+  const profileImage = useProfileImage();
   const { tId } = router.query;
 
   const { getAllUserTatoe, allUserTatoe } = useGetUserTatoeApi();
@@ -45,15 +45,18 @@ const SearchResult = () => {
               <h2 className="pt-16 text-2xl text-gray-600">{item.shortParaphrase}</h2>
               <p
                 className="
-                  text-md
                   pt-10
+                  text-base
                   leading-loose
                   text-gray-600"
               >
                 {item.description}
               </p>
               <div className="mx-auto mt-12">
-                {item.imageUrl ? <img src={item.imageUrl} alt="例えの説明画像" className="mx-auto" /> : null}
+                {item.imageUrl ? (
+                  // eslint-disable-next-line
+                  <img src={item.imageUrl} alt="例えの説明画像" className="mx-auto" />
+                ) : null}
               </div>
             </div>
           ) : null;

@@ -1,10 +1,10 @@
 import { useRecoilState } from 'recoil';
-import { AllUserTatoe, Tatoe } from '../../../../types/types';
-import { AllUserTatoeAtom } from '../../../../utils/atoms/AllUserTatoeAtom';
+import { AllUserTatoe, Tatoe } from '@Types/types';
+import { AllUserTatoeAtom } from '@Utils/atoms/AllUserTatoeAtom';
 import { useApi } from '../../../hooks/useApi';
 
 export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
-  const { api: getAllUserTatoesApi } = useApi(`/tatoe`, {
+  const { api: getAllUserTatoesApi } = useApi('/tatoe', {
     method: 'GET'
   });
 
@@ -33,6 +33,9 @@ export const useGetUserTatoeApi = (filteredTatoe?: Tatoe[]) => {
   // Search Resultで使用
   const getEachTatoe = async () => {
     if (!filteredTatoe) return;
+
+    // 他のapiと区別するため関数名を与えるが、与えた名前がReact Component でも Hooks でもないため
+    // eslint-disable-next-line
     const { api: getEachTatoeApi } = useApi(`/tatoe/${filteredTatoe[0]['tId']}`, {
       method: 'GET'
     });

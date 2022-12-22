@@ -46,14 +46,17 @@ const SearchResult = () => {
               <p
                 className="
                   pt-10
-                  text-md
+                  text-base
                   leading-loose
                   text-gray-600"
               >
                 {item.description}
               </p>
-              <div className="mt-12 mx-auto">
-                {item.imageUrl ? <img src={item.imageUrl} alt="例えの説明画像" className="mx-auto" /> : null}
+              <div className="mx-auto mt-12">
+                {item.imageUrl ? (
+                  // eslint-disable-next-line
+                  <img src={item.imageUrl} alt="例えの説明画像" className="mx-auto" />
+                ) : null}
               </div>
             </div>
           ) : null;

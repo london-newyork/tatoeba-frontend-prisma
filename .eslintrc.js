@@ -8,8 +8,10 @@ module.exports = {
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
-        'plugin:jsx-ally/recommended',
-        'prettier'
+        'plugin:jsx-a11y/recommended',
+        'next/core-web-vitals',
+        'plugin:tailwindcss/recommended',
+        'prettier',
     ],
     'parserOptions': {
         'ecmaFeatures': {
@@ -27,6 +29,18 @@ module.exports = {
         'no-undef': 'error',
         'react/prop-types': 'off',
         'react/jsx-props-no-spreading': 'off',
+    },
+    'globals': {
+        React: true,
+        google: true,
+        mount: true,
+        mountWithRouter: true,
+        shallow: true,
+        shallowWithRouter: true,
+        context: true,
+        expect: true,
+        jsdom: true,
+        JSX: true,
     },
     'settings': {
         'react': {

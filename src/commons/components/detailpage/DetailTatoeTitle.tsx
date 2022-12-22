@@ -1,19 +1,19 @@
 import React from 'react';
-import { Tatoe } from '../../../types/types';
+import { Tatoe } from '@Types/types';
 
 export const DetailTatoeTitle = ({ title }: Pick<Tatoe, 'title'>) => {
   return (
     <div
       className="
-      flex
       relative
+      flex
       "
     >
       <h1
         className="
+        pt-6
         text-4xl
         text-gray-700
-        pt-6
         "
       >
         {title}

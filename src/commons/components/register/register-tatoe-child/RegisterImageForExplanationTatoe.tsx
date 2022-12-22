@@ -60,8 +60,8 @@ export const RegisterImageForExplanationTatoe = ({
     <div
       className="
       flex
-      justify-between
       flex-col
+      justify-between
       lg:flex-row"
     >
       <label
@@ -85,12 +85,12 @@ export const RegisterImageForExplanationTatoe = ({
       <div className="explanation-img-wrapper position relative">
         {defaultImageUrl ? (
           <img src={defaultImageUrl} className="explanation-img" alt="例えの説明画像" />
-        ) : <div className="absolute text-on-explanation-img">画像を追加</div> && imageUrl ? (
+        ) : <div className="text-on-explanation-img absolute">画像を追加</div> && imageUrl ? (
           <img src={imageUrl} className="explanation-img" alt="例えの説明画像" />
         ) : (
-          <div className="absolute text-on-explanation-img">画像を追加</div>
+          <div className="text-on-explanation-img absolute">画像を追加</div>
         )}
-        <div className="z-10 flex gap-x-3 justify-end mt-3 mr-3">
+        <div className="z-10 mt-3 mr-3 flex justify-end gap-x-3">
           <input type="file" accept="image/*" onChange={handleChangeFile} hidden name="image" ref={ref} />
           <button type="button" onClick={handleClickChangeImage}>
             <SVGIcons

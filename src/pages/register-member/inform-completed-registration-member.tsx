@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { Header } from '../../commons/components/header/Header';
+import { Header } from '@Components/header/Header';
 
 //これは、registrationTokenを含んだURLを踏む=> ユーザーがパスワードとメールアドレスを送った後に表示されるページ
 const InformCompletedRegistrationMember = () => {
@@ -14,8 +14,8 @@ const InformCompletedRegistrationMember = () => {
       <div
         className="
       w-full
-      pt-40
       px-10
+      pt-40
       "
       >
         <p

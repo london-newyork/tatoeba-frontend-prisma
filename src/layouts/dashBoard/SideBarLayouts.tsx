@@ -1,5 +1,5 @@
+import { DashboardMenuBtn } from '@Commons/components/btn/DashboardMenuBtn';
 import React, { VFC } from 'react';
-import { DashboardMenuBtn } from '../../commons/components/btn/DashBoardMenuBtn';
 import { WithoutPropsChildrenLayouts } from '../../types/types';
 import { SideBarMainContentsLayouts } from './SideBarMainContentsLayouts';
 
@@ -7,7 +7,6 @@ export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
   return (
     <aside
       className="
-      position
       relative
       "
     >
@@ -15,26 +14,26 @@ export const SideBarLayouts: VFC<WithoutPropsChildrenLayouts> = () => {
         className="
         fixed
         top-12
-        sm:top-12
         left-0
         z-10
-        bg-black
+        flex
+        min-h-[48px]
         min-w-full
+        max-w-full
+        flex-row
+        bg-black
+        sm:top-12
         sm:min-w-[64px]
         sm:max-w-[64px]
-        max-w-full
-        min-h-[48px]
         md:h-full
-        flex
         md:flex-col
-        flex-row
         "
       >
         <div
           className="
           flex
-          md:flex-col
-          flex-row"
+          flex-row
+          md:flex-col"
         >
           <DashboardMenuBtn />
           <SideBarMainContentsLayouts />

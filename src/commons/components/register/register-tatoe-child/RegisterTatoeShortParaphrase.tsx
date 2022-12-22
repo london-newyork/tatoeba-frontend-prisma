@@ -1,10 +1,8 @@
-import React from "react";
+import React from 'react';
 
 type ShortParaphraseProps = {
   shortParaphrase: string | null;
-  setShortParaphrase: React.Dispatch<
-    React.SetStateAction<string | string[] | null>
-  >;
+  setShortParaphrase: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
 export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
@@ -14,14 +12,15 @@ export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {
     <div
       className="
         flex
-        justify-between
         flex-col
+        justify-between
         lg:flex-row
         "
     >
       <label
         className="
         headline-s"
+        htmlFor="shortParaphrase"
       >
         短く例えると
         <br />

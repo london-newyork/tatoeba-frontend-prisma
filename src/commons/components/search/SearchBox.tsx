@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useState } from 'react';
-import { SearchBoxLayouts } from '../../../layouts/SearchBoxLayouts';
+import { SearchBoxLayouts } from '@Layouts/SearchBoxLayouts';
 
 export const SearchBox = () => {
   const [keyWord, setKeyWord] = useState('');
@@ -28,51 +28,50 @@ export const SearchBox = () => {
           value={keyWord}
           onChange={handleChange}
           className="
-                placeholder-darkGray_green
                 h-[44px]
                 items-center
-                text-sm
-                ring-0
-                outline-none
-                focus:ring-0
                 border-dark_green
+                bg-dark_green
+                pl-8
+                text-sm
                 text-white
                 caret-gray-800
-                pl-8
-                bg-dark_green
-                lg:max-w-[180px]
+                outline-none
+                ring-0
+                placeholder:text-darkGray_green
+                focus:ring-0
                 lg:w-[inherit]
+                lg:max-w-[180px]
                 "
           placeholder="サーバーを例えると..."
         />
         <button
           className="
-                    absolute
-                    right-3
-                    -top-[14px]
-                    h-[42px]
-                    w-[42px]
-                    flex
-                    justify-center
-                    items-center
-                    rounded-r-full
-                    translate-y-4
-                    bg-dark_green
-                    transition
-                    duration-200
-                    ease-in
-                    tracking-wide
-                    text-sm
-                    text-gray-800
-                    "
+                  absolute
+                  right-3
+                  flex
+                  h-[42px]
+                  w-[42px]
+                  translate-y-4
+                  items-center
+                  justify-center
+                  rounded-r-full
+                  bg-dark_green
+                  text-sm
+                  tracking-wide
+                  text-gray-800
+                  transition
+                  duration-200
+                  ease-in
+                  "
           onClick={handleClickSearch}
         >
           <span
             className="
+                    mr-3
                     h-8
                     w-[1px]
-                    bg-gray-800
-                    mr-3"
+                    bg-gray-800"
           ></span>
           検索
         </button>

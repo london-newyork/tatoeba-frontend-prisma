@@ -9,7 +9,7 @@ import Head from 'next/head';
 const Dashboard = () => {
   return (
     <div>
-      <Head>//</Head>
+      <Head>{/*  */}</Head>
       <div>
         <Header />
         <DashboardLayouts>

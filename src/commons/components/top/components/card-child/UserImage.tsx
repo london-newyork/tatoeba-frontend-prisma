@@ -1,15 +1,11 @@
-import React from "react";
+import React from 'react';
 
 type UserImagProps = {
   profileImage: number;
   userName: string;
   userId: string;
 };
-export const UserImage = ({
-  profileImage,
-  userName,
-  userId,
-}: UserImagProps) => {
+export const UserImage = ({ profileImage, userName, userId }: UserImagProps) => {
   return (
     <div>
       <ul
@@ -20,12 +16,14 @@ export const UserImage = ({
                     pb-2
                     "
       >
+        {/* imgタグでないと動かないため */}
+        {/* eslint-disable */}
         <img
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
           alt="ユーザーの画像"
           className="
-                      w-6
                       h-6
+                      w-6
                       rounded-full
                       object-cover"
         />

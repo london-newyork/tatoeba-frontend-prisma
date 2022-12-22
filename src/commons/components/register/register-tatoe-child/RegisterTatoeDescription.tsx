@@ -1,10 +1,8 @@
-import React from "react";
+import React from 'react';
 
 type DescriptionProps = {
   description: string | null;
-  setDescription: React.Dispatch<
-    React.SetStateAction<string | string[] | null>
-  >;
+  setDescription: React.Dispatch<React.SetStateAction<string | string[] | null>>;
 };
 
 export const RegisterTatoeDescription = (props: DescriptionProps) => {
@@ -14,14 +12,15 @@ export const RegisterTatoeDescription = (props: DescriptionProps) => {
     <div
       className="
         flex
-        justify-between
         flex-col
+        justify-between
         lg:flex-row"
     >
       <label
         className="
         headline-s
         "
+        htmlFor="description"
       >
         詳しい説明
         <br />

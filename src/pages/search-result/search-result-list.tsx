@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import 'tailwindcss/tailwind.css';
-import { Header } from '../../commons/components/header/Header';
-import { SearchMainLayouts } from '../../layouts/SearchMainLayouts';
+import { Header } from '@Components/header/Header';
+import { SearchMainLayouts } from '@Layouts/SearchMainLayouts';
 import { useRouter } from 'next/router';
 
-import { Tatoe } from '../../types/types';
+import { Tatoe } from '@Types/types';
 
-import { useGetUserTatoeApi } from '../../commons/components/top/hooks/useGetUserTatoeApi';
-import { SearchResultToDetailBtn } from '../../commons/components/btn/SearchResultToDetailBtn';
-import { ArrowIcon } from '../../commons/components/search/ArrowIcon';
-import { SearchResultListItemText } from '../../commons/components/search/SearchResultListItemText';
+import { useGetUserTatoeApi } from '@Components/top/hooks/useGetUserTatoeApi';
+import { SearchResultToDetailBtn } from '@Components/btn/SearchResultToDetailBtn';
+import { ArrowIcon } from '@Components/search/ArrowIcon';
+import { SearchResultListItemText } from '@Components/search/SearchResultListItemText';
 
 const SearchResultList = () => {
   const [result, setResult] = useState([]);
@@ -19,6 +19,7 @@ const SearchResultList = () => {
 
   const queryKeyWord: string = router.query.keyWord as string;
 
+  // eslint-disable-next-line
   const [keyWord, setKeyWord] = useState(queryKeyWord);
   const [filteredTatoe, setFilteredTatoe] = useState<Tatoe[] | undefined>();
 
@@ -54,9 +55,9 @@ const SearchResultList = () => {
       </Head>
       <Header />
       <SearchMainLayouts>
-        <div className="h-screen flex flex-col gap-y-2">
+        <div className="flex h-screen flex-col gap-y-2">
           <small className="text-gray-500">検索結果一覧</small>
-          <div className="pt-12 flex flex-col gap-6">
+          <div className="flex flex-col gap-6 pt-12">
             {router.query
               ? result.map((item) => {
                   return (
@@ -69,18 +70,18 @@ const SearchResultList = () => {
                           shortParaphrase={item.shortParaphrase}
                           description={item.description}
                         >
-                          <a
+                          <div
                             className="
-                        flex
-                        flex-row
-                        items-center
-                        gap-2
-                        group
-                        "
+                            group
+                            flex
+                            flex-row
+                            items-center
+                            gap-2
+                            "
                           >
                             <ArrowIcon />
                             <SearchResultListItemText title={item.title} shortParaphrase={item.shortParaphrase} />
-                          </a>
+                          </div>
                         </SearchResultToDetailBtn>
                       </li>
                     </ul>

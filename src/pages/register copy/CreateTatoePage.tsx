@@ -2,7 +2,7 @@ import React, { FormEventHandler, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
+import { TatoeAtom } from '../../utils/atoms/TatoeAtom';
 
 import { TatoeForm } from '@Features/tatoe/components/TatoeForm';
 import { useAccessToken } from '@Features/auth/store';

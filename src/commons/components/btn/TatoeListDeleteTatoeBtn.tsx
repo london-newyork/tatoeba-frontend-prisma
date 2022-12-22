@@ -7,11 +7,12 @@ import { useAuth } from '@Features/auth/hooks/useAuth';
 import { useUserInfo } from '@Features/user/hooks/useUserInfo';
 
 import { Tatoe } from '@Types/types';
-// import { LoginUserAtom, useAccessToken } from '../../../features/auth/store';
+
 import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
-import { useTatoe } from '@Features/dashboard/hooks/useTatoe';
+
 import { SVGIcons } from '../SVGIcons';
 import { useAccessToken } from '@Features/auth/store';
+import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
 
 export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
   const { tId } = props;

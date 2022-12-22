@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Tatoe } from '../../../../types/types';
+import { Tatoe } from '@Types/types';
 
 export const useHandleMoveToResult = (allUserTatoe: Tatoe[]) => {
   const router = useRouter();

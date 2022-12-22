@@ -5,7 +5,7 @@ export const TopUpperContents: VFC = () => {
   return (
     <section className="top-upper-wrapper">
       <div id="wrapper-left" className="order-2 sm:order-2 lg:order-1">
-        <h2 className="top-catch-copy font-top_headline">
+        <h2 className="top-catch-copy">
           わかりにくい話に、
           <br />
           わかりやすい例えで
@@ -24,10 +24,10 @@ export const TopUpperContents: VFC = () => {
         className="
                 top-upper-image-wrapper
                 w-[25%]
-                lg:-ml-[96px]
-                lg:max-w-[250px]
-                lg:min-w-[240px]
                 sm:min-w-[144px]
+                lg:ml-[96px]
+                lg:min-w-[240px]
+                lg:max-w-[250px]
                 "
       >
         <Image

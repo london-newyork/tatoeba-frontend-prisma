@@ -1,55 +1,51 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../../types/types';
+import { Layouts } from '@Types/types';
 import { SideBarLayouts } from './SideBarLayouts';
 
 export const DashboardLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-      min-h-screen
       h-full
-      md:px-18
+      min-h-screen
+      md:px-16
       "
     >
       <div
         className="
-        h-screen
-        flex
-        md:flex-row
-        flex-col
-        position
         relative
+        flex
+        h-screen
+        flex-col
+        md:flex-row
         "
       >
         <SideBarLayouts />
         <div
           className="
           absolute
+          inset-x-[4%]
           top-16
+          sm:inset-x-[10%]
           sm:top-14
-          left-[4%]
-          right-[4%]
-          sm:left-[10%]
-          sm:right-[10%]
           md:static
           md:mx-auto
           "
         >
           <div
             className="
-            position
             relative
-            pt-0
-            sm:pt-[60px]
-            md:pt-[100px]
-            pb-14
-            max-w-[1200px]
-            md:min-w-[640px]
             flex
-            lg:flex-row
+            max-w-[1200px]
             flex-col
             gap-y-8
+            pt-0
+            pb-14
             sm:gap-x-8
+            sm:pt-[60px]
+            md:min-w-[640px]
+            md:pt-[100px]
+            lg:flex-row
             lg:gap-x-8
             "
           >

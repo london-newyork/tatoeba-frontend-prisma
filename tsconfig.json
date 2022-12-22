@@ -51,10 +51,6 @@
   },
   "include": [
     "src/**/*",
-    "src/pages/TestParent.tsx",
-    "src/pages/Top",
-    "src/pages/**/*",
-    "src/components/**/*",
     "**/*.ts",
     "**/*.tsx"
   ],

@@ -1,39 +1,27 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { useAuth } from '@Features/auth/hooks/useAuth';
-import { useUserInfo } from '@Features/user/hooks/useUserInfo';
-import { useTatoe } from '../../../features/dashboard/hooks/useTatoe';
-import { Tatoe } from '../../../types/types';
-// import { LoginUserAtom } from '../../../utils/atoms/LoginUserAtom';
-import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';
-import { TatoeListCountFollowerBtn } from '../btn/TatoeListCountFollowerBtn';
-import { TatoeListDeleteTatoeBtn } from '../btn/TatoeListDeleteTatoeBtn';
-import { TatoeListEditExistingTatoeBtn } from '../btn/TatoeListEditExistingTatoeBtn';
+import { useRouter } from 'next/router';
+
+import { useRecoilState } from 'recoil';
+
 import { TatoeListCreatedAt } from './TatoeListCreatedAt';
 import { TatoeListTitle } from './TatoeListTitle';
 import { useAccessToken } from '@Features/auth/store';
+import { useAuth } from '@Features/auth/hooks/useAuth';
+import { useUserInfo } from '@Features/user/hooks/useUserInfo';
+import { Tatoe } from '@Types/types';
+import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
+import { TatoeListDeleteTatoeBtn } from '../btn/TatoeListDeleteTatoeBtn';
+import { TatoeListCountFollowerBtn } from '../btn/TatoeListCountFollowerBtn';
+import { TatoeListEditExistingTatoeBtn } from '../btn/TatoeListEditExistingTatoeBtn';
+import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
+import { useRouting } from '@Features/commons/hooks/useRouting';
 
 export const TatoeList = (): JSX.Element => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
-  // const persistAccessToken = useRecoilValue(LoginUserAtom);
   const accessToken = useAccessToken();
   const router = useRouter();
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
-
-  if (!userId) {
-    return null;
-  }
-  const { getTatoe } = useTatoe({
-    userId,
-    tatoe,
-    router,
-    user,
-    setTatoe,
-    /* persistAccessToken */
-    accessToken
-  });
 
   useEffect(() => {
     const getUserTatoeList = async () => {
@@ -42,6 +30,21 @@ export const TatoeList = (): JSX.Element => {
     getUserTatoeList();
   }, []);
 
+  const { getTatoe } = useTatoe({
+    userId,
+    tatoe,
+    router,
+    user,
+    setTatoe,
+    accessToken
+  });
+
+  const { handleMoveToEdit } = useRouting();
+
+  if (!userId) {
+    return null;
+  }
+
   return (
     <div>
       {tatoe.length
@@ -49,21 +52,21 @@ export const TatoeList = (): JSX.Element => {
             return (
               <ul
                 className="
-                group
                 tatoe-list-wrapper
+                group
                 "
                 key={item.tId as string}
               >
-                <li className="flex-grow">
+                <li className="grow">
                   <ul
                     className="
-                    lg:gap-3
-                    md:gap-1
                     tatoe-list-items-wrapper
+                    md:gap-1
+                    lg:gap-3
                     "
                   >
                     <TatoeListCreatedAt createdAt={item.createdAt} />
-                    <li className="flex-grow">
+                    <li className="grow">
                       <ul
                         className="
                         tatoe-list-item
@@ -72,12 +75,13 @@ export const TatoeList = (): JSX.Element => {
                         <TatoeListTitle title={item.title} shortParaphrase={item.shortParaphrase} />
                         <li className="tatoe-list-btn-group">
                           <TatoeListEditExistingTatoeBtn
-                            tId={item.tId}
-                            title={item.title}
-                            shortParaphrase={item.shortParaphrase}
-                            description={item.description}
-                            imageId={item.imageId}
-                            imageUrl={item.imageUrl}
+                            onClick={() => handleMoveToEdit({ tId: item.tId })}
+                            // tId={item.tId}
+                            // title={item.title}
+                            // shortParaphrase={item.shortParaphrase}
+                            // description={item.description}
+                            // imageId={item.imageId}
+                            // imageUrl={item.imageUrl}
                           />
                           <TatoeListDeleteTatoeBtn tId={item.tId} />
                           <TatoeListCountFollowerBtn />

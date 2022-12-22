@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tatoe } from '../../../types/types';
+import { Tatoe } from '@Types/types';
 
 export const TatoeListTitle = ({ title, shortParaphrase }: Pick<Tatoe, 'shortParaphrase' | 'title'>) => {
   return (

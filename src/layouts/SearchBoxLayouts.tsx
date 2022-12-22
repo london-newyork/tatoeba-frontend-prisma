@@ -14,34 +14,33 @@ export const SearchBoxLayouts: VFC<Layouts> = (props: any) => {
       >
         <div
           className="
+                mx-auto
+                h-[48px]
+                w-[18rem]
+                rounded-full
                 border-2
                 border-gray-800
-                w-[18rem]
-                mx-auto
-                md:mx-0
-                h-[48px]
-                px-6
                 bg-dark_green
+                px-6
                 text-gray-800
-                rounded-full
-                filter
                 drop-shadow-sm
+                md:mx-0
                 "
         >
           <div
             className="
+                        pointer-events-none
                         absolute
                         left-0
                         -top-[16px]
+                        flex
                         h-[44px]
                         w-[48px]
-                        flex
-                        justify-center
-                        items-center
-                        rounded-l-full
                         translate-y-4
+                        items-center
+                        justify-center
+                        rounded-l-full
                         bg-dark_green
-                        pointer-events-none
                         "
           >
             <SVGIcons

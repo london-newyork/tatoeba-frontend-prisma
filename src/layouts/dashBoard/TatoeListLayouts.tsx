@@ -1,50 +1,50 @@
 import React, { VFC } from 'react';
-import { TatoeListAddNewTatoeBtn } from '../../commons/components/btn/TatoeListAddNewTatoeBtn';
-import { Layouts } from '../../types/types';
+import { TatoeListAddNewTatoeBtn } from '@Components/btn/TatoeListAddNewTatoeBtn';
+import { Layouts } from '@Types/types';
 
 export const TatoeListLayouts: VFC<Layouts> = (props) => {
   return (
     <div
       className="
-      lg:px-9
-      px-4
-      md:px-7
-      sm:pt-7
-      pb-20
+      mx-auto
       mt-12
-      sm:mt-0
+      h-auto
+      w-[320px]
       rounded-2xl
       border
       border-gray-800
-      shadow-plane_2xl
-      mx-auto
-      h-auto
-      w-[320px]
-      sm:w-full
-      lg:min-w-[800px]
       bg-white
+      px-4
+      pb-20
+      shadow-plane_2xl
+      sm:mt-0
+      sm:w-full
+      sm:pt-7
+      md:px-7
+      lg:min-w-[800px]
+      lg:px-9
       "
     >
       <div
         className="
+        relative
+        min-w-[286px]
         bg-inherit
         pt-6
-        sm:pt-0
-        md:pt-0
-        min-w-[286px]
         sm:min-w-[286px]
+        sm:pt-0
         md:min-w-[364px]
+        md:pt-0
         lg:min-w-[726px]
-        relative
         "
       >
         <TatoeListAddNewTatoeBtn />
         <div>
           <h2
             className="
-            text-md
-            text-gray-600
             pb-2
+            text-base
+            text-gray-600
             "
           >
             [投稿一覧]

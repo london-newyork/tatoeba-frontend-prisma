@@ -1,12 +1,12 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import { Layouts } from '@Types/types';
 
 export const TopMainLayouts: VFC<Layouts> = (props) => {
   return (
     <main
       className="
-        pt-[100px]
         bg-white
+        pt-[100px]
         "
     >
       {props.children}

@@ -1,7 +1,7 @@
+import { DashboardLayouts } from '@Layouts/dashBoard/DashBoardLayouts';
 import React from 'react';
-import { DashboardLayouts } from '../../layouts/dashBoard/DashboardLayouts';
-import { Header } from '../../commons/components/header/Header';
-import { RemoveMemberLayouts } from '../../layouts/dashBoard/RemoveMemberLayouts';
+import { Header } from '@Components/header/Header';
+import { RemoveMemberLayouts } from '@Layouts/dashBoard/RemoveMemberLayouts';
 
 const RemoveMember = () => {
   return (
@@ -10,18 +10,18 @@ const RemoveMember = () => {
       <DashboardLayouts>
         <RemoveMemberLayouts>
           <h1 className="text-3xl tracking-widest text-gray-700">退会</h1>
-          <p className="text-sm leading-loose mt-10 text-gray-700">
+          <p className="mt-10 text-sm leading-loose text-gray-700">
             ご利用いただきありがとうございました。
             <br />
           </p>
           <button
             className="
+                    mt-10
                     h-10
                     w-40
-                    bg-red-400
                     rounded-md
-                    text-white
-                    mt-10"
+                    bg-red-400
+                    text-white"
           >
             退会する
           </button>

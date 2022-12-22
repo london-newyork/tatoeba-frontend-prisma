@@ -1,4 +1,4 @@
-import { Header } from '../commons/components/header/Header';
+import { Header } from '@Components/header/Header';
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -27,8 +27,8 @@ const CompleteResetPassword = () => {
       <div
         className="
             w-full
-            pt-40
             px-10
+            pt-40
             "
       >
         <p

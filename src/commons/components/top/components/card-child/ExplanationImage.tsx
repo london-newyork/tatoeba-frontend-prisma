@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-type ExplanationImage = {
+type ExplanationImageProps = {
   imageUrl: string;
 };
 
-export const ExplanationImage = ({ imageUrl }: ExplanationImage) => {
+export const ExplanationImage = ({ imageUrl }: ExplanationImageProps) => {
   return (
     <div>
       <ul
@@ -21,13 +21,11 @@ export const ExplanationImage = ({ imageUrl }: ExplanationImage) => {
                             "
         >
           {imageUrl ? (
-            <img
-              src={imageUrl}
-              alt="例えの説明画像"
-              className="rounded-md max-h-[164px]"
-            />
+            // img タグでないと動かないため
+            // eslint-disable-next-line
+            <img src={imageUrl} alt="例えの説明画像" className="max-h-[164px] rounded-md" />
           ) : (
-            <div className="rounded-md bg-gray-200 w-full min-h-[164px] flex items-center justify-center text-gray-400">
+            <div className="flex min-h-[164px] w-full items-center justify-center rounded-md bg-gray-200 text-gray-400">
               No Image
             </div>
           )}

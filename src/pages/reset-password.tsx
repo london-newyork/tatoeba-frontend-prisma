@@ -1,13 +1,11 @@
-import { Header } from '../commons/components/header/Header';
-import { AuthLayouts } from '../layouts/AuthLayouts';
+import { Header } from '@Components/header/Header';
+import { AuthLayouts } from '@Layouts/AuthLayouts';
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import { useRecoilValue } from 'recoil';
-// import { LoginUserAtom } from '../utils/atoms/LoginUserAtom';
-import { HeadLine } from '../commons/components/HeadLine';
-import { Inputs } from '../commons/components/Inputs';
-import { SendAuthInfoBtn } from '../commons/components/btn/SendAuthInfoBtn';
+import { HeadLine } from '@Components/HeadLine';
+import { Inputs } from '@Components/Inputs';
+import { SendAuthInfoBtn } from '@Components/btn/SendAuthInfoBtn';
 import { useAccessToken } from '@Features/auth/store';
 
 const ResetPassword = () => {
@@ -16,8 +14,6 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // TODO usePersistAccessTokenの使い所確認
-  // const persistAccessToken = useRecoilValue(LoginUserAtom);
   const accessToken = useAccessToken();
 
   const handleChangeCurrentPassword = (e: React.ChangeEvent<HTMLInputElement> | undefined) => {
@@ -48,7 +44,6 @@ const ResetPassword = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Authorization: `Bearer ${persistAccessToken}`
         Authorization: `Bearer ${accessToken}`
       },
       body: JSON.stringify({ currentPassword, newPassword })
@@ -69,10 +64,11 @@ const ResetPassword = () => {
       <AuthLayouts>
         <HeadLine
           text="パスワード再設定"
-          className="pt-8
-              login-headline"
+          className="login-headline
+              pt-8"
         />
-        <div className="pt-10 flex flex-col gap-6">
+
+        <div className="flex flex-col gap-6 pt-10">
           <Inputs
             inputsTitle="現在のパスワード"
             value={currentPassword}

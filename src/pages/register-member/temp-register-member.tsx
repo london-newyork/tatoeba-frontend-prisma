@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { SendAuthInfoBtn } from '../../commons/components/btn/SendAuthInfoBtn';
-import { Header } from '../../commons/components/header/Header';
-import { HeadLine } from '../../commons/components/HeadLine';
-import { AuthLayouts } from '../../layouts/AuthLayouts';
-import { Inputs } from '../../commons/components/Inputs';
+import { SendAuthInfoBtn } from '@Components/btn/SendAuthInfoBtn';
+import { Header } from '@Components/header/Header';
+import { HeadLine } from '@Components/HeadLine';
+import { AuthLayouts } from '@Layouts/AuthLayouts';
+import { Inputs } from '@Components/Inputs';
 
 const TempRegisterMember = () => {
   const [postData, setPostData] = useState<string | undefined>('');
@@ -39,7 +39,7 @@ const TempRegisterMember = () => {
       <Header />
       <AuthLayouts>
         <HeadLine className="login-headline" text="新規会員登録" />
-        <div className="pt-14 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 pt-14">
           <Inputs
             inputsTitle="メールアドレス"
             value={postData}

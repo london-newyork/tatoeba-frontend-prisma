@@ -1,5 +1,5 @@
 import React, { VFC } from 'react';
-import { Layouts } from '../types/types';
+import { Layouts } from '@Types/types';
 
 export const CardLayouts: VFC<Layouts> = (props) => {
   return (
@@ -13,8 +13,8 @@ export const CardLayouts: VFC<Layouts> = (props) => {
         >
           <div
             className="
-                lg:w-[940px]
-               card-contents"
+                card-contents
+               lg:w-[940px]"
           >
             {props.children}
           </div>

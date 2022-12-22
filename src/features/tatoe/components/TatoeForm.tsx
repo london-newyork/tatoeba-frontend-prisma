@@ -1,13 +1,12 @@
+import { RegisterTatoeBtn } from '@Commons/components/btn/RegisterTatoeBtn';
+import { RegisterImageForExplanationTatoe } from '@Commons/components/register/register-tatoe-child/RegisterImageForExplanationTatoe';
+import { RegisterTatoeDescription } from '@Commons/components/register/register-tatoe-child/RegisterTatoeDescription';
+import { RegisterTatoeShortParaphrase } from '@Commons/components/register/register-tatoe-child/RegisterTatoeShortParaphrase';
+import { RegisterTatoeTitle } from '@Commons/components/register/register-tatoe-child/RegisterTatoeTitle';
+import { Tatoe } from '@Types/types';
 import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { RegisterImageForExplanationTatoe } from '../../../commons/components/register/register-tatoe-child/RegisterImageForExplanationTatoe';
-import { RegisterTatoeDescription } from '../../../commons/components/register/register-tatoe-child/RegisterTatoeDescription';
-import { RegisterTatoeShortParaphrase } from '../../../commons/components/register/register-tatoe-child/RegisterTatoeShortParaphrase';
-import { RegisterTatoeTitle } from '../../../commons/components/register/register-tatoe-child/RegisterTatoeTitle';
-import { RegisterTatoeBtn } from '../../../commons/components/btn/RegisterTatoeBtn';
-import { useTatoeCancel } from '../../dashboard/hooks/useTatoeCancel';
-import { Tatoe } from '../../../types/types';
-import { TatoeAtom } from '../../../utils/atoms/TatoeAtom';
+import { SetterOrUpdater } from 'recoil';
+import { useTatoeCancel } from '../hooks/useTatoeCacel';
 
 /*
 * TODO: 煩雑なフォームのstateを管理の効率化のために
@@ -78,7 +77,7 @@ export const TatoeForm = ({
         setDefaultImageUrl={setDefaultImageUrl}
         deleteExplanationImage={deleteExplanationImage}
       />
-      <div className="mx-auto md:mx-0 md:justify-end pt-6 flex flex-col smd:flex-row gap-6">
+      <div className="mx-auto flex flex-col gap-6 pt-6 smd:flex-row md:mx-0 md:justify-end">
         <RegisterTatoeBtn variant="cancel" btnName="キャンセル" btnType="button" onClickCancel={handleClickCancel} />
         {!isUpdate ? (
           <RegisterTatoeBtn variant="create" btnName="投稿する" btnType="submit" />

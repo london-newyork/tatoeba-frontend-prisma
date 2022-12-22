@@ -35,10 +35,10 @@ export const HeaderDropDownMenu = () => {
             <DropDownMenu
               className="
               drop-down-menu-wrapper
+              top-[36px]
               h-[120px]
               w-[120px]
               border-[1px]
-              top-[36px]
               "
               isClicked={isClicked}
               isShow={isShow}

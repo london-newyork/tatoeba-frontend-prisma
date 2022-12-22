@@ -16,9 +16,7 @@ module.exports = {
         'dark_green': '#05D200',
         'darkGray_green': '#9fdb9e',
         'mid_green': '#4cf048',
-        'dark_green': '#05D200',
         'faded_dark_green': '#40b53e',
-        'q_dark_green': '#05bf00',
         'dark_gray': '#5e5e5e',
       },
       fontSize: {
@@ -64,9 +62,7 @@ module.exports = {
         q_dark_green: '#05bf00',
         dark_green: '#05D200',
         mid_green: '#4cf048',
-        dark_green: '#05D200',
         faded_dark_green: '#40b53e',
-        q_dark_green: '#05bf00',
         dark_gray: '#5e5e5e',
       }),
       backgroundColor: (theme) => ({
@@ -95,4 +91,4 @@ module.exports = {
   variants: {
     extend: {},
   },
-}
+};

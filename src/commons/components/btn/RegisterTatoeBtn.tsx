@@ -32,7 +32,7 @@ type Props =
 
 export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
   return (
-    <div className="flex justify-end group">
+    <div className="group flex justify-end">
       <button
         type="submit"
         className={`btn-m-color ${btnColor[props.variant]}`}
@@ -49,7 +49,7 @@ export const RegisterTatoeBtn = (props: Required<BtnCommonProps> & Props) => {
         <SVGIcons
           d="M9 5l7 7-7 7"
           strokeWidth={1}
-          className={`absolute btn-m-icon-base arrow-icon-s ${btnIcon[props.variant]}`}
+          className={`btn-m-icon-base arrow-icon-s absolute ${btnIcon[props.variant]}`}
           name="arrow"
         />
       </div>

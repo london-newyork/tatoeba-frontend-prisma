@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { Header } from '../../commons/components/header/Header';
+import { Header } from '@Components/header/Header';
 
 const InformCompletedTempRegistrationMember = () => {
   return (
@@ -13,8 +13,8 @@ const InformCompletedTempRegistrationMember = () => {
       <div
         className="
       w-full
-      pt-40
       px-10
+      pt-40
       "
       >
         <p

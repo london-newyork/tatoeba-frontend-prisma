@@ -3,9 +3,9 @@ import { SVGIcons } from '../../SVGIcons';
 
 export type SubmitImageProps = {
   imageUrl?: string;
-  setImageUrl: React.Dispatch<React.SetStateAction<string>>;
-  defaultImageUrl?: string;
-  setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
+  setImageUrl: React.Dispatch<string>;
+  defaultImageUrl: string | null;
+  setDefaultImageUrl: React.Dispatch<string>;
   deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -82,10 +82,12 @@ export const RegisterImageForExplanationTatoe = ({
           </span>
         ) : null}
       </label>
-      <div className="explanation-img-wrapper position relative">
+      <div className="explanation-img-wrapper relative">
         {defaultImageUrl ? (
+          // eslint-disable-next-line
           <img src={defaultImageUrl} className="explanation-img" alt="例えの説明画像" />
         ) : <div className="text-on-explanation-img absolute">画像を追加</div> && imageUrl ? (
+          // eslint-disable-next-line
           <img src={imageUrl} className="explanation-img" alt="例えの説明画像" />
         ) : (
           <div className="text-on-explanation-img absolute">画像を追加</div>

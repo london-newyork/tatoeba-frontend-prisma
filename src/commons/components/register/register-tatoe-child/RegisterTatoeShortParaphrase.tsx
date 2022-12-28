@@ -1,8 +1,8 @@
 import React from 'react';
 
 type ShortParaphraseProps = {
-  shortParaphrase: string | null;
-  setShortParaphrase: React.Dispatch<React.SetStateAction<string | string[] | null>>;
+  shortParaphrase: string | undefined;
+  setShortParaphrase: React.Dispatch<string>;
 };
 
 export const RegisterTatoeShortParaphrase = (props: ShortParaphraseProps) => {

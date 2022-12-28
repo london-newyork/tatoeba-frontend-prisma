@@ -7,10 +7,11 @@ import { Tatoe } from '@Types/types';
 import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import { useTatoeCancel } from '../hooks/useTatoeCacel';
+import { useForm } from 'react-hook-form';
 
 /*
-* TODO: 煩雑なフォームのstateを管理の効率化のために
-React Hook Formを検討する。
+* TODO: 
+
 * このTatoeFormに親からuseState部分をpropsで渡さないことも検討
 *
 */
@@ -45,6 +46,12 @@ export const TatoeForm = ({
   setTatoe
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm();
 
   // const [title, setTitle] = useState<string | null>('');
   // const [shortParaphrase, setShortParaphrase] = useState<string | null>('');

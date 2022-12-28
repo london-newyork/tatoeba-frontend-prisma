@@ -1,8 +1,8 @@
 import React from 'react';
 
 type DescriptionProps = {
-  description: string | null;
-  setDescription: React.Dispatch<React.SetStateAction<string | string[] | null>>;
+  description: string | undefined;
+  setDescription: React.Dispatch<string>;
 };
 
 export const RegisterTatoeDescription = (props: DescriptionProps) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
 type TitleProps = {
-  title: string | null;
-  setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
+  title: string | undefined;
+  setTitle: React.Dispatch<string>;
 };
 
 export const RegisterTatoeTitle = (props: TitleProps) => {

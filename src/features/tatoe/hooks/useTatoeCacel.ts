@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { SetterOrUpdater } from 'recoil';
-import { Tatoe } from '../../../types/types';
+import { Tatoe } from '@Types/types';
 
 type CancelProps = {
   tId?: string | string[];
@@ -32,13 +32,13 @@ export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
       tatoe.map((item) => {
         if (item.tId === tId) {
           router.push({
-            pathname: '/dashboard/user-tatoe-list'
+            pathname: '/dashboards/user-tatoe-list'
           });
         }
       });
     }
     router.push({
-      pathname: '/dashboard/user-tatoe-list'
+      pathname: '/dashboards/user-tatoe-list'
     });
   };
   return { handleClickCancel };

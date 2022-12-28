@@ -5,7 +5,6 @@ const { persistAtom } = recoilPersist();
 // TODO: カプセル化
 // LoginUserAtomとProfileImageAtomファイルを後でけす
 const LoginUserAtom = atom<string | null>({
-  // key: 'persistAccessToken',
   key: 'accessToken',
   default: null,
   effects_UNSTABLE: [persistAtom]

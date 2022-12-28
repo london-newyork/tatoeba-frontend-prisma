@@ -4,7 +4,7 @@ import { Tatoe } from '@Types/types';
 export const useRouting = () => {
   const router = useRouter();
   const handleMoveToEdit = ({ tId }: Tatoe) => {
-    router.push(`/register/${tId}/`);
+    router.push(`/registers/${tId}/`);
   };
   return { handleMoveToEdit };
 };

@@ -76,7 +76,6 @@ export type TatoeBtnHooksProps = {
   router: NextRouter;
   user: User;
   setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
-  /* persistAccessToken: string | null; */
   accessToken: string | null;
 } & Tatoe;
 

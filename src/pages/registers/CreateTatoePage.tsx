@@ -26,7 +26,7 @@ export default function CreateTatoePage() {
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
   const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
-  /*   const persistAccessToken = useRecoilValue(LoginUserAtom); */
+
   const accessToken = useAccessToken();
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
@@ -68,7 +68,7 @@ export default function CreateTatoePage() {
     });
 
     router.push({
-      pathname: '/dashboard/user-tatoe-list'
+      pathname: '/dashboards/user-tatoe-list'
     });
   };
 

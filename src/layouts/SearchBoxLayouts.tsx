@@ -14,6 +14,7 @@ export const SearchBoxLayouts: VFC<Layouts> = (props: any) => {
       >
         <div
           className="
+                relative
                 mx-auto
                 h-[48px]
                 w-[18rem]
@@ -32,7 +33,7 @@ export const SearchBoxLayouts: VFC<Layouts> = (props: any) => {
                         pointer-events-none
                         absolute
                         left-0
-                        -top-[16px]
+                        -top-4
                         flex
                         h-[44px]
                         w-[48px]

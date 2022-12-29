@@ -7,7 +7,7 @@ import { Tatoe } from '@Types/types';
 import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import { useTatoeCancel } from '../hooks/useTatoeCacel';
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 
 /*
 * TODO: 
@@ -29,9 +29,9 @@ type TatoeFormProps = {
 } & Tatoe;
 
 export const TatoeForm = ({
-  onSubmit,
-  setTitle,
-  title,
+  /* onSubmit, */
+  // setTitle,
+  // title,
   shortParaphrase,
   setShortParaphrase,
   description,
@@ -46,12 +46,6 @@ export const TatoeForm = ({
   setTatoe
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors }
-  } = useForm();
 
   // const [title, setTitle] = useState<string | null>('');
   // const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
@@ -71,27 +65,52 @@ export const TatoeForm = ({
   }, [tId]);
 
   const { handleClickCancel } = useTatoeCancel({ tId, tatoe, setTatoe });
+  const methods = useForm();
+  const { handleSubmit, register } = useForm();
+  const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={onSubmit}>
-      <RegisterTatoeTitle title={title} setTitle={setTitle} />
-      <RegisterTatoeShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
-      <RegisterTatoeDescription description={description} setDescription={setDescription} />
-      <RegisterImageForExplanationTatoe
-        setImageUrl={setImageUrl}
-        imageUrl={imageUrl}
-        defaultImageUrl={defaultImageUrl}
-        setDefaultImageUrl={setDefaultImageUrl}
-        deleteExplanationImage={deleteExplanationImage}
-      />
-      <div className="mx-auto flex flex-col gap-6 pt-6 smd:flex-row md:mx-0 md:justify-end">
-        <RegisterTatoeBtn variant="cancel" btnName="キャンセル" btnType="button" onClickCancel={handleClickCancel} />
-        {!isUpdate ? (
-          <RegisterTatoeBtn variant="create" btnName="投稿する" btnType="submit" />
-        ) : (
-          <RegisterTatoeBtn variant="update" btnName="更新する" btnType="submit" />
-        )}
-      </div>
-    </form>
+    <FormProvider {...methods}>
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+        <RegisterTatoeTitle register={register} /* title={title} setTitle={setTitle}  */ />
+        <RegisterTatoeShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
+        <RegisterTatoeDescription description={description} setDescription={setDescription} />
+        <RegisterImageForExplanationTatoe
+          setImageUrl={setImageUrl}
+          imageUrl={imageUrl}
+          defaultImageUrl={defaultImageUrl}
+          setDefaultImageUrl={setDefaultImageUrl}
+          deleteExplanationImage={deleteExplanationImage}
+        />
+        <div className="mx-auto flex flex-col gap-6 pt-6 smd:flex-row md:mx-0 md:justify-end">
+          <RegisterTatoeBtn variant="cancel" btnName="キャンセル" btnType="button" onClickCancel={handleClickCancel} />
+          {!isUpdate ? (
+            <RegisterTatoeBtn variant="create" btnName="投稿する" btnType="submit" />
+          ) : (
+            <RegisterTatoeBtn variant="update" btnName="更新する" btnType="submit" />
+          )}
+        </div>
+      </form>
+    </FormProvider>
+    // <form className="flex flex-col gap-6" onSubmit={onSubmit}>
+    //   <RegisterTatoeTitle title={title} setTitle={setTitle} />
+    //   <RegisterTatoeShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
+    //   <RegisterTatoeDescription description={description} setDescription={setDescription} />
+    //   <RegisterImageForExplanationTatoe
+    //     setImageUrl={setImageUrl}
+    //     imageUrl={imageUrl}
+    //     defaultImageUrl={defaultImageUrl}
+    //     setDefaultImageUrl={setDefaultImageUrl}
+    //     deleteExplanationImage={deleteExplanationImage}
+    //   />
+    //   <div className="mx-auto flex flex-col gap-6 pt-6 smd:flex-row md:mx-0 md:justify-end">
+    //     <RegisterTatoeBtn variant="cancel" btnName="キャンセル" btnType="button" onClickCancel={handleClickCancel} />
+    //     {!isUpdate ? (
+    //       <RegisterTatoeBtn variant="create" btnName="投稿する" btnType="submit" />
+    //     ) : (
+    //       <RegisterTatoeBtn variant="update" btnName="更新する" btnType="submit" />
+    //     )}
+    //   </div>
+    // </form>
   );
 };

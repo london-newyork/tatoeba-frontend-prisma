@@ -1,6 +1,7 @@
 import { NextRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import { ReactNode } from 'react';
+import { FieldErrorsImpl, FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
@@ -88,4 +89,13 @@ export type SubmitImageProps = {
   userId?: string;
   tId?: string;
   query?: ParsedUrlQuery;
+};
+
+export type FormProps = {
+  register: UseFormRegister<FieldValues>;
+  errors?: FieldErrorsImpl<{
+    [x: string]: any;
+  }>;
+  isValid?: boolean;
+  setValue?: UseFormSetValue<FieldValues>;
 };

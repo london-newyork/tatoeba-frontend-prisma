@@ -1,22 +1,12 @@
+import { FormProps } from '@Types/types';
 import React from 'react';
-import { FieldErrorsImpl, FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
-// import { useFormContext } from 'react-hook-form';
-
+import { ErrorMessage } from '@hookform/error-message';
 /* type TitleProps = {
   title: string | undefined;
   setTitle: React.Dispatch<string>;
 }; */
 
-export type FormProps = {
-  register: UseFormRegister<FieldValues>;
-  errors?: FieldErrorsImpl<{
-    [x: string]: any;
-  }>;
-  isValid?: boolean;
-  setValue?: UseFormSetValue<FieldValues>;
-};
-
-export const RegisterTatoeTitle = (/* props: TitleProps */ { register }: FormProps) => {
+export const RegisterTatoeTitle = ({ register, errors }: FormProps) => {
   // const { title, setTitle } = props;
   // const { register } = useFormContext();
   return (
@@ -36,6 +26,11 @@ export const RegisterTatoeTitle = (/* props: TitleProps */ { register }: FormPro
         わかりにくい専門用語・文章
         <br />
         <span className="caption-s">50文字以内</span>
+        <ErrorMessage
+          errors={errors}
+          name="title"
+          render={({ message }) => (message ? <p className="error-message">{message}</p> : null)}
+        />
       </label>
       <textarea
         // value={title}
@@ -43,9 +38,18 @@ export const RegisterTatoeTitle = (/* props: TitleProps */ { register }: FormPro
         // onChange={(e) => setTitle(e.target.value)}
         rows={2}
         placeholder="サーバー"
-        maxLength={50}
         className="input-area"
-        {...register('title')}
+        {...register('title', {
+          required: true,
+          pattern: {
+            value: /^[ぁ-んァ-ヶー一-龠 a-zA-Z ]+$/,
+            message: '全角漢字ひらがなまたは半角アルファベットでご入力ください。'
+          },
+          maxLength: {
+            value: 50,
+            message: '最大50文字までご入力が可能です。'
+          }
+        })}
       ></textarea>
     </div>
     // <div

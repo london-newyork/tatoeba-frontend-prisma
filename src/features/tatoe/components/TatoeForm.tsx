@@ -64,15 +64,25 @@ export const TatoeForm = ({
     }
   }, [tId]);
 
+  useEffect(() => {
+    if (register === null || errors === null) {
+      return;
+    }
+  }, []);
+
   const { handleClickCancel } = useTatoeCancel({ tId, tatoe, setTatoe });
   const methods = useForm();
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm();
   const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
 
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <RegisterTatoeTitle register={register} /* title={title} setTitle={setTitle}  */ />
+        <RegisterTatoeTitle register={register} errors={errors} /* title={title} setTitle={setTitle}  */ />
         <RegisterTatoeShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
         <RegisterTatoeDescription description={description} setDescription={setDescription} />
         <RegisterImageForExplanationTatoe

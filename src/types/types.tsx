@@ -12,7 +12,7 @@ export type Tatoe = {
   description?: string;
   createdAt?: string;
   updatedAt?: string;
-  imageUrl?: string;
+  imageUrl: string | null;
   imageId?: string;
   formData?: FormData;
 };
@@ -85,7 +85,7 @@ export type OnClick = {
 };
 
 export type SubmitImageProps = {
-  onSubmit: (file: File) => void;
+  onSubmit: (/* file: File */) => void;
   userId?: string;
   tId?: string;
   query?: ParsedUrlQuery;

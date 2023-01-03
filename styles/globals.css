@@ -29,7 +29,7 @@
 }
 
 .headline-s {
-  @apply text-sm text-gray-500 leading-tight lg:w-[300px] pb-1 md:pb-1 lg:pb-0 select-none;
+  @apply text-sm text-gray-500 leading-tight lg:w-[300px] pb-2 md:pb-1 lg:pb-0 select-none;
 }
 
 .btn-m-white {
@@ -258,5 +258,5 @@ text-xs transition-all group-hover:opacity-60;
 }
 
 .error-message {
-  @apply pt-0 text-xs leading-8 text-red-500 md:pt-1 md:text-xs md:leading-tight lg:w-[200px];
+  @apply pt-0 text-xs text-red-500 md:pt-1 md:text-xs md:leading-tight lg:w-[200px];
 }

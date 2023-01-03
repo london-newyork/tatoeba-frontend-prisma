@@ -4,10 +4,10 @@ import { RegisterTatoeDescription } from '@Commons/components/register/register-
 import { RegisterTatoeShortParaphrase } from '@Commons/components/register/register-tatoe-child/RegisterTatoeShortParaphrase';
 import { RegisterTatoeTitle } from '@Commons/components/register/register-tatoe-child/RegisterTatoeTitle';
 import { Tatoe } from '@Types/types';
-import React, { Dispatch, FormEventHandler, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, /* FormEventHandler, */ MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import { useTatoeCancel } from '../hooks/useTatoeCacel';
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { useForm, FormProvider, SubmitHandler, FieldValues } from 'react-hook-form';
 
 /*
 * TODO: 
@@ -16,10 +16,11 @@ import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 *
 */
 type TatoeFormProps = {
-  onSubmit: FormEventHandler<HTMLFormElement>;
-  setTitle: Dispatch<string>;
-  setShortParaphrase: Dispatch<string>;
-  setDescription: Dispatch<string>;
+  // onSubmit: FormEventHandler<HTMLFormElement>;
+  onSubmit: SubmitHandler<FieldValues>;
+  // setTitle: Dispatch<string>;
+  // setShortParaphrase: Dispatch<string>;
+  // setDescription: Dispatch<string>;
   setImageUrl: Dispatch<SetStateAction<string | null>>;
   defaultImageUrl: string | null;
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
@@ -29,13 +30,13 @@ type TatoeFormProps = {
 } & Tatoe;
 
 export const TatoeForm = ({
-  /* onSubmit, */
+  onSubmit,
   // setTitle,
   // title,
-  shortParaphrase,
-  setShortParaphrase,
-  description,
-  setDescription,
+  // shortParaphrase,
+  // setShortParaphrase,
+  // description,
+  // setDescription,
   imageUrl,
   setImageUrl,
   defaultImageUrl,
@@ -77,14 +78,20 @@ export const TatoeForm = ({
     register,
     formState: { errors }
   } = useForm();
-  const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
+  // const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
 
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
         <RegisterTatoeTitle register={register} errors={errors} /* title={title} setTitle={setTitle}  */ />
-        <RegisterTatoeShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
-        <RegisterTatoeDescription description={description} setDescription={setDescription} />
+        <RegisterTatoeShortParaphrase
+          register={register}
+          errors={errors} /* shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} */
+        />
+        <RegisterTatoeDescription
+          register={register}
+          errors={errors} /* description={description} setDescription={setDescription} */
+        />
         <RegisterImageForExplanationTatoe
           setImageUrl={setImageUrl}
           imageUrl={imageUrl}

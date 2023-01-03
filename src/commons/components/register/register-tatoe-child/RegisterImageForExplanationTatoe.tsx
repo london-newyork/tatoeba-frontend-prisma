@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, MouseEventHandler, useEffect, useRef, useSta
 import { SVGIcons } from '../../SVGIcons';
 
 export type SubmitImageProps = {
-  imageUrl?: string;
+  imageUrl: string | null;
   setImageUrl: React.Dispatch<string>;
   defaultImageUrl: string | null;
   setDefaultImageUrl: React.Dispatch<string>;

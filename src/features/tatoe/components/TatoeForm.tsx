@@ -77,7 +77,7 @@ export const TatoeForm = ({
     handleSubmit,
     register,
     formState: { errors }
-  } = useForm();
+  } = methods;
   // const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
 
   return (

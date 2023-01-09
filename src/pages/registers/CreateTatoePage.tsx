@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
@@ -52,7 +52,7 @@ export default function CreateTatoePage() {
 
   // const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
   const handleOnSubmit: SubmitHandler<FieldValues> = async (/* e */ data) => {
-    const { title, shortParaphrase, description } = data;
+    const { title, shortParaphrase, description, image } = data;
     // e.preventDefault();
 
     // TODO: React hook formのバリデーション追加したので削除検討
@@ -72,6 +72,7 @@ export default function CreateTatoePage() {
     formData.append('title', title);
     formData.append('shortParaphrase', shortParaphrase);
     formData.append('description', description);
+    formData.append('image', image);
 
     await createTatoe({
       formData

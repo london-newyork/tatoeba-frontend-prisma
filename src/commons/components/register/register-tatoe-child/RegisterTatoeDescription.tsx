@@ -2,14 +2,7 @@ import React from 'react';
 import { ErrorMessage } from '@hookform/error-message';
 import { FormProps } from '@Types/types';
 
-// type DescriptionProps = {
-//   description: string | undefined;
-//   setDescription: React.Dispatch<string>;
-// };
-
-export const RegisterTatoeDescription = (/* props: DescriptionProps */ { register, errors }: FormProps) => {
-  // const { description, setDescription } = props;
-
+export const RegisterTatoeDescription = ({ register, errors }: FormProps) => {
   return (
     <div
       className="
@@ -34,9 +27,6 @@ export const RegisterTatoeDescription = (/* props: DescriptionProps */ { registe
         />
       </label>
       <textarea
-        // value={description}
-        // onChange={(e) => setDescription(e.target.value)}
-        // name="description"
         placeholder="WEBサイトを「家」とすると、サーバーは「土地」に例えられます。"
         rows={8}
         className="input-area"

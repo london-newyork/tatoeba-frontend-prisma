@@ -1,14 +1,8 @@
 import { FormProps } from '@Types/types';
 import React from 'react';
 import { ErrorMessage } from '@hookform/error-message';
-// type ShortParaphraseProps = {
-//   shortParaphrase: string | undefined;
-//   setShortParaphrase: React.Dispatch<string>;
-// };
 
-export const RegisterTatoeShortParaphrase = (/* props: ShortParaphraseProps */ { register, errors }: FormProps) => {
-  // const { shortParaphrase, setShortParaphrase } = props;
-
+export const RegisterTatoeShortParaphrase = ({ register, errors }: FormProps) => {
   return (
     <div
       className="
@@ -33,9 +27,6 @@ export const RegisterTatoeShortParaphrase = (/* props: ShortParaphraseProps */ {
         />
       </label>
       <input
-        // value={shortParaphrase}
-        // onChange={(e) => setShortParaphrase(e.target.value)}
-        // name="shortParaphrase"
         placeholder="土地"
         type="text"
         className="input-area"

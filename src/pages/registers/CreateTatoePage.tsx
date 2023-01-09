@@ -86,12 +86,6 @@ export default function CreateTatoePage() {
   return (
     <TatoeForm
       onSubmit={handleOnSubmit}
-      // title={title}
-      // setTitle={setTitle}
-      // shortParaphrase={shortParaphrase}
-      // setShortParaphrase={setShortParaphrase}
-      // description={description}
-      // setDescription={setDescription}
       imageUrl={imageUrl}
       setImageUrl={setImageUrl}
       defaultImageUrl={defaultImageUrl}

@@ -18,7 +18,7 @@ export const RegisterImageForExplanationTatoe = ({
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
-  const { setValue, watch } = useFormContext();
+  const { setValue /* watch */ } = useFormContext();
 
   // TODO: 機能として切り出してfeaturesへ。UIの部分はsrc/componentsへ
   // 登録・編集
@@ -48,13 +48,6 @@ export const RegisterImageForExplanationTatoe = ({
     }
     setDefaultImageUrl(URL.createObjectURL(file));
     setValue('image', file);
-    // 画像をデータとしてセットしている箇所
-    // → setValue っていうのを呼び出してあげよう〜
-    // → setValue("image", file)
-    /**
-     * 画像を削除する場合は
-     * setValue("image", null) のようにする！
-     */
   };
 
   const deleteImage: MouseEventHandler<HTMLButtonElement> = (e) => {

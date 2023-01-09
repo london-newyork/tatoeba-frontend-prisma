@@ -9,18 +9,8 @@ import { SetterOrUpdater } from 'recoil';
 import { useTatoeCancel } from '../hooks/useTatoeCacel';
 import { useForm, FormProvider, SubmitHandler, FieldValues } from 'react-hook-form';
 
-/*
-* TODO: 
-
-* このTatoeFormに親からuseState部分をpropsで渡さないことも検討
-*
-*/
 type TatoeFormProps = {
-  // onSubmit: FormEventHandler<HTMLFormElement>;
   onSubmit: SubmitHandler<FieldValues>;
-  // setTitle: Dispatch<string>;
-  // setShortParaphrase: Dispatch<string>;
-  // setDescription: Dispatch<string>;
   setImageUrl: Dispatch<SetStateAction<string | null>>;
   defaultImageUrl: string | null;
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
@@ -31,12 +21,6 @@ type TatoeFormProps = {
 
 export const TatoeForm = ({
   onSubmit,
-  // setTitle,
-  // title,
-  // shortParaphrase,
-  // setShortParaphrase,
-  // description,
-  // setDescription,
   imageUrl,
   setImageUrl,
   defaultImageUrl,
@@ -47,15 +31,6 @@ export const TatoeForm = ({
   setTatoe
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
-
-  // const [title, setTitle] = useState<string | null>('');
-  // const [shortParaphrase, setShortParaphrase] = useState<string | null>('');
-  // const [description, setDescription] = useState<string | null>('');
-  // const [createdAt, setCreatedAt] = useState<string | null>('');
-  // const [updatedAt, setUpdatedAt] = useState<string | null>('');
-
-  // const [imageUrl, setImageUrl] = useState<string | null>(null);
-  // const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
   // const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
@@ -83,15 +58,9 @@ export const TatoeForm = ({
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <RegisterTatoeTitle register={register} errors={errors} /* title={title} setTitle={setTitle}  */ />
-        <RegisterTatoeShortParaphrase
-          register={register}
-          errors={errors} /* shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} */
-        />
-        <RegisterTatoeDescription
-          register={register}
-          errors={errors} /* description={description} setDescription={setDescription} */
-        />
+        <RegisterTatoeTitle register={register} errors={errors} />
+        <RegisterTatoeShortParaphrase register={register} errors={errors} />
+        <RegisterTatoeDescription register={register} errors={errors} />
         <RegisterImageForExplanationTatoe
           setImageUrl={setImageUrl}
           imageUrl={imageUrl}
@@ -109,25 +78,5 @@ export const TatoeForm = ({
         </div>
       </form>
     </FormProvider>
-    // <form className="flex flex-col gap-6" onSubmit={onSubmit}>
-    //   <RegisterTatoeTitle title={title} setTitle={setTitle} />
-    //   <RegisterTatoeShortParaphrase shortParaphrase={shortParaphrase} setShortParaphrase={setShortParaphrase} />
-    //   <RegisterTatoeDescription description={description} setDescription={setDescription} />
-    //   <RegisterImageForExplanationTatoe
-    //     setImageUrl={setImageUrl}
-    //     imageUrl={imageUrl}
-    //     defaultImageUrl={defaultImageUrl}
-    //     setDefaultImageUrl={setDefaultImageUrl}
-    //     deleteExplanationImage={deleteExplanationImage}
-    //   />
-    //   <div className="mx-auto flex flex-col gap-6 pt-6 smd:flex-row md:mx-0 md:justify-end">
-    //     <RegisterTatoeBtn variant="cancel" btnName="キャンセル" btnType="button" onClickCancel={handleClickCancel} />
-    //     {!isUpdate ? (
-    //       <RegisterTatoeBtn variant="create" btnName="投稿する" btnType="submit" />
-    //     ) : (
-    //       <RegisterTatoeBtn variant="update" btnName="更新する" btnType="submit" />
-    //     )}
-    //   </div>
-    // </form>
   );
 };

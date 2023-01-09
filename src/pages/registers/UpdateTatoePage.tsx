@@ -1,4 +1,4 @@
-import { useAlert } from '@Commons/hooks/useAlert';
+// import { useAlert } from '@Commons/hooks/useAlert';
 import { useApi } from '@Commons/hooks/useApi';
 import { useAuth } from '@Features/auth/hooks/useAuth';
 import { useAccessToken } from '@Features/auth/store';
@@ -7,7 +7,8 @@ import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
 import { useUserInfo } from '@Features/user/hooks/useUserInfo';
 import { Tatoe } from '@Types/types';
 import { TatoeAtom } from '@Utils/atoms/TatoeAtom';
-import React, { FormEventHandler, MouseEventHandler, useEffect, useState } from 'react';
+import React, { /* FormEventHandler, */ MouseEventHandler, useEffect, useState } from 'react';
+import { FieldValues, SubmitHandler /* useFormContext  */ } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
 export type UpdateTatoePageProps = {
@@ -68,22 +69,31 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
     });
   }, [tatoe]);
 
-  const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    // eslint-disable-next-line
-    const { alertRegisterTatoe, noInputsData } = useAlert({
-      userId,
-      user,
-      title,
-      shortParaphrase,
-      description
-    });
-    if (noInputsData) {
-      alertRegisterTatoe();
-      return;
-    }
+  // const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleOnSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const { title, shortParaphrase, description, image } = data;
 
-    const formData = new FormData(e.currentTarget);
+    // e.preventDefault();
+    // eslint-disable-next-line
+    // const { alertRegisterTatoe, noInputsData } = useAlert({
+    //   userId,
+    //   user,
+    //   title,
+    //   shortParaphrase,
+    //   description
+    // });
+    // if (noInputsData) {
+    //   alertRegisterTatoe();
+    //   return;
+    // }
+
+    // const formData = new FormData(e.currentTarget);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('shortParaphrase', shortParaphrase);
+    formData.append('description', description);
+    formData.append('image', image);
+
     await updateTatoe({
       tId: tId as string,
       userId,
@@ -97,25 +107,20 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
   /* DELETE */
   const handleDeleteExplanationImage: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
+
     if (!defaultImageUrl && !imageUrl) {
       return;
     }
     await deleteTatoeImageApi();
 
     setImageUrl(null);
-    URL.revokeObjectURL(defaultImageUrl);
+    URL.revokeObjectURL(defaultImageUrl as string);
     setDefaultImageUrl(null);
   };
 
   return (
     <TatoeForm
       onSubmit={handleOnSubmit}
-      title={title}
-      setTitle={setTitle}
-      shortParaphrase={shortParaphrase}
-      setShortParaphrase={setShortParaphrase}
-      description={description}
-      setDescription={setDescription}
       imageUrl={imageUrl}
       setImageUrl={setImageUrl}
       defaultImageUrl={defaultImageUrl}

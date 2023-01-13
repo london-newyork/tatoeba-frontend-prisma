@@ -11,6 +11,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'next/core-web-vitals',
         'plugin:tailwindcss/recommended',
+        'plugin:jest/recommended',
         'prettier',
     ],
     'parserOptions': {

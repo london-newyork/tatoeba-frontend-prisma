@@ -8,7 +8,8 @@
     "lint": "next lint",
     "format": "prettier --write src",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",

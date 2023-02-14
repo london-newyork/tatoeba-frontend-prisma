@@ -2,11 +2,33 @@ import { useAuth } from '../features/auth/hooks/useAuth';
 import { LoginUserAtom } from '../features/auth/store';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { RecoilRoot, MutableSnapshot } from 'recoil';
-import { Password } from '@Commons/components/dashboard/Password';
+// import { Password } from '@Commons/components/dashboard/Password';
 // function sum(a: number, b: number) {
 //   const result = a + b;
 //   return result;
 // }
+
+/* 1
+* cy.get(`[name=aaaaaa]`)みたいな書き方ってOK？
+* cy.get(`[name="aaaaaa"]`)じゃないとstringとして認識しないんじゃないか？
+*
+* cy.get(<selector>)
+*
+*
+* 2
+* data-cy => UIが変更されてもテストで追跡できるようなCypress用属性
+* name => 従来の属性
+* nameの使用 はcypress では非推奨みたいで data-cyとかdata-testとか使ってくれ
+* とかかれている
+* nameとdata-cyを併用するのは全然オッケーで、name属性の中身をcypressが勝手にdata-cyとして変換してくれる?
+
+<Button
+data-cy="aaaa"
+name="bbbb"
+
+* data-cy="aaaa" <=
+cy.get(`[name=bbbb]`, {timeout: 20000}).should('be.visible')
+ */
 describe('useAuth のテスト', () => {
   test('ログインしていない状態で、 userId, isLoggedIn はそれぞれ null, false になる。', () => {
     // Given
@@ -42,7 +64,7 @@ describe('useAuth のテスト', () => {
     expect(result.current.isLoggedIn).toBe(true);
   });
 
-  test('ログインしていない状態から、正しい認証情報で signIn を行うと、 isLoggedIn が true になる。', () => {
+  test('ログインしていない状態から、正しい認証情報で signIn を行うと、 isLoggedIn が true になる。', async () => {
     // Given
     // ログインしていない状態 -> 1個目のテストと同じ
     const initializeRecoil = ({ set }: MutableSnapshot) => {
@@ -50,6 +72,7 @@ describe('useAuth のテスト', () => {
       // テスト用に export させてもいいし、 mock することもできる
       set(LoginUserAtom, null);
     };
+    // 正しい認証情報で signIn を行う
     // When
 
     // const { result } = ...  っていうのは同じ
@@ -58,10 +81,10 @@ describe('useAuth のテスト', () => {
     const { result } = renderHook(() => useAuth(), {
       wrapper: ({ children }) => <RecoilRoot initializeState={initializeRecoil}>{children}</RecoilRoot>
     });
-    act(async () => {
+    await act(async () => {
       const email = 'qqqq@ttttt.com';
       const password = '0123456';
-      await waitFor(result.current.login(email, password));
+      await waitFor(() => result.current.login(email, password));
     });
     // Then
     expect(result.current.isLoggedIn).toBe(true);

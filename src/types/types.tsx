@@ -5,16 +5,16 @@ import { FieldErrorsImpl, FieldValues, UseFormRegister, UseFormSetValue } from '
 import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
-  tId?: string | string[];
-  userId?: string;
-  title?: string;
-  shortParaphrase?: string;
-  description?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  tId: string | string[] | null;
+  userId: string | null;
+  title: string | null;
+  shortParaphrase: string | null;
+  description: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
   imageUrl: string | null;
-  imageId?: string;
-  formData?: FormData;
+  imageId: string | null;
+  formData: FormData | null;
 };
 
 export type AllUserTatoe = {
@@ -73,12 +73,20 @@ export type User = {
   updatedAt: string | undefined;
 };
 export type TatoeBtnHooksProps = {
+  tId: string | null;
   tatoe: Tatoe[];
-  router: NextRouter;
-  user: User;
-  setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[]>;
+  router: NextRouter | null;
+  user: User | undefined;
+  userId: string | null;
+  title: string | null;
+  shortParaphrase: string | null;
+  description: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+  // setTatoe: SetterOrUpdater<Tatoe[] | ParsedUrlQuery[] | never[]>;
+  setTatoe: SetterOrUpdater<Tatoe[]>;
   accessToken: string | null;
-} & Tatoe;
+};
 
 export type OnClick = {
   onClick: () => void;

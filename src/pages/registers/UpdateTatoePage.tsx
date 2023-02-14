@@ -29,7 +29,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [defaultImageUrl, setDefaultImageUrl] = useState<string | null>(null);
 
-  const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
+  const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   const accessToken = useAccessToken();
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
@@ -73,6 +73,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
   const handleOnSubmit: SubmitHandler<FieldValues> = async (data) => {
     const { title, shortParaphrase, description, image } = data;
 
+    // TODO: delete this code next time
     // e.preventDefault();
     // eslint-disable-next-line
     // const { alertRegisterTatoe, noInputsData } = useAlert({

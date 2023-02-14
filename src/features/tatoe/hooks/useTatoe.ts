@@ -60,7 +60,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
       description: data.description,
       shortParaphrase: data.shortParaphrase,
       imageUrl: data.imageUrl,
-      imageId: data.imageId
+      imageId: data.imageId,
+      formData: data.formData
     };
     const newTatoe = [formattedData, ...tatoe];
     setTatoe(newTatoe);

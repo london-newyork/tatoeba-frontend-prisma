@@ -15,9 +15,19 @@ type TatoeFormProps = {
   defaultImageUrl: string | null;
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
   deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
-  tatoe?: Tatoe[];
-  setTatoe?: SetterOrUpdater<Tatoe[]>;
-} & Tatoe;
+  tatoe: Tatoe[] | undefined;
+  setTatoe: SetterOrUpdater<Tatoe[]>;
+  tId: string | string[] | null;
+  userId?: string | null;
+  title?: string | null;
+  shortParaphrase?: string | null;
+  description?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  imageUrl?: string | null;
+  imageId?: string | null;
+  formData?: FormData | null;
+};
 
 export const TatoeForm = ({
   onSubmit,

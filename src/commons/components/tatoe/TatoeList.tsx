@@ -36,9 +36,14 @@ export const TatoeList = (): JSX.Element => {
     router,
     user,
     setTatoe,
-    accessToken
+    accessToken,
+    tId: null,
+    title: null,
+    shortParaphrase: null,
+    description: null,
+    createdAt: null,
+    updatedAt: null
   });
-
   const { handleMoveToEdit } = useRouting();
 
   if (!userId) {
@@ -46,7 +51,7 @@ export const TatoeList = (): JSX.Element => {
   }
 
   return (
-    <div>
+    <>
       {tatoe.length
         ? tatoe.map((item) => {
             return (
@@ -94,6 +99,6 @@ export const TatoeList = (): JSX.Element => {
             );
           })
         : null}
-    </div>
+    </>
   );
 };

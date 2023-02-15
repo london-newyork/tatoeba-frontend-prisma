@@ -15,7 +15,7 @@ type TatoeFormProps = {
   defaultImageUrl: string | null;
   setDefaultImageUrl: Dispatch<SetStateAction<string | null>>;
   deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
-  tatoe: Tatoe[] | undefined;
+  tatoe: Tatoe[];
   setTatoe: SetterOrUpdater<Tatoe[]>;
   tId: string | string[] | null;
   userId?: string | null;

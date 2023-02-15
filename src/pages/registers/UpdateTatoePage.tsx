@@ -61,6 +61,10 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
   useEffect(() => {
     tatoe.map((item: Tatoe) => {
       if (item.tId === tId) {
+        console.log('item.tId なか ★', item.tId);
+        console.log('tId なか ★', tId);
+        // TODO: tId一致してるのになぜか表示できない
+
         setImageUrl(item.imageUrl);
         setTitle(item.title);
         setDescription(item.description);

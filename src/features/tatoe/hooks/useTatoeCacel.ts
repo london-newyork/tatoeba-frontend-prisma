@@ -3,9 +3,9 @@ import { SetterOrUpdater } from 'recoil';
 import { Tatoe } from '@Types/types';
 
 type CancelProps = {
-  tId?: string | string[];
-  tatoe?: Tatoe[];
-  setTatoe?: SetterOrUpdater<Tatoe[]>;
+  tId?: string | string[] | null;
+  tatoe: Tatoe[];
+  setTatoe: SetterOrUpdater<Tatoe[]>;
 };
 
 export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
@@ -21,7 +21,11 @@ export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
             shortParaphrase: item.shortParaphrase,
             description: item.description,
             createdAt: item.createdAt,
-            updatedAt: item.updatedAt
+            updatedAt: item.updatedAt,
+            userId: item.userId,
+            imageUrl: item.imageUrl,
+            imageId: item.imageId,
+            formData: item.formData
           };
         } else {
           return item;

@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { SVGIcons } from '../../SVGIcons';
 
 export type SubmitImageProps = {
-  imageUrl: string | null;
+  imageUrl?: string | null;
   setImageUrl: React.Dispatch<string>;
   defaultImageUrl: string | null;
   setDefaultImageUrl: React.Dispatch<string>;

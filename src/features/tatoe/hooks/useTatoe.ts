@@ -33,6 +33,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     });
 
     const sortedData = newData.sort((a: Tatoe, b: Tatoe) => {
+      if (a.createdAt === null) return;
+      if (b.createdAt === null) return;
       if (a.createdAt < b.createdAt) {
         return 1;
       }
@@ -81,7 +83,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
           description: data.description,
           shortParaphrase: data.shortParaphrase,
           imageId: data.imageId,
-          imageUrl: data.imageUrl
+          imageUrl: data.imageUrl,
+          formData: data.formData
         };
       }
 

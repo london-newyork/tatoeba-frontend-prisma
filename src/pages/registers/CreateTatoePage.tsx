@@ -85,6 +85,8 @@ export default function CreateTatoePage() {
 
   return (
     <TatoeForm
+      tatoe={tatoe}
+      setTatoe={setTatoe}
       onSubmit={handleOnSubmit}
       imageUrl={imageUrl}
       setImageUrl={setImageUrl}

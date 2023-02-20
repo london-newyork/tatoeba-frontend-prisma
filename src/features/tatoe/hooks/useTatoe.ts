@@ -51,7 +51,7 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     }
   };
 
-  const createTatoe = async (value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>) => {
+  const createTatoe = async (value: Pick<Tatoe, /* 'title' | 'shortParaphrase' | 'description' |  */ 'formData'>) => {
     const { data } = await postTatoeApi(value.formData);
     const formattedData: Tatoe = {
       tId: data.id,

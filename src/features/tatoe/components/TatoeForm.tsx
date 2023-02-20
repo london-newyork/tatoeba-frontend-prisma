@@ -17,11 +17,11 @@ type TatoeFormProps = {
   deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
   tatoe: Tatoe[];
   setTatoe: SetterOrUpdater<Tatoe[]>;
-  tId: string | string[] | null;
+  tId?: string | string[] | null;
   userId?: string | null;
-  title?: string | null;
-  shortParaphrase?: string | null;
-  description?: string | null;
+  // title?: string | null;
+  // shortParaphrase?: string | null;
+  // description?: string | null;
   createdAt?: string | null;
   updatedAt?: string | null;
   imageUrl?: string | null;
@@ -45,12 +45,14 @@ export const TatoeForm = ({
   // const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
 
   useEffect(() => {
+    console.log('tId in TatoeForm', tId);
     if (tId) {
       setIsUpdate(true);
     }
   }, [tId]);
 
   useEffect(() => {
+    // TODO: "register" may cause error to display element on updatePage
     if (register === null || errors === null) {
       return;
     }

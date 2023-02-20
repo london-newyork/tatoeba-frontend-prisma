@@ -5,10 +5,10 @@ type ProfileUserNameProps = {
   user: User;
   userName?: string;
   // onChange: (event: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined) => void;
-  onChange: (event: ChangeEvent<{ value: string }> | undefined) => void;
+  onChange: (e: ChangeEvent<{ value: string }> | undefined) => void;
   onFocus: () => void;
   onKeyDown: (
-    event: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined
+    e: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined
   ) => Promise<any>;
   onCompositionStart: () => void;
   onCompositionEnd: () => void;

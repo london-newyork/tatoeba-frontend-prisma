@@ -15,7 +15,6 @@ import { TatoeListCountFollowerBtn } from '../btn/TatoeListCountFollowerBtn';
 import { TatoeListEditExistingTatoeBtn } from '../btn/TatoeListEditExistingTatoeBtn';
 import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
 import { useRouting } from '@Features/commons/hooks/useRouting';
-
 export const TatoeList = (): JSX.Element => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
@@ -26,6 +25,9 @@ export const TatoeList = (): JSX.Element => {
   useEffect(() => {
     const getUserTatoeList = async () => {
       await getTatoe();
+      if (!userId) {
+        return null;
+      }
     };
     getUserTatoeList();
   }, []);
@@ -45,10 +47,6 @@ export const TatoeList = (): JSX.Element => {
     updatedAt: null
   });
   const { handleMoveToEdit } = useRouting();
-
-  if (!userId) {
-    return null;
-  }
 
   return (
     <>

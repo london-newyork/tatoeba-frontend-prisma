@@ -19,17 +19,20 @@ type TatoeFormProps = {
   setTatoe: SetterOrUpdater<Tatoe[]>;
   tId?: string | string[] | null;
   userId?: string | null;
-  // title?: string | null;
-  // shortParaphrase?: string | null;
-  // description?: string | null;
   createdAt?: string | null;
   updatedAt?: string | null;
   imageUrl?: string | null;
   imageId?: string | null;
   formData?: FormData | null;
+  // title?: string;
+  // description?: string;
+  // shortParaphrase?: string;
 };
 
 export const TatoeForm = ({
+  // title,
+  // description,
+  // shortParaphrase,
   onSubmit,
   imageUrl,
   setImageUrl,
@@ -43,16 +46,16 @@ export const TatoeForm = ({
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
 
   // const [tatoe, setTatoe] = useRecoilState(TatoeAtom);
+  console.log('TatoeForm tatoe', tatoe);
 
   useEffect(() => {
-    console.log('tId in TatoeForm', tId);
+    console.log('😉 tId in TatoeForm', tId); // ある
     if (tId) {
       setIsUpdate(true);
     }
   }, [tId]);
 
   useEffect(() => {
-    // TODO: "register" may cause error to display element on updatePage
     if (register === null || errors === null) {
       return;
     }
@@ -66,13 +69,13 @@ export const TatoeForm = ({
     formState: { errors }
   } = methods;
   // const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
-
+  // TODO: registerにformDataからのデータを詰め込みたい
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <RegisterTatoeTitle register={register} errors={errors} />
-        <RegisterTatoeShortParaphrase register={register} errors={errors} />
-        <RegisterTatoeDescription register={register} errors={errors} />
+        <RegisterTatoeTitle register={register} errors={errors} /* title={title} */ />
+        <RegisterTatoeShortParaphrase register={register} errors={errors} /* shortParaphrase={shortParaphrase} */ />
+        <RegisterTatoeDescription register={register} errors={errors} /* description={description} */ />
         <RegisterImageForExplanationTatoe
           setImageUrl={setImageUrl}
           imageUrl={imageUrl}

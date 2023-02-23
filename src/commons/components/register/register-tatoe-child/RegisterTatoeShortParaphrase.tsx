@@ -2,7 +2,7 @@ import { FormProps } from '@Types/types';
 import React from 'react';
 import { ErrorMessage } from '@hookform/error-message';
 
-export const RegisterTatoeShortParaphrase = ({ register, errors }: FormProps) => {
+export const RegisterTatoeShortParaphrase = ({ /* shortParaphrase, */ register, errors }: FormProps) => {
   return (
     <div
       className="
@@ -30,6 +30,7 @@ export const RegisterTatoeShortParaphrase = ({ register, errors }: FormProps) =>
         placeholder="土地"
         type="text"
         className="input-area"
+        // value={shortParaphrase}
         {...register('shortParaphrase', {
           required: true,
           pattern: {

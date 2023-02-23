@@ -106,4 +106,7 @@ export type FormProps = {
   }>;
   isValid?: boolean;
   setValue?: UseFormSetValue<FieldValues>;
+  /*   title?: string;
+  shortParaphrase?: string;
+  description?: string; */
 };

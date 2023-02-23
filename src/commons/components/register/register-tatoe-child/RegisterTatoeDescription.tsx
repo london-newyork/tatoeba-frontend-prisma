@@ -2,7 +2,7 @@ import React from 'react';
 import { ErrorMessage } from '@hookform/error-message';
 import { FormProps } from '@Types/types';
 
-export const RegisterTatoeDescription = ({ register, errors }: FormProps) => {
+export const RegisterTatoeDescription = ({ /* description, */ register, errors }: FormProps) => {
   return (
     <div
       className="
@@ -29,6 +29,7 @@ export const RegisterTatoeDescription = ({ register, errors }: FormProps) => {
       <textarea
         placeholder="WEBサイトを「家」とすると、サーバーは「土地」に例えられます。"
         rows={8}
+        // value={description}
         className="input-area"
         {...register('description', {
           required: true,

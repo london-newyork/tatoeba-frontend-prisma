@@ -76,6 +76,7 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
   // const handleOnSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
   const handleOnSubmit: SubmitHandler<FieldValues> = async (data) => {
     const { title, shortParaphrase, description, image } = data;
+    // console.log('data ★', data); // ない
 
     // TODO: delete this code next time
     // e.preventDefault();
@@ -136,6 +137,9 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
       setTatoe={setTatoe}
       createdAt={createdAt}
       updatedAt={updatedAt}
+      // title={title}
+      // description={description}
+      // shortParaphrase={shortParaphrase}
     />
   );
 };

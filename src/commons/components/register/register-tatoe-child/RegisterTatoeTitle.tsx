@@ -2,7 +2,7 @@ import { FormProps } from '@Types/types';
 import React from 'react';
 import { ErrorMessage } from '@hookform/error-message';
 
-export const RegisterTatoeTitle = ({ register, errors }: FormProps) => {
+export const RegisterTatoeTitle = ({ /* title,  */ register, errors }: FormProps) => {
   return (
     <div
       className="
@@ -30,6 +30,7 @@ export const RegisterTatoeTitle = ({ register, errors }: FormProps) => {
         rows={2}
         placeholder="サーバー"
         className="input-area"
+        // value={title}
         {...register('title', {
           required: true,
           pattern: {

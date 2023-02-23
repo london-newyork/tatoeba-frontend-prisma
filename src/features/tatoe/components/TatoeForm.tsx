@@ -7,7 +7,7 @@ import { Tatoe } from '@Types/types';
 import React, { Dispatch, /* FormEventHandler, */ MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import { useTatoeCancel } from '../hooks/useTatoeCacel';
-import { useForm, FormProvider, SubmitHandler, FieldValues } from 'react-hook-form';
+import { useForm, FormProvider, SubmitHandler, FieldValues, useController } from 'react-hook-form';
 
 type TatoeFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
@@ -66,14 +66,34 @@ export const TatoeForm = ({
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors }
   } = methods;
+
   // const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
+
   // TODO: registerにformDataからのデータを詰め込みたい
+  /* わからない点：
+   * 1. TatoeFormから子コンポーネントにどうやってapiからgetしたvalueを渡すか
+   *   - value={title} => × 表示はできたが更新できない
+   *   - setValueを呼び出す関数をonChange経由で子コンポーネントに渡す
+   *      => × register関数がすでにonChange使ってるのでだめ
+   * 2. setValueはTatoeForm内でするか 子コンポーネントにsetValue渡すか
+   */
+
+  // const handleUpdateTatoe = (value: string) => {
+  //   setValue('title', value);
+  // };
+
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <RegisterTatoeTitle register={register} errors={errors} /* title={title} */ />
+        <RegisterTatoeTitle
+          register={register}
+          errors={errors}
+          // setValue={setValue}
+          /* title={title} */
+        />
         <RegisterTatoeShortParaphrase register={register} errors={errors} /* shortParaphrase={shortParaphrase} */ />
         <RegisterTatoeDescription register={register} errors={errors} /* description={description} */ />
         <RegisterImageForExplanationTatoe

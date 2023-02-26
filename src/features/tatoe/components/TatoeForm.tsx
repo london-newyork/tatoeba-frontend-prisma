@@ -7,7 +7,7 @@ import { Tatoe } from '@Types/types';
 import React, { Dispatch, /* FormEventHandler, */ MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import { useTatoeCancel } from '../hooks/useTatoeCacel';
-import { useForm, FormProvider, SubmitHandler, FieldValues, useController } from 'react-hook-form';
+import { useForm, FormProvider, SubmitHandler, FieldValues } from 'react-hook-form';
 
 type TatoeFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
@@ -66,6 +66,7 @@ export const TatoeForm = ({
   const {
     handleSubmit,
     register,
+    getValues,
     setValue,
     formState: { errors }
   } = methods;
@@ -79,6 +80,7 @@ export const TatoeForm = ({
    *   - setValueを呼び出す関数をonChange経由で子コンポーネントに渡す
    *      => × register関数がすでにonChange使ってるのでだめ
    * 2. setValueはTatoeForm内でするか 子コンポーネントにsetValue渡すか
+   * 3. getValuesで取得する=>子コンポーネントの中のtextareaなどに値を渡すことができない
    */
 
   // const handleUpdateTatoe = (value: string) => {
@@ -92,7 +94,7 @@ export const TatoeForm = ({
           register={register}
           errors={errors}
           // setValue={setValue}
-          /* title={title} */
+          // title={title}
         />
         <RegisterTatoeShortParaphrase register={register} errors={errors} /* shortParaphrase={shortParaphrase} */ />
         <RegisterTatoeDescription register={register} errors={errors} /* description={description} */ />

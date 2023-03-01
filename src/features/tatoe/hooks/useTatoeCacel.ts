@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import { SetterOrUpdater } from 'recoil';
-import { Tatoe } from '../../../types/types';
+import { Tatoe } from '@Types/types';
 
 type CancelProps = {
-  tId?: string | string[];
-  tatoe?: Tatoe[];
-  setTatoe?: SetterOrUpdater<Tatoe[]>;
+  tId?: string | string[] | null;
+  tatoe: Tatoe[];
+  setTatoe: SetterOrUpdater<Tatoe[]>;
 };
 
 export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
@@ -21,7 +21,11 @@ export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
             shortParaphrase: item.shortParaphrase,
             description: item.description,
             createdAt: item.createdAt,
-            updatedAt: item.updatedAt
+            updatedAt: item.updatedAt,
+            userId: item.userId,
+            imageUrl: item.imageUrl,
+            imageId: item.imageId,
+            formData: item.formData
           };
         } else {
           return item;
@@ -32,13 +36,13 @@ export const useTatoeCancel = ({ tId, tatoe, setTatoe }: CancelProps) => {
       tatoe.map((item) => {
         if (item.tId === tId) {
           router.push({
-            pathname: '/dashboard/user-tatoe-list'
+            pathname: '/dashboards/user-tatoe-list'
           });
         }
       });
     }
     router.push({
-      pathname: '/dashboard/user-tatoe-list'
+      pathname: '/dashboards/user-tatoe-list'
     });
   };
   return { handleClickCancel };

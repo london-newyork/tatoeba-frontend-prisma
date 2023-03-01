@@ -14,7 +14,7 @@ import { SVGIcons } from '../SVGIcons';
 import { useAccessToken } from '@Features/auth/store';
 import { useTatoe } from '@Features/tatoe/hooks/useTatoe';
 
-export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
+export const TatoeListDeleteTatoeBtn = (props: Pick<Tatoe, 'tId'>) => {
   const { tId } = props;
   const [tatoe, setTatoe] = useRecoilState<Tatoe[]>(TatoeAtom);
   // const persistAccessToken = useRecoilValue(LoginUserAtom);
@@ -22,7 +22,6 @@ export const TatoeListDeleteTatoeBtn = (props: Tatoe) => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
   const router = useRouter();
-
   const { deleteTatoe } = useTatoe({
     tId,
     tatoe,

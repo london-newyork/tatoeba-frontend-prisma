@@ -27,7 +27,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     login(email, password);
-    await router.push('/dashboard');
+    await router.push('/dashboards');
   };
 
   return (

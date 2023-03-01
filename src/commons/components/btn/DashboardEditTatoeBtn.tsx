@@ -5,7 +5,7 @@ export const DashboardEditTatoeBtn = () => {
   const router = useRouter();
   const handleMoveToUserTatoeList = () => {
     router.push({
-      pathname: '/dashboard/user-tatoe-list'
+      pathname: '/dashboards/user-tatoe-list'
     });
   };
   return (

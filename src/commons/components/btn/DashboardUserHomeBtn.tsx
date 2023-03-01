@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import React, { VFC } from 'react';
 import { SVGIcons } from '../SVGIcons';
 
-export const DashboardUserHomeBtn: VFC = (props) => {
+export const DashboardUserHomeBtn: VFC = () => {
   const router = useRouter();
   const handleMoveToDashboardHome = () => {
     router.push({
-      pathname: '/dashboard'
+      pathname: '/dashboards'
     });
   };
   return (

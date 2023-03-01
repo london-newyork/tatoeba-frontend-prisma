@@ -3,7 +3,7 @@ import { Tatoe } from '../../../types/types';
 
 export const TatoeListCreatedAt = ({ createdAt }: Pick<Tatoe, 'createdAt'>) => {
   return (
-    <div>
+    <>
       <li
         className="
         tatoe-list-created-at
@@ -11,6 +11,6 @@ export const TatoeListCreatedAt = ({ createdAt }: Pick<Tatoe, 'createdAt'>) => {
       >
         {createdAt}
       </li>
-    </div>
+    </>
   );
 };

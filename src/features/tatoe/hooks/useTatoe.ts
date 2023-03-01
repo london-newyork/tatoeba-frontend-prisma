@@ -33,6 +33,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     });
 
     const sortedData = newData.sort((a: Tatoe, b: Tatoe) => {
+      if (a.createdAt === null) return;
+      if (b.createdAt === null) return;
       if (a.createdAt < b.createdAt) {
         return 1;
       }
@@ -49,7 +51,7 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
     }
   };
 
-  const createTatoe = async (value: Pick<Tatoe, 'title' | 'shortParaphrase' | 'description' | 'formData'>) => {
+  const createTatoe = async (value: Pick<Tatoe, /* 'title' | 'shortParaphrase' | 'description' |  */ 'formData'>) => {
     const { data } = await postTatoeApi(value.formData);
     const formattedData: Tatoe = {
       tId: data.id,
@@ -60,7 +62,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
       description: data.description,
       shortParaphrase: data.shortParaphrase,
       imageUrl: data.imageUrl,
-      imageId: data.imageId
+      imageId: data.imageId,
+      formData: data.formData
     };
     const newTatoe = [formattedData, ...tatoe];
     setTatoe(newTatoe);
@@ -80,7 +83,8 @@ export const useTatoe = (props: TatoeBtnHooksProps) => {
           description: data.description,
           shortParaphrase: data.shortParaphrase,
           imageId: data.imageId,
-          imageUrl: data.imageUrl
+          imageUrl: data.imageUrl,
+          formData: data.formData
         };
       }
 

@@ -1,39 +1,46 @@
-import React from 'react';
+import { FormProps } from '@Types/types';
 
-type TitleProps = {
-  title: string | null;
-  setTitle: React.Dispatch<React.SetStateAction<string | string[] | null>>;
-};
+import { ErrorMessage } from '@hookform/error-message';
 
-export const RegisterTatoeTitle = (props: TitleProps) => {
-  const { title, setTitle } = props;
-
+export const RegisterTatoeTitle = ({ register, errors }: FormProps) => {
   return (
     <div
       className="
-      flex
-      flex-col
-      justify-between
-      lg:flex-row"
+    flex
+    flex-col
+    justify-between
+    lg:flex-row"
     >
       <label
         className="
-      headline-s
-      "
+    headline-s
+    "
         htmlFor="title"
       >
         わかりにくい専門用語・文章
         <br />
         <span className="caption-s">50文字以内</span>
+        <ErrorMessage
+          errors={errors}
+          name="title"
+          render={({ message }) => (message ? <p className="error-message">{message}</p> : null)}
+        />
       </label>
       <textarea
-        value={title}
-        name="title"
-        onChange={(e) => setTitle(e.target.value)}
         rows={2}
         placeholder="サーバー"
-        maxLength={50}
         className="input-area"
+        {...register('title', {
+          required: true,
+          pattern: {
+            value: /^[ぁ-んァ-ヶー一-龠 a-zA-Z ]+$/,
+            message: '全角漢字ひらがなまたは半角アルファベットでご入力ください。'
+          },
+          maxLength: {
+            value: 50,
+            message: '最大50文字までご入力が可能です。'
+          }
+        })}
       ></textarea>
     </div>
   );

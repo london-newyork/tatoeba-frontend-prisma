@@ -6,6 +6,7 @@ import { ProfileUserName } from './ProfileUserName';
 import { ProfileImage } from './ProfileImage';
 import { useAuth } from '@Features/auth/hooks/useAuth';
 import { useUserInfo } from '@Features/user/hooks/useUserInfo';
+import { User } from '@Types/types';
 
 export const Profile = () => {
   const { userId } = useAuth();
@@ -90,9 +91,9 @@ export const Profile = () => {
           profile-main-contents
           "
         >
-          <ProfileImage onSubmit={handleOnSubmit} userId={userId} />
+          <ProfileImage onSubmit={handleOnSubmit} userId={userId as string} />
           <ProfileUserName
-            user={user}
+            user={user as User}
             userName={userName}
             onChange={handleChangeUserName}
             onFocus={handleOnFocus}

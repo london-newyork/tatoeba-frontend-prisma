@@ -1,6 +1,5 @@
 import { useProfileImage } from '@Features/auth/store';
 import React from 'react';
-import { useRecoilValue } from 'recoil';
 import { SVGIcons } from '../SVGIcons';
 import { TriggerDropDownMenuBtn } from './TriggerDropDownMenuBtn';
 
@@ -16,6 +15,7 @@ export const HeaderProfileIcon = ({ userId, className, onClick }: HeaderProfileI
   return (
     <TriggerDropDownMenuBtn onClick={onClick} className={className}>
       {userId ? (
+        // eslint-disable-next-line
         <img
           src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${userId}/profile_image?t=${profileImage}`}
           alt="ユーザーの画像"

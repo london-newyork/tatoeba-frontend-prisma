@@ -14,7 +14,7 @@ export const TatoeListAddNewTatoeBtn = () => {
     md:-right-2
     "
     >
-      <Link href="/register">
+      <Link href="/registers">
         <div
           className="
           flex

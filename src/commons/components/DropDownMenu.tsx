@@ -26,13 +26,13 @@ export const DropDownMenu = ({
     </div>
   );
 
-  return (
-    <>
-      {(isClicked || isShow) && (
-        <div className={className} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-          {children}
-        </div>
-      )}
-    </>
-  );
+  // return (
+  //   <>
+  //     {(isClicked || isShow) && (
+  //       <div className={className} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+  //         {children}
+  //       </div>
+  //     )}
+  //   </>
+  // );
 };

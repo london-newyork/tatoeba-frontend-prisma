@@ -48,6 +48,7 @@ export const SearchBox = () => {
         <button
           className="
                   absolute
+                  -top-4
                   right-3
                   flex
                   h-[42px]

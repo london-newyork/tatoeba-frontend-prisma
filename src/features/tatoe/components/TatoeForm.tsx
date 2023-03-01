@@ -27,6 +27,7 @@ type TatoeFormProps = {
   // title?: string;
   // description?: string;
   // shortParaphrase?: string;
+  defaultValues?: Partial<Pick<Tatoe, 'title' | 'description' | 'shortParaphrase' | 'imageUrl'>>;
 };
 
 export const TatoeForm = ({
@@ -41,7 +42,8 @@ export const TatoeForm = ({
   deleteExplanationImage,
   tId,
   tatoe,
-  setTatoe
+  setTatoe,
+  defaultValues
 }: TatoeFormProps) => {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
 
@@ -62,7 +64,9 @@ export const TatoeForm = ({
   }, []);
 
   const { handleClickCancel } = useTatoeCancel({ tId, tatoe, setTatoe });
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues
+  });
   const {
     handleSubmit,
     register,
@@ -80,7 +84,8 @@ export const TatoeForm = ({
    *   - setValueを呼び出す関数をonChange経由で子コンポーネントに渡す
    *      => × register関数がすでにonChange使ってるのでだめ
    * 2. setValueはTatoeForm内でするか 子コンポーネントにsetValue渡すか
-   * 3. getValuesで取得する=>子コンポーネントの中のtextareaなどに値を渡すことができない
+   * 3. getVal,,,
+   * uesで取得する=>子コンポーネントの中のtextareaなどに値を渡すことができない
    */
 
   // const handleUpdateTatoe = (value: string) => {

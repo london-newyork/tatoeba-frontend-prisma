@@ -124,6 +124,13 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
     setDefaultImageUrl(null);
   };
 
+  // react-hook-formのdefaultValues使うためtitleが入ってこなければページを表示しないようにする
+  // 変数 isLoading を追加: title が空じゃないか !title
+  const isLoading = !title;
+  // isLoading === true -> TatoeForm を表示したくない -> return null
+  if (isLoading) {
+    return null;
+  }
   return (
     <TatoeForm
       onSubmit={handleOnSubmit}
@@ -137,6 +144,12 @@ export const UpdateTatoePage = ({ tId, onCreateTatoe }: UpdateTatoePageProps) =>
       setTatoe={setTatoe}
       createdAt={createdAt}
       updatedAt={updatedAt}
+      defaultValues={{
+        title: title,
+        shortParaphrase: shortParaphrase,
+        description: description,
+        imageUrl: imageUrl
+      }}
       // title={title}
       // description={description}
       // shortParaphrase={shortParaphrase}

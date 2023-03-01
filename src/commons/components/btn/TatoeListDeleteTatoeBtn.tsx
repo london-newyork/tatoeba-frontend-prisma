@@ -22,7 +22,6 @@ export const TatoeListDeleteTatoeBtn = (props: Pick<Tatoe, 'tId'>) => {
   const { userId } = useAuth();
   const { user } = useUserInfo(userId);
   const router = useRouter();
-
   const { deleteTatoe } = useTatoe({
     tId,
     tatoe,

@@ -1,7 +1,7 @@
 import { NextRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import { ReactNode } from 'react';
-import { FieldErrorsImpl, FieldValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import { FieldErrorsImpl, FieldValues, UseFormRegister } from 'react-hook-form';
 import { SetterOrUpdater } from 'recoil';
 
 export type Tatoe = {
@@ -105,9 +105,4 @@ export type FormProps = {
     [x: string]: any;
   }>;
   isValid?: boolean;
-  setValue: UseFormSetValue<FieldValues>;
-
-  title?: string;
-  /*  shortParaphrase?: string;
-  description?: string; */
 };

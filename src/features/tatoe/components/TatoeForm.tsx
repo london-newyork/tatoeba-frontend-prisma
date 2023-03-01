@@ -24,16 +24,10 @@ type TatoeFormProps = {
   imageUrl?: string | null;
   imageId?: string | null;
   formData?: FormData | null;
-  // title?: string;
-  // description?: string;
-  // shortParaphrase?: string;
   defaultValues?: Partial<Pick<Tatoe, 'title' | 'description' | 'shortParaphrase' | 'imageUrl'>>;
 };
 
 export const TatoeForm = ({
-  // title,
-  // description,
-  // shortParaphrase,
   onSubmit,
   imageUrl,
   setImageUrl,
@@ -70,39 +64,15 @@ export const TatoeForm = ({
   const {
     handleSubmit,
     register,
-    getValues,
-    setValue,
     formState: { errors }
   } = methods;
-
-  // const onSubmit: SubmitHandler<Tatoe> = (data) => console.log('data:', data);
-
-  // TODO: registerにformDataからのデータを詰め込みたい
-  /* わからない点：
-   * 1. TatoeFormから子コンポーネントにどうやってapiからgetしたvalueを渡すか
-   *   - value={title} => × 表示はできたが更新できない
-   *   - setValueを呼び出す関数をonChange経由で子コンポーネントに渡す
-   *      => × register関数がすでにonChange使ってるのでだめ
-   * 2. setValueはTatoeForm内でするか 子コンポーネントにsetValue渡すか
-   * 3. getVal,,,
-   * uesで取得する=>子コンポーネントの中のtextareaなどに値を渡すことができない
-   */
-
-  // const handleUpdateTatoe = (value: string) => {
-  //   setValue('title', value);
-  // };
 
   return (
     <FormProvider {...methods}>
       <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
-        <RegisterTatoeTitle
-          register={register}
-          errors={errors}
-          // setValue={setValue}
-          // title={title}
-        />
-        <RegisterTatoeShortParaphrase register={register} errors={errors} /* shortParaphrase={shortParaphrase} */ />
-        <RegisterTatoeDescription register={register} errors={errors} /* description={description} */ />
+        <RegisterTatoeTitle register={register} errors={errors} />
+        <RegisterTatoeShortParaphrase register={register} errors={errors} />
+        <RegisterTatoeDescription register={register} errors={errors} />
         <RegisterImageForExplanationTatoe
           setImageUrl={setImageUrl}
           imageUrl={imageUrl}

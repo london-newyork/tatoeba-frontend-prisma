@@ -30,7 +30,6 @@ export const RegisterTatoeShortParaphrase = ({ /* shortParaphrase, */ register, 
         placeholder="土地"
         type="text"
         className="input-area"
-        // value={shortParaphrase}
         {...register('shortParaphrase', {
           required: true,
           pattern: {

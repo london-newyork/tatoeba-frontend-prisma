@@ -1,12 +1,8 @@
 import { FormProps } from '@Types/types';
 
 import { ErrorMessage } from '@hookform/error-message';
-// import { Controller } from 'react-hook-form';
 
-export const RegisterTatoeTitle = ({ /* title, */ register, errors }: FormProps) => {
-  // const handleUpdate = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   event.currentTarget.value;
-  // };
+export const RegisterTatoeTitle = ({ register, errors }: FormProps) => {
   return (
     <div
       className="
@@ -34,7 +30,6 @@ export const RegisterTatoeTitle = ({ /* title, */ register, errors }: FormProps)
         rows={2}
         placeholder="サーバー"
         className="input-area"
-        // value={title}
         {...register('title', {
           required: true,
           pattern: {
@@ -46,7 +41,6 @@ export const RegisterTatoeTitle = ({ /* title, */ register, errors }: FormProps)
             message: '最大50文字までご入力が可能です。'
           }
         })}
-        // onChange={(e) => handleUpdate(e)}
       ></textarea>
     </div>
   );

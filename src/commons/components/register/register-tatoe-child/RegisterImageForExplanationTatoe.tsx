@@ -1,11 +1,12 @@
 import React, { ChangeEventHandler, MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { SVGIcons } from '../../SVGIcons';
 
 export type SubmitImageProps = {
-  imageUrl?: string;
-  setImageUrl: React.Dispatch<React.SetStateAction<string>>;
-  defaultImageUrl?: string;
-  setDefaultImageUrl: React.Dispatch<React.SetStateAction<string>>;
+  imageUrl?: string | null;
+  setImageUrl: React.Dispatch<string>;
+  defaultImageUrl: string | null;
+  setDefaultImageUrl: React.Dispatch<string>;
   deleteExplanationImage?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -17,6 +18,7 @@ export const RegisterImageForExplanationTatoe = ({
 }: SubmitImageProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFileSizeError, setIsFileSizeError] = useState<boolean>(false);
+  const { setValue /* watch */ } = useFormContext();
 
   // TODO: 機能として切り出してfeaturesへ。UIの部分はsrc/componentsへ
   // 登録・編集
@@ -45,6 +47,13 @@ export const RegisterImageForExplanationTatoe = ({
       URL.revokeObjectURL(defaultImageUrl);
     }
     setDefaultImageUrl(URL.createObjectURL(file));
+    setValue('image', file);
+  };
+
+  const deleteImage: MouseEventHandler<HTMLButtonElement> = (e) => {
+    deleteExplanationImage?.(e);
+
+    setValue('image', null);
   };
 
   useEffect(() => {
@@ -82,10 +91,12 @@ export const RegisterImageForExplanationTatoe = ({
           </span>
         ) : null}
       </label>
-      <div className="explanation-img-wrapper position relative">
+      <div className="explanation-img-wrapper relative">
         {defaultImageUrl ? (
+          // eslint-disable-next-line
           <img src={defaultImageUrl} className="explanation-img" alt="例えの説明画像" />
         ) : <div className="text-on-explanation-img absolute">画像を追加</div> && imageUrl ? (
+          // eslint-disable-next-line
           <img src={imageUrl} className="explanation-img" alt="例えの説明画像" />
         ) : (
           <div className="text-on-explanation-img absolute">画像を追加</div>
@@ -100,7 +111,7 @@ export const RegisterImageForExplanationTatoe = ({
               name="edit"
             />
           </button>
-          <button onClick={deleteExplanationImage}>
+          <button onClick={deleteImage}>
             <SVGIcons
               d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
               strokeWidth={0.9}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from '@Types/types';
 
-export const DisplayMailAddress = ({ email }: Pick<User, 'email'> | undefined) => {
+export const DisplayMailAddress = ({ email }: Pick<User, 'email'>) => {
   return (
     <div>
       <li>

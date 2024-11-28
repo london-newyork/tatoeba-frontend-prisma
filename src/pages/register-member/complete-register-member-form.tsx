@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { SendAuthInfoBtn } from '../../commons/components/btn/SendAuthInfoBtn';
-import { Header } from '../../commons/components/header/Header';
-import { HeadLine } from '../../commons/components/HeadLine';
-import { AuthLayouts } from '../../layouts/AuthLayouts';
-import { Inputs } from '../../commons/components/Inputs';
+import { SendAuthInfoBtn } from '@Components/btn/SendAuthInfoBtn';
+import { Header } from '@Components/header/Header';
+import { HeadLine } from '@Components/HeadLine';
+import { AuthLayouts } from '@Layouts/AuthLayouts';
+import { Inputs } from '@Components/Inputs';
 
 const CompleteRegisterMemberForm = () => {
   // eslint-disable-next-line

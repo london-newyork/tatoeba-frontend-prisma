@@ -1,12 +1,15 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { User } from '@Types/types';
 
 type ProfileUserNameProps = {
   user: User;
   userName?: string;
-  onChange: (event: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined) => void;
+  // onChange: (event: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined) => void;
+  onChange: (e: ChangeEvent<{ value: string }> | undefined) => void;
   onFocus: () => void;
-  onKeyDown: (event: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined) => void;
+  onKeyDown: (
+    e: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> | undefined
+  ) => Promise<any>;
   onCompositionStart: () => void;
   onCompositionEnd: () => void;
   isFocus: boolean;

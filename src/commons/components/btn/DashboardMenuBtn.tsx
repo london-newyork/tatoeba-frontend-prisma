@@ -10,7 +10,7 @@ export const DashboardMenuBtn = () => {
   const router = useRouter();
   const handleMoveToRemoveMember = () => {
     router.push({
-      pathname: '/dashboard/remove-member'
+      pathname: '/dashboards/remove-member'
     });
   };
   const { isClicked, isShow, handleDropDownMenu, handleMouseEnter, handleMouseLeave } = useDropDownMenu();

@@ -15,7 +15,7 @@ export default function Register() {
 
   const handleCreateTatoe = async () => {
     router.push({
-      pathname: '/dashboard/user-tatoe-list'
+      pathname: '/dashboards/user-tatoe-list'
     });
   };
   return (
